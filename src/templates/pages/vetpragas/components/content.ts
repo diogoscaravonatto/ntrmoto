@@ -85,7 +85,7 @@ export const vetPragasData = {
     {
       code: "DATA_04",
       question: "Quanto tempo dura o efeito?",
-      answer: "Dependendo do serviço, a proteção varia de 3 a 12 meses. Fazemos acompanhamento e avisamos quando está próximo da renovação."
+      answer: "O tempo de efeito residual do inseticida pode variar conforme o ambiente, o nível de infestação, as condições climáticas e os hábitos do local tratado, não sendo possível determinar um prazo exato e fixo de duração.\nNo entanto, garantimos a qualidade e a eficácia do nosso serviço, oferecendo garantia do trabalho realizado, assegurando ao cliente a tranquilidade quanto à proteção proporcionada pelo produto aplicado."
     },
     {
       code: "DATA_05",
