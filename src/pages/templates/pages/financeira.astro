@@ -1,0 +1,44 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navbar from "@templates-pages/financeira/components/Navbar.astro";
+import Hero from "@templates-pages/financeira/components/Hero.astro";
+import Stats from "@templates-pages/financeira/components/Stats.astro";
+import Metodologia from "@templates-pages/financeira/components/Metodologia.astro";
+import Socios from "@templates-pages/financeira/components/Socios.astro";
+import FAQ from "@templates-pages/financeira/components/FAQ.astro";
+import CTA from "@templates-pages/financeira/components/CTA.astro";
+import Footer from "@templates-pages/financeira/components/Footer.astro";
+---
+
+<BaseLayout
+    title="Wealth Management | Gestão Patrimonial de Elite"
+    description="Proteção e crescimento patrimonial para indivíduos e famílias de alto valor líquido. Estratégias exclusivas e governança financeira."
+    image="/images/templates/financeira.png"
+>
+    <main class="bg-[#050505] text-white">
+        <Navbar />
+        <Hero />
+        <Stats />
+        <Metodologia />
+        <Socios />
+        <FAQ />
+        <CTA />
+        <Footer />
+    </main>
+</BaseLayout>
+
+<style is:global>
+    @keyframes bounce-slow {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    .animate-bounce-slow {
+        animation: bounce-slow 4s ease-in-out infinite;
+    }
+</style>

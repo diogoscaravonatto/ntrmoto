@@ -1,0 +1,70 @@
+---
+const feedback = {
+    title: ["O que dizem os", "Vencedores."],
+    items: [
+        {
+            name: "Ricardo S.",
+            role: "CEO Tech",
+            text: "Saí de 20k para 150k mensais em 4 meses de mentoria. Mudou tudo.",
+        },
+        {
+            name: "Ana Paula",
+            role: "Infoprodutora",
+            text: "O método PeakMentor limpou meu ruído mental. Hoje tenho lucro e tempo.",
+        },
+        {
+            name: "Marcos V.",
+            role: "Empresário",
+            text: "Brutal. Direto ao ponto. Sem firulas. Se você quer crescer, esse é o lugar.",
+        },
+    ],
+};
+---
+
+<section id="resultados" class="py-40 px-6 bg-white italic">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-24">
+            <h2
+                class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter"
+            >
+                {feedback.title[0]}
+                <br /><span
+                    class="bg-black text-white px-6 inline-block not-italic tracking-tight"
+                    >{feedback.title[1]}</span
+                >
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            {
+                feedback.items.map((card) => (
+                    <div class="p-12 border-[4px] border-black shadow-[10px_10px_0px_#2563eb] rounded-3xl hover:translate-y-[-10px] transition-all cursor-default group">
+                        <div class="flex gap-1 mb-8">
+                            {[1, 2, 3, 4, 5].map(() => (
+                                <span class="text-yellow-400 text-xl font-black group-hover:scale-110 transition-transform">
+                                    ★
+                                </span>
+                            ))}
+                        </div>
+                        <p class="text-xl font-black italic mb-10 leading-tight lowercase">
+                            "{card.text}"
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="size-12 rounded-full border-[3px] border-black bg-zinc-200 flex items-center justify-center font-black text-[10px] uppercase">
+                                {card.name.charAt(0)}
+                            </div>
+                            <div>
+                                <p class="font-black uppercase text-xs tracking-tight">
+                                    {card.name}
+                                </p>
+                                <p class="text-[10px] font-black text-blue-600 uppercase tracking-widest italic lowercase">
+                                    {card.role}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

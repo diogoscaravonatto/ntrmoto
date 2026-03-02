@@ -1,0 +1,95 @@
+---
+export const prerender = true;
+/**
+ * COMPONENTE: StepProcess
+ * O QUE É: Seção visual que explica o passo a passo de um processo ou serviço.
+ * ONDE USAR: No meio da página para reduzir a ansiedade do cliente sobre o "como funciona".
+ * COMO USAR: Passe um array de 'steps' com título e descrição curta.
+ */
+interface Step {
+	number: string;
+	title: string;
+	description: string;
+	icon?: string;
+}
+
+interface Props {
+	title?: string;
+	subtitle?: string;
+	steps?: Step[];
+}
+
+const defaultSteps: Step[] = [
+	{
+		number: "01",
+		title: "Diagnóstico Inicial",
+		description: "Analisamos seu cenário atual e identificamos os pontos de melhoria e oportunidades.",
+	},
+	{
+		number: "02",
+		title: "Estratégia Sniper",
+		description: "Criamos um plano de ação focado em conversão e resultados rápidos para seu nicho.",
+	},
+	{
+		number: "03",
+		title: "Execução & Lançamento",
+		description: "Colocamos tudo no ar com o que há de mais moderno em design e tecnologia.",
+	},
+	{
+		number: "04",
+		title: "Escala & Otimização",
+		description: "Acompanhamos os dados e otimizamos semanalmente para maximizar seu ROI.",
+	},
+];
+
+const {
+	title = "Como Funciona o Processo",
+	subtitle = "Passo a passo para sua transformação digital",
+	steps = defaultSteps,
+} = Astro.props;
+---
+
+<section class="py-24 px-6 bg-zinc-950 relative overflow-hidden">
+	<!-- Background Glow -->
+	<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-96 bg-violet-600/10 blur-[120px] rounded-full"></div>
+
+	<div class="max-w-7xl mx-auto relative">
+		<!-- Header -->
+		<div class="text-center mb-20">
+			<h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-white">
+				{title}
+			</h2>
+			<p class="text-zinc-500 text-lg max-w-2xl mx-auto">
+				{subtitle}
+			</p>
+		</div>
+
+		<!-- Steps Grid -->
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+			{
+				steps.map((step, index) => (
+					<div class="group relative">
+						<!-- Connector (Desktop) -->
+						{index < steps.length - 1 && (
+							<div class="hidden lg:block absolute top-12 left-[calc(100%-20px)] w-full h-[2px] bg-linear-to-r from-violet-600/30 to-transparent z-0" />
+						)}
+
+						<div class="relative z-10 p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-violet-500/50 transition-all duration-300 hover:-translate-y-2">
+							<div class="size-14 bg-linear-to-br from-violet-600 to-violet-800 rounded-2xl flex items-center justify-center text-2xl font-black text-white mb-6 shadow-[0_10px_30px_rgba(139,92,246,0.3)]">
+								{step.number}
+							</div>
+							
+							<h3 class="text-xl font-bold text-white mb-4 group-hover:text-violet-400 transition-colors">
+								{step.title}
+							</h3>
+							
+							<p class="text-zinc-500 leading-relaxed text-sm">
+								{step.description}
+							</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

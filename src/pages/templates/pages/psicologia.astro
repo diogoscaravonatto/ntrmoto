@@ -1,0 +1,56 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+const metadata = {
+    name: "Psicologia Terapêutica | Equilíbrio Mental",
+    description:
+        "Apoio profissional para sua jornada de autoconhecimento e bem-estar emocional.",
+};
+import Navigation from "@templates-pages/psicologia/components/Navigation.astro";
+import Hero from "@templates-pages/psicologia/components/Hero.astro";
+import Methodology from "@templates-pages/psicologia/components/Methodology.astro";
+import About from "@templates-pages/psicologia/components/About.astro";
+import Contact from "@templates-pages/psicologia/components/Contact.astro";
+const layoutColors = {
+    primary: "#8c7b6d",
+    secondary: "#a39285",
+    background: "#fbfbfb",
+};
+---
+
+<BaseLayout
+    title={metadata.name}
+    description={metadata.description}
+    theme="light"
+    colors={layoutColors}
+>
+    <!-- GLOBAL STYLES FOR ORGANIC THEME -->
+    <div
+        class="font-sans antialiased bg-[#fbfbfb] selection:bg-[#d3e0e6] selection:text-[#5d5248]"
+    >
+        <Navigation />
+        <main>
+            <Hero />
+            <Methodology />
+            <About />
+            <Contact />
+        </main>
+        <footer
+            class="bg-white py-12 text-center text-[#8c7b6d] text-sm border-t border-[#f7f5f3]"
+        >
+            <p>© 2026 Dra. Sarah - CRP 06/123456</p>
+        </footer>
+    </div>
+</BaseLayout>
+
+<style>
+    /* Usando DM Sans para modernidade + Playfair Display para elegância */
+    @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
+
+    :global(h1, h2, h3) {
+        font-family: "Playfair Display", serif;
+    }
+    :global(body) {
+        font-family: "DM Sans", sans-serif;
+    }
+</style>

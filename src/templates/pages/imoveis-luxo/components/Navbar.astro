@@ -1,0 +1,44 @@
+---
+const brand = { name: "Legacy", highlight: "Estates" };
+const links = [
+    { label: "Portfólio", href: "#curadoria" },
+    { label: "Concierge", href: "#concierge" },
+    { label: "Network Global", href: "#contato" },
+    { label: "FAQ", href: "#faq" },
+];
+---
+
+<nav
+    class="fixed top-0 w-full z-50 flex items-center justify-between px-10 h-24"
+>
+    <div class="flex items-center gap-2">
+        <div class="size-6 bg-[#f1e7d0] rounded-sm transform rotate-45"></div>
+        <span
+            class="text-xl tracking-[0.2em] font-light uppercase text-white ml-2"
+            >{brand.name}<span class="text-[#f1e7d0] font-bold"
+                >{brand.highlight}</span
+            ></span
+        >
+    </div>
+    <div
+        class="hidden md:flex items-center gap-10 text-[9px] font-black uppercase tracking-[0.5em] text-zinc-500"
+    >
+        {
+            links.map((link) => (
+                <a
+                    href={link.href}
+                    class="hover:text-[#f1e7d0] transition-colors"
+                >
+                    {link.label}
+                </a>
+            ))
+        }
+    </div>
+    <div>
+        <button
+            class="bg-zinc-900 border border-white/10 text-[#f1e7d0] px-6 py-3 text-[9px] font-black uppercase tracking-[0.3em] hover:bg-[#f1e7d0] hover:text-black transition-colors outline-hidden group"
+        >
+            Acesso Restrito
+        </button>
+    </div>
+</nav>

@@ -1,0 +1,86 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@templates-pages/pet/components/Navigation.astro";
+import Hero from "@templates-pages/pet/components/Hero.astro";
+import Services from "@templates-pages/pet/components/Services.astro";
+import Diferenciais from "@templates-pages/pet/components/Diferenciais.astro";
+import Galeria from "@templates-pages/pet/components/Galeria.astro";
+import Depoimentos from "@templates-pages/pet/components/Depoimentos.astro";
+import Contact from "@templates-pages/pet/components/Contact.astro";
+import Footer from "@templates-pages/pet/components/Footer.astro";
+
+const data: {
+    name: string;
+    description: string;
+    theme: "light" | "dark";
+    colors: {
+        primary: string;
+        secondary: string;
+        background: string;
+    };
+} = {
+    name: "PetLove Care",
+    description: "Interface amigável para serviços veterinários.",
+    theme: "light",
+    colors: {
+        primary: "#14b8a6",
+        secondary: "#2dd4bf",
+        background: "#FFFDF7",
+    },
+};
+---
+
+<BaseLayout
+    title={data.name}
+    description={data.description}
+    theme={data.theme}
+    colors={data.colors}
+    disableDefaultFonts={true}
+>
+    <Fragment slot="head">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+    </Fragment>
+
+    <div
+        class="font-sans antialiased text-slate-600 bg-[#FFFDF7] selection:bg-teal-200 selection:text-teal-900 min-h-screen"
+    >
+        <Navigation />
+
+        <main>
+            <Hero />
+            <Services />
+            <Diferenciais />
+            <Galeria />
+            <Depoimentos />
+            <Contact />
+        </main>
+
+        <Footer />
+    </div>
+</BaseLayout>
+
+<style is:global>
+    :root {
+        --font-sans: "Nunito", sans-serif;
+        --font-display: "Fredoka", sans-serif;
+    }
+
+    .font-display {
+        font-family: var(--font-display);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: #fffdf7 !important;
+        color: #475569 !important;
+    }
+</style>

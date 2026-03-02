@@ -1,0 +1,40 @@
+---
+export const prerender = true;
+import FunnelLayout from "@templates/funnels/marketing-digital-vsl/layouts/FunnelLayout.astro";
+import Hero from "@templates/funnels/marketing-digital-vsl/sections/obrigado/Hero.astro";
+import Info from "@templates/funnels/marketing-digital-vsl/sections/obrigado/Info.astro";
+
+// Mock Data
+const orderId = "#832910";
+const email = "cliente@email.com";
+---
+
+<FunnelLayout
+    title="Pedido Confirmado - Parabéns!"
+    step={5}
+    totalSteps={5}
+    showProgressBar={false}
+>
+    <div
+        class="relative w-full max-w-2xl mx-auto text-center space-y-8 animate-pop-in"
+    >
+        <Hero />
+        <Info orderId={orderId} email={email} />
+    </div>
+</FunnelLayout>
+
+<style>
+    .animate-pop-in {
+        animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes popIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+</style>

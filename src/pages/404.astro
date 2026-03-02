@@ -1,0 +1,41 @@
+---
+export const prerender = true;
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Página não encontrada | 404">
+    <main
+        class="flex flex-col items-center justify-center min-h-screen p-6 text-center"
+    >
+        <div class="relative group">
+            <h1
+                class="text-[12rem] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-800 opacity-20"
+            >
+                404
+            </h1>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-4xl font-bold tracking-tight"
+                    >Oops! Perdido no espaço?</span
+                >
+            </div>
+        </div>
+
+        <p class="max-w-md mt-4 text-lg text-zinc-400">
+            A página que você está procurando não existe ou foi movida para um
+            novo endereço.
+        </p>
+
+        <a
+            href="/"
+            class="mt-12 px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform active:scale-95"
+        >
+            Voltar para o Início
+        </a>
+
+        <!-- Background Glow -->
+        <div
+            class="fixed -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 blur-[120px] rounded-full pointer-events-none"
+        >
+        </div>
+    </main>
+</BaseLayout>

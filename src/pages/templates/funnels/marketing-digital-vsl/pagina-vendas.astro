@@ -1,0 +1,22 @@
+---
+export const prerender = true;
+import FunnelLayout from "@templates/funnels/marketing-digital-vsl/layouts/FunnelLayout.astro";
+import Headline from "@templates/funnels/marketing-digital-vsl/sections/vendas/Headline.astro";
+import Video from "@templates/funnels/marketing-digital-vsl/sections/vendas/Video.astro";
+import CTA from "@templates/funnels/marketing-digital-vsl/sections/vendas/CTA.astro";
+import Beneficios from "@templates/funnels/marketing-digital-vsl/sections/vendas/Beneficios.astro";
+---
+
+<FunnelLayout
+    title="Método VSL - Aula Gratuita"
+    step={1}
+    totalSteps={5}
+    showProgressBar={true}
+>
+    <div class="space-y-12 w-full max-w-5xl mx-auto">
+        <Headline />
+        <Video />
+        <CTA />
+        <Beneficios />
+    </div>
+</FunnelLayout>

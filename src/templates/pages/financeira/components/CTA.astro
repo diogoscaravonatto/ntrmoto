@@ -1,0 +1,49 @@
+---
+const cta = {
+    title: ["Seu Legado,", "Sob Nossa Guarda."],
+    description:
+        "Selecione um horário para uma consultoria estratégica privada e inicie sua jornada de preservação.",
+    button: "Agendar Reunião de Wealth",
+    tag: "Acesso Exclusivo por Convite",
+};
+---
+
+<section id="contato" class="py-40 px-6">
+    <div
+        class="max-w-5xl mx-auto rounded-[4rem] bg-emerald-600 p-12 md:p-24 text-center relative overflow-hidden shadow-[0_40px_100px_rgba(16,185,129,0.3)]"
+    >
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div
+                class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,#ffffff10_0%,transparent_70%)]"
+            >
+            </div>
+        </div>
+
+        <div class="relative z-10">
+            <h2
+                class="text-5xl md:text-8xl font-black text-black uppercase italic leading-[0.8] tracking-tighter mb-12"
+            >
+                {cta.title[0]}
+                <br />{cta.title[1]}
+            </h2>
+            <p
+                class="text-emerald-950 text-xl font-bold max-w-xl mx-auto mb-16 leading-tight"
+            >
+                {cta.description}
+            </p>
+            <div
+                class="flex flex-col md:flex-row items-center justify-center gap-4"
+            >
+                <button
+                    class="px-12 py-6 bg-black text-white font-black rounded-full hover:scale-105 transition-all text-xs uppercase tracking-[0.2em] shadow-2xl outline-hidden group"
+                >
+                    {cta.button}
+                </button>
+                <span
+                    class="text-emerald-950 font-black text-[10px] uppercase tracking-widest"
+                    >{cta.tag}</span
+                >
+            </div>
+        </div>
+    </div>
+</section>

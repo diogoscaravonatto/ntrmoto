@@ -1,0 +1,61 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+const metadata = {
+    name: "Luxury Properties | Imóveis Altíssimo Padrão",
+    description:
+        "Curadoria exclusiva de residências de luxo nas localizações mais cobiçadas do mundo.",
+};
+import Navigation from "@templates-pages/imobiliaria/components/Navigation.astro";
+import Hero from "@templates-pages/imobiliaria/components/Hero.astro";
+import Specs from "@templates-pages/imobiliaria/components/Specs.astro";
+import Features from "@templates-pages/imobiliaria/components/Features.astro";
+import Gallery from "@templates-pages/imobiliaria/components/Gallery.astro";
+import Location from "@templates-pages/imobiliaria/components/Location.astro";
+import Contact from "@templates-pages/imobiliaria/components/Contact.astro";
+const layoutColors = {
+    primary: "#d97706",
+    secondary: "#f59e0b",
+    background: "#f5f1eb",
+};
+---
+
+<BaseLayout
+    title={metadata.name}
+    description={metadata.description}
+    theme="light"
+    colors={layoutColors}
+>
+    <div class="bg-[#f5f1eb] text-zinc-950 font-['Outfit',,sans-serif]">
+        <Navigation />
+        <main>
+            <Hero />
+            <Specs />
+            <Features />
+            <Gallery />
+            <Location />
+            <Contact />
+        </main>
+        <footer
+            class="py-16 px-8 bg-zinc-950 text-white text-center border-t border-white/10"
+        >
+            <div class="max-w-4xl mx-auto">
+                <div class="font-serif text-2xl mb-6">
+                    Luxury Properties International
+                </div>
+                <p class="text-xs tracking-[0.3em] uppercase text-white/40">
+                    CRECI 123.456 | Todos os direitos reservados © 2026
+                </p>
+            </div>
+        </footer>
+    </div>
+</BaseLayout>
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;400;700;900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap");
+
+    .font-serif {
+        font-family: "Playfair Display", serif;
+    }
+</style>

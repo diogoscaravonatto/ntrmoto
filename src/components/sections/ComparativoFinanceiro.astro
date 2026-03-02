@@ -1,0 +1,65 @@
+---
+/**
+ * ComparativoFinanceiro - Tabela comparativa de custos
+ * Wix/Shopify vs Hospedagem vs Vibe Coding
+ */
+
+const custos = [
+    {
+        nome: 'Plataformas "Fáceis" (Wix, Shopify, etc)',
+        valor: "Até R$ 1.800 /ano",
+    },
+    {
+        nome: "Hospedagem Tradicional (Hostgator, etc)",
+        valor: "Até R$ 600 /ano",
+    },
+    { nome: "Segurança e Certificados (Extras)", valor: "R$ 200 + /ano" },
+];
+---
+
+<section
+    class="py-40 px-6 bg-white text-black rounded-[4rem] md:rounded-[6rem] mx-2 md:mx-6 overflow-hidden"
+>
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-24">
+            <h2
+                class="text-5xl md:text-7xl font-black mb-6 tracking-tighter italic uppercase leading-none"
+            >
+                Onde seu dinheiro<br />vai parar?
+            </h2>
+        </div>
+
+        <div class="space-y-4">
+            {
+                custos.map((c) => (
+                    <div class="flex items-center justify-between p-8 bg-zinc-100 rounded-3xl border border-zinc-200">
+                        <span class="text-xl font-bold">{c.nome}</span>
+                        <span class="text-xl font-black text-red-600">
+                            {c.valor}
+                        </span>
+                    </div>
+                ))
+            }
+            <div
+                class="flex items-center justify-between p-10 bg-black text-white rounded-[2.5rem] shadow-2xl scale-105"
+            >
+                <div class="flex items-center gap-4">
+                    <div
+                        class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black font-black italic"
+                    >
+                        V
+                    </div>
+                    <span class="text-2xl font-black italic"
+                        >VIBE START KIT</span
+                    >
+                </div>
+                <span class="text-3xl font-black text-green-400">R$ 0,00</span>
+            </div>
+        </div>
+
+        <p class="mt-16 text-center text-zinc-500 font-bold italic">
+            Imagine o que você pode fazer com R$ 2.600,00 extras todos os anos
+            no seu negócio.
+        </p>
+    </div>
+</section>

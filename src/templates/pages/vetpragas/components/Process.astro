@@ -1,0 +1,58 @@
+---
+import { vetPragasData } from './content';
+
+const iconMap = {
+  'search': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>',
+  'clipboard': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>',
+  'shield': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  'chart': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>'
+};
+---
+
+<section id="processo" class="py-24 bg-slate-950 relative overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#10b98110_1px,transparent_1px),linear-gradient(to_bottom,#10b98110_1px,transparent_1px)] bg-size-[60px_60px]"></div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <span class="text-emerald-500 font-mono text-[10px] uppercase tracking-[0.3em]">{vetPragasData.process.subtitle}</span>
+      <h2 class="text-4xl lg:text-5xl font-black text-white mt-4 mb-6 uppercase tracking-tight">{vetPragasData.process.title}</h2>
+      <p class="text-lg text-slate-400">Metodologia profissional em 4 etapas para eliminação definitiva</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {vetPragasData.process.steps.map((step) => (
+        <div class="relative group">
+          <!-- Connector Line (hidden on mobile, last item) -->
+          {step.number !== "04" && (
+            <div class="hidden lg:block absolute top-16 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-[2px] bg-emerald-900/30 group-hover:bg-emerald-500/50 transition-colors"></div>
+          )}
+          
+          <div class="relative bg-slate-900/50 border border-white/5 p-8 rounded-2xl hover:border-emerald-500/30 transition-all duration-300 h-full">
+            <!-- Number Badge -->
+            <div class="absolute -top-4 -right-4 w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center font-mono font-bold text-slate-950 text-lg shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+              {step.number}
+            </div>
+
+            <!-- Icon -->
+            <div class="w-14 h-14 bg-slate-800 border border-emerald-500/20 rounded-lg flex items-center justify-center mb-6 text-emerald-500 group-hover:bg-emerald-950 group-hover:border-emerald-500/50 transition-all" set:html={iconMap[step.icon as keyof typeof iconMap]}></div>
+
+            <!-- Content -->
+            <h3 class="text-xl font-bold text-white mb-3 uppercase tracking-wide">{step.title}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA Row -->
+    <div class="mt-16 text-center">
+      <p class="text-slate-500 mb-6 font-mono text-sm uppercase tracking-widest">Processo completo em até 48 horas</p>
+      <a href="https://wa.me/554533265255" class="inline-flex items-center justify-center px-8 py-4 bg-emerald-600 text-slate-950 font-bold text-xs uppercase tracking-widest hover:bg-emerald-500 transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+        Iniciar Processo Agora
+      </a>
+    </div>
+  </div>
+</section>

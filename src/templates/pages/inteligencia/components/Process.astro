@@ -1,0 +1,200 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<section
+    class="py-32 bg-black border-y border-white/5 relative overflow-hidden"
+>
+    <!-- Background Accents -->
+    <div
+        class="absolute left-0 top-0 w-full h-full opacity-5 pointer-events-none"
+        style="background-image: linear-gradient(#FF5500 1px, transparent 1px), linear-gradient(90deg, #FF5500 1px, transparent 1px); background-size: 100px 100px;"
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+        <span
+            class="text-[#FF5500] font-black text-xs tracking-[0.4em] uppercase mb-8 block font-mono"
+            >// O PROCESSO INTELIGENCE</span
+        >
+        <h2
+            class="text-4xl md:text-7xl font-black mb-24 text-white tracking-tighter leading-none"
+        >
+            Do dado bruto à sabedoria.<br /><span
+                class="text-slate-500 italic font-light"
+                >Sem passos em falso.</span
+            >
+        </h2>
+
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-12 relative">
+            <!-- Connecting Line -->
+            <div
+                class="hidden lg:block absolute top-[45px] left-0 w-full h-[2px] bg-white/5 -z-0"
+            >
+                <div
+                    class="h-full bg-gradient-to-r from-[#FF5500] to-transparent w-full animate-flow"
+                >
+                </div>
+            </div>
+
+            <!-- Steps -->
+            <div class="relative z-10 space-y-8 group">
+                <div
+                    class="size-20 bg-black rounded-full border-2 border-white/10 flex items-center justify-center mx-auto group-hover:border-[#FF5500] group-hover:shadow-[0_0_30px_rgba(255,85,0,0.3)] transition-all duration-500 bg-zinc-950"
+                >
+                    <Icon name="lucide:zoom-in" class="size-8 text-[#FF5500]" />
+                </div>
+                <div class="space-y-4">
+                    <h3
+                        class="font-black text-white text-lg uppercase tracking-tighter"
+                    >
+                        Mapeamento
+                    </h3>
+                    <p
+                        class="text-[10px] text-zinc-600 font-black tracking-widest uppercase"
+                    >
+                        Data Discovery
+                    </p>
+                    <p
+                        class="text-xs text-slate-500 max-w-[140px] mx-auto leading-relaxed"
+                    >
+                        Identificação de fontes de dados, silos e qualidade da
+                        informação.
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative z-10 space-y-8 group">
+                <div
+                    class="size-20 bg-black rounded-full border-2 border-white/10 flex items-center justify-center mx-auto group-hover:border-[#FF5500] group-hover:shadow-[0_0_30px_rgba(255,85,0,0.3)] transition-all duration-500 bg-zinc-950"
+                >
+                    <Icon
+                        name="lucide:layout-grid"
+                        class="size-8 text-[#FF5500]"
+                    />
+                </div>
+                <div class="space-y-4">
+                    <h3
+                        class="font-black text-white text-lg uppercase tracking-tighter"
+                    >
+                        Arquitetura
+                    </h3>
+                    <p
+                        class="text-[10px] text-zinc-600 font-black tracking-widest uppercase"
+                    >
+                        System Design
+                    </p>
+                    <p
+                        class="text-xs text-slate-500 max-w-[140px] mx-auto leading-relaxed"
+                    >
+                        Desenho da infraestrutura, pipelines e modelo de
+                        governança.
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative z-10 space-y-8 group">
+                <div
+                    class="size-20 bg-black rounded-full border-2 border-white/10 flex items-center justify-center mx-auto group-hover:border-[#FF5500] group-hover:shadow-[0_0_30px_rgba(255,85,0,0.3)] transition-all duration-500 bg-zinc-950"
+                >
+                    <Icon
+                        name="lucide:git-merge"
+                        class="size-8 text-[#FF5500]"
+                    />
+                </div>
+                <div class="space-y-4">
+                    <h3
+                        class="font-black text-white text-lg uppercase tracking-tighter"
+                    >
+                        Integração
+                    </h3>
+                    <p
+                        class="text-[10px] text-zinc-600 font-black tracking-widest uppercase"
+                    >
+                        ETL & Connect
+                    </p>
+                    <p
+                        class="text-xs text-slate-500 max-w-[140px] mx-auto leading-relaxed"
+                    >
+                        Conexão de fontes, tratamento e centralização no Data
+                        Lake.
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative z-10 space-y-8 group">
+                <div
+                    class="size-20 bg-black rounded-full border-2 border-white/10 flex items-center justify-center mx-auto group-hover:border-[#FF5500] group-hover:shadow-[0_0_30px_rgba(255,85,0,0.3)] transition-all duration-500 bg-zinc-950"
+                >
+                    <Icon
+                        name="lucide:sparkles"
+                        class="size-8 text-[#FF5500]"
+                    />
+                </div>
+                <div class="space-y-4">
+                    <h3
+                        class="font-black text-white text-lg uppercase tracking-tighter"
+                    >
+                        Ativação
+                    </h3>
+                    <p
+                        class="text-[10px] text-zinc-600 font-black tracking-widest uppercase"
+                    >
+                        Insights API
+                    </p>
+                    <p
+                        class="text-xs text-slate-500 max-w-[140px] mx-auto leading-relaxed"
+                    >
+                        Geração de dashboards, IA preditiva e suporte à decisão.
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative z-10 space-y-8 group">
+                <div
+                    class="size-20 bg-black rounded-full border-2 border-white/10 flex items-center justify-center mx-auto group-hover:border-[#FF5500] group-hover:shadow-[0_0_30px_rgba(255,85,0,0.3)] transition-all duration-500 bg-zinc-950"
+                >
+                    <Icon name="lucide:cpu" class="size-8 text-[#FF5500]" />
+                </div>
+                <div class="space-y-4">
+                    <h3
+                        class="font-black text-white text-lg uppercase tracking-tighter"
+                    >
+                        Evolução
+                    </h3>
+                    <p
+                        class="text-[10px] text-zinc-600 font-black tracking-widest uppercase"
+                    >
+                        AI Learning
+                    </p>
+                    <p
+                        class="text-xs text-slate-500 max-w-[140px] mx-auto leading-relaxed"
+                    >
+                        Refinamento contínuo e expansão da inteligência
+                        corporativa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .animate-flow {
+        animation: flow 3s ease-in-out infinite;
+    }
+
+    @keyframes flow {
+        0% {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+</style>

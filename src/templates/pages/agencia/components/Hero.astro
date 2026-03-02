@@ -1,0 +1,85 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<section class="relative pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden">
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+        <div class="flex flex-col gap-10 max-w-6xl">
+            <div class="flex items-center gap-6 animate-fade-in">
+                <div class="h-[2px] w-12 bg-primary-500"></div>
+                <span
+                    class="text-xs font-mono uppercase tracking-[0.3em] font-bold text-zinc-400"
+                >
+                    Disrupting the Ordinary — 2024
+                </span>
+            </div>
+
+            <h1
+                class="text-[clamp(3.5rem,12vw,9rem)] font-black tracking-tighter leading-[0.85] uppercase -ml-1 text-white"
+            >
+                Design<br />
+                <span class="inline-flex items-center gap-4">
+                    <span
+                        class="text-transparent bg-clip-text bg-linear-to-r from-white via-zinc-500 to-white"
+                        >Radical</span
+                    >
+                    <div
+                        class="hidden md:block w-32 h-20 bg-zinc-800 rounded-full border-2 border-dashed border-zinc-600 animate-pulse"
+                    >
+                    </div>
+                </span>
+                <br />
+                Para o Futuro.
+            </h1>
+
+            <div
+                class="flex flex-col md:flex-row items-start md:items-end gap-12 mt-8"
+            >
+                <p
+                    class="text-xl md:text-2xl text-zinc-400 max-w-2xl leading-relaxed border-l-4 border-white pl-6 md:pl-10 font-medium"
+                >
+                    Somos um laboratório de design focado em converter visão em
+                    realidade tangível. Não fazemos apenas interfaces;
+                    construímos ecossistemas que definem indústrias.
+                </p>
+                <div
+                    class="flex flex-col gap-4 text-xs font-mono uppercase tracking-widest font-bold text-zinc-400"
+                >
+                    <span>(Scroll to explore)</span>
+                    <Icon
+                        name="lucide:arrow-down"
+                        class="size-6 animate-bounce text-white"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Large Text -->
+    <div
+        class="absolute -bottom-20 -right-20 pointer-events-none select-none opacity-[0.07]"
+    >
+        <span
+            class="text-[25vw] font-black uppercase tracking-tighter leading-none whitespace-nowrap text-white"
+            >VISIONARY</span
+        >
+    </div>
+</section>
+
+<style>
+    .animate-fade-in {
+        animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

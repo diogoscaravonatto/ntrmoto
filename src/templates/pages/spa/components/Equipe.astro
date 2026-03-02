@@ -1,0 +1,73 @@
+---
+const team = {
+    title: ["Curadoria de", "Talentos."],
+    description:
+        "Seu bem-estar em mãos que compreendem a anatomia e a energia humana.",
+    members: [
+        {
+            name: "Dra. Elena Voss",
+            role: "Diretora Holística",
+            initial: "E",
+            bio: "20 anos de experiência em medicina ayurvédica e terapias integrativas.",
+        },
+        {
+            name: "Marcus Thorne",
+            role: "Mestre em Massoterapia",
+            initial: "M",
+            bio: "Especialista em liberação miofascial e técnicas orientais de pressão.",
+        },
+        {
+            name: "Sofia Lumi",
+            role: "Especialista em Som",
+            initial: "S",
+            bio: "Terapeuta sonora focada em banhos de gongo e frequências de cura.",
+        },
+        {
+            name: "Lucas Arantes",
+            role: "Maitre de Ritual",
+            initial: "L",
+            bio: "Especialista em aromaterapia botânica e extração de óleos essenciais.",
+        },
+    ],
+};
+---
+
+<section class="py-40 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-24">
+            <h2
+                class="text-5xl md:text-7xl font-serif text-[#4a3f35] tracking-tight"
+            >
+                {team.title[0]}
+                <br /><span class="italic font-normal">{team.title[1]}</span>
+            </h2>
+            <p
+                class="text-[#7a6f65] text-xl font-light max-w-2xl mx-auto mt-6 italic"
+            >
+                {team.description}
+            </p>
+        </div>
+        <div class="grid md:grid-cols-4 gap-12">
+            {
+                team.members.map((member) => (
+                    <div class="text-center group">
+                        <div class="aspect-square rounded-full bg-[#f3e8e2] mb-8 overflow-hidden border border-transparent group-hover:border-[#d4bc9a] transition-all p-4">
+                            <div class="size-full rounded-full bg-white flex items-center justify-center italic text-[#d4bc9a] font-serif uppercase tracking-widest text-3xl font-light">
+                                {member.initial}
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-serif text-[#4a3f35] italic tracking-tight uppercase">
+                            {member.name}
+                        </h4>
+                        <p class="text-[9px] font-black text-[#d4bc9a] uppercase tracking-widest mb-4 italic lowercase">
+                            {member.role}
+                        </p>
+                        <p class="text-xs text-[#7a6f65] font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity italic lowercase">
+                            {member.bio}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

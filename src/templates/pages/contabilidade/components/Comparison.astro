@@ -1,0 +1,152 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<section id="planos" class="py-24 px-6 bg-slate-50 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">
+                A Escolha Inteligente
+            </h2>
+            <p class="text-slate-500 max-w-2xl mx-auto">
+                Compare e entenda por que o modelo tradicional ficou obsoleto
+                diante da nossa tecnologia.
+            </p>
+        </div>
+
+        <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 relative max-w-5xl mx-auto"
+        >
+            <!-- VS Badge (Desktop Center) -->
+            <div
+                class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 size-16 bg-white rounded-full items-center justify-center shadow-xl border-4 border-slate-50 font-black text-slate-300 text-xl"
+            >
+                VS
+            </div>
+
+            <!-- Traditional Model (Left) -->
+            <div
+                class="bg-white p-10 lg:pr-16 rounded-[2.5rem] lg:rounded-r-none lg:rounded-l-[2.5rem] border border-slate-200 shadow-sm relative group hover:bg-slate-50 transition-colors duration-300"
+            >
+                <div class="absolute top-0 left-0 w-full h-2 bg-slate-200">
+                </div>
+                <div
+                    class="flex items-center gap-4 mb-8 opacity-60 grayscale group-hover:grayscale-0 transition-all duration-300"
+                >
+                    <div
+                        class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center"
+                    >
+                        <Icon
+                            name="lucide:archive"
+                            class="w-6 h-6 text-slate-500"
+                        />
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-500">
+                        Contabilidade Tradicional
+                    </h3>
+                </div>
+                <ul class="space-y-6">
+                    <li class="flex items-start gap-4 opacity-70">
+                        <Icon
+                            name="lucide:circle-x"
+                            class="w-6 h-6 text-red-500 shrink-0"
+                        />
+                        <div>
+                            <h4 class="font-bold text-slate-700">
+                                Reativa e Burocrática
+                            </h4>
+                            <p class="text-sm text-slate-500">
+                                Você só fala com o contador quando há problemas
+                                ou guias para pagar.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4 opacity-70">
+                        <Icon
+                            name="lucide:circle-x"
+                            class="w-6 h-6 text-red-500 shrink-0"
+                        />
+                        <div>
+                            <h4 class="font-bold text-slate-700">
+                                Dados Desconectados
+                            </h4>
+                            <p class="text-sm text-slate-500">
+                                Financeiro, fiscal e contábil não conversam,
+                                gerando retrabalho.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- LuxFinance Model (Right) -->
+            <div
+                class="bg-[#005a5c] p-10 lg:pl-16 rounded-[2.5rem] lg:rounded-l-none lg:rounded-r-[2.5rem] shadow-2xl relative transform lg:-translate-y-4 lg:scale-105 z-10 overflow-hidden group hover:scale-[1.07] transition-all duration-500 border border-[#005a5c]"
+            >
+                <div
+                    class="absolute top-0 right-0 w-[300px] h-[300px] bg-white/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:bg-white/20 transition-all duration-700"
+                >
+                </div>
+                <div class="flex items-center gap-4 mb-8 relative z-10">
+                    <div
+                        class="size-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/20 shadow-lg shadow-black/20"
+                    >
+                        <Icon
+                            name="lucide:sparkles"
+                            class="w-6 h-6 text-white"
+                        />
+                    </div>
+                    <h3 class="text-xl font-bold text-white">
+                        Método LuxFinance
+                    </h3>
+                </div>
+                <ul class="space-y-6 relative z-10">
+                    <li class="flex items-start gap-4">
+                        <div
+                            class="size-6 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0"
+                        >
+                            <Icon
+                                name="lucide:check"
+                                class="w-4 h-4 text-emerald-400"
+                            />
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">
+                                Consultiva e Estratégica
+                            </h4>
+                            <p class="text-sm text-slate-200/80">
+                                Reuniões mensais de performance e planejamento
+                                tributário proativo.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div
+                            class="size-6 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0"
+                        >
+                            <Icon
+                                name="lucide:check"
+                                class="w-4 h-4 text-emerald-400"
+                            />
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">
+                                Full-Stack Financeiro
+                            </h4>
+                            <p class="text-sm text-slate-200/80">
+                                Integração total via API. BPO, Fiscal e DP em um
+                                único dashboard.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-white font-bold text-3xl mb-1">+35%</p>
+                    <p class="text-white/60 text-xs uppercase tracking-widest">
+                        Média de economia anual
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

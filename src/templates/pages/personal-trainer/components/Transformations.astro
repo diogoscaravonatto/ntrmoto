@@ -1,0 +1,72 @@
+---
+
+---
+
+<!-- TRANSFORMATIONS SECTION -->
+<section
+    class="py-24 bg-zinc-950 text-white px-4 border-t border-yellow-500/20"
+>
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2
+                class="text-5xl md:text-7xl font-black italic uppercase tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600"
+            >
+                RESULTADOS REAIS
+            </h2>
+            <p
+                class="text-zinc-400 text-xl font-bold uppercase tracking-widest"
+            >
+                Sem desculpas. Apenas trabalho duro.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {
+                [
+                    {
+                        name: "PEDRO S.",
+                        loss: "-15KG",
+                        time: "3 MESES",
+                        img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80",
+                    },
+                    {
+                        name: "JULIA M.",
+                        gain: "+5KG MASSA",
+                        time: "4 MESES",
+                        img: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80",
+                    },
+                    {
+                        name: "LUCAS R.",
+                        loss: "-22KG",
+                        time: "6 MESES",
+                        img: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=800&q=80",
+                    },
+                ].map((item, i) => (
+                    <div class="relative group bg-zinc-900 overflow-hidden border-2 border-transparent hover:border-yellow-500 transition-all transform hover:-translate-y-2">
+                        <div class="aspect-3/4 relative">
+                            <img
+                                src={item.img}
+                                alt={item.name}
+                                class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+
+                            <div class="absolute bottom-0 left-0 w-full p-6">
+                                <h3 class="text-3xl font-black italic">
+                                    {item.name}
+                                </h3>
+                                <div class="flex gap-4 mt-2 font-mono text-sm font-bold">
+                                    <span class="text-yellow-400">
+                                        {item.loss || item.gain}
+                                    </span>
+                                    <span class="text-zinc-500">|</span>
+                                    <span class="text-white">{item.time}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

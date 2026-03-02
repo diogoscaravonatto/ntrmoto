@@ -1,0 +1,103 @@
+---
+const hero = {
+    status: "Operational Readiness: 100%",
+    title: ["Sovereignty", "In A", "Hostile", "World."],
+    description:
+        "Proteção adaptativa de nível militar contra ameaças persistentes. Sua infraestrutura é invulnerável? Nós garantimos que seja.",
+    ctaPrimary: "Emergency Scan",
+    ctaSecondary: "Request Protocol",
+    stats: [
+        { label: "Total Assets Protected", value: "12,482" },
+        {
+            label: "Attacks Mitigated (24h)",
+            value: "415,903",
+            color: "text-red-500",
+        },
+    ],
+    nodes: [
+        { name: "Node Alpha", status: "online" },
+        { name: "Node Gamma", status: "online" },
+        { name: "Node Delta", status: "alert" },
+    ],
+};
+---
+
+<section
+    class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden"
+>
+    <div class="text-center max-w-5xl mx-auto relative z-10 space-y-12">
+        <div
+            class="inline-flex items-center gap-3 px-3 py-1 bg-red-600/5 border border-red-600/20 text-red-500 text-[10px] font-bold uppercase tracking-[0.4em] mb-12 animate-pulse"
+        >
+            <span class="size-1 bg-red-600 rounded-full"></span>
+            {hero.status}
+        </div>
+
+        <h1
+            class="text-5xl md:text-[8rem] font-black leading-[0.85] tracking-tighter uppercase text-white"
+        >
+            {hero.title[0]}
+            <br />{hero.title[1]}
+            <span class="bg-red-700 px-4 inline-block transform -skew-x-12"
+                >{hero.title[2]}</span
+            >
+            <br />{hero.title[3]}
+        </h1>
+
+        <p
+            class="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto font-medium leading-relaxed uppercase tracking-wide"
+        >
+            {hero.description}
+        </p>
+
+        <div
+            class="flex flex-col sm:flex-row items-center justify-center gap-6"
+        >
+            <button
+                class="px-12 py-5 bg-red-600 text-white font-black hover:bg-red-700 transition-all text-[11px] uppercase tracking-[0.3em] shadow-[0_0_40px_rgba(220,38,38,0.4)]"
+            >
+                {hero.ctaPrimary}
+            </button>
+            <button
+                class="px-12 py-5 bg-zinc-900 border border-white/5 text-white font-black hover:bg-white hover:text-black transition-all text-[11px] uppercase tracking-[0.3em]"
+            >
+                {hero.ctaSecondary}
+            </button>
+        </div>
+    </div>
+
+    <!-- Global Status Bar -->
+    <div
+        class="absolute bottom-10 w-full max-w-7xl mx-auto px-6 flex justify-between items-end border-t border-white/5 pt-10 text-[9px] font-bold uppercase tracking-widest text-zinc-700"
+    >
+        <div class="space-y-1">
+            {
+                hero.stats.map((stat) => (
+                    <p>
+                        {stat.label}:{" "}
+                        <span class={stat.color || "text-white"}>
+                            {stat.value}
+                        </span>
+                    </p>
+                ))
+            }
+        </div>
+        <div class="flex gap-10">
+            {
+                hero.nodes.map((node) => (
+                    <div class="flex items-center gap-2">
+                        <div
+                            class:list={[
+                                "size-1.5 rounded-full",
+                                node.status === "online"
+                                    ? "bg-green-500"
+                                    : "bg-red-500 animate-ping",
+                            ]}
+                        />
+                        {node.name}
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

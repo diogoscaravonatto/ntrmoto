@@ -1,0 +1,38 @@
+---
+const footer = {
+    brand: { name: "Cyber", highlight: "Fortress" },
+    copy: "© 2026 Cyber Fortress Security AG. Encryption is a human right. ISO 27001 Certified.",
+};
+---
+
+<footer class="py-20 border-t border-white/5 bg-zinc-950">
+    <div
+        class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12"
+    >
+        <div class="flex items-center gap-2">
+            <div
+                class="size-5 bg-red-600 shadow-[0_0_10px_rgba(220,38,38,0.5)]"
+            >
+            </div>
+            <span class="text-sm font-black tracking-widest uppercase">
+                {footer.brand.name}<span class="text-red-600"
+                    >{footer.brand.highlight}</span
+                >
+            </span>
+        </div>
+        <div
+            class="text-[9px] font-black text-zinc-600 uppercase tracking-[0.4em] text-center"
+        >
+            {footer.copy}
+        </div>
+        <div
+            class="size-8 border border-white/5 bg-zinc-900 flex items-center justify-center text-xs opacity-50"
+        >
+            <svg fill="currentColor" viewBox="0 0 24 24">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                ></path>
+            </svg>
+        </div>
+    </div>
+</footer>

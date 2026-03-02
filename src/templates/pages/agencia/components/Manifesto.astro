@@ -1,0 +1,99 @@
+---
+const stats = [
+    { label: "Projetos Realizados", value: "150+" },
+    { label: "Prêmios Internacionais", value: "12" },
+    { label: "Taxa de Retenção", value: "98%" },
+];
+
+const manifestoPills = [
+    {
+        id: "01",
+        title: "Verdade Visual",
+        text: "Não mascaramos problemas. Destacamos a verdade por trás do produto.",
+    },
+    {
+        id: "02",
+        title: "Design como Código",
+        text: "Nossos designers pensam em sistema. Nossos devs pensam em layout.",
+    },
+    {
+        id: "03",
+        title: "Performance é Luxo",
+        text: "Um site lento é um design incompleto. Priorizamos a velocidade.",
+    },
+    {
+        id: "04",
+        title: "Escala Infinita",
+        text: "Criamos bases sólidas que crescem junto com o seu faturamento.",
+    },
+];
+---
+
+<section
+    id="manifesto"
+    class="py-32 bg-zinc-900 text-white overflow-hidden relative"
+>
+    <!-- Background accents -->
+    <div
+        class="absolute top-0 right-0 w-1/2 h-full bg-zinc-800/50 skew-x-12 translate-x-1/2"
+    >
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-20 items-center">
+            <div class="md:col-span-12 lg:col-span-5 flex flex-col gap-8">
+                <span
+                    class="text-xs font-mono uppercase tracking-[0.4em] text-zinc-500 font-bold"
+                >
+                    O Manifesto
+                </span>
+                <h2
+                    class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-[0.9]"
+                >
+                    Menos Estática,<br /> Mais <span class="text-zinc-500"
+                        >Impacto</span
+                    >.
+                </h2>
+                <p class="text-xl text-zinc-400 leading-relaxed font-light">
+                    Acreditamos que no ruído digital de hoje, a simplicidade
+                    radical é o novo luxo. Nosso processo é impiedoso: removemos
+                    o desnecessário até que reste apenas a alma da sua marca.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    {
+                        stats.map((stat) => (
+                            <div class="flex flex-col border-l-2 border-primary-500 pl-4 py-2">
+                                <span class="text-3xl font-black tracking-tighter">
+                                    {stat.value}
+                                </span>
+                                <span class="text-[10px] font-mono uppercase text-zinc-500 tracking-widest leading-none mt-1">
+                                    {stat.label}
+                                </span>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div
+                class="md:col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-px bg-zinc-800 border border-zinc-700"
+            >
+                {
+                    manifestoPills.map((pill) => (
+                        <div class="p-12 bg-zinc-900 group hover:bg-zinc-800 transition-colors">
+                            <span class="text-xs font-mono text-zinc-600 mb-6 block">
+                                {pill.id}
+                            </span>
+                            <h3 class="text-2xl font-bold uppercase tracking-tight mb-4">
+                                {pill.title}
+                            </h3>
+                            <p class="text-zinc-500 group-hover:text-zinc-300 transition-colors leading-relaxed">
+                                {pill.text}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

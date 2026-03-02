@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+---
+
+<!-- HERO - MINIMALIST EXTREME -->
+<section
+    class="min-h-screen bg-white flex flex-col justify-center items-center text-center px-6 relative overflow-hidden"
+>
+    <!-- Subtle Background Gradient -->
+    <div
+        class="absolute inset-0 bg-linear-to-b from-gray-50 to-white pointer-events-none"
+    >
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto animate-fade-in-up">
+        <span
+            class="inline-block text-xs font-medium tracking-[0.2em] uppercase text-gray-500 mb-6"
+        >
+            New Collection 2026
+        </span>
+
+        <h1
+            class="text-6xl md:text-8xl font-semibold tracking-tight text-gray-900 mb-8"
+        >
+            Effortless.<br />Simple.
+        </h1>
+
+        <div class="flex gap-4 justify-center mb-16">
+            <button
+                class="px-8 py-3 bg-black text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-all hover:scale-105"
+            >
+                Shop Essentials
+            </button>
+            <button
+                class="flex items-center gap-2 px-8 py-3 text-gray-900 rounded-full text-sm font-medium hover:bg-gray-100 transition-all"
+            >
+                <span>View Lookbook</span>
+                <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+                >
+            </button>
+        </div>
+
+        <!-- Hero Image Product -->
+        <div class="relative">
+            <div
+                class="aspect-video max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-2xl shadow-gray-200/50 transform hover:scale-[1.01] transition-transform duration-700"
+            >
+                <Image
+                    src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1600&q=80"
+                    alt="Product Hero"
+                    width={1600}
+                    height={900}
+                    class="w-full h-full object-cover"
+                    layout="constrained"
+                />
+            </div>
+            <!-- Floating Label -->
+            <div
+                class="absolute -right-8 bottom-12 bg-white/80 backdrop-blur-md p-4 rounded-xl border border-white shadow-lg text-left hidden md:block"
+            >
+                <p
+                    class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1"
+                >
+                    Featured
+                </p>
+                <p class="text-sm font-medium text-gray-900">
+                    The Minimalist Sneaker
+                </p>
+                <p class="text-sm text-gray-500">$129.00</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-fade-in-up {
+        animation: fadeInUp 1s ease-out forwards;
+    }
+</style>

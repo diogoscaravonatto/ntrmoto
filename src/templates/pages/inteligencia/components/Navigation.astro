@@ -1,0 +1,44 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<nav
+    class="fixed top-0 w-full z-50 border-b border-[#1a1a1a] bg-black/80 backdrop-blur-md"
+>
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+            <Icon name="lucide:network" class="text-[#FF5500] size-8" />
+            <span class="font-bold text-xl tracking-tight text-white"
+                >INTELIGENCE</span
+            >
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium">
+            <a
+                href="#home"
+                class="hover:text-[#FF5500] transition-colors text-slate-300"
+                >Home</a
+            >
+            <a
+                href="#sobre"
+                class="hover:text-[#FF5500] transition-colors text-slate-300"
+                >Sobre</a
+            >
+            <a
+                href="#servicos"
+                class="hover:text-[#FF5500] transition-colors text-slate-300"
+                >Serviços</a
+            >
+            <a
+                href="#contato"
+                class="hover:text-[#FF5500] transition-colors text-slate-300"
+                >Contato</a
+            >
+        </div>
+        <a
+            href="#consultoria"
+            class="bg-[#FF5500] text-black px-6 py-2.5 transform hover:scale-105 transition-all rounded-full font-bold text-sm tracking-wide"
+        >
+            CONSULTORIA
+        </a>
+    </div>
+</nav>

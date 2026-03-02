@@ -1,0 +1,25 @@
+---
+export const prerender = true;
+/**
+ * COMPONENTE: CountdownUrgency
+ * O QUE É: Timer regressivo reativo (Vue) que cria um senso de urgência real.
+ * ONDE USAR: Logo abaixo da Hero ou próximo às tabelas de preço para incentivar a compra rápida.
+ * COMO USAR: Passe a 'targetDate' (ISO) para definir quando a oferta expira.
+ */
+import CountdownUrgencyVue from "./_CountdownUrgency.vue";
+
+interface Props {
+    targetDate?: string;
+    title?: string;
+    theme?: "violet" | "pink" | "orange" | "emerald";
+}
+
+const { targetDate, title, theme } = Astro.props;
+---
+
+<CountdownUrgencyVue
+    client:only="vue"
+    targetDate={targetDate}
+    title={title}
+    theme={theme}
+/>

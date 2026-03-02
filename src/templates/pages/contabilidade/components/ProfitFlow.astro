@@ -1,0 +1,166 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<section
+    id="solucoes"
+    class="py-24 px-6 bg-white overflow-hidden border-t border-slate-100"
+>
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h2
+                class="text-orange-600 font-bold uppercase tracking-widest text-xs mb-3"
+            >
+                Metodologia Exclusiva
+            </h2>
+            <h3
+                class="text-3xl md:text-5xl font-black text-slate-900 leading-tight"
+            >
+                Transformando Faturamento em <span class="text-[#005a5c]"
+                    >Lucro Real</span
+                >
+            </h3>
+        </div>
+
+        <!-- Animation Area (Clean Row) -->
+        <div
+            class="relative bg-slate-50/50 rounded-[3rem] p-12 md:p-20 border border-slate-100 shadow-xl overflow-hidden group"
+        >
+            <div
+                class="absolute inset-0 opacity-[0.03]"
+                style="background-image: radial-gradient(#005a5c 1px, transparent 1px); background-size: 30px 30px;"
+            >
+            </div>
+
+            <div
+                class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12 items-center"
+            >
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center text-center space-y-6">
+                    <div
+                        class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg border border-slate-100"
+                    >
+                        <Icon
+                            name="lucide:banknote"
+                            class="size-10 text-slate-400"
+                        />
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-lg">
+                            Entrada de Receita
+                        </h4>
+                        <p
+                            class="text-xs text-slate-500 uppercase font-bold tracking-widest"
+                        >
+                            Faturamento Bruto
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div
+                    class="flex flex-col items-center text-center space-y-6 relative"
+                >
+                    <!-- Connector Line (Left) -->
+                    <div
+                        class="hidden md:block absolute -left-1/2 top-12 w-full h-[2px] bg-slate-200 -z-10"
+                    >
+                        <div
+                            class="h-full bg-[#005a5c] w-1/2 animate-flow-right"
+                        >
+                        </div>
+                    </div>
+
+                    <div
+                        class="w-32 h-32 bg-[#005a5c] rounded-[2rem] flex items-center justify-center shadow-2xl shadow-[#005a5c]/30 rotate-3 group-hover:rotate-0 transition-transform duration-500"
+                    >
+                        <Icon
+                            name="lucide:settings"
+                            class="size-14 text-white animate-spin-slow"
+                        />
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[#005a5c] text-xl">
+                            Motor LuxFinance
+                        </h4>
+                        <p class="text-sm text-slate-500 max-w-[180px]">
+                            Inteligência tributária e eficiência aplicada.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div
+                    class="flex flex-col items-center text-center space-y-6 relative"
+                >
+                    <!-- Connector Line (Left) -->
+                    <div
+                        class="hidden md:block absolute -left-1/2 top-12 w-full h-[2px] bg-slate-200 -z-10"
+                    >
+                        <div
+                            class="h-full bg-emerald-500 w-1/2 animate-flow-right-fast"
+                        >
+                        </div>
+                    </div>
+
+                    <div
+                        class="w-28 h-28 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-full flex items-center justify-center shadow-xl shadow-emerald-500/20"
+                    >
+                        <Icon
+                            name="lucide:dollar-sign"
+                            class="size-12 text-white"
+                        />
+                    </div>
+                    <div>
+                        <p
+                            class="text-3xl font-black text-slate-900 tracking-tighter"
+                        >
+                            +32%
+                        </p>
+                        <p
+                            class="text-xs font-bold uppercase tracking-widest text-emerald-600"
+                        >
+                            Lucro Líquido Real
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .animate-spin-slow {
+        animation: spin 10s linear infinite;
+    }
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .animate-flow-right {
+        animation: flowRight 2s infinite linear;
+    }
+    .animate-flow-right-fast {
+        animation: flowRight 1s infinite linear;
+    }
+
+    @keyframes flowRight {
+        0% {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+</style>

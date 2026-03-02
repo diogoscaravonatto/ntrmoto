@@ -1,0 +1,60 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navbar from "@templates-pages/mentoria/components/Navbar.astro";
+import Hero from "@templates-pages/mentoria/components/Hero.astro";
+import Marquee from "@templates-pages/mentoria/components/Marquee.astro";
+import Roadmap from "@templates-pages/mentoria/components/Roadmap.astro";
+import ValueDrop from "@templates-pages/mentoria/components/ValueDrop.astro";
+import Testimonials from "@templates-pages/mentoria/components/Testimonials.astro";
+import FAQ from "@templates-pages/mentoria/components/FAQ.astro";
+import CTA from "@templates-pages/mentoria/components/CTA.astro";
+import Footer from "@templates-pages/mentoria/components/Footer.astro";
+---
+
+<BaseLayout
+    title="Mentoria de Performance | Escale sua Mente e Negócio"
+    description="Método comprovado para empreendedores que buscam o próximo nível. Estratégia, mindset e execução implacável."
+    image="/images/templates/mentoria.png"
+    theme="light"
+>
+    <main
+        class="bg-white text-black font-sans selection:bg-blue-600 selection:text-white overflow-hidden"
+    >
+        <Navbar />
+        <Hero />
+        <Marquee />
+        <Roadmap />
+        <ValueDrop />
+        <Testimonials />
+        <FAQ />
+        <CTA />
+        <Footer />
+    </main>
+</BaseLayout>
+
+<style is:global>
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    .animate-marquee {
+        animation: marquee 30s linear infinite;
+    }
+    @keyframes bounce-slow {
+        0%,
+        100% {
+            transform: translateY(0) rotate(-15deg);
+        }
+        50% {
+            transform: translateY(-15px) rotate(-12deg);
+        }
+    }
+    .animate-bounce-slow {
+        animation: bounce-slow 3s ease-in-out infinite;
+    }
+</style>

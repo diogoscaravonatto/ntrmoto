@@ -1,0 +1,75 @@
+---
+// Infrastructure — Seção de métricas de infraestrutura
+const infra = {
+    eyebrow: "Backbone Global",
+    title: "Velocidade",
+    titleHighlight: "Infinita.",
+};
+
+const stats = [
+    {
+        title: "Edge Nodes",
+        val: "240+",
+        desc: "Data centers globais para garantir latência sub-10ms em qualquer lugar do mundo.",
+    },
+    {
+        title: "Uptime Real",
+        val: "99.999%",
+        desc: "Infraestrutura auto-curável que garante disponibilidade crítica 24/7.",
+    },
+    {
+        title: "Processamento",
+        val: "5PB/dia",
+        desc: "Capacidade de analítica em larga escala sem degradação de performance.",
+    },
+];
+---
+
+<section id="infra" class="py-40 bg-black relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-24">
+            <span
+                class="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500"
+                >{infra.eyebrow}</span
+            >
+            <h2
+                class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter mt-4"
+            >
+                {infra.title}
+                <span class="text-outline-indigo">{infra.titleHighlight}</span>
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12">
+            {
+                stats.map((item) => (
+                    <div class="p-10 border border-white/5 rounded-4xl bg-zinc-900/30">
+                        <div class="text-4xl font-black text-white mb-2 italic tracking-tighter">
+                            {item.val}
+                        </div>
+                        <h4 class="text-indigo-400 font-bold uppercase tracking-widest text-[10px] mb-4">
+                            {item.title}
+                        </h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed">
+                            {item.desc}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+    <!-- Abstract Grid Lines -->
+    <div class="absolute inset-0 pointer-events-none opacity-5">
+        <div
+            class="size-full bg-size-[40px_40px] bg-linear-to-r from-white/10 to-transparent"
+        >
+        </div>
+    </div>
+</section>
+
+<style>
+    .text-outline-indigo {
+        -webkit-text-stroke: 1px #6366f1;
+        color: transparent;
+    }
+</style>

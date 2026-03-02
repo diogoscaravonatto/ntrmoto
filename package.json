@@ -1,0 +1,53 @@
+{
+  "name": "vetpragas-site",
+  "description": "Boilerplate premium para landing pages e funis de conversão com Astro v6 e Tailwind v4.",
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "dev:clean": "npm run clean && astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "clean": "if exist node_modules\\.vite rd /s /q node_modules\\.vite && if exist dist rd /s /q dist && if exist .astro rd /s /q .astro",
+    "deploy": "npm run build && npx wrangler deploy",
+    "generate-types": "wrangler types",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.0.0-beta.7",
+    "@astrojs/partytown": "^2.1.4",
+    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/vue": "^6.0.0-beta.1",
+    "@iconify/vue": "^5.0.0",
+    "@nanostores/vue": "^1.0.1",
+    "@tailwindcss/vite": "^4.1.18",
+    "@vueuse/core": "^14.2.0",
+    "astro": "^6.0.0-beta.11",
+    "astro-compress": "^2.3.9",
+    "astro-icon": "^1.1.5",
+    "astro-robots-txt": "^1.0.0",
+    "astro-seo": "^1.1.0",
+    "motion": "^12.33.0",
+    "nanostores": "^1.1.0",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.1.18",
+    "vanilla-tilt": "^1.8.1",
+    "vue": "^3.5.27"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@cloudflare/workers-types": "^4.20260206.0",
+    "@iconify-json/lucide": "^1.2.89",
+    "@iconify-json/simple-icons": "^1.2.69",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "astro-eslint-parser": "^1.2.2",
+    "eslint": "^9.39.2",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "miniflare": "^4.20260205.0",
+    "typescript-eslint": "^8.54.0",
+    "wrangler": "^4.65.0"
+  }
+}

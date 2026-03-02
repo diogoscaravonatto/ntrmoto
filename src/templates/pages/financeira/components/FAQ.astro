@@ -1,0 +1,62 @@
+---
+const faq = {
+    eyebrow: "Governança & Dúvidas",
+    title: ["O que a elite se", "pergunta."],
+    items: [
+        {
+            q: "Qual o valor mínimo de patrimônio sob gestão?",
+            a: "Atendemos famílias com liquidez mínima de R$ 5MM, garantindo a exclusividade e a profundidade necessária na consultoria sênior.",
+        },
+        {
+            q: "Como é feita a custódia dos meus ativos?",
+            a: "Não tocamos no seu dinheiro. Seus ativos permanecem custodiados em grandes bancos Triple A, com nossa gestão atuando sob mandato de alocação.",
+        },
+        {
+            q: "Quais os riscos de investir em veículos Offshore?",
+            a: "Utilizamos apenas jurisdições seguras e transparentes. O risco é mitigado pela diversificação geográfica e conformidade total com a legislação brasileira.",
+        },
+        {
+            q: "Como funciona o fee da consultoria?",
+            a: 'Operamos no modelo "Fee-Only", sendo remunerados apenas pelo cliente. Isso elimina conflitos de interesse comuns em corretoras tradicionais.',
+        },
+    ],
+};
+---
+
+<section class="py-40 bg-black">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-24">
+            <span
+                class="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-500 mb-4 block lowercase"
+                >{faq.eyebrow}</span
+            >
+            <h2
+                class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter"
+            >
+                {faq.title[0]}
+                <br /><span
+                    class="text-emerald-500 underline decoration-white/10"
+                    >{faq.title[1]}</span
+                >
+            </h2>
+        </div>
+
+        <div class="space-y-8">
+            {
+                faq.items.map((item) => (
+                    <div class="p-8 rounded-3xl bg-zinc-950 border border-white/5 group hover:border-emerald-500/20 transition-all cursor-pointer">
+                        <h4 class="text-lg font-black uppercase italic text-white mb-4 group-hover:text-emerald-500 transition-colors flex justify-between items-center tracking-tight">
+                            {item.q}
+                            <span class="size-6 border border-white/10 rounded-full flex items-center justify-center text-xs">
+                                +
+                            </span>
+                        </h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500 italic lowercase">
+                            {item.a}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

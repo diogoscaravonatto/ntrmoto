@@ -1,0 +1,142 @@
+---
+const property = {
+    id: "LX-2026-001",
+    location: "São Paulo, Brasil",
+    title: "Residência Aurora Luxury Suite",
+    price: "R$ 12.500.000",
+    specs: ["4 Quartos", "6 Banheiros", "800m² Área", "4 Vagas"],
+};
+---
+
+<!-- LUXURY EDITORIAL HERO -->
+<section class="relative h-screen overflow-hidden bg-[#f5f1eb]">
+    <!-- Large Background Image with Parallax Effect -->
+    <div class="absolute inset-0" id="parallax-container">
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f5f1eb]"
+        >
+        </div>
+        <img
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80"
+            alt="Luxury Property"
+            class="w-full h-full object-cover scale-110"
+            id="parallax-image"
+            loading="eager"
+            fetchpriority="high"
+        />
+    </div>
+
+    <!-- Content Overlay -->
+    <div class="relative h-full flex flex-col justify-between p-8 md:p-16">
+        <!-- Top Bar -->
+        <div class="flex justify-between items-start">
+            <div class="space-y-1">
+                <div
+                    class="text-xs tracking-[0.3em] text-zinc-800 font-light uppercase"
+                >
+                    Exclusive Listing
+                </div>
+                <div class="text-xs tracking-[0.3em] text-zinc-500 font-light">
+                    REF: {property.id.toUpperCase() || "LX-2026-001"}
+                </div>
+            </div>
+            <div
+                class="px-6 py-3 bg-white/90 backdrop-blur-md border border-zinc-200 text-xs tracking-[0.2em] uppercase font-medium"
+            >
+                PRIVATE VIEWING
+            </div>
+        </div>
+
+        <!-- Main Title - Bottom -->
+        <div class="max-w-7xl">
+            <div class="mb-8 flex items-center gap-6">
+                <div class="h-px w-24 bg-zinc-800"></div>
+                <span
+                    class="text-xs tracking-[0.3em] uppercase text-zinc-800 font-light"
+                    >{property.location}</span
+                >
+            </div>
+
+            <h1
+                class="font-serif text-[15vw] md:text-[12rem] leading-[0.85] tracking-tight text-zinc-900 mb-8"
+            >
+                {property.title.split(" ").slice(0, 2).join(" ")}<br />
+                <span class="italic font-light text-zinc-600"
+                    >{property.title.split(" ").slice(2).join(" ")}</span
+                >
+            </h1>
+
+            <div class="flex flex-col md:flex-row md:items-end gap-8 md:gap-16">
+                <div class="space-y-2">
+                    <div
+                        class="text-xs tracking-[0.3em] uppercase text-zinc-500 font-light"
+                    >
+                        Asking Price
+                    </div>
+                    <div class="font-serif text-5xl md:text-7xl text-zinc-900">
+                        {property.price}
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-8 md:gap-12">
+                    {
+                        property.specs.map((spec) => {
+                            const [value, label] = spec.split(" ");
+                            return (
+                                <div class="space-y-1 md:space-y-2 min-w-[80px]">
+                                    <div class="font-serif text-3xl md:text-4xl text-zinc-900">
+                                        {value}
+                                    </div>
+                                    <div class="text-[10px] tracking-[0.2em] uppercase text-zinc-500 font-light">
+                                        {label}
+                                    </div>
+                                </div>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="mt-16 flex items-center gap-4">
+                <div
+                    class="text-xs tracking-[0.3em] uppercase text-zinc-500 font-light"
+                >
+                    Scroll to explore
+                </div>
+                <div class="w-px h-16 bg-zinc-300 relative overflow-hidden">
+                    <div
+                        class="absolute inset-0 w-full bg-zinc-800 animate-scroll-down"
+                    >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes scroll-down {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(100%);
+        }
+    }
+    .animate-scroll-down {
+        animation: scroll-down 2s ease-in-out infinite;
+    }
+</style>
+
+<script>
+    // Simple parallax effect
+    const parallaxImage = document.getElementById("parallax-image");
+    if (parallaxImage) {
+        window.addEventListener("scroll", () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.5;
+            parallaxImage.style.transform = `translateY(${rate}px) scale(1.1)`;
+        });
+    }
+</script>

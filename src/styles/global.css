@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #122743;
+  --color-primary-dark: #0a1727;
+  --color-accent: #d81624;
+  --color-accent-dark: #b1121d;
+  --color-secondary: #2b3a55;
+
+  --font-sans: "Sora", "Inter", sans-serif;
+  --font-heading: "Sora", sans-serif;
+}
+
+/* Custom dark variant para Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light dark;
+}
+
+@layer base {
+  body {
+    @apply antialiased min-h-screen bg-white text-slate-900 font-sans selection:bg-primary selection:text-white transition-colors duration-300;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-8 py-4 bg-accent text-white font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-accent-dark transition-all shadow-lg hover:shadow-accent/20 hover:-translate-y-1 text-center inline-block;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-4 bg-white text-primary border-2 border-primary/10 font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all text-center inline-block;
+  }
+
+  /* Textura de Apoio */
+  .bg-brand-pattern {
+    background-image: radial-gradient(circle at 1px 1px, var(--color-primary) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.05;
+  }
+}
+
+/* Animações Bornx Style */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal {
+  animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

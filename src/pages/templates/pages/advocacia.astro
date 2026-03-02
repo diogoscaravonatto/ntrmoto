@@ -1,0 +1,94 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@templates-pages/advocacia/components/Navigation.astro";
+import Hero from "@templates-pages/advocacia/components/Hero.astro";
+import Expertise from "@templates-pages/advocacia/components/Expertise.astro";
+import Team from "@templates-pages/advocacia/components/Team.astro";
+import Contact from "@templates-pages/advocacia/components/Contact.astro";
+const metadata = {
+    name: "Mendes & Associados | Advocacia de Alto Vulto",
+    description:
+        "Escritório boutique especializado em causas complexas e proteção patrimonial de alto impacto.",
+};
+
+const layoutColors = {
+    primary: "#d4af37",
+    secondary: "#f3e5ab",
+    background: "#000000",
+};
+---
+
+<BaseLayout
+    title={metadata.name}
+    description={metadata.description}
+    theme="dark"
+    colors={layoutColors}
+>
+    <!-- GLOBAL STYLES FOR PREMIUM LEGAL THEME -->
+    <div
+        class="font-['Cinzel',,serif] bg-black text-white selection:bg-gold-500 selection:text-black"
+    >
+        <Navigation />
+        <main>
+            <Hero />
+            <Expertise />
+            <Team />
+            <Contact />
+        </main>
+        <footer
+            class="bg-black text-zinc-500 py-16 px-8 border-t border-zinc-900"
+        >
+            <div
+                class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-12"
+            >
+                <div
+                    class="text-xl font-serif text-white tracking-widest uppercase"
+                >
+                    Mendes <span class="text-gold-500">&</span> Associados
+                </div>
+
+                <div
+                    class="flex gap-12 text-[10px] font-bold uppercase tracking-[0.3em]"
+                >
+                    <a href="#" class="hover:text-white transition-colors"
+                        >Termos de Uso</a
+                    >
+                    <a href="#" class="hover:text-white transition-colors"
+                        >Código de Ética</a
+                    >
+                    <a href="#" class="hover:text-white transition-colors"
+                        >LGPD</a
+                    >
+                </div>
+
+                <div class="text-[10px] font-bold uppercase tracking-[0.2em]">
+                    CRECI 123.456 | OAB/SP 45.678
+                </div>
+            </div>
+            <div class="text-center mt-12 text-[10px] opacity-30">
+                © 2026 Mendes & Associados. Todos os direitos reservados.
+            </div>
+        </footer>
+    </div>
+</BaseLayout>
+
+<style>
+    /* 
+       Utilizando Cinzel para headings (Classical/Legal look) 
+       e Montserrat para corpo (Clean & Professional)
+    */
+    @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@200;300;400;700&display=swap");
+
+    :global(h1, h2, h3, h4, .font-serif) {
+        font-family: "Cinzel", serif;
+    }
+
+    :global(body, p, span, li, a, input, textarea, select) {
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .text-gold-500 {
+        color: #d4af37;
+    }
+</style>

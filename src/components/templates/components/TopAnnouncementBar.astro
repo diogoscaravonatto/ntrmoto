@@ -1,0 +1,74 @@
+---
+export const prerender = true;
+/**
+ * COMPONENTE: TopAnnouncementBar
+ * O QUE É: Barra de anúncio fina e chamativa para o topo da página.
+ * ONDE USAR: Acima do menu principal para destacar cupons, avisos ou ofertas urgentes.
+ * COMO USAR: Defina o texto da oferta e o código do cupom via props.
+ */
+interface Props {
+    text?: string;
+    ctaText?: string;
+    link?: string;
+    gradient?: string;
+}
+
+const {
+    text = "Oferta Especial: Ganhe 20% de desconto usando o cupom",
+    ctaText = "SNIPER20",
+    link = "#pricing",
+    gradient = "from-violet-600 via-pink-600 to-orange-600",
+} = Astro.props;
+---
+
+<div
+    class={`relative bg-linear-to-r ${gradient} py-2.5 px-4 text-center overflow-hidden`}
+>
+    <!-- Animated Background Shine -->
+    <div
+        class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-shine"
+    >
+    </div>
+
+    <div
+        class="relative flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm font-medium text-white"
+    >
+        <p>{text}</p>
+        <a
+            href={link}
+            class="flex items-center gap-1.5 px-3 py-0.5 bg-white/20 hover:bg-white/30 rounded-full backdrop-blur-sm border border-white/30 transition-all font-bold tracking-tight"
+        >
+            {ctaText}
+            <svg
+                class="size-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="3"
+                    d="M9 5l7 7-7 7"></path>
+            </svg>
+        </a>
+    </div>
+</div>
+
+<style>
+    @keyframes shine {
+        0% {
+            transform: translateX(-100%);
+        }
+        50% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    .animate-shine {
+        animation: shine 4s infinite linear;
+    }
+</style>

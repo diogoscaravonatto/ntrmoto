@@ -1,0 +1,64 @@
+---
+const team = {
+    title: ["Mãos que cuidam,", "especialistas"],
+    highlight: "que transformam.",
+    members: [
+        {
+            name: "Dra. Aline Santos",
+            role: "Dermatologia Avançada",
+            desc: "Especialista em bioestimuladores e harmonia facial com mais de 5.000 procedimentos realizados.",
+        },
+        {
+            name: "Beatriz Costa",
+            role: "Cosmetologia Clínica",
+            desc: "Expert em protocolos de skincare de alta performance e recuperação tecidual pós-laser.",
+        },
+        {
+            name: "Dra. Luiza Mello",
+            role: "Harmonização de Elite",
+            desc: "Mestre em anatomia facial, focada em resultados imperceptíveis e máxima naturalidade.",
+        },
+    ],
+};
+---
+
+<section id="equipe" class="py-40 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-24">
+            <h2
+                class="text-5xl md:text-7xl font-bold text-[#4a3a37] tracking-tighter mb-6"
+            >
+                {team.title[0]}
+                <br /><span class="italic font-light text-[#f8b4b4]"
+                    >{team.title[1]}</span
+                >
+                {team.highlight}
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12">
+            {
+                team.members.map((member) => (
+                    <div class="space-y-8 text-center group">
+                        <div class="aspect-4/5 rounded-[3rem] bg-[#fcf8f6] border border-[#f3e3df] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-700">
+                            <div class="absolute inset-0 flex items-center justify-center text-[#f8b4b4]/10 font-bold text-4xl rotate-12 pointer-events-none">
+                                Expertise
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-bold text-[#4a3a37] mb-1 tracking-tight">
+                                {member.name}
+                            </h4>
+                            <p class="text-[#f8b4b4] text-[10px] uppercase font-black tracking-widest mb-4">
+                                {member.role}
+                            </p>
+                            <p class="text-[#9d8a87] text-sm leading-relaxed max-w-xs mx-auto italic font-light">
+                                {member.desc}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

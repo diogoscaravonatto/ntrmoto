@@ -1,0 +1,47 @@
+---
+const brand = { name: "Luminous", highlight: "Esteta" };
+const links = [
+    { label: "O Método", href: "#metodo" },
+    { label: "Procedimentos", href: "#procedimentos" },
+    { label: "Especialistas", href: "#equipe" },
+];
+---
+
+<nav
+    class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-[#f3e3df] h-24"
+>
+    <div
+        class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between"
+    >
+        <div class="flex items-center gap-3">
+            <div
+                class="size-10 rounded-full bg-linear-to-br from-[#f8b4b4] to-[#e7bcb9] border-2 border-white shadow-md"
+            >
+            </div>
+            <span class="text-xl font-bold tracking-tight text-[#4a3a37]"
+                >{brand.name}<span class="font-light italic"
+                    >{brand.highlight}</span
+                ></span
+            >
+        </div>
+        <div
+            class="hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-widest text-[#9d8a87]"
+        >
+            {
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        class="hover:text-[#f8b4b4] transition-colors"
+                    >
+                        {link.label}
+                    </a>
+                ))
+            }
+        </div>
+        <button
+            class="px-8 py-3 bg-[#4a3a37] text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-[#f8b4b4] transition-all hover:scale-105 shadow-xl outline-hidden group"
+        >
+            Garantir Avaliação
+        </button>
+    </div>
+</nav>

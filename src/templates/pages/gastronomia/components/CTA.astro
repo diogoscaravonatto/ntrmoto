@@ -1,0 +1,36 @@
+---
+const cta = {
+    title: ["Uma noite", "inesquecível."],
+    description:
+        "Devido à nossa capacidade restrita, recomendamos reservas com antecedência de 14 dias para o Menu Degustação.",
+    buttons: ["Reservar uma Mesa", "Conciergerie Privada"],
+};
+---
+
+<section id="reserva" class="py-60 px-6 bg-black">
+    <div class="max-w-5xl mx-auto text-center space-y-24">
+        <div class="space-y-8">
+            <h2
+                class="text-6xl md:text-[9rem] font-light text-white leading-tight italic tracking-tighter"
+            >
+                {cta.title[0]}
+                <br />{cta.title[1]}
+            </h2>
+            <p
+                class="text-xl text-zinc-600 font-light max-w-xl mx-auto leading-relaxed italic lowercase"
+            >
+                {cta.description}
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 text-left max-w-3xl mx-auto">
+            {
+                cta.buttons.map((btn) => (
+                    <button class="w-full py-8 border border-white/10 rounded-xl text-white font-bold uppercase text-[10px] tracking-[0.4em] hover:bg-[#d4af37] hover:text-black transition-all outline-hidden group italic">
+                        {btn}
+                    </button>
+                ))
+            }
+        </div>
+    </div>
+</section>

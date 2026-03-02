@@ -1,0 +1,72 @@
+---
+const philosophy = {
+    eyebrow: "Nossa Visão",
+    title: ["Onde a técnica encontra a", "emoção."],
+    description:
+        "Nossa cozinha é um diálogo constante entre o clássico essencial e a biodiversidade local. Cada prato é uma composição efêmera, pensada para provocar todos os seus sentidos e elevar o paladar ao estado de arte.",
+    chef: {
+        name: "Chef Manuel Dupont",
+        role: "Maître Cuisinier",
+        initial: "M",
+    },
+    quote: '"A perfeição está nos detalhes invisíveis."',
+};
+---
+
+<section
+    id="filosofia"
+    class="relative min-h-screen flex items-center py-40 bg-[#050505]"
+>
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-32 items-center">
+        <div class="space-y-12">
+            <span
+                class="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-600 block"
+                >{philosophy.eyebrow}</span
+            >
+            <h2
+                class="text-5xl md:text-[5.5rem] font-light leading-tight text-white mb-10"
+            >
+                {philosophy.title[0]}
+                <span class="italic text-[#d4af37]">{philosophy.title[1]}</span>
+            </h2>
+            <p class="text-xl text-zinc-400 font-light leading-relaxed">
+                {philosophy.description}
+            </p>
+            <div class="flex items-center gap-4 pt-10 border-t border-white/5">
+                <div
+                    class="size-16 rounded-full border border-[#d4af37] flex items-center justify-center text-[#d4af37] italic font-serif text-2xl"
+                >
+                    {philosophy.chef.initial}
+                </div>
+                <div>
+                    <p
+                        class="text-white font-bold uppercase tracking-widest text-[11px]"
+                    >
+                        {philosophy.chef.name}
+                    </p>
+                    <p
+                        class="text-zinc-600 text-[10px] uppercase tracking-widest"
+                    >
+                        {philosophy.chef.role}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div
+            class="relative aspect-3/4 bg-zinc-900 border border-white/5 rounded-[1rem] overflow-hidden group"
+        >
+            <div
+                class="absolute inset-0 flex items-center justify-center text-zinc-800 uppercase font-black text-2xl rotate-12 pointer-events-none"
+            >
+                Culinary Art
+            </div>
+            <div
+                class="absolute inset-x-0 bottom-0 p-10 bg-linear-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+                <p class="text-white text-sm font-light italic">
+                    {philosophy.quote}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

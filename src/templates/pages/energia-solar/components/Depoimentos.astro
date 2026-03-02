@@ -1,0 +1,63 @@
+---
+const testimonials = {
+    title: ["O que dizem quem", "já mudou."],
+    items: [
+        {
+            name: "Roberto Almeida",
+            role: "Empresário",
+            text: "Minha conta da fábrica caiu de R$ 4.200 para R$ 120. O projeto se pagou em menos de 3 anos. Simplesmente não faz sentido continuar pagando a rede elétrica.",
+            initial: "R",
+        },
+        {
+            name: "Lúcia Ferreira",
+            role: "Residencial",
+            text: "Sempre tive medo do custo da instalação, mas com o financiamento a parcela ficou menor que a minha conta antiga. Hoje uso o ar condicionado sem culpa.",
+            initial: "L",
+        },
+        {
+            name: "Carlos Mendes",
+            role: "Produtor Rural",
+            text: "Instalei no sítio e a eficiência é impressionante. Agora tenho total autonomia e segurança energética para irrigação sem sustos no final do mês.",
+            initial: "C",
+        },
+    ],
+};
+---
+
+<section class="py-32 bg-white italic overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-24">
+            <h2
+                class="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter uppercase italic"
+            >
+                {testimonials.title[0]}
+                <br /><span class="text-emerald-600"
+                    >{testimonials.title[1]}</span
+                >
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            {
+                testimonials.items.map((t) => (
+                    <div class="p-10 bg-slate-50 rounded-[3rem] border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group">
+                        <div class="size-16 rounded-full bg-emerald-600 flex items-center justify-center text-white font-black text-xl mb-8 shadow-lg group-hover:scale-110 transition-transform">
+                            {t.initial}
+                        </div>
+                        <p class="text-lg font-bold text-slate-700 leading-relaxed mb-8 italic lowercase">
+                            "{t.text}"
+                        </p>
+                        <div>
+                            <h3 class="text-xl font-black text-slate-900 leading-none mb-1 italic uppercase tracking-tight">
+                                {t.name}
+                            </h3>
+                            <p class="text-[9px] font-black text-emerald-600 uppercase tracking-widest leading-none">
+                                {t.role}
+                            </p>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

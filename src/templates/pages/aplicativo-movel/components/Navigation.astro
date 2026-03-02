@@ -1,0 +1,32 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<nav class="flex justify-between items-center py-8">
+    <div class="flex items-center gap-2">
+        <div
+            class="size-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center"
+        >
+            <Icon name="lucide:activity" class="size-5 text-white" />
+        </div>
+        <span class="font-bold text-xl tracking-tight text-white"
+            >Flowstate</span
+        >
+    </div>
+    <div class="hidden md:flex gap-6 text-sm font-medium text-zinc-400">
+        <a href="#recursos" class="hover:text-white transition-colors"
+            >Recursos</a
+        >
+        <a href="#depoimentos" class="hover:text-white transition-colors"
+            >Depoimentos</a
+        >
+        <a href="#pricing" class="hover:text-white transition-colors">Pricing</a
+        >
+    </div>
+    <a
+        href="#"
+        class="bg-white/10 text-white hover:bg-white/20 px-6 py-2.5 rounded-full font-semibold transition-colors text-sm"
+    >
+        Entrar na Web
+    </a>
+</nav>

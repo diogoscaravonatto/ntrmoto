@@ -1,0 +1,49 @@
+---
+const faq = {
+    title: "Privacidade & Protocolos",
+    items: [
+        {
+            q: "Vocês realizam entregas internacionais?",
+            a: "Sim, operamos com logística de segurança blindada para entregas globais, com seguro integral do valor da peça.",
+        },
+        {
+            q: "Como garantir a autenticidade das pedras?",
+            a: "Cada joia Véronique é entregue com seu respectivo certificado GIA e nosso passaporte de autenticidade vitalícia.",
+        },
+        {
+            q: "Posso reformar uma joia de família?",
+            a: "Sim, nosso atelier é especialista em restauração e re-design de peças antigas, preservando a herança original.",
+        },
+        {
+            q: "Existe garantia para cravação?",
+            a: "Oferecemos garantia vitalícia para a estrutura e cravação de todas as nossas peças autorais.",
+        },
+    ],
+};
+---
+
+<section id="faq" class="py-40 bg-[#fafafa] border-y border-zinc-100 italic">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-32">
+            <h2
+                class="text-5xl md:text-7xl font-light italic text-zinc-950 tracking-tighter decoration-[#d4af37]/20 underline underline-offset-10"
+            >
+                {faq.title}
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-20">
+            {
+                faq.items.map((item) => (
+                    <div class="space-y-6 group cursor-default">
+                        <h4 class="text-zinc-950 font-light text-xl italic underline decoration-[#d4af37]/20 underline-offset-8 group-hover:text-[#d4af37] transition-colors tracking-tight uppercase">
+                            {item.q}
+                        </h4>
+                        <p class="text-zinc-500 text-sm font-light leading-relaxed italic lowercase">
+                            {item.a}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

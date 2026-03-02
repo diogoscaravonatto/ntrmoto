@@ -1,0 +1,62 @@
+---
+const brand = { name: "Helio", highlight: "Solar" };
+const links = [
+    { label: "Economia", href: "#economia" },
+    { label: "O Processo", href: "#processo" },
+    { label: "FAQ", href: "#faq" },
+];
+---
+
+<nav
+    class="fixed top-0 w-full z-50 bg-white/20 backdrop-blur-xl border-b border-emerald-500/10"
+    aria-label="Navegação principal"
+>
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <div
+                class="size-9 bg-linear-to-tr from-emerald-500 to-yellow-400 rounded-full flex items-center justify-center text-white shadow-lg"
+            >
+                <svg
+                    class="size-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"
+                    ></path>
+                </svg>
+            </div>
+            <span
+                class="text-xl font-black tracking-tight text-emerald-900 uppercase"
+                >{brand.name}<span class="text-emerald-500"
+                    >{brand.highlight}</span
+                ></span
+            >
+        </div>
+        <div
+            class="hidden md:flex items-center gap-10 text-[11px] font-black uppercase tracking-widest text-emerald-900/60"
+        >
+            {
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        class="hover:text-emerald-500 transition-colors"
+                    >
+                        {link.label}
+                    </a>
+                ))
+            }
+        </div>
+        <button
+            class="px-7 py-2.5 bg-emerald-500 text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/20 outline-hidden"
+            aria-label="Solicitar orçamento de energia solar"
+        >
+            Solicitar Orçamento
+        </button>
+    </div>
+</nav>

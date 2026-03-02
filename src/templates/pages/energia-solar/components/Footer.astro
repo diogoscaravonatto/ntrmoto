@@ -1,0 +1,60 @@
+---
+const footer = {
+    brand: { name: "Helio", highlight: "Solar" },
+    tagline:
+        "Sustentabilidade • Economia • Futuro. Soluções Fotovoltaicas de Alta Performance.",
+    units: "São Paulo • Curitiba • Florianópolis • Brasília",
+    contact: "0800-HELIO-SOL • contato@helio.solar",
+    copy: "© 2026 Helio Solar S.A. Energia que transforma.",
+};
+---
+
+<footer class="py-20 bg-zinc-50 border-t border-zinc-100">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-16">
+        <div class="md:col-span-2">
+            <div class="flex items-center gap-2 mb-8">
+                <div
+                    class="size-6 bg-linear-to-tr from-emerald-500 to-yellow-400 rounded-full"
+                >
+                </div>
+                <span
+                    class="text-xl font-black tracking-tight text-emerald-900 uppercase"
+                >
+                    {footer.brand.name}<span class="text-emerald-500"
+                        >{footer.brand.highlight}</span
+                    >
+                </span>
+            </div>
+            <p
+                class="text-sm text-zinc-500 font-normal max-w-xs uppercase tracking-[0.2em] leading-relaxed italic"
+            >
+                {footer.tagline}
+            </p>
+        </div>
+        <div class="space-y-6">
+            <p
+                class="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500"
+            >
+                Unidades
+            </p>
+            <p
+                class="text-[11px] text-zinc-400 font-bold uppercase tracking-widest leading-relaxed"
+            >
+                {footer.units}
+            </p>
+        </div>
+        <div class="space-y-6 text-zinc-400">
+            <p
+                class="text-[10px] font-black uppercase tracking-[0.3em] text-emerald-500"
+            >
+                Contato
+            </p>
+            <p class="text-sm font-medium leading-relaxed">{footer.contact}</p>
+        </div>
+    </div>
+    <p
+        class="text-center mt-32 text-[8px] font-black text-zinc-400 uppercase tracking-[0.6em]"
+    >
+        {footer.copy}
+    </p>
+</footer>

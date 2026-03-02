@@ -1,0 +1,117 @@
+---
+export const prerender = true;
+/**
+ * COMPONENTE: ComparisonTable
+ * O QUE É: Tabela comparativa estilo "Nós vs Outros" para destacar superioridade.
+ * ONDE USAR: Antes da seção de preços para justificar o valor agregado do seu produto.
+ * COMO USAR: Liste as funcionalidades e marque como verdadeiro/falso para cada lado.
+ */
+interface Feature {
+	name: string;
+	us: boolean | string;
+	others: boolean | string;
+}
+
+interface Props {
+	title?: string;
+	subtitle?: string;
+	ourName?: string;
+	otherName?: string;
+	features?: Feature[];
+}
+
+const defaultFeatures: Feature[] = [
+	{ name: "Tempo de Carregamento", us: "Sub-segundo", others: "3s - 10s" },
+	{ name: "Design Personalizado", us: true, others: false },
+	{ name: "Otimização para SEO", us: true, others: "Básico" },
+	{ name: "Suporte Especializado", us: "24/7 Humanizado", others: "Tickets / Chatbot" },
+	{ name: "Código Limpo (Core Web Vitals)", us: true, others: false },
+	{ name: "Segurança Avançada", us: true, others: false },
+];
+
+const {
+	title = "Por que somos a escolha certa?",
+	subtitle = "Compare e veja a diferença de um trabalho profissional",
+	ourName = "Sniper Pages",
+	otherName = "Outras Agências",
+	features = defaultFeatures,
+} = Astro.props;
+---
+
+<section class="py-24 px-6 bg-zinc-900/30">
+	<div class="max-w-4xl mx-auto">
+		<!-- Header -->
+		<div class="text-center mb-16">
+			<h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 text-white">
+				{title}
+			</h2>
+			<p class="text-zinc-500 text-lg">
+				{subtitle}
+			</p>
+		</div>
+
+		<!-- Table -->
+		<div class="overflow-x-auto rounded-3xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm">
+			<table class="w-full text-left border-collapse">
+				<thead>
+					<tr class="border-b border-zinc-800">
+						<th class="p-6 text-zinc-500 font-medium uppercase tracking-widest text-xs">Diferenciais</th>
+						<th class="p-6 text-violet-400 font-bold text-center bg-violet-500/5">{ourName}</th>
+						<th class="p-6 text-zinc-600 font-bold text-center">{otherName}</th>
+					</tr>
+				</thead>
+				<tbody>
+					{
+						features.map((feature) => (
+							<tr class="border-b border-zinc-800/50 hover:bg-zinc-800/20 transition-colors">
+								<td class="p-6 text-white font-medium">{feature.name}</td>
+								
+								<!-- Our Column -->
+								<td class="p-6 text-center bg-violet-500/5">
+									{typeof feature.us === "boolean" ? (
+										feature.us ? (
+											<div class="flex justify-center">
+												<div class="size-6 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center">
+													<svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+												</div>
+											</div>
+										) : (
+											<div class="flex justify-center">
+												<div class="size-6 bg-red-500/20 text-red-500 rounded-full flex items-center justify-center">
+													<svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>
+												</div>
+											</div>
+										)
+									) : (
+										<span class="text-white font-bold text-sm tracking-tight">{feature.us}</span>
+									)}
+								</td>
+
+								<!-- Others Column -->
+								<td class="p-6 text-center">
+									{typeof feature.others === "boolean" ? (
+										feature.others ? (
+											<div class="flex justify-center">
+												<div class="size-6 bg-zinc-800 text-zinc-500 rounded-full flex items-center justify-center">
+													<svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+												</div>
+											</div>
+										) : (
+											<div class="flex justify-center">
+												<div class="size-6 bg-zinc-800 text-zinc-500 rounded-full flex items-center justify-center">
+													<svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>
+												</div>
+											</div>
+										)
+									) : (
+										<span class="text-zinc-500 text-sm">{feature.others}</span>
+									)}
+								</td>
+							</tr>
+						))
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,78 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@templates/funnels/marketing-digital-vsl/sections/overview/Header.astro";
+import Grid from "@templates/funnels/marketing-digital-vsl/sections/overview/Grid.astro";
+import Callout from "@templates/funnels/marketing-digital-vsl/sections/overview/Callout.astro";
+
+const steps = [
+  {
+    step: 1,
+    title: "Página de Vendas (VSL)",
+    description: "Vídeo focado em conversão com headline forte e prova social.",
+    link: "/templates/funnels/marketing-digital-vsl/pagina-vendas",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop",
+    badge: "Entrada",
+  },
+  {
+    step: 2,
+    title: "Checkout (Order)",
+    description: "Formulário otimizado com Order Bump e resumo de pedido.",
+    link: "/templates/funnels/marketing-digital-vsl/checkout",
+    image:
+      "https://images.unsplash.com/photo-1556742044-3c52d6e88c02?q=80&w=600&auto=format&fit=crop",
+    badge: "Conversão",
+  },
+  {
+    step: 3,
+    title: "Upsell (One-Click)",
+    description: "Oferta da 'Passagem Dourada' para aumentar o ticket médio.",
+    link: "/templates/funnels/marketing-digital-vsl/oferta-premium",
+    image:
+      "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=600&auto=format&fit=crop",
+    badge: "Lucro Extra",
+  },
+  {
+    step: 4,
+    title: "Downsell",
+    description: "Oferta de recuperação para quem recusou o upsell.",
+    link: "/templates/funnels/marketing-digital-vsl/oferta-basica",
+    image:
+      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=600&auto=format&fit=crop",
+    badge: "Retenção",
+  },
+  {
+    step: 5,
+    title: "Página de Obrigado",
+    description: "Confirmação do pedido e instruções de acesso.",
+    link: "/templates/funnels/marketing-digital-vsl/obrigado",
+    image:
+      "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?q=80&w=600&auto=format&fit=crop",
+    badge: "Conclusão",
+  },
+];
+---
+
+<BaseLayout
+  title="Marketing Digital VSL - Visão Geral"
+  description="Template completo de funil de vendas VSL com 5 etapas."
+  theme="dark"
+  colors={{ primary: "#8b5cf6", background: "#0f172a" }}
+>
+  <!-- Background Mesh -->
+  <div
+    class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-[#0f172a]"
+  >
+    <div
+      class="absolute top-0 left-0 w-full h-[500px] bg-linear-to-b from-violet-900/20 to-transparent"
+    >
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <Header />
+    <Grid steps={steps} />
+    <Callout />
+  </div>
+</BaseLayout>

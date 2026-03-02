@@ -1,0 +1,187 @@
+---
+import { SEO } from "astro-seo";
+import GoogleTagManager from "@components/GoogleTagManager.astro";
+
+import "../styles/global.css";
+
+interface Props {
+    title: string;
+    description?: string;
+    image?: string;
+    theme?: "dark" | "light";
+    disableDefaultFonts?: boolean;
+    colors?: {
+        primary: string;
+        secondary?: string;
+        background: string;
+    };
+}
+
+const {
+    title,
+    description = "Estúdio de design digital premium e performance.",
+    image = "/images/templates/agencia-visionaria.png",
+    theme = "dark",
+    disableDefaultFonts = false,
+    colors,
+} = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.href : "https://vetpragas.com.br";
+const resolvedImageWithDomain = new URL(image, siteUrl).toString();
+
+// GTM ID (opcional - configure via variável de ambiente)
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+
+// Estilo dinâmico para injetar as cores do JSON
+const dynamicStyles = colors
+    ? {
+          "--color-primary": colors.primary,
+          "--color-secondary": colors.secondary || "#a1a1aa",
+          "--color-background": colors.background,
+      }
+    : {};
+---
+
+<!doctype html>
+<html lang="pt-BR" class:list={[theme]} style={dynamicStyles}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <meta
+            name="theme-color"
+            content={theme === "dark" ? "#050505" : "#ffffff"}
+        />
+        <link rel="sitemap" href="/sitemap-index.xml" />
+
+        <SEO
+            title={title}
+            titleTemplate="%s | VetPragas"
+            description={description}
+            canonical={Astro.url.href}
+            openGraph={{
+                basic: {
+                    title: title,
+                    type: "website",
+                    image: resolvedImageWithDomain,
+                    url: Astro.url.href,
+                },
+                optional: {
+                    description: description,
+                    siteName: "VetPragas",
+                },
+            }}
+            twitter={{
+                card: "summary_large_image",
+            }}
+        />
+
+        {/* Resource Hints para domínios externos */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://cdn.builder.io" />
+        <link
+            rel="preconnect"
+            href="https://www.googletagmanager.com"
+            crossorigin
+        />
+
+        {gtmId && <GoogleTagManager gtmId={gtmId} />}
+
+        {/* Slot para fontes/meta tags customizadas por página */}
+        <slot name="head" />
+
+        {
+            !disableDefaultFonts && (
+                <>
+                    {/* Preconnect para Google Fonts */}
+                    <link
+                        rel="preconnect"
+                        href="https://fonts.googleapis.com"
+                    />
+                    <link
+                        rel="preconnect"
+                        href="https://fonts.gstatic.com"
+                        crossorigin
+                    />
+
+                    {/* Carregar fonte Sora (Google Fonts) */}
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Inter:wght@400;500;600;700&display=swap"
+                        rel="stylesheet"
+                        media="print"
+                        onload="this.media='all'"
+                    />
+                    <noscript>
+                        <link
+                            href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Inter:wght@400;500;600;700&display=swap"
+                            rel="stylesheet"
+                        />
+                    </noscript>
+                </>
+            )
+        }
+    </head>
+    <body
+        class="font-sans antialiased text-slate-900 bg-white selection:bg-primary selection:text-white min-h-screen overflow-x-hidden"
+    >
+        <style is:global>
+            /* Foco visível para navegação por teclado usando a cor da marca */
+            :focus-visible {
+                outline: 2px solid #122743;
+                outline-offset: 2px;
+            }
+
+            /* Custom Scrollbar - Premium Feel (adapta ao tema) */
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #f1f5f9;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #cbd5e1;
+                border-radius: 3px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #94a3b8;
+            }
+
+            /* Dark mode scrollbar */
+            .dark ::-webkit-scrollbar-track,
+            html.dark::-webkit-scrollbar-track {
+                background: #000;
+            }
+            .dark ::-webkit-scrollbar-thumb,
+            html.dark::-webkit-scrollbar-thumb {
+                background: #333;
+            }
+            .dark ::-webkit-scrollbar-thumb:hover,
+            html.dark::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+        </style>
+        <!-- Overhead Grain Noise Overlay (oculto em mobile para performance) -->
+        <div
+            class="hidden md:block fixed inset-0 pointer-events-none z-100 opacity-[0.015] contrast-125 brightness-100 mix-blend-overlay"
+        >
+            <svg
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+            >
+                <filter id="noise">
+                    <feTurbulence
+                        type="fractalNoise"
+                        baseFrequency="0.65"
+                        numOctaves="3"
+                        stitchTiles="stitch"></feTurbulence>
+                </filter>
+                <rect width="100%" height="100%" filter="url(#noise)"></rect>
+            </svg>
+        </div>
+
+        <slot />
+    </body>
+</html>

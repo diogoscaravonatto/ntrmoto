@@ -1,0 +1,86 @@
+---
+const threats = {
+    main: {
+        title: "Adaptive Threat Shield",
+        description:
+            "Nossa tecnologia de ML preditivo identifica vetores de ataque antes da execução inicial. Ransomware, Phishing e DDoS mitigados em milissegundos.",
+    },
+    features: [
+        {
+            id: "01",
+            category: "Compliance",
+            title: "Zero Trust",
+            description:
+                "Nunca confie, sempre verifique. Identidade rigorosa em cada requisição.",
+        },
+        {
+            id: "02",
+            category: "Analysis",
+            title: "Deep Scan",
+            description:
+                "Análise de tráfego em nível de pacote com inspeção profunda SSL/TLS.",
+        },
+    ],
+};
+---
+
+<section id="threats" class="py-40 px-6 border-y border-white/5 bg-[#050505]">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-full lg:h-[700px]">
+            <div
+                class="md:col-span-8 p-12 bg-zinc-950 border border-white/5 relative overflow-hidden group"
+            >
+                <div class="relative z-10 flex flex-col justify-between h-full">
+                    <div>
+                        <h2
+                            class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-8"
+                        >
+                            {threats.main.title.split(" ")[0]}
+                            <br />{
+                                threats.main.title.split(" ").slice(1).join(" ")
+                            }
+                        </h2>
+                        <p
+                            class="text-zinc-500 text-sm max-w-sm leading-relaxed uppercase tracking-widest"
+                        >
+                            {threats.main.description}
+                        </p>
+                    </div>
+                    <div class="pt-20">
+                        <div class="flex gap-4">
+                            {
+                                [1, 2, 3, 4, 5, 6].map(() => (
+                                    <div class="h-10 w-1 bg-red-600/20 group-hover:bg-red-600 transition-colors" />
+                                ))
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="absolute -right-20 -bottom-20 size-80 bg-red-600/5 blur-[100px]"
+                >
+                </div>
+            </div>
+
+            <div class="md:col-span-4 grid grid-rows-2 gap-6">
+                {
+                    threats.features.map((feat) => (
+                        <div class="bg-zinc-900/50 p-10 border border-white/5 flex flex-col justify-between group hover:border-red-600/30 transition-all">
+                            <span class="text-[10px] font-black uppercase text-red-500 mb-4 tracking-widest">
+                                {feat.id} / {feat.category}
+                            </span>
+                            <div>
+                                <h3 class="text-2xl font-black text-white uppercase italic">
+                                    {feat.title}
+                                </h3>
+                                <p class="text-[10px] text-zinc-600 leading-relaxed uppercase mt-2">
+                                    {feat.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

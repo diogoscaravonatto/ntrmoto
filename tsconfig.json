@@ -1,0 +1,42 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": [
+      "astro/client"
+    ],
+    "verbatimModuleSyntax": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@templates/*": [
+        "src/templates/*"
+      ],
+      "@templates-pages/*": [
+        "src/templates/pages/*"
+      ],
+      "@shared/*": [
+        "src/components/shared/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ]
+    }
+  },
+  "include": [
+    ".astro/types.d.ts",
+    "./worker-configuration.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ]
+}

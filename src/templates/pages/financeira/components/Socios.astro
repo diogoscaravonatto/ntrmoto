@@ -1,0 +1,76 @@
+---
+const team = {
+    title: ["Mentes à frente", "do seu"],
+    highlight: "Patrimônio.",
+    description:
+        "Sua família será atendida diretamente pelos sócios diretores. Sem intermediários, apenas expertise sênior.",
+    members: [
+        {
+            name: "Arthur Montezzo",
+            role: "Diretor de Investimentos",
+            origin: "Ex-Goldman Sachs",
+            desc: "20 anos de Wall Street focados em arbitragem de ativos e gestão de risco global.",
+        },
+        {
+            name: "Beatriz Valente",
+            role: "Planejamento Patrimonial",
+            origin: "LL.M em Tributário",
+            desc: "Especialista em offshores e sucessão familiar complexa para grupos empresariais.",
+        },
+        {
+            name: "Ricardo Alencar",
+            role: "Estrategista-Chefe",
+            origin: "PhD Econometria",
+            desc: "Lidera nosso conselho de alocação com foco em modelos quantitativos de proteção.",
+        },
+    ],
+};
+---
+
+<section id="df" class="py-40 bg-zinc-950 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-24">
+            <h2
+                class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter mb-6"
+            >
+                {team.title[0]}
+                <br />{team.title[1]}
+                <span class="text-emerald-500">{team.highlight}</span>
+            </h2>
+            <p
+                class="text-zinc-500 text-xl font-medium max-w-2xl mx-auto italic"
+            >
+                {team.description}
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-12">
+            {
+                team.members.map((socio) => (
+                    <div class="p-12 rounded-[2.5rem] bg-white/5 border border-white/5 hover:border-emerald-500/20 transition-all group overflow-hidden relative">
+                        <div class="relative z-10 flex flex-col justify-between h-full">
+                            <div>
+                                <div class="size-20 rounded-2xl bg-zinc-900 border border-white/10 mb-8 flex items-center justify-center italic text-emerald-500 font-black text-2xl group-hover:scale-110 transition-transform">
+                                    {socio.name.charAt(0)}
+                                </div>
+                                <h3 class="text-2xl font-black uppercase italic mb-1 tracking-tight">
+                                    {socio.name}
+                                </h3>
+                                <p class="text-[10px] font-black text-emerald-500 uppercase tracking-widest mb-6 lowercase">
+                                    {socio.role} • {socio.origin}
+                                </p>
+                                <p class="text-zinc-500 text-sm leading-relaxed italic">
+                                    {socio.desc}
+                                </p>
+                            </div>
+                            <div class="pt-10 flex items-center gap-4 text-[9px] font-black uppercase tracking-widest text-zinc-600 group-hover:text-white transition-colors cursor-pointer outline-hidden group">
+                                Ver Perfil do Sócio <span>→</span>
+                            </div>
+                        </div>
+                        <div class="absolute inset-0 bg-linear-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

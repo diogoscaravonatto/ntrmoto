@@ -1,0 +1,55 @@
+---
+const tech = {
+    title: ["A tecnologia por trás da", "sua liberdade."],
+    features: [
+        {
+            title: "Painéis de Alta Eficiência",
+            desc: "Células monocristalinas que geram 22% mais energia mesmo em climas adversos.",
+            icon: "☀️",
+        },
+        {
+            title: "Smart Monitoring",
+            desc: "Acompanhe cada kW gerado via App com interface de análise preditiva.",
+            icon: "📱",
+        },
+        {
+            title: "Inversores Digitais",
+            desc: "Conversão pura de energia com proteção total contra surtos da rede.",
+            icon: "⚡",
+        },
+    ],
+};
+---
+
+<section class="py-40 bg-slate-50 italic">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-32">
+            <h2
+                class="text-5xl md:text-[8rem] font-black text-slate-950 leading-[0.8] tracking-tighter italic uppercase"
+            >
+                {tech.title[0]}
+                <br /><span
+                    class="text-emerald-600 underline decoration-emerald-200 decoration-8 underline-offset-14"
+                    >{tech.title[1]}</span
+                >
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-12">
+            {
+                tech.features.map((f) => (
+                    <div class="p-12 bg-white rounded-[3.5rem] border border-slate-100 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.05)] hover:shadow-[0_48px_96px_-24px_rgba(16,185,129,0.15)] hover:-translate-y-4 transition-all duration-700 group cursor-default text-center">
+                        <div class="size-24 bg-emerald-50 rounded-[2.5rem] mb-12 flex items-center justify-center text-4xl group-hover:bg-emerald-600 group-hover:scale-110 group-hover:rotate-12 transition-all duration-700 mx-auto shadow-inner">
+                            {f.icon}
+                        </div>
+                        <h3 class="text-2xl font-black text-slate-900 mb-6 tracking-tight uppercase italic">
+                            {f.title}
+                        </h3>
+                        <p class="text-sm font-bold text-slate-500 leading-relaxed lowercase opacity-80 group-hover:opacity-100 transition-opacity">
+                            {f.desc}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

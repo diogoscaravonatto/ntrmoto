@@ -1,0 +1,49 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navbar from "@templates-pages/vetpragas2/components/Navbar.astro";
+import HeroB2B from "@templates-pages/vetpragas2/components/Hero.astro";
+import TickerB2B from "@templates-pages/vetpragas2/components/Ticker.astro";
+import ServicesB2B from "@templates-pages/vetpragas2/components/Services.astro";
+import AboutB2B from "@templates-pages/vetpragas2/components/About.astro";
+import PestsB2C from "@templates-pages/vetpragas2/components/Comparison.astro";
+import ProcessB2B from "@templates-pages/vetpragas2/components/Process.astro";
+
+import GuaranteesB2B from "@templates-pages/vetpragas2/components/Guarantees.astro";
+import TestimonialsB2B from "@templates-pages/vetpragas2/components/Testimonials.astro";
+
+import FaqB2B from "@templates-pages/vetpragas2/components/Faq.astro";
+import FinalCtaB2B from "@templates-pages/vetpragas2/components/FinalCta.astro";
+import FooterB2B from "@templates-pages/vetpragas2/components/Footer.astro";
+import FloatingWhatsapp from "@templates-pages/vetpragas2/components/FloatingWhatsapp.astro";
+
+const data = {
+	name: "VetPragas | Especialista em Controle de Pragas Corporativo",
+	description:
+		"Referência em dedetização, sanitização e controle de pragas em Cascavel. Empresa dedetizadora especializada em indústrias, condomínios e restaurantes com supervisão veterinária e ISO 9001.",
+};
+---
+
+<BaseLayout title={data.name} description={data.description}>
+	<div class="min-h-screen overflow-x-hidden bg-white">
+		<Navbar />
+
+		<main>
+			<HeroB2B />
+			<TickerB2B />
+			<ServicesB2B />
+			<AboutB2B />
+			<PestsB2C />
+			<ProcessB2B />
+
+			<GuaranteesB2B />
+			<TestimonialsB2B />
+
+			<FaqB2B />
+			<FinalCtaB2B />
+		</main>
+
+		<FooterB2B />
+		<FloatingWhatsapp />
+	</div>
+</BaseLayout>

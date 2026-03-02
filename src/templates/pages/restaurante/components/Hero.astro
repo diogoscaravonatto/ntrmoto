@@ -1,0 +1,296 @@
+---
+const restaurant = {
+    title: "AURA GASTRONOMIA",
+    subtitle:
+        "UMA EXPLORAÇÃO SENSORIAL ONDE A TRADIÇÃO ENCONTRA A VANGUARDA DA ALTA COZINHA CONTEMPORÂNEA.",
+};
+---
+
+<!-- DARK GOURMET HERO -->
+<section
+    class="relative min-h-screen bg-zinc-950 text-white overflow-hidden flex items-center"
+>
+    <!-- Video/Image Background -->
+    <div class="absolute inset-0">
+        <div
+            class="absolute inset-0 bg-linear-to-b from-zinc-950/80 via-zinc-950/40 to-zinc-950 z-10"
+        >
+        </div>
+        <Image
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2000&q=80"
+            alt="Restaurant"
+            width={2000}
+            height={1333}
+            class="w-full h-full object-cover opacity-60"
+            layout="constrained"
+        />
+    </div>
+
+    <!-- Floating Elements -->
+    <div
+        class="absolute top-20 right-20 w-64 h-64 bg-orange-600/20 rounded-full blur-[100px] animate-pulse"
+    >
+    </div>
+    <div
+        class="absolute bottom-20 left-20 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] animate-pulse"
+        style="animation-delay: 1s"
+    >
+    </div>
+
+    <div class="relative z-20 w-full px-8 md:px-16 py-32">
+        <div class="max-w-[1800px] mx-auto">
+            <!-- Top Badge -->
+            <div class="mb-12 flex items-center gap-6">
+                <div
+                    class="px-6 py-2 bg-orange-600 skew-x-[-10deg] animate-pulse"
+                >
+                    <span
+                        class="block skew-x-[10deg] text-xs font-black uppercase tracking-[0.3em]"
+                        >★ MICHELIN GUIDE 2026</span
+                    >
+                </div>
+                <div
+                    class="h-px flex-1 bg-linear-to-r from-orange-600 to-transparent"
+                >
+                </div>
+            </div>
+
+            <!-- Main Title -->
+            <div class="mb-16">
+                <h1
+                    class="font-black text-[15vw] md:text-[18rem] leading-[0.8] tracking-tighter uppercase"
+                >
+                    <span class="block" style="font-stretch: ultra-condensed;"
+                        >{restaurant.title.split(" ")[0]}</span
+                    >
+                    <span
+                        class="block text-transparent"
+                        style="-webkit-text-stroke: 2px white; font-stretch: ultra-condensed;"
+                    >
+                        {restaurant.title.split(" ").slice(1).join(" ")}
+                    </span>
+                </h1>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                <!-- Left: Description -->
+                <div class="md:col-span-5 space-y-8">
+                    <p
+                        class="text-2xl md:text-3xl font-light leading-relaxed text-zinc-300"
+                    >
+                        {restaurant.subtitle}
+                    </p>
+
+                    <div
+                        class="flex flex-col sm:items-center sm:flex-row gap-6 md:gap-8"
+                    >
+                        <button
+                            class="group relative w-full sm:w-auto px-12 py-6 bg-orange-600 overflow-hidden"
+                        >
+                            <div
+                                class="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                            >
+                            </div>
+                            <span
+                                class="relative z-10 font-black uppercase tracking-wider text-sm group-hover:text-orange-600 transition-colors"
+                            >
+                                RESERVAR MESA
+                            </span>
+                        </button>
+
+                        <button
+                            class="w-full sm:w-auto px-12 py-6 border-2 border-white/20 font-black uppercase tracking-wider text-sm hover:bg-white hover:text-zinc-950 transition-all"
+                        >
+                            VER MENU
+                        </button>
+                    </div>
+
+                    <!-- Info Cards -->
+                    <div class="grid grid-cols-2 gap-4 pt-8">
+                        <div
+                            class="p-6 bg-white/5 border border-white/10 backdrop-blur-sm"
+                        >
+                            <div
+                                class="text-4xl font-black text-orange-600 mb-2"
+                            >
+                                ★ 4.9
+                            </div>
+                            <div
+                                class="text-xs uppercase tracking-widest text-zinc-500"
+                            >
+                                Google Reviews
+                            </div>
+                        </div>
+                        <div
+                            class="p-6 bg-white/5 border border-white/10 backdrop-blur-sm"
+                        >
+                            <div
+                                class="text-4xl font-black text-orange-600 mb-2"
+                            >
+                                2.4K+
+                            </div>
+                            <div
+                                class="text-xs uppercase tracking-widest text-zinc-500"
+                            >
+                                Clientes Mensais
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Feature Highlights -->
+                <div
+                    class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6"
+                >
+                    <!-- Card 1 -->
+                    <div class="relative aspect-square overflow-hidden group">
+                        <Image
+                            src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+                            alt="Dish"
+                            width={800}
+                            height={800}
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            layout="constrained"
+                        />
+                        <div
+                            class="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent"
+                        >
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <div
+                                class="text-xs uppercase tracking-widest text-orange-600 mb-2"
+                            >
+                                Signature
+                            </div>
+                            <div class="text-2xl font-black">WAGYU A5</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div
+                        class="relative aspect-square bg-linear-to-br from-orange-600 to-red-700 p-8 flex flex-col justify-between overflow-hidden group"
+                    >
+                        <div
+                            class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all"
+                        >
+                        </div>
+                        <div class="relative z-10">
+                            <div class="text-7xl font-black leading-none mb-4">
+                                WINE
+                            </div>
+                            <div
+                                class="text-xs uppercase tracking-widest opacity-80"
+                            >
+                                Carta com +300 rótulos
+                            </div>
+                        </div>
+                        <button
+                            class="relative z-10 w-full py-3 bg-white text-orange-600 font-black text-xs uppercase tracking-wider hover:bg-zinc-950 hover:text-white transition-all"
+                        >
+                            EXPLORAR
+                        </button>
+                    </div>
+
+                    <!-- Card 3 - Wide -->
+                    <div
+                        class="col-span-2 relative aspect-2/1 overflow-hidden group"
+                    >
+                        <Image
+                            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80"
+                            alt="Ambience"
+                            width={1200}
+                            height={600}
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                            layout="constrained"
+                        />
+                        <div
+                            class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all"
+                        >
+                        </div>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center"
+                        >
+                            <div class="text-center">
+                                <div class="text-5xl font-black mb-4">
+                                    EXPERIÊNCIA SENSORIAL
+                                </div>
+                                <div
+                                    class="text-sm uppercase tracking-[0.3em] text-zinc-400"
+                                >
+                                    Ambiente • Música • Gastronomia
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Info Bar -->
+            <div
+                class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+            >
+                <div class="flex items-center gap-12">
+                    <div>
+                        <div
+                            class="text-xs uppercase tracking-widest text-zinc-600 mb-1"
+                        >
+                            Localização
+                        </div>
+                        <div class="font-medium">
+                            Av. Paulista, 1000 - São Paulo
+                        </div>
+                    </div>
+                    <div class="h-12 w-px bg-white/10"></div>
+                    <div>
+                        <div
+                            class="text-xs uppercase tracking-widest text-zinc-600 mb-1"
+                        >
+                            Horário
+                        </div>
+                        <div class="font-medium">Ter-Dom • 19h-00h</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <span
+                        class="text-xs uppercase tracking-widest text-zinc-600"
+                        >Siga-nos</span
+                    >
+                    {
+                        ["IG", "FB", "TW"].map((social) => (
+                            <a
+                                href={`https://${social.toLowerCase()}.com`}
+                                target="_blank"
+                                class="w-10 h-10 border border-white/20 flex items-center justify-center text-xs font-black hover:bg-orange-600 hover:border-orange-600 transition-all"
+                            >
+                                {social}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 animate-bounce z-30"
+    >
+        <div class="text-xs uppercase tracking-widest text-zinc-600">
+            Explore o Menu
+        </div>
+        <svg
+            class="w-6 h-6 text-orange-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</section>

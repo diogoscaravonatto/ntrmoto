@@ -1,0 +1,55 @@
+---
+const impact = {
+    title: ["O Custo Proibitivo da", "Negligência"],
+    stats: [
+        {
+            val: "R$ 4.5M",
+            label: "Custo médio de um vazamento de dados no Brasil",
+            code: "LOSS_REPORT",
+        },
+        {
+            val: "280 DIAS",
+            label: "Tempo médio para identificar e conter uma brecha",
+            code: "TIME_DECAY",
+        },
+        {
+            val: "60%",
+            label: "Das PMEs fecham após um ataque cibernético grave",
+            code: "FATAL_ERR",
+        },
+    ],
+};
+---
+
+<section class="py-40 bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-32">
+            <h2
+                class="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter italic"
+            >
+                {impact.title[0]}
+                <span
+                    class="bg-red-600 px-4 transform skew-x-12 inline-block ml-2"
+                    >{impact.title[1]}</span
+                >
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-12">
+            {
+                impact.stats.map((stat) => (
+                    <div class="p-10 border border-white/5 bg-zinc-950 hover:bg-red-600 group transition-all duration-500">
+                        <p class="text-[9px] font-black text-zinc-600 group-hover:text-white/50 mb-10 tracking-[0.5em]">
+                            {stat.code}
+                        </p>
+                        <h4 class="text-5xl font-black text-red-600 group-hover:text-white tracking-tighter mb-4">
+                            {stat.val}
+                        </h4>
+                        <p class="text-[10px] font-black text-zinc-500 group-hover:text-white uppercase leading-relaxed tracking-widest">
+                            {stat.label}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

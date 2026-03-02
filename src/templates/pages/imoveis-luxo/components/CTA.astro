@@ -1,0 +1,47 @@
+---
+const cta = {
+    title: ["O Legado é", "Eterno."],
+    description:
+        "Seja por investimento estratégico ou residência primária, nossa rede global está pronta para viabilizar o extraordinário.",
+    button: "Solicitar Briefing Privado",
+    tagline: "Curadoria Sob Demanda • NDA Obrigatório",
+};
+---
+
+<section id="contato" class="py-40 px-6">
+    <div
+        class="max-w-6xl mx-auto text-center border border-white/10 p-20 lg:p-40 rounded-[3rem] relative overflow-hidden"
+    >
+        <div
+            class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,#f1e7d005_0%,transparent_70%)] pointer-events-none"
+        >
+        </div>
+        <div class="relative z-10 space-y-12">
+            <h2
+                class="text-6xl md:text-[9rem] font-serif font-light text-white leading-[0.85] tracking-tighter italic lowercase"
+            >
+                {cta.title[0]}
+                <br /><span class="italic text-[#f1e7d0]">{cta.title[1]}</span>
+            </h2>
+            <p
+                class="text-xl text-zinc-500 max-w-xl mx-auto font-light leading-relaxed italic lowercase"
+            >
+                {cta.description}
+            </p>
+            <div
+                class="flex flex-col md:flex-row items-center justify-center gap-10"
+            >
+                <button
+                    class="px-16 py-8 bg-[#f1e7d0] text-black font-black uppercase text-[10px] tracking-[0.4em] shadow-2xl hover:scale-105 transition-all outline-hidden group italic"
+                >
+                    {cta.button}
+                </button>
+                <p
+                    class="text-zinc-600 text-[9px] font-black uppercase tracking-[0.3em] italic"
+                >
+                    {cta.tagline}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

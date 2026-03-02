@@ -1,0 +1,49 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navbar from "@templates-pages/energia-solar/components/Navbar.astro";
+import Hero from "@templates-pages/energia-solar/components/Hero.astro";
+import TrustBar from "@templates-pages/energia-solar/components/TrustBar.astro";
+import Economia from "@templates-pages/energia-solar/components/Economia.astro";
+import Simulador from "@templates-pages/energia-solar/components/Simulador.astro";
+import Comparativo from "@templates-pages/energia-solar/components/Comparativo.astro";
+import Depoimentos from "@templates-pages/energia-solar/components/Depoimentos.astro";
+import Processo from "@templates-pages/energia-solar/components/Processo.astro";
+import Planos from "@templates-pages/energia-solar/components/Planos.astro";
+import Monitoramento from "@templates-pages/energia-solar/components/Monitoramento.astro";
+import Tecnologia from "@templates-pages/energia-solar/components/Tecnologia.astro";
+import Projetos from "@templates-pages/energia-solar/components/Projetos.astro";
+import Impacto from "@templates-pages/energia-solar/components/Impacto.astro";
+import Garantias from "@templates-pages/energia-solar/components/Garantias.astro";
+import FAQ from "@templates-pages/energia-solar/components/FAQ.astro";
+import CTA from "@templates-pages/energia-solar/components/CTA.astro";
+import Footer from "@templates-pages/energia-solar/components/Footer.astro";
+---
+
+<BaseLayout
+    title="Aura Solar | Liberdade Energética e Economia Real"
+    description="Reduza até 95% da sua conta de luz com energia solar. Zero investimento inicial, tecnologia de ponta e monitoramento em tempo real."
+    image="/images/templates/solar.png"
+>
+    <main
+        class="bg-white font-sans selection:bg-emerald-500 selection:text-white"
+    >
+        <Navbar />
+        <Hero />
+        <TrustBar />
+        <Economia />
+        <Simulador />
+        <Comparativo />
+        <Depoimentos />
+        <Processo />
+        <Planos />
+        <Monitoramento />
+        <Tecnologia />
+        <Projetos />
+        <Impacto />
+        <Garantias />
+        <FAQ />
+        <CTA />
+        <Footer />
+    </main>
+</BaseLayout>

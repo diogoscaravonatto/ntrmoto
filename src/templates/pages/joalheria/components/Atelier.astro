@@ -1,0 +1,76 @@
+---
+const atelier = {
+    eyebrow: "Le Savoir-Faire",
+    title: ["Onde o tempo se torna", "precioso."],
+    description:
+        "Nossos mestres artesãos preservam técnicas seculares de cravação e lapidação, transformando pedras brutas em ícones de herança familiar. Cada peça é acompanhada por um certificado de autenticidade e rastreabilidade ética.",
+    stats: {
+        label: "Processo Artesanal",
+        desc: "Mínimo de 120 horas de cravação manual por peça.",
+    },
+    features: [
+        { title: "Ouro 18k Sustentável", tag: "Procedência Ética Garantida" },
+    ],
+};
+---
+
+<section id="atelier" class="py-40 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-32 items-center">
+        <div class="relative order-2 md:order-1">
+            <div
+                class="aspect-4/5 bg-zinc-200 rounded-[2rem] overflow-hidden shadow-2xl skew-x-1 group"
+            >
+                <div
+                    class="w-full h-full bg-zinc-100 flex items-center justify-center text-zinc-300 italic text-2xl font-light pointer-events-none group-hover:scale-110 transition-transform"
+                >
+                    Mains de Maître
+                </div>
+            </div>
+            <div
+                class="absolute -bottom-10 -left-10 p-10 bg-white shadow-xl border border-zinc-100 hidden lg:block italic"
+            >
+                <p
+                    class="font-black text-[10px] uppercase tracking-widest text-[#d4af37]"
+                >
+                    {atelier.stats.label}
+                </p>
+                <p
+                    class="text-[12px] italic text-zinc-500 max-w-[200px] mt-2 lowercase"
+                >
+                    {atelier.stats.desc}
+                </p>
+            </div>
+        </div>
+        <div class="space-y-12 order-1 md:order-2">
+            <span
+                class="text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400 italic leading-none"
+                >{atelier.eyebrow}</span
+            >
+            <h2
+                class="text-5xl md:text-[5.5rem] font-light leading-tight text-zinc-950 tracking-tighter"
+            >
+                {atelier.title[0]}
+                <span class="italic text-[#d4af37]">{atelier.title[1]}</span>
+            </h2>
+            <p class="text-xl text-zinc-500 font-light leading-relaxed italic">
+                {atelier.description}
+            </p>
+            <div
+                class="flex items-center gap-10 border-t border-zinc-200 pt-10"
+            >
+                {
+                    atelier.features.map((f) => (
+                        <div>
+                            <p class="text-zinc-950 font-black uppercase text-[12px] tracking-widest italic">
+                                {f.title}
+                            </p>
+                            <p class="text-zinc-400 text-[10px] uppercase tracking-widest mt-1 italic lowercase">
+                                {f.tag}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>

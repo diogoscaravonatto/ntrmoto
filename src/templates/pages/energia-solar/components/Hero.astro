@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets";
+import heroImg from "@assets/templates/energia-solar/hero.png";
+
+const hero = {
+    badge: "Energia Limpa • Economia Imediata",
+    title: ["Reduza até 95%", "da sua conta de luz", "sem pagar a instalação."],
+    description:
+        "Liberte-se dos aumentos abusivos da rede elétrica com tecnologia solar de última geração.",
+    cta: {
+        primary: "Simular Minha Economia",
+        secondary: "Saiba como funciona",
+    },
+    trust: "Junte-se a +3.500 famílias que já zeraram seus custos.",
+};
+---
+
+<section
+    class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden bg-slate-50"
+>
+    <!-- Background Image with Fade -->
+    <div class="absolute inset-0 z-0">
+        <Image
+            src={heroImg}
+            alt="Arquitetura Moderna Solar"
+            class="w-full h-full object-cover opacity-20 scale-105"
+            loading="eager"
+            fetchpriority="high"
+            widths={[640, 1024, 1440]}
+            sizes="100vw"
+        />
+        <div
+            class="absolute inset-0 bg-linear-to-b from-slate-50/10 via-slate-50 to-slate-50"
+        >
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+        <div
+            class="inline-flex items-center px-4 py-1.5 bg-white/80 backdrop-blur-md rounded-full border border-emerald-200/50 mb-8 shadow-sm"
+        >
+            <span class="size-2 bg-emerald-500 rounded-full mr-3 animate-pulse"
+            ></span>
+            <span
+                class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-700 italic"
+                >{hero.badge}</span
+            >
+        </div>
+
+        <h1
+            class="text-5xl md:text-7xl lg:text-[5.5rem] font-black text-slate-900 leading-[1.1] tracking-tighter mb-8 italic"
+        >
+            {hero.title[0]}
+            <br />
+            <span
+                class="text-emerald-600 underline decoration-emerald-100 decoration-8 underline-offset-10"
+                >{hero.title[1]}</span
+            >
+            <br />
+            {hero.title[2]}
+        </h1>
+
+        <p
+            class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-12 font-medium leading-relaxed italic lowercase"
+        >
+            {hero.description}
+        </p>
+
+        <div
+            class="flex flex-col sm:flex-row items-center justify-center gap-6"
+        >
+            <button
+                class="w-full sm:w-auto px-10 py-5 bg-emerald-600 text-white rounded-2xl font-black text-lg uppercase tracking-widest shadow-xl hover:bg-emerald-700 hover:scale-105 transition-all cursor-pointer"
+                aria-label="Simular economia com energia solar"
+            >
+                {hero.cta.primary}
+            </button>
+            <a
+                href="#processo"
+                class="text-xs font-black uppercase tracking-widest text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-2"
+            >
+                {hero.cta.secondary}
+                <span class="text-lg" aria-hidden="true">↓</span>
+            </a>
+        </div>
+
+        <div class="mt-20 flex flex-col items-center gap-4">
+            <div class="flex -space-x-2">
+                {
+                    [1, 2, 3, 4, 5].map((i) => (
+                        <div class="size-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center font-black text-[10px] shadow-sm transform hover:-translate-y-1 transition-transform">
+                            U{i}
+                        </div>
+                    ))
+                }
+            </div>
+            <p
+                class="text-[9px] font-black text-slate-600 uppercase tracking-widest italic"
+            >
+                {hero.trust}
+            </p>
+        </div>
+    </div>
+</section>

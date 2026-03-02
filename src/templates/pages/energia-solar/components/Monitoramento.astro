@@ -1,0 +1,80 @@
+---
+const app = {
+    title: ["Controle total na", "palma da mão."],
+    description:
+        "Monitore sua geração e economia em tempo real através do nosso App exclusivo. Transparência absoluta sobre cada centavo economizado.",
+    features: [
+        "Acompanhamento em tempo real",
+        "Histórico de economia mensal",
+        "Alertas de manutenção preditiva",
+        "Relatórios de impacto ambiental",
+    ],
+};
+---
+
+<section class="py-32 bg-white overflow-hidden italic">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative order-2 lg:order-1">
+                <div
+                    class="aspect-[9/16] max-w-[300px] mx-auto bg-slate-900 rounded-[3rem] border-[8px] border-slate-800 shadow-3xl overflow-hidden relative"
+                >
+                    <!-- App Interface Mockup -->
+                    <div
+                        class="absolute inset-0 bg-linear-to-b from-emerald-500 via-emerald-600 to-slate-900 p-8 flex flex-col justify-between text-white"
+                    >
+                        <div>
+                            <p
+                                class="text-[10px] font-black uppercase opacity-60"
+                            >
+                                Geração Hoje
+                            </p>
+                            <p class="text-4xl font-black">24.5 kWh</p>
+                        </div>
+                        <div
+                            class="h-1/2 bg-white/10 rounded-2xl flex items-center justify-center italic text-[10px] opacity-40"
+                        >
+                            Gráfico de Geração
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-1 w-full bg-white/20 rounded-full">
+                            </div>
+                            <p class="text-[10px] font-black text-emerald-200">
+                                95% de Economia Alcançada
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Glow -->
+                <div
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-64 bg-emerald-500/20 blur-[100px] -z-10"
+                >
+                </div>
+            </div>
+
+            <div class="space-y-10 order-1 lg:order-2">
+                <h2
+                    class="text-5xl md:text-7xl font-black text-slate-900 leading-tight tracking-tighter uppercase"
+                >
+                    {app.title[0]}
+                    <br /><span class="text-emerald-600">{app.title[1]}</span>
+                </h2>
+                <p
+                    class="text-lg text-slate-600 font-bold leading-relaxed lowercase italic"
+                >
+                    {app.description}
+                </p>
+                <ul class="space-y-4">
+                    {
+                        app.features.map((f) => (
+                            <li class="flex items-center gap-4 text-xs font-black text-slate-700 uppercase tracking-widest italic">
+                                <span class="size-2 bg-emerald-500 rounded-full" />
+                                {f}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

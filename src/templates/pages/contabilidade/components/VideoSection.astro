@@ -1,0 +1,162 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<section
+    id="sobre"
+    class="py-32 relative overflow-hidden bg-white border-y border-slate-100"
+>
+    <!-- Scrolling Background Text (Marquee) -->
+    <div
+        class="absolute top-1/2 left-0 -translate-y-1/2 w-full overflow-hidden pointer-events-none opacity-[0.03]"
+    >
+        <div
+            class="whitespace-nowrap animate-marquee flex items-center gap-8 md:gap-16"
+        >
+            <span
+                class="text-[4rem] md:text-[15rem] font-black uppercase text-slate-900 leading-none"
+                >Future Finance</span
+            >
+            <span
+                class="text-[4rem] md:text-[15rem] font-black uppercase text-slate-900 leading-none text-stroke"
+                >Automated Growth</span
+            >
+            <span
+                class="text-[4rem] md:text-[15rem] font-black uppercase text-slate-900 leading-none"
+                >Future Finance</span
+            >
+            <span
+                class="text-[4rem] md:text-[15rem] font-black uppercase text-slate-900 leading-none text-stroke"
+                >Automated Growth</span
+            >
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-16 space-y-6">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 hover:border-[#005a5c]/30 transition-colors cursor-default"
+            >
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"
+                    ></span>
+                    <span
+                        class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"
+                    ></span>
+                </span>
+                <span
+                    class="text-xs font-bold uppercase tracking-widest text-[#005a5c]"
+                    >Live Manifesto</span
+                >
+            </div>
+
+            <h2
+                class="text-4xl md:text-7xl font-black text-slate-900 tracking-tight leading-none"
+            >
+                A Revolução <span class="relative inline-block text-[#005a5c]">
+                    Silenciosa
+                    <span
+                        class="absolute -bottom-2 md:-bottom-4 left-0 w-full h-3 md:h-6 bg-[#C3B588]/40 -z-10 -rotate-2 skew-x-12"
+                    ></span>
+                </span>
+            </h2>
+        </div>
+
+        <!-- Video Wrapper -->
+        <div class="relative max-w-5xl mx-auto group perspective-1000">
+            <!-- Decorative Corners -->
+            <div
+                class="absolute -top-4 -left-4 md:-top-8 md:-left-8 w-16 h-16 md:w-32 md:h-32 border-t-[3px] border-l-[3px] border-[#005a5c] rounded-tl-2xl md:rounded-tl-[3rem] z-20 transition-all duration-500 group-hover:-top-2 group-hover:-left-2 md:group-hover:-top-6 md:group-hover:-left-6"
+            >
+            </div>
+            <div
+                class="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 w-16 h-16 md:w-32 md:h-32 border-b-[3px] border-r-[3px] border-[#005a5c] rounded-br-2xl md:rounded-br-[3rem] z-20 transition-all duration-500 group-hover:-bottom-2 group-hover:-right-2 md:group-hover:-bottom-6 md:group-hover:-right-6"
+            >
+            </div>
+
+            <!-- Massive Glow -->
+            <div
+                class="absolute inset-0 bg-gradient-to-tr from-[#005a5c] to-emerald-500 blur-[120px] opacity-20 group-hover:opacity-30 transition-opacity duration-1000"
+            >
+            </div>
+
+            <!-- Main Frame -->
+            <div
+                class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200 aspect-video bg-slate-900 group-hover:scale-[1.01] group-hover:-rotate-1 transition-all duration-700 ease-out transform-gpu"
+            >
+                <img
+                    src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop"
+                    alt="Video Cover"
+                    class="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity duration-500 scale-105 group-hover:scale-100"
+                />
+
+                <!-- Gradient Overlay -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-[#005a5c]/90 via-transparent to-transparent opacity-80"
+                >
+                </div>
+
+                <!-- Play Button -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <button
+                        class="relative group/btn cursor-pointer outline-none"
+                    >
+                        <div
+                            class="absolute inset-0 bg-white rounded-full animate-ping opacity-20 duration-1000"
+                        >
+                        </div>
+                        <div
+                            class="relative w-24 h-24 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/40 shadow-2xl group-hover/btn:scale-110 group-hover/btn:bg-white group-hover/btn:text-[#005a5c] transition-all duration-300"
+                        >
+                            <Icon
+                                name="lucide:play"
+                                class="w-10 h-10 text-white ml-1 group-hover/btn:text-[#005a5c] transition-colors fill-current"
+                            />
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Bottom Info -->
+                <div
+                    class="absolute bottom-0 left-0 w-full p-8 md:p-12 flex items-end justify-between"
+                >
+                    <div>
+                        <p
+                            class="text-orange-400 font-bold tracking-widest uppercase text-xs mb-2"
+                        >
+                            LuxFinance Originals
+                        </p>
+                        <p
+                            class="text-white text-2xl md:text-3xl font-black max-w-xl leading-tight"
+                        >
+                            Como empresas de elite escalam com governança de
+                            dados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .text-stroke {
+        -webkit-text-stroke: 1.5px #cbd5e1;
+        color: transparent;
+    }
+    .animate-marquee {
+        animation: marquee 40s linear infinite;
+    }
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+</style>

@@ -1,0 +1,52 @@
+---
+// Footer — Rodapé minimalista com logo e links legais
+const brand = {
+    name: "Nova",
+    suffix: ".io",
+};
+
+const legalLinks = [
+    { label: "Privacidade", href: "#" },
+    { label: "Segurança", href: "#" },
+    { label: "Termos", href: "#" },
+];
+
+const copyright =
+    "© 2026 Nova Technologies Limited. Construído para velocidade.";
+---
+
+<footer class="py-20 border-t border-white/5 bg-black/50">
+    <div
+        class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12"
+    >
+        <div class="flex items-center gap-2">
+            <div
+                class="size-6 bg-indigo-500 rounded flex items-center justify-center"
+            >
+            </div>
+            <span class="text-lg font-black tracking-tighter uppercase italic"
+                >{brand.name}<span class="text-indigo-500">{brand.suffix}</span
+                ></span
+            >
+        </div>
+        <div
+            class="flex gap-10 text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600"
+        >
+            {
+                legalLinks.map((link) => (
+                    <a
+                        href={link.href}
+                        class="hover:text-white transition-colors"
+                    >
+                        {link.label}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+    <p
+        class="text-center text-[9px] font-mono text-zinc-800 uppercase tracking-widest mt-20"
+    >
+        {copyright}
+    </p>
+</footer>

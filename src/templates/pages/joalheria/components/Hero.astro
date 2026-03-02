@@ -1,0 +1,46 @@
+---
+const hero = {
+    badge: "Since 1924 • Handcrafted in Paris",
+    title: ["L'Éclat de", "l'Infini."],
+    description:
+        '"Joias não são apenas adornos, são testemunhas silenciosas de nossas maiores emoções."',
+    cta: "Découvrir la Collection",
+};
+---
+
+<section
+    class="relative h-screen flex flex-col items-center justify-center pt-24 px-6 text-center"
+>
+    <div class="max-w-4xl mx-auto space-y-12">
+        <span
+            class="text-[11px] font-bold uppercase tracking-[0.6em] text-[#d4af37] animate-fade-in block"
+        >
+            {hero.badge}
+        </span>
+        <h1
+            class="text-7xl md:text-[9rem] font-light text-zinc-950 leading-[0.8] tracking-tighter animate-slide-up"
+        >
+            {hero.title[0]}
+            <br /><span class="italic text-[#d4af37]/80">{hero.title[1]}</span>
+        </h1>
+        <p
+            class="text-xl md:text-2xl text-zinc-500 font-light italic leading-relaxed animate-fade-in delay-500"
+        >
+            {hero.description}
+        </p>
+        <div class="pt-10 animate-fade-in delay-700">
+            <button
+                class="px-12 py-6 border border-zinc-200 text-zinc-900 text-[10px] font-black uppercase tracking-[0.4em] hover:bg-[#d4af37] hover:text-white hover:border-[#d4af37] transition-all outline-hidden group italic"
+            >
+                {hero.cta}
+            </button>
+        </div>
+    </div>
+
+    <!-- Visual Decoration -->
+    <div
+        class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-20 pointer-events-none"
+    >
+        <div class="w-px h-24 bg-zinc-900"></div>
+    </div>
+</section>

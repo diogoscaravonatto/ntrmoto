@@ -1,0 +1,47 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+const metadata = {
+    name: "CYBER CITY | Festival de Tecnologia",
+    description:
+        "O maior evento de tecnologia e futuro da América Latina. Viva a experiência cyberpunk em 2026.",
+};
+import Navigation from "@templates-pages/eventos/components/Navigation.astro";
+import Hero from "@templates-pages/eventos/components/Hero.astro";
+import Lineup from "@templates-pages/eventos/components/Lineup.astro";
+import Tickets from "@templates-pages/eventos/components/Tickets.astro";
+import Footer from "@templates-pages/eventos/components/Footer.astro";
+const layoutColors = {
+    primary: "#c026d3",
+    secondary: "#e879f9",
+    background: "#000000",
+};
+---
+
+<BaseLayout
+    title={metadata.name}
+    description={metadata.description}
+    theme="dark"
+    colors={layoutColors}
+>
+    <!-- GLOBAL STYLE CYBERPUNK -->
+    <div
+        class="font-[Inter,,sans-serif] bg-black text-white selection:bg-fuchsia-600 selection:text-white"
+    >
+        <Navigation />
+        <main>
+            <Hero />
+            <Lineup />
+            <Tickets />
+        </main>
+        <Footer />
+    </div>
+</BaseLayout>
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap");
+
+    :global(h1, h2, h3, .font-mono) {
+        font-family: "JetBrains Mono", monospace;
+    }
+</style>

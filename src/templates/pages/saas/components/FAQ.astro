@@ -1,0 +1,49 @@
+---
+// FAQ — Perguntas frequentes com hover effect
+const faq = {
+    title: "Handle with",
+    titleHighlight: "Precision.",
+};
+
+const questions = [
+    {
+        q: "Como funciona a migração de dados?",
+        a: "Possuímos adaptadores nativos para as principais plataformas de mercado. O tempo médio de setup é inferior a 15 minutos.",
+    },
+    {
+        q: "O Nova é compatível com LGPD/GDPR?",
+        a: "Sim, somos complacentes com os mais rigorosos padrões de privacidade global, com hospedagem de dados em território soberano conforme sua escolha.",
+    },
+    {
+        q: "Posso cancelar minha assinatura a qualquer momento?",
+        a: "Nível Starter e Growth não possuem fidelidade. Para planos Enterprise, operamos com contratos anuais customizados.",
+    },
+];
+---
+
+<section class="py-40 bg-black">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-24">
+            <h2
+                class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter"
+            >
+                {faq.title}
+                <span class="text-indigo-500">{faq.titleHighlight}</span>
+            </h2>
+        </div>
+        <div class="space-y-4">
+            {
+                questions.map((item) => (
+                    <div class="p-8 rounded-2xl bg-zinc-900/50 border border-white/5 group hover:border-indigo-500/30 transition-all cursor-pointer">
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors uppercase italic tracking-tight">
+                            {item.q}
+                        </h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed">
+                            {item.a}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

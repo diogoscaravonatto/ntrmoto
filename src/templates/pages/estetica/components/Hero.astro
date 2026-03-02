@@ -1,0 +1,88 @@
+---
+const hero = {
+    badge: "Beleza Baseada em Ciência",
+    title: ["A melhor versão da sua", "pele."],
+    description:
+        "Tratamentos personalizados com protocolos exclusivos que respeitam sua identidade e realçam seu brilho natural.",
+    cta: "Ver Procedimentos",
+    tagline: "Transformando Faces há 10 anos",
+};
+---
+
+<section
+    class="relative min-h-[90vh] flex items-center pt-24 px-6 overflow-hidden"
+>
+    <!-- DECORATIVE ELEMENTS -->
+    <div class="absolute inset-0 pointer-events-none -z-10">
+        <div
+            class="absolute top-[5%] left-[-5%] size-[500px] bg-[#f8e8e3] rounded-full blur-[100px] opacity-60"
+        >
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto w-full relative z-10">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div class="animate-fade-in-up">
+                <span
+                    class="inline-block px-4 py-1.5 rounded-full bg-[#f8b4b4]/10 border border-[#f8b4b4]/20 text-[#f8b4b4] text-[10px] font-black uppercase tracking-widest mb-8"
+                >
+                    {hero.badge}
+                </span>
+                <h1
+                    class="text-6xl md:text-8xl font-bold leading-[0.95] text-[#4a3a37] mb-8 tracking-tighter"
+                >
+                    {hero.title[0]}
+                    <span
+                        class="text-transparent bg-clip-text bg-linear-to-r from-[#f8b4b4] to-[#4a3a37] italic font-light"
+                        >{hero.title[1]}</span
+                    >
+                </h1>
+                <p
+                    class="text-xl text-[#9d8a87] max-w-lg mb-12 leading-relaxed"
+                >
+                    {hero.description}
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <button
+                        class="px-10 py-5 bg-[#f8b4b4] text-white font-black rounded-full hover:scale-105 transition-all text-xs uppercase tracking-[0.2em] shadow-[0_15px_35px_rgba(248,180,180,0.3)] outline-hidden group"
+                    >
+                        {hero.cta}
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <div class="flex -space-x-3">
+                            {
+                                [1, 2, 3].map(() => (
+                                    <div class="size-10 rounded-full border-2 border-white bg-[#f3e3df]" />
+                                ))
+                            }
+                        </div>
+                        <span
+                            class="text-[10px] font-bold text-[#9d8a87] uppercase tracking-tighter italic"
+                            >{hero.tagline}</span
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <div
+                    class="aspect-square rounded-[4rem] bg-white p-6 shadow-2xl relative z-10 overflow-hidden transform group-hover:rotate-1 transition-transform"
+                >
+                    <div
+                        class="w-full h-full bg-[#fcf2ef] rounded-[3rem] flex items-center justify-center italic text-[#f8b4b4] text-2xl font-light"
+                    >
+                        Natural Glow
+                    </div>
+                </div>
+                <div
+                    class="absolute -top-10 -right-10 size-40 bg-[#f8b4b4]/20 rounded-full blur-3xl animate-pulse"
+                >
+                </div>
+                <div
+                    class="absolute -bottom-10 -left-10 size-60 bg-[#e7bcb9]/20 rounded-full blur-3xl animate-pulse delay-1000"
+                >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

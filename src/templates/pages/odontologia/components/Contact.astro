@@ -1,0 +1,191 @@
+---
+import Icon from "@components/Icon.astro";
+
+const contactInfo = [
+    {
+        label: "Onde Estamos",
+        value: "Av. Paulista, 2000 - Edifício Business Centre, Jardins, São Paulo/SP",
+        icon: "lucide:map-pin",
+    },
+    {
+        label: "Telefone & WhatsApp",
+        value: "(11) 4004-0000 / (11) 98888-8888",
+        icon: "lucide:phone",
+    },
+    {
+        label: "E-mail para Orçamentos",
+        value: "contato@auradental.com.br",
+        icon: "lucide:mail",
+    },
+];
+---
+
+<section id="contato" class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div
+            class="bg-[#f5f3ff] rounded-[4rem] overflow-hidden shadow-2xl shadow-indigo-500/5 border border-indigo-100"
+        >
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <!-- Form Section -->
+                <div class="p-10 md:p-16 lg:p-24">
+                    <div class="space-y-6 mb-16">
+                        <span
+                            class="text-[10px] font-black uppercase tracking-[0.4em] text-[#4f46e5] block font-mono"
+                            >// Consulte um Especialista</span
+                        >
+                        <h2
+                            class="text-4xl md:text-6xl font-black text-slate-900 leading-[0.95] tracking-tighter"
+                        >
+                            Inicie sua <br /><span
+                                class="text-indigo-600 font-light italic"
+                                >Transformação</span
+                            >
+                        </h2>
+                        <p
+                            class="text-lg text-slate-500 font-medium leading-relaxed max-w-sm"
+                        >
+                            Preencha os dados abaixo e entraremos em contato
+                            para agendar sua avaliação personalizada.
+                        </p>
+                    </div>
+
+                    <form class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-3">
+                                <label
+                                    class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4"
+                                    >Nome Completo</label
+                                >
+                                <input
+                                    type="text"
+                                    placeholder="Ex: João Silva"
+                                    class="w-full h-16 px-8 rounded-2xl bg-white border border-slate-100 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/5 outline-none transition-all font-medium text-slate-900"
+                                />
+                            </div>
+                            <div class="space-y-3">
+                                <label
+                                    class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4"
+                                    >WhatsApp</label
+                                >
+                                <input
+                                    type="tel"
+                                    placeholder="(11) 99999-9999"
+                                    class="w-full h-16 px-8 rounded-2xl bg-white border border-slate-100 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/5 outline-none transition-all font-medium text-slate-900"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <label
+                                class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4"
+                                >Tratamento de Interesse</label
+                            >
+                            <select
+                                class="w-full h-16 px-8 rounded-2xl bg-white border border-slate-100 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/5 outline-none transition-all font-medium text-slate-900 appearance-none"
+                            >
+                                <option>Selecione o tratamento</option>
+                                <option>Lentes de Contato</option>
+                                <option>Implantes</option>
+                                <option>Invisalign</option>
+                                <option>Harmonização</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-3">
+                            <label
+                                class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4"
+                                >Mensagem (Opcional)</label
+                            >
+                            <textarea
+                                placeholder="Conte-nos um pouco sobre seu caso..."
+                                class="w-full p-8 rounded-3xl bg-white border border-slate-100 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-500/5 outline-none transition-all font-medium text-slate-900 min-h-[160px] resize-none"
+                            ></textarea>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="w-full h-20 rounded-[2rem] font-black text-xs uppercase tracking-[0.2em] bg-[#4f46e5] text-white hover:bg-[#4338ca] shadow-2xl shadow-indigo-500/30 active:scale-[0.98] transition-all"
+                        >
+                            Solicitar Agendamento VIP
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Info Section -->
+                <div
+                    class="bg-[#4f46e5] p-10 md:p-16 lg:p-24 text-white flex flex-col justify-between relative group overflow-hidden"
+                >
+                    <!-- Background Decoration -->
+                    <div
+                        class="absolute -right-20 -top-20 size-[40rem] bg-white/5 rounded-full blur-[100px] pointer-events-none group-hover:bg-white/10 transition-all duration-1000"
+                    >
+                    </div>
+
+                    <div class="space-y-16 relative z-10">
+                        {
+                            contactInfo.map((info) => (
+                                <div class="flex gap-8 group/info">
+                                    <div class="w-16 h-16 rounded-[1.25rem] bg-white/10 backdrop-blur-md flex items-center justify-center shrink-0 border border-white/10 group-hover/info:bg-white group-hover/info:text-indigo-600 transition-all duration-300">
+                                        <Icon
+                                            name={info.icon}
+                                            class="w-8 h-8"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-black uppercase tracking-[0.2em] mb-2 text-indigo-100/60 font-mono">
+                                            {info.label}
+                                        </h4>
+                                        <p class="text-xl font-bold leading-relaxed tracking-tight">
+                                            {info.value}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <div
+                        class="mt-20 pt-20 border-t border-white/10 relative z-10"
+                    >
+                        <div class="flex items-center gap-4 mb-10">
+                            <div class="w-2 h-8 bg-indigo-300 rounded-full">
+                            </div>
+                            <h4
+                                class="text-2xl font-black tracking-tighter uppercase"
+                            >
+                                Horários de Lab
+                            </h4>
+                        </div>
+                        <div
+                            class="space-y-6 text-sm font-bold uppercase tracking-widest"
+                        >
+                            <div
+                                class="flex justify-between items-center text-indigo-100/70"
+                            >
+                                <span>Segunda a Sexta</span>
+                                <span class="text-white">08h — 19h</span>
+                            </div>
+                            <div
+                                class="flex justify-between items-center text-indigo-100/70"
+                            >
+                                <span>Sábado</span>
+                                <span class="text-white">08h — 13h</span>
+                            </div>
+                            <div
+                                class="flex justify-between items-center bg-white/10 p-5 rounded-2xl border border-white/5"
+                            >
+                                <span class="flex items-center gap-3">
+                                    <span
+                                        class="size-2 bg-emerald-400 rounded-full animate-pulse"
+                                    ></span>
+                                    Emergência 24h
+                                </span>
+                                <span class="text-white">Via WhatsApp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

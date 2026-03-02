@@ -1,0 +1,69 @@
+---
+import GlassCard from "../../components/GlassCard.astro";
+import Button from "../../components/Button.astro";
+
+const { orderId, email } = Astro.props;
+---
+
+<div class="space-y-8">
+    <GlassCard class="text-left space-y-6">
+        <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/10 pb-4 gap-4"
+        >
+            <div>
+                <span
+                    class="text-xs text-gray-500 uppercase tracking-wider block"
+                    >Número do Pedido</span
+                >
+                <span class="text-xl font-mono text-white">{orderId}</span>
+            </div>
+            <div class="md:text-right">
+                <span
+                    class="text-xs text-gray-500 uppercase tracking-wider block"
+                    >Enviado para</span
+                >
+                <span class="text-white">{email}</span>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <h3 class="text-white font-bold flex items-center gap-2">
+                <span
+                    class="w-6 h-6 rounded-full bg-violet-600 text-xs flex items-center justify-center"
+                    >1</span
+                >
+                Próximos Passos:
+            </h3>
+            <ul class="space-y-3 pl-2 border-l-2 border-white/10 ml-3">
+                <li class="pl-4 text-gray-300 text-sm">
+                    <strong class="text-white block mb-1"
+                        >Verifique seu E-mail</strong
+                    >
+                    Acabamos de enviar seus dados de acesso (Login e Senha) para o
+                    e-mail cadastrado.
+                </li>
+                <li class="pl-4 text-gray-300 text-sm">
+                    <strong class="text-white block mb-1"
+                        >Acesse a Área de Membros</strong
+                    >
+                    Você já pode assistir à primeira aula de boas-vindas.
+                </li>
+            </ul>
+        </div>
+
+        <Button
+            href="#"
+            variant="secondary"
+            fullWidth
+            class="bg-green-600/10! text-green-400! border-green-600/30! hover:bg-green-600/20!"
+        >
+            Acessar Área de Membros Agora
+        </Button>
+    </GlassCard>
+
+    <p class="text-xs text-gray-500">
+        Precisa de ajuda? <a href="#" class="text-violet-400 underline"
+            >Fale com o suporte no WhatsApp</a
+        >
+    </p>
+</div>

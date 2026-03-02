@@ -1,0 +1,52 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navbar from "@templates-pages/saas/components/Navbar.astro";
+import Hero from "@templates-pages/saas/components/Hero.astro";
+import Pain from "@templates-pages/saas/components/Pain.astro";
+import Features from "@templates-pages/saas/components/Features.astro";
+import Infrastructure from "@templates-pages/saas/components/Infrastructure.astro";
+import Pricing from "@templates-pages/saas/components/Pricing.astro";
+import FAQ from "@templates-pages/saas/components/FAQ.astro";
+import CTA from "@templates-pages/saas/components/CTA.astro";
+import Footer from "@templates-pages/saas/components/Footer.astro";
+
+const layoutColors = {
+    primary: "#6366f1",
+    secondary: "#7c3aed",
+    background: "#020203",
+};
+---
+
+<BaseLayout
+    title="Nova SaaS | The Operating System for Growth"
+    description="Escale sua infraestrutura digital com o Nova. Inteligência preditiva, automação nativa e performance sem precedentes."
+    image="/images/templates/saas.png"
+    colors={layoutColors}
+>
+    <main
+        class="bg-[#020203] text-zinc-100 font-sans selection:bg-indigo-500 selection:text-white"
+    >
+        <!-- Aurora Backgrounds -->
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <div
+                class="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-indigo-600/20 rounded-full blur-[160px] animate-pulse"
+            >
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-violet-600/20 rounded-full blur-[140px] animate-pulse delay-1000"
+            >
+            </div>
+        </div>
+
+        <Navbar />
+        <Hero />
+        <Pain />
+        <Features />
+        <Infrastructure />
+        <Pricing />
+        <FAQ />
+        <CTA />
+        <Footer />
+    </main>
+</BaseLayout>

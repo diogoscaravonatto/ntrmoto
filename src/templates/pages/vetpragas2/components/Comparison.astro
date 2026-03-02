@@ -1,0 +1,74 @@
+---
+import { vetPragasData } from "./content";
+---
+
+<section id="pragas" class="py-24 bg-white relative overflow-hidden">
+    <!-- Background Texture -->
+    <img 
+        src="/vetpragas-textura-te.png" 
+        alt="" 
+        class="absolute top-0 left-0 w-[500px] lg:w-[900px] h-auto opacity-30 pointer-events-none select-none z-0" 
+    />
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center max-w-4xl mx-auto mb-20 animate-reveal">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-accent/5 border border-accent/20 text-accent text-[10px] font-black uppercase tracking-[0.3em] mb-8 rounded-sm mx-auto">
+                CONTROLE DE PRAGAS COM RIGOR VETERINÁRIO
+            </div>
+            <h2 class="text-4xl lg:text-7xl font-black mb-8 uppercase tracking-tighter leading-[0.95]">
+                <span class="text-primary">PRAGAS QUE</span> <br /><span class="text-accent">COMBATEMOS</span>
+            </h2>
+            <p class="text-lg text-slate-500 font-bold max-w-3xl mx-auto leading-relaxed">
+                Serviço de dedetização, desratização e controle de pragas urbanas com rigor técnico industrial e supervisão veterinária.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+            {vetPragasData.pests.map((pest) => (
+                <div class="group h-[320px] perspective-[1000px]">
+                    <div class="relative h-full w-full rounded-3xl shadow-xl transition-all duration-700 transform-3d group-hover:transform-[rotateY(180deg)]">
+                        <!-- Front Side -->
+                        <div class="absolute inset-0 backface-hidden">
+                            <div class="flex flex-col items-center justify-center h-full bg-white rounded-3xl p-6 border border-slate-100">
+                                <div class="w-36 h-36 shrink-0 bg-white rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform overflow-hidden">
+                                    <img 
+                                        src={pest.image} 
+                                        alt={pest.name}
+                                        class="w-full h-full object-contain"
+                                    />
+                                </div>
+                                <div class="text-accent font-black text-[8px] uppercase tracking-[0.4em] mb-1">COMO ACABAR COM</div>
+                                <h3 class="text-3xl font-black text-primary uppercase tracking-tight text-center leading-[1.1]">{pest.name}</h3>
+                                <div class="mt-6 px-4 py-1 bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest rounded-full text-center">
+                                    Protocolo de Controle
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Back Side -->
+                        <div class="absolute inset-0 h-full w-full rounded-3xl bg-primary p-8 text-white transform-[rotateY(180deg)] backface-hidden">
+                            <div class="flex flex-col h-full">
+                                <div class="text-accent font-black text-[8px] uppercase tracking-[0.4em] mb-2 text-center">COMO ACABAR COM</div>
+                                <h3 class="text-2xl font-black mb-6 uppercase tracking-tight text-center leading-tight">{pest.name}</h3>
+                                <p class="text-slate-300 text-sm leading-relaxed mb-auto font-medium">
+                                    {pest.info}
+                                </p>
+                                <div class="pt-6 border-t border-white/10 mt-4">
+                                    <div class="text-[10px] font-bold text-slate-400 uppercase mb-2">Próximo Passo:</div>
+                                    <a 
+                                        href="https://wa.me/5545991586405" 
+                                        class="text-sm font-black text-accent flex items-center gap-2 hover:gap-3 transition-all group/cta"
+                                    >
+                                        Falar com Especialista
+                                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

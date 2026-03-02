@@ -1,0 +1,58 @@
+---
+const pains = {
+    eyebrow: "Desconexão",
+    title: ["O mundo não vai parar,", "mas", "você", "pode."],
+    description:
+        "Vivemos em um ritmo que ignora nossos limites biológicos. O estresse crônico, a fadiga mental e a desconexão interna tornaram-se o novo normal. Na Aura, acreditamos que a verdadeira produtividade nasce do repouso absoluto.",
+    items: [
+        {
+            title: "Exaustão Mental",
+            desc: "Silencie o ruído cerebral e recupere o foco através de terapias de isolamento acústico.",
+        },
+        {
+            title: "Tensão Física",
+            desc: "Libere bloqueios musculares profundos com técnicas milenares de toque e calor.",
+        },
+        {
+            title: "Desequilíbrio Energético",
+            desc: "Realinhe seus centros vitais com cristais e frequências sonoras curativas.",
+        },
+    ],
+};
+---
+
+<section class="py-40 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-12">
+        <span
+            class="text-[10px] font-bold uppercase tracking-[0.4em] text-[#d4bc9a] italic leading-none"
+            >{pains.eyebrow}</span
+        >
+        <h2
+            class="text-4xl md:text-6xl font-serif text-[#4a3f35] leading-tight tracking-tight"
+        >
+            {pains.title[0]}
+            <br />{pains.title[1]}
+            <span class="italic font-normal">{pains.title[2]}</span>
+            {pains.title[3]}
+        </h2>
+        <p
+            class="text-xl text-[#7a6f65] font-light leading-relaxed italic lowercase"
+        >
+            {pains.description}
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pt-12">
+            {
+                pains.items.map((item) => (
+                    <div class="space-y-4 group cursor-default">
+                        <h4 class="font-serif text-xl italic text-[#4a3f35] group-hover:text-[#d4bc9a] transition-colors tracking-tight">
+                            {item.title}
+                        </h4>
+                        <p class="text-sm text-[#7a6f65] font-light italic lowercase">
+                            {item.desc}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

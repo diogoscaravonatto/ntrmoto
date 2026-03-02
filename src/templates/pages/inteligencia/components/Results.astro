@@ -1,0 +1,117 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<section class="py-32 bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+        <div
+            class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8"
+        >
+            <div>
+                <span
+                    class="text-[#FF5500] font-black text-xs tracking-[0.4em] uppercase mb-6 block font-mono"
+                    >// PERFORMANCE DASHBOARD</span
+                >
+                <h2
+                    class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none"
+                >
+                    Resultados <span class="text-zinc-700 italic font-light"
+                        >validam</span
+                    ><br />a nossa inteligência.
+                </h2>
+            </div>
+            <p
+                class="text-slate-500 text-sm max-w-xs md:text-right font-medium leading-relaxed"
+            >
+                Não vendemos consultoria de palco. Implementamos sistemas de
+                engenharia que geram valor mensurável e escala real.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div
+                class="p-12 bg-zinc-950 border border-white/5 rounded-[2.5rem] hover:border-[#FF5500]/30 transition-all duration-500 group"
+            >
+                <Icon
+                    name="lucide:database"
+                    class="size-10 text-[#FF5500] mb-8 group-hover:scale-110 transition-transform"
+                />
+                <div
+                    class="text-6xl font-black mb-4 text-white tracking-tighter group-hover:text-[#FF5500] transition-colors"
+                >
+                    5PB+
+                </div>
+                <p
+                    class="text-zinc-500 font-black text-[10px] uppercase tracking-[0.2em] mb-6"
+                >
+                    Dados Processados
+                </p>
+                <div class="h-px w-full bg-white/5 mb-6"></div>
+                <p class="text-xs text-slate-500 italic leading-relaxed">
+                    Volume total de dados estruturados e não-estruturados em
+                    nossos data lakes distribuídos.
+                </p>
+            </div>
+
+            <div
+                class="p-12 bg-zinc-950 border border-[#FF5500]/20 rounded-[2.5rem] relative overflow-hidden group"
+            >
+                <!-- Animation Background -->
+                <div
+                    class="absolute bottom-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity"
+                >
+                    <div class="flex items-end space-x-2">
+                        <div class="w-2.5 h-6 bg-[#FF5500] rounded-sm"></div>
+                        <div class="w-2.5 h-12 bg-[#FF5500] rounded-sm"></div>
+                        <div class="w-2.5 h-20 bg-[#FF5500] rounded-sm"></div>
+                        <div
+                            class="w-1.5 h-24 bg-[#FF5500] rounded-sm animate-pulse"
+                        >
+                        </div>
+                    </div>
+                </div>
+
+                <Icon name="lucide:zap" class="size-10 text-[#FF5500] mb-8" />
+                <div
+                    class="text-6xl font-black mb-4 text-[#FF5500] tracking-tighter"
+                >
+                    +40%
+                </div>
+                <p
+                    class="text-zinc-500 font-black text-[10px] uppercase tracking-[0.2em] mb-6"
+                >
+                    Eficiência Operacional
+                </p>
+                <div class="h-px w-full bg-white/5 mb-6"></div>
+                <p class="text-xs text-slate-500 italic leading-relaxed">
+                    Redução média de custos e desperdícios operacionais através
+                    de otimização algorítmica.
+                </p>
+            </div>
+
+            <div
+                class="p-12 bg-zinc-950 border border-white/5 rounded-[2.5rem] hover:border-[#FF5500]/30 transition-all duration-500 group"
+            >
+                <Icon
+                    name="lucide:shield-check"
+                    class="size-10 text-[#FF5500] mb-8 group-hover:scale-110 transition-transform"
+                />
+                <div
+                    class="text-6xl font-black mb-4 text-white tracking-tighter group-hover:text-[#FF5500] transition-colors"
+                >
+                    99.9%
+                </div>
+                <p
+                    class="text-zinc-500 font-black text-[10px] uppercase tracking-[0.2em] mb-6"
+                >
+                    Uptime & Precisão
+                </p>
+                <div class="h-px w-full bg-white/5 mb-6"></div>
+                <p class="text-xs text-slate-500 italic leading-relaxed">
+                    Confiabilidade SLA dos nossos sistemas de inteligência e
+                    predição em tempo real.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,48 @@
+---
+const standards = {
+    title: ["Critérios de", "Exatidão."],
+    items: [
+        {
+            title: "Color",
+            desc: "Gradação D a F para diamantes incolor de pureza máxima.",
+        },
+        {
+            title: "Clarity",
+            desc: "Inclusões imperceptíveis até mesmo sob microscópio.",
+        },
+        {
+            title: "Cut",
+            desc: "Proporções matemáticas que maximizam a refração da luz.",
+        },
+        {
+            title: "Confidence",
+            desc: "Certificação internacional GIA e HRD em todas as peças.",
+        },
+    ],
+};
+---
+
+<section class="py-40 bg-white">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2
+            class="text-4xl md:text-6xl font-light text-zinc-950 mb-32 tracking-tight italic uppercase leading-none"
+        >
+            {standards.title[0]}
+            <span class="text-[#d4af37]">{standards.title[1]}</span>
+        </h2>
+        <div class="grid md:grid-cols-4 gap-16">
+            {
+                standards.items.map((std) => (
+                    <div class="space-y-6 group cursor-default">
+                        <span class="text-[10px] font-black uppercase tracking-[0.5em] text-[#d4af37] block group-hover:scale-110 transition-transform italic lowercase">
+                            {std.title}
+                        </span>
+                        <p class="text-sm text-zinc-500 font-light italic leading-loose px-4 lowercase">
+                            {std.desc}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

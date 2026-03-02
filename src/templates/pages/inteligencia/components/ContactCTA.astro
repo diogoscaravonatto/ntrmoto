@@ -1,0 +1,233 @@
+---
+import Icon from "@components/Icon.astro";
+
+const revenueOptions = [
+    "Até R$ 100k",
+    "R$ 100k - R$ 500k",
+    "R$ 500k - R$ 1M",
+    "Acima de R$ 1M",
+];
+---
+
+<section id="consultoria" class="py-32 bg-[#050505] relative overflow-hidden">
+    <!-- Background Glow -->
+    <div
+        class="absolute bottom-0 right-0 w-[50rem] h-[50rem] bg-[#FF5500]/5 rounded-full blur-[120px] pointer-events-none"
+    >
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20 items-stretch">
+            <div class="flex flex-col justify-center">
+                <span
+                    class="text-[#FF5500] font-black text-xs tracking-[0.4em] uppercase mb-8 block font-mono"
+                    >// PRONTO PARA A INTELIGÊNCIA?</span
+                >
+                <h2
+                    class="text-5xl md:text-7xl font-black mb-12 text-white tracking-tighter leading-[1.1]"
+                >
+                    Aplique para um <br />
+                    <span class="text-[#FF5500] italic"
+                        >Sistema de Inteligência.</span
+                    >
+                </h2>
+
+                <div
+                    class="bg-black/40 backdrop-blur-xl p-10 rounded-[2.5rem] border border-white/5 relative group h-fit"
+                >
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-br from-[#FF5500]/10 to-transparent rounded-[2.5rem] blur-sm opacity-50 group-hover:opacity-100 transition-opacity"
+                    >
+                    </div>
+
+                    <div class="relative z-10">
+                        <div class="flex items-center space-x-4 mb-8">
+                            <div
+                                class="size-14 bg-zinc-800 rounded-full overflow-hidden border-2 border-white/10 shadow-2xl"
+                            >
+                                <img
+                                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                                    alt="Headshot"
+                                    class="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div>
+                                <p
+                                    class="font-black text-white text-lg tracking-tight uppercase"
+                                >
+                                    Tech Lead
+                                </p>
+                                <p
+                                    class="text-[10px] text-zinc-500 font-black tracking-[0.2em] uppercase"
+                                >
+                                    Head de Dados & IA
+                                </p>
+                            </div>
+                        </div>
+
+                        <p
+                            class="text-slate-400 text-lg leading-relaxed mb-10 italic font-light"
+                        >
+                            "Não somos vendedores de relatórios. Somos
+                            arquitetos de inteligência. Se você busca planilhas
+                            básicas, não somos o fit. Mas se quer transformar
+                            sua empresa com dados, bem-vindo."
+                        </p>
+
+                        <ul class="space-y-4">
+                            <li class="flex items-center space-x-4 group/item">
+                                <div
+                                    class="size-6 bg-[#FF5500]/10 rounded-full flex items-center justify-center border border-[#FF5500]/30 group-hover/item:bg-[#FF5500] transition-colors"
+                                >
+                                    <Icon
+                                        name="lucide:check"
+                                        class="size-3 text-[#FF5500] group-hover/item:text-black transition-colors"
+                                    />
+                                </div>
+                                <span class="text-sm font-bold text-slate-300"
+                                    >Diagnóstico de Maturidade de Dados</span
+                                >
+                            </li>
+                            <li class="flex items-center space-x-4 group/item">
+                                <div
+                                    class="size-6 bg-[#FF5500]/10 rounded-full flex items-center justify-center border border-[#FF5500]/30 group-hover/item:bg-[#FF5500] transition-colors"
+                                >
+                                    <Icon
+                                        name="lucide:check"
+                                        class="size-3 text-[#FF5500] group-hover/item:text-black transition-colors"
+                                    />
+                                </div>
+                                <span class="text-sm font-bold text-slate-300"
+                                    >Sessão com Engenheiro de Dados</span
+                                >
+                            </li>
+                            <li class="flex items-center space-x-4 group/item">
+                                <div
+                                    class="size-6 bg-[#FF5500]/10 rounded-full flex items-center justify-center border border-[#FF5500]/30 group-hover/item:bg-[#FF5500] transition-colors"
+                                >
+                                    <Icon
+                                        name="lucide:check"
+                                        class="size-3 text-[#FF5500] group-hover/item:text-black transition-colors"
+                                    />
+                                </div>
+                                <span class="text-sm font-bold text-slate-300"
+                                    >Roadmap de Analytics Predictivo</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-black p-10 md:p-16 rounded-[3rem] border border-white/10 shadow-2xl relative overflow-hidden flex flex-col justify-between"
+            >
+                <!-- Decorative Overlay -->
+                <div
+                    class="absolute top-0 right-0 w-full h-full bg-[#FF5500]/5 pointer-events-none"
+                >
+                </div>
+
+                <form class="space-y-8 relative z-10 font-mono">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <label
+                                class="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em] block"
+                                >Nome Completo</label
+                            >
+                            <input
+                                type="text"
+                                placeholder="Seu nome"
+                                class="w-full bg-zinc-900/50 border border-white/10 rounded-lg p-4 text-white text-sm focus:border-[#FF5500] focus:ring-1 focus:ring-[#FF5500] outline-none transition-all placeholder:text-zinc-700"
+                            />
+                        </div>
+                        <div class="space-y-3">
+                            <label
+                                class="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em] block"
+                                >Email Corporativo</label
+                            >
+                            <input
+                                type="email"
+                                placeholder="voce@empresa.com"
+                                class="w-full bg-zinc-900/50 border border-white/10 rounded-lg p-4 text-white text-sm focus:border-[#FF5500] focus:ring-1 focus:ring-[#FF5500] outline-none transition-all placeholder:text-zinc-700"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <label
+                                class="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em] block"
+                                >WhatsApp</label
+                            >
+                            <input
+                                type="tel"
+                                placeholder="(00) 00000-0000"
+                                class="w-full bg-zinc-900/50 border border-white/10 rounded-lg p-4 text-white text-sm focus:border-[#FF5500] focus:ring-1 focus:ring-[#FF5500] outline-none transition-all placeholder:text-zinc-700"
+                            />
+                        </div>
+                        <div class="space-y-3">
+                            <label
+                                class="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em] block"
+                                >Volume de Dados</label
+                            >
+                            <select
+                                class="w-full bg-zinc-900/50 border border-white/10 rounded-lg p-4 text-zinc-400 text-sm focus:border-[#FF5500] focus:ring-1 focus:ring-[#FF5500] outline-none transition-all appearance-none"
+                            >
+                                <option value="">Selecione...</option>
+                                {
+                                    revenueOptions.map((opt) => (
+                                        <option value={opt}>{opt}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label
+                            class="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em] block"
+                            >Desafio Atual (Opcional)</label
+                        >
+                        <textarea
+                            rows="4"
+                            placeholder="O que impede sua inteligência hoje?"
+                            class="w-full bg-zinc-900/50 border border-white/10 rounded-lg p-4 text-white text-sm focus:border-[#FF5500] focus:ring-1 focus:ring-[#FF5500] outline-none transition-all placeholder:text-zinc-700 resize-none"
+                        ></textarea>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="w-full bg-[#FF5500] hover:bg-orange-600 text-black font-black py-5 rounded-lg text-sm uppercase tracking-[0.2em] shadow-xl shadow-orange-600/20 active:scale-[0.98] transition-all"
+                    >
+                        Solicitar Avaliação →
+                    </button>
+
+                    <p
+                        class="text-[10px] text-center text-zinc-700 font-bold uppercase tracking-widest mt-6 italic"
+                    >
+                        Segurança de dados e conformidade LGPD garantidas.
+                    </p>
+                </form>
+
+                <div
+                    class="mt-12 pt-12 border-t border-white/5 flex flex-col items-center relative z-10"
+                >
+                    <p class="text-xs text-zinc-500 mb-6 font-medium">
+                        Prefere falar agora com um especialista?
+                    </p>
+                    <a
+                        href="#"
+                        class="flex items-center gap-3 px-8 py-4 bg-zinc-900 border border-white/10 rounded-full text-white hover:bg-zinc-800 transition-all font-black text-xs uppercase tracking-widest"
+                    >
+                        <Icon
+                            name="lucide:message-square"
+                            class="size-4 text-emerald-500"
+                        />
+                        WhatsApp Direto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

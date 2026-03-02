@@ -1,0 +1,194 @@
+---
+
+---
+
+<!-- LOCATION SECTION -->
+<section class="py-32 md:py-48 px-8 md:px-16 bg-white">
+    <div class="max-w-[1600px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <!-- Left: Content -->
+            <div>
+                <div class="flex items-center gap-6 mb-8">
+                    <div class="h-px w-24 bg-zinc-300"></div>
+                    <span
+                        class="text-xs tracking-[0.3em] uppercase text-zinc-500 font-light"
+                        >Localização</span
+                    >
+                </div>
+
+                <h2
+                    class="font-serif text-6xl md:text-8xl leading-tight text-zinc-900 mb-12"
+                >
+                    O endereço<br />
+                    <span class="italic font-light text-zinc-400"
+                        >mais desejado</span
+                    ><br />
+                    da costa
+                </h2>
+
+                <p
+                    class="text-2xl text-zinc-600 leading-relaxed mb-12 font-light"
+                >
+                    Situada no ponto mais nobre e exclusivo da orla, esta
+                    residência oferece privacidade absoluta sem abrir mão da
+                    conveniência urbana.
+                </p>
+
+                <!-- Location Features -->
+                <div class="space-y-8 mb-16">
+                    {
+                        [
+                            {
+                                icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+                                title: "Acesso Privativo à Praia",
+                                description:
+                                    "Elevador panorâmico exclusivo conecta a residência diretamente à areia branca. 120 metros de praia privativa.",
+                            },
+                            {
+                                icon: "M12 19l9 2-9-18-9 18 9-2zm0 0v-8",
+                                title: "Heliponto Certificado",
+                                description:
+                                    "Infraestrutura completa para pouso e decolagem, com hangar climatizado e equipe de apoio 24/7.",
+                            },
+                            {
+                                icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
+                                title: "Vizinhança Exclusiva",
+                                description:
+                                    "Condomínio fechado com apenas 4 residências. Vizinhos incluem CEOs, artistas e diplomatas internacionais.",
+                            },
+                            {
+                                icon: "M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7",
+                                title: "Infraestrutura Completa",
+                                description:
+                                    "A 5 minutos do centro financeiro, 10 minutos do aeroporto internacional e 2 minutos de restaurantes estrelados.",
+                            },
+                        ].map((feature, index) => (
+                            <div class="flex gap-6 group">
+                                <div class="flex-shrink-0 w-16 h-16 rounded-full border-2 border-zinc-200 flex items-center justify-center group-hover:bg-zinc-900 group-hover:border-zinc-900 transition-all">
+                                    <svg
+                                        class="w-8 h-8 text-zinc-400 group-hover:text-white transition-colors"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="1.5"
+                                            d={feature.icon}
+                                        />
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-serif text-2xl text-zinc-900 mb-3">
+                                        {feature.title}
+                                    </h3>
+                                    <p class="text-zinc-600 leading-relaxed font-light">
+                                        {feature.description}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <!-- Distance Markers -->
+                <div class="grid grid-cols-2 gap-6">
+                    {
+                        [
+                            { place: "Centro Financeiro", time: "5 min" },
+                            {
+                                place: "Aeroporto Internacional",
+                                time: "10 min",
+                            },
+                            { place: "Marina Privativa", time: "2 min" },
+                            { place: "Shopping de Luxo", time: "3 min" },
+                        ].map((marker) => (
+                            <div class="p-6 bg-zinc-50 border border-zinc-200">
+                                <div class="font-serif text-3xl text-zinc-900 mb-2">
+                                    {marker.time}
+                                </div>
+                                <div class="text-xs tracking-[0.3em] uppercase text-zinc-500 font-light">
+                                    {marker.place}
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Right: Map -->
+            <div class="relative">
+                <div class="aspect-square bg-zinc-100 relative overflow-hidden">
+                    <!-- Placeholder for map - replace with actual map integration -->
+                    <img
+                        src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1200&q=80"
+                        alt="Location Map"
+                        class="w-full h-full object-cover"
+                    />
+
+                    <!-- Map Overlay -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+                    >
+                    </div>
+
+                    <!-- Coordinates -->
+                    <div class="absolute bottom-8 left-8 right-8 text-white">
+                        <div
+                            class="text-xs tracking-[0.3em] uppercase mb-2 opacity-80"
+                        >
+                            Coordenadas
+                        </div>
+                        <div class="font-mono text-sm">
+                            23°32'51.6"S 46°38'10.3"W
+                        </div>
+                    </div>
+
+                    <!-- Pin Marker -->
+                    <div
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    >
+                        <div class="relative">
+                            <div
+                                class="w-20 h-20 rounded-full bg-zinc-900 border-4 border-white flex items-center justify-center animate-pulse"
+                            >
+                                <svg
+                                    class="w-10 h-10 text-white"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <div
+                                class="absolute inset-0 w-20 h-20 rounded-full bg-zinc-900 animate-ping opacity-20"
+                            >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map CTA -->
+                <div class="mt-8 p-8 bg-zinc-900 text-white">
+                    <div
+                        class="text-xs tracking-[0.3em] uppercase text-white/60 mb-4"
+                    >
+                        Navegação
+                    </div>
+                    <div class="font-serif text-2xl mb-6">
+                        Abrir no Google Maps
+                    </div>
+                    <button
+                        class="w-full py-4 border border-white/20 text-xs tracking-[0.2em] uppercase font-medium hover:bg-white hover:text-zinc-900 transition-all"
+                    >
+                        VER ROTAS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

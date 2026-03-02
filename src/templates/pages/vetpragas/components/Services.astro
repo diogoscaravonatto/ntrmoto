@@ -1,0 +1,48 @@
+---
+import { vetPragasData } from './content';
+
+const iconMap = {
+  'shield-radar': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="12" r="3"/><path d="M12 2v2"/><path d="M12 20v22"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="m6.34 17.66-1.41 1.41"/></svg>',
+  'biohazard': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M18.5 12a2.5 2.5 0 0 0-5 0v4a8 8 0 0 1-3 0v-4a2.5 2.5 0 0 0-5 0"/></svg>',
+  'skull': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><path d="M8 20v2h8v-2"/><path d="m12.5 17-.5-1-.5 1h1z"/><path d="M16 20a2 2 0 0 0 1.56-3.25 8 8 0 1 0-11.12 0A2 2 0 0 0 8 20"/></svg>',
+  'structure': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>',
+  'microscope': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/></svg>',
+  'wind': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>'
+};
+---
+
+<section id="protocolos" class="py-24 bg-slate-900 border-y border-white/5">
+  <div class="container mx-auto px-6">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-emerald-500 font-mono text-[10px] uppercase tracking-[0.3em]">Catálogo de Intervenção</span>
+      <h2 class="text-3xl lg:text-4xl font-black text-white mt-4 mb-6 uppercase tracking-tight">Protocolos de Neutralização</h2>
+      <p class="text-lg text-slate-500">Cada intervenção é tratada como uma operação cirúrgica. Mapeamento, Execução e Monitoramento.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 border border-white/5 p-px">
+      {vetPragasData.services.map((service) => (
+        <div class="group relative bg-slate-950 p-8 hover:bg-slate-900 transition-all duration-500 overflow-hidden">
+          
+          <!-- Hover Effect Corner -->
+          <div class="absolute top-0 right-0 w-0 h-0 border-t-[3px] border-r-[3px] border-emerald-500/0 group-hover:border-emerald-500 group-hover:w-8 group-hover:h-8 transition-all duration-300"></div>
+
+          <div class="flex justify-between items-start mb-8">
+             <div class="w-10 h-10 bg-slate-900 border border-white/10 flex items-center justify-center text-emerald-500 group-hover:text-emerald-400 group-hover:border-emerald-500/50 transition-all shadow-[0_0_10px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_15px_rgba(16,185,129,0.2)]" set:html={iconMap[service.icon as keyof typeof iconMap]}></div>
+             <span class="text-[9px] font-mono text-slate-700 group-hover:text-emerald-500/50 transition-colors uppercase">{service.code}</span>
+          </div>
+          
+          <h3 class="text-xl font-bold text-slate-200 mb-4 uppercase tracking-tight group-hover:text-white transition-colors">{service.title}</h3>
+          
+          <p class="text-sm text-slate-500 leading-relaxed mb-8 group-hover:text-slate-400">
+            {service.description}
+          </p>
+
+          <a href="https://wa.me/554533265255" class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-emerald-600 group-hover:text-emerald-400 transition-colors">
+            Requisitar
+            <svg class="w-3 h-3 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

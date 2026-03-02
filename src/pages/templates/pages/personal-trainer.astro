@@ -1,0 +1,53 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+const metadata = {
+    name: "Iron Method | Alta Performance",
+    description:
+        "Treine com o método que transforma corpos e mentes. Consultoria personalizada online e presencial.",
+};
+import Navigation from "@templates-pages/personal-trainer/components/Navigation.astro";
+import Hero from "@templates-pages/personal-trainer/components/Hero.astro";
+import Methods from "@templates-pages/personal-trainer/components/Methods.astro";
+import Transformations from "@templates-pages/personal-trainer/components/Transformations.astro";
+import Pricing from "@templates-pages/personal-trainer/components/Pricing.astro";
+const layoutColors = {
+    primary: "#eab308",
+    secondary: "#facc15",
+    background: "#000000",
+};
+---
+
+<BaseLayout
+    title={metadata.name}
+    description={metadata.description}
+    theme="dark"
+    colors={layoutColors}
+>
+    <!-- GLOBAL STYLE HIGH ENERGY -->
+    <div
+        class="font-[Inter,,sans-serif] bg-black text-white selection:bg-yellow-500 selection:text-black"
+    >
+        <Navigation />
+        <main>
+            <Hero />
+            <Methods />
+            <Transformations />
+            <Pricing />
+        </main>
+        <footer class="bg-zinc-900 border-t border-zinc-800 py-8 text-center">
+            <div class="font-black italic text-2xl mb-2">
+                IRON<span class="text-yellow-500">METHOD</span>
+            </div>
+            <p
+                class="text-zinc-600 text-xs font-bold uppercase tracking-widest"
+            >
+                © 2026 Todos os direitos reservados
+            </p>
+        </footer>
+    </div>
+</BaseLayout>
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap");
+</style>

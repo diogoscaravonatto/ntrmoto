@@ -1,0 +1,148 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+    <!-- Left Content -->
+    <div class="lg:col-span-7 space-y-10">
+        <div
+            class="inline-flex items-center gap-3 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded text-red-400 text-xs font-mono uppercase tracking-widest font-bold"
+        >
+            <Icon name="lucide:flame" class="size-4" />
+            Vagas Limitadas: Lote Final
+        </div>
+
+        <h1
+            class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-white uppercase"
+        >
+            Domine os<br />
+            <span
+                class="text-transparent bg-clip-text bg-linear-to-r from-red-500 to-orange-600"
+            >
+                Agentes de IA
+            </span>.
+        </h1>
+
+        <p
+            class="text-xl md:text-2xl text-zinc-400 max-w-xl leading-relaxed border-l-4 border-red-600 pl-6"
+        >
+            Uma masterclass técnica para desenvolvedores que querem liderar a
+            revolução da IA Generativa. Sem hype, apenas código.
+        </p>
+
+        <div class="flex items-center gap-6 pt-4">
+            <div class="flex -space-x-4">
+                {
+                    [1, 2, 3, 4].map((i) => (
+                        <img
+                            src={`https://i.pravatar.cc/100?u=${i + 10}`}
+                            alt="Avatar"
+                            class="size-12 rounded-full ring-4 ring-[#020202] object-cover"
+                        />
+                    ))
+                }
+            </div>
+            <div>
+                <div class="flex items-center gap-1 text-amber-400">
+                    {
+                        [1, 2, 3, 4, 5].map(() => (
+                            <Icon
+                                name="lucide:star"
+                                class="size-4 fill-current"
+                            />
+                        ))
+                    }
+                </div>
+                <p class="text-zinc-500 text-sm font-medium">
+                    +1.240 devs inscritos hoje
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Form -->
+    <div id="register" class="lg:col-span-5">
+        <div class="relative group">
+            <div
+                class="absolute -inset-1 bg-linear-to-r from-red-600 to-orange-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"
+            >
+            </div>
+
+            <div
+                class="relative bg-zinc-900 border border-white/10 p-8 md:p-10 rounded-xl"
+            >
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold tracking-tight">
+                        Inscreva-se Gratuitamente
+                    </h3>
+                    <p class="text-zinc-400 text-sm">
+                        Receba acesso ao repositório do projeto + gravação
+                        vitalícia.
+                    </p>
+
+                    <form class="space-y-6">
+                        <div class="space-y-2">
+                            <label
+                                for="name"
+                                class="text-zinc-200 font-bold tracking-wide text-sm"
+                                >Nome Completo</label
+                            >
+                            <div class="relative">
+                                <Icon
+                                    name="lucide:user"
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-zinc-500"
+                                />
+                                <input
+                                    id="name"
+                                    type="text"
+                                    placeholder="Ex: João da Silva"
+                                    class="w-full pl-11 pr-4 py-4 bg-zinc-950/50 border border-zinc-700 focus:border-red-500 outline-hidden text-white rounded-lg transition-colors placeholder:text-zinc-600"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label
+                                for="email"
+                                class="text-zinc-200 font-bold tracking-wide text-sm"
+                                >Email Corporativo</label
+                            >
+                            <div class="relative">
+                                <Icon
+                                    name="lucide:mail"
+                                    class="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-zinc-500"
+                                />
+                                <input
+                                    id="email"
+                                    type="email"
+                                    placeholder="seu@email.com"
+                                    class="w-full pl-11 pr-4 py-4 bg-zinc-950/50 border border-zinc-700 focus:border-red-500 outline-hidden text-white rounded-lg transition-colors placeholder:text-zinc-600"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button
+                                type="button"
+                                class="w-full bg-red-600 hover:bg-red-500 text-white font-black text-lg py-5 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 uppercase tracking-tighter"
+                            >
+                                Quero Participar
+                                <Icon
+                                    name="lucide:arrow-right"
+                                    class="size-6"
+                                />
+                            </button>
+                        </div>
+                    </form>
+
+                    <p
+                        class="text-center text-xs text-zinc-600 flex items-center justify-center gap-2"
+                    >
+                        <Icon name="lucide:lock" class="size-3" />
+                        Seus dados nunca serão compartilhados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,151 @@
+---
+export const prerender = true;
+// FAQ Accordion com interatividade
+---
+
+<section class="py-24 px-6 bg-zinc-950">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h2
+                class="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-4 bg-linear-to-b from-white to-zinc-600 bg-clip-text text-transparent"
+            >
+                Perguntas Frequentes
+            </h2>
+            <p class="text-zinc-500 text-lg">Tudo que você precisa saber</p>
+        </div>
+
+        <!-- FAQ Items -->
+        <div class="space-y-4">
+            <!-- FAQ 1 -->
+            <details
+                class="group bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden hover:border-violet-500/50 transition-all"
+            >
+                <summary
+                    class="flex items-center justify-between p-6 cursor-pointer list-none"
+                >
+                    <span class="text-lg font-bold text-white"
+                        >Como funciona o período de teste?</span
+                    >
+                    <svg
+                        class="size-5 text-zinc-500 group-open:rotate-180 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </summary>
+                <div class="px-6 pb-6 text-zinc-400 leading-relaxed">
+                    Você tem 14 dias para testar todas as funcionalidades
+                    gratuitamente. Não é necessário cartão de crédito e você
+                    pode cancelar a qualquer momento.
+                </div>
+            </details>
+
+            <!-- FAQ 2 -->
+            <details
+                class="group bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden hover:border-violet-500/50 transition-all"
+            >
+                <summary
+                    class="flex items-center justify-between p-6 cursor-pointer list-none"
+                >
+                    <span class="text-lg font-bold text-white"
+                        >Posso mudar de plano depois?</span
+                    >
+                    <svg
+                        class="size-5 text-zinc-500 group-open:rotate-180 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </summary>
+                <div class="px-6 pb-6 text-zinc-400 leading-relaxed">
+                    Sim! Você pode fazer upgrade ou downgrade do seu plano a
+                    qualquer momento. As mudanças são aplicadas imediatamente e
+                    o valor é ajustado proporcionalmente.
+                </div>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details
+                class="group bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden hover:border-violet-500/50 transition-all"
+            >
+                <summary
+                    class="flex items-center justify-between p-6 cursor-pointer list-none"
+                >
+                    <span class="text-lg font-bold text-white"
+                        >Quais formas de pagamento são aceitas?</span
+                    >
+                    <svg
+                        class="size-5 text-zinc-500 group-open:rotate-180 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </summary>
+                <div class="px-6 pb-6 text-zinc-400 leading-relaxed">
+                    Aceitamos cartões de crédito (Visa, Mastercard, Amex),
+                    PayPal, transferência bancária e PIX para clientes no
+                    Brasil.
+                </div>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details
+                class="group bg-zinc-900/50 border border-zinc-800 rounded-xl overflow-hidden hover:border-violet-500/50 transition-all"
+            >
+                <summary
+                    class="flex items-center justify-between p-6 cursor-pointer list-none"
+                >
+                    <span class="text-lg font-bold text-white"
+                        >Há garantia de reembolso?</span
+                    >
+                    <svg
+                        class="size-5 text-zinc-500 group-open:rotate-180 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </summary>
+                <div class="px-6 pb-6 text-zinc-400 leading-relaxed">
+                    Sim! Oferecemos garantia de reembolso de 30 dias. Se não
+                    estiver satisfeito, devolvemos 100% do seu dinheiro, sem
+                    perguntas.
+                </div>
+            </details>
+        </div>
+
+        <!-- Contact CTA -->
+        <div class="mt-12 text-center">
+            <p class="text-zinc-500 mb-4">Ainda tem dúvidas?</p>
+            <button
+                class="px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-bold rounded-xl transition-all hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
+            >
+                Falar com Suporte
+            </button>
+        </div>
+    </div>
+</section>

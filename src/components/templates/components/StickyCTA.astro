@@ -1,0 +1,58 @@
+---
+export const prerender = true;
+/**
+ * COMPONENTE: StickyCTA
+ * O QUE É: Barra de conversão flutuante que aparece após um certo nível de scroll.
+ * ONDE USAR: Em landing pages longas, para manter o botão de ação sempre visível.
+ * COMO USAR: Configure o texto e o link. O script interno controla a visibilidade automaticamente.
+ */
+interface Props {
+    text?: string;
+    buttonText?: string;
+    link?: string;
+}
+
+const {
+    text = "Pronto para escalar seu negócio?",
+    buttonText = "Começar Agora",
+    link = "#contact",
+} = Astro.props;
+---
+
+<div
+    id="sticky-cta"
+    class="fixed bottom-0 left-0 w-full z-40 transform translate-y-full transition-transform duration-500 ease-in-out p-4 md:p-6 pointer-events-none"
+>
+    <div
+        class="max-w-4xl mx-auto bg-zinc-900/90 backdrop-blur-xl border border-zinc-800 p-4 rounded-2xl shadow-[0_-20px_40px_rgba(0,0,0,0.5)] flex flex-col sm:flex-row items-center justify-between gap-4 pointer-events-auto"
+    >
+        <p class="text-white font-bold text-center sm:text-left">
+            {text}
+        </p>
+        <a
+            href={link}
+            class="w-full sm:w-auto px-8 py-3 bg-violet-600 hover:bg-violet-500 text-white font-black rounded-xl transition-all hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] text-center text-sm uppercase tracking-wider"
+        >
+            {buttonText}
+        </a>
+    </div>
+</div>
+
+<script>
+    const stickyCta = document.getElementById("sticky-cta");
+
+    const handleScroll = () => {
+        if (!stickyCta) return;
+
+        // Mostra depois de 600px de scroll
+        if (window.scrollY > 600) {
+            stickyCta.classList.remove("translate-y-full");
+            stickyCta.classList.add("translate-y-0");
+        } else {
+            stickyCta.classList.add("translate-y-full");
+            stickyCta.classList.remove("translate-y-0");
+        }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+</script>

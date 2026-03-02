@@ -1,0 +1,160 @@
+---
+import Icon from "@components/Icon.astro";
+---
+
+<footer class="bg-white border-t border-slate-100 pt-16 pb-8 font-sans">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <!-- Brand -->
+            <div class="md:col-span-1">
+                <a
+                    href="/templates/pet"
+                    class="flex items-center gap-2 mb-6 group leading-none"
+                >
+                    <div
+                        class="bg-orange-100 p-2 rounded-full group-hover:bg-orange-200 transition-colors"
+                    >
+                        <Icon
+                            name="lucide:paw-print"
+                            class="w-5 h-5 text-orange-600"
+                        />
+                    </div>
+                    <span class="text-xl font-display font-bold text-slate-800">
+                        Pet<span class="text-orange-500">Love</span>
+                    </span>
+                </a>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">
+                    Cuidando com amor e dedicação de quem sempre está ao seu
+                    lado. A melhor estrutura para seu pet.
+                </p>
+                <div class="flex gap-4 mt-6">
+                    <a
+                        href="#"
+                        class="p-2 text-slate-400 hover:text-orange-500 transition-colors"
+                    >
+                        <Icon name="simple-icons:instagram" class="w-5 h-5" />
+                    </a>
+                    <a
+                        href="#"
+                        class="p-2 text-slate-400 hover:text-blue-600 transition-colors"
+                    >
+                        <Icon name="simple-icons:facebook" class="w-5 h-5" />
+                    </a>
+                    <a
+                        href="#"
+                        class="p-2 text-slate-400 hover:text-green-500 transition-colors"
+                    >
+                        <Icon name="simple-icons:whatsapp" class="w-5 h-5" />
+                    </a>
+                </div>
+            </div>
+
+            <!-- Links -->
+            <div>
+                <h4
+                    class="font-bold text-slate-800 mb-6 uppercase text-sm tracking-widest leading-none"
+                >
+                    Empresa
+                </h4>
+                <ul class="space-y-3 text-sm text-slate-500 font-medium">
+                    <li>
+                        <a
+                            href="#"
+                            class="hover:text-orange-500 transition-colors"
+                            >Sobre Nós</a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            class="hover:text-orange-500 transition-colors"
+                            >Nossa Equipe</a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            class="hover:text-orange-500 transition-colors"
+                            >Carreiras</a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            class="hover:text-orange-500 transition-colors"
+                            >Imprensa</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4
+                    class="font-bold text-slate-800 mb-6 uppercase text-sm tracking-widest leading-none"
+                >
+                    Serviços
+                </h4>
+                <ul class="space-y-3 text-sm text-slate-500 font-medium">
+                    <li>
+                        <a
+                            href="#"
+                            class="hover:text-orange-500 transition-colors"
+                            >Clínica 24h</a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            class="hover:text-orange-500 transition-colors"
+                            >Banho e Tosa</a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            class="hover:text-orange-500 transition-colors"
+                            >Hotel Pet</a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            class="hover:text-orange-500 transition-colors"
+                            >Adestramento</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+                <h4
+                    class="font-bold text-slate-800 mb-6 uppercase text-sm tracking-widest leading-none"
+                >
+                    Fique por dentro
+                </h4>
+                <p class="text-slate-500 text-sm mb-4 font-medium">
+                    Receba dicas de saúde e ofertas exclusivas.
+                </p>
+                <div class="flex gap-2">
+                    <input
+                        type="email"
+                        placeholder="Seu e-mail"
+                        class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-orange-500 transition h-11"
+                    />
+                    <button
+                        class="bg-orange-600 text-white px-4 rounded-lg hover:bg-orange-700 transition-colors flex items-center justify-center"
+                    >
+                        <Icon name="lucide:send" class="w-4 h-4" />
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-400 text-[10px] font-mono uppercase tracking-widest font-bold"
+        >
+            <p>&copy; 2024 PetLove Care. Todos os direitos reservados.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-slate-600 transition-colors"
+                    >Termos</a
+                >
+                <a href="#" class="hover:text-slate-600 transition-colors"
+                    >Privacidade</a
+                >
+            </div>
+        </div>
+    </div>
+</footer>

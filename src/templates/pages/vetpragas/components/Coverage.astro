@@ -1,0 +1,133 @@
+---
+import { vetPragasData } from "./content";
+---
+
+<section class="py-24 bg-black relative overflow-hidden">
+    <!-- Map Background Effect -->
+    <div class="absolute inset-0 opacity-10">
+        <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_center,#10b981_1px,transparent_1px)] bg-size-[30px_30px]"
+        >
+        </div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Content -->
+            <div>
+                <span
+                    class="text-emerald-500 font-mono text-[10px] uppercase tracking-[0.3em]"
+                    >{vetPragasData.coverage.subtitle}</span
+                >
+                <h2
+                    class="text-4xl md:text-5xl font-black text-white mt-4 mb-6 uppercase tracking-tighter"
+                >
+                    {vetPragasData.coverage.title}
+                </h2>
+                <p class="text-lg text-slate-400 mb-10 leading-relaxed">
+                    {vetPragasData.coverage.description}
+                </p>
+
+                <!-- Cities Grid -->
+                <div class="grid grid-cols-2 gap-4 mb-10">
+                    {
+                        vetPragasData.coverage.cities.map((city) => (
+                            <div class="flex items-center gap-3 p-4 bg-slate-900/50 border border-white/5 rounded-lg hover:border-emerald-500/30 transition-colors group">
+                                <div class="w-2 h-2 bg-emerald-500 rounded-full group-hover:animate-pulse" />
+                                <span class="text-slate-300 text-sm font-medium uppercase tracking-wide">
+                                    {city}
+                                </span>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <!-- Contact Info -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a
+                        href="https://wa.me/554533265255"
+                        class="inline-flex items-center justify-center px-8 py-4 bg-emerald-600 text-slate-950 font-bold text-xs uppercase tracking-widest hover:bg-emerald-500 transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+                    >
+                        <svg
+                            class="w-5 h-5 mr-2"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                            ></path></svg
+                        >
+                        Solicitar Atendimento
+                    </a>
+                    <a
+                        href="tel:4533265255"
+                        class="inline-flex items-center justify-center px-8 py-4 border border-slate-700 text-slate-300 font-bold text-xs uppercase tracking-widest hover:border-emerald-500 hover:text-emerald-400 transition-all"
+                    >
+                        (45) 3326-5255
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual Element -->
+            <div class="relative">
+                <div class="relative aspect-square max-w-md mx-auto">
+                    <!-- Radar Circles -->
+                    <div
+                        class="absolute inset-0 border-2 border-emerald-500/20 rounded-full animate-[ping_3s_ease-in-out_infinite]"
+                    >
+                    </div>
+                    <div
+                        class="absolute inset-[10%] border-2 border-emerald-500/30 rounded-full animate-[ping_3s_ease-in-out_infinite_1s]"
+                    >
+                    </div>
+                    <div
+                        class="absolute inset-[20%] border-2 border-emerald-500/40 rounded-full animate-[ping_3s_ease-in-out_infinite_2s]"
+                    >
+                    </div>
+
+                    <!-- Center -->
+                    <div
+                        class="absolute inset-0 flex items-center justify-center"
+                    >
+                        <div
+                            class="bg-emerald-600 w-24 h-24 rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(16,185,129,0.4)]"
+                        >
+                            <svg
+                                class="w-12 h-12 text-slate-950"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                ></path><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                ></path></svg
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Location Pins -->
+                    <div
+                        class="absolute top-[20%] right-[25%] w-3 h-3 bg-emerald-500 rounded-full shadow-[0_0_10px_#10b981] animate-pulse"
+                    >
+                    </div>
+                    <div
+                        class="absolute bottom-[30%] left-[20%] w-3 h-3 bg-emerald-500 rounded-full shadow-[0_0_10px_#10b981] animate-pulse"
+                        style="animation-delay: 0.5s"
+                    >
+                    </div>
+                    <div
+                        class="absolute top-[40%] left-[15%] w-3 h-3 bg-emerald-500 rounded-full shadow-[0_0_10px_#10b981] animate-pulse"
+                        style="animation-delay: 1s"
+                    >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

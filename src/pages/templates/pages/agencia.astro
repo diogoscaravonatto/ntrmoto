@@ -1,0 +1,51 @@
+---
+export const prerender = true;
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Navigation from "@templates-pages/agencia/components/Navigation.astro";
+import Hero from "@templates-pages/agencia/components/Hero.astro";
+import Clients from "@templates-pages/agencia/components/Clients.astro";
+import Projects from "@templates-pages/agencia/components/Projects.astro";
+import Manifesto from "@templates-pages/agencia/components/Manifesto.astro";
+import Expertise from "@templates-pages/agencia/components/Expertise.astro";
+import CTA from "@templates-pages/agencia/components/CTA.astro";
+import Footer from "@templates-pages/agencia/components/Footer.astro";
+const data: {
+    name: string;
+    description: string;
+    theme: "light" | "dark";
+    colors: {
+        primary: string;
+        secondary: string;
+        background: string;
+    };
+} = {
+    name: "Agência Visionária",
+    description: "Design minimalista e interativo para agências criativas.",
+    theme: "light",
+    colors: {
+        primary: "#8b5cf6",
+        secondary: "#a78bfa",
+        background: "#ffffff",
+    },
+};
+---
+
+<BaseLayout
+    title={data.name}
+    description={data.description}
+    theme={data.theme}
+    colors={data.colors}
+>
+    <Navigation />
+
+    <main>
+        <Hero />
+        <Clients />
+        <Projects />
+        <Manifesto />
+        <Expertise />
+        <CTA />
+    </main>
+
+    <Footer />
+</BaseLayout>

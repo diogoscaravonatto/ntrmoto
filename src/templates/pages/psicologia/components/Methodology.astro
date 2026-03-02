@@ -1,0 +1,47 @@
+---
+---
+
+<!-- METHODOLOGY SECTION -->
+<section class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <h2 class="text-4xl md:text-5xl font-serif text-[#5d5248] mb-6">Uma abordagem <span class="italic text-[#8c7b6d]">humanizada</span></h2>
+            <p class="text-[#8c7b6d] text-lg leading-relaxed">
+                Acredito que cada história é única. Meu método combina técnicas da psicanálise clássica com a leveza necessária para os tempos modernos.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+                {
+                    title: "Escuta Ativa",
+                    desc: "Um ambiente livre de julgamentos, onde sua fala é a ferramenta principal de cura e autoconhecimento.",
+                    color: "bg-[#e6dcd3]"
+                },
+                {
+                    title: "Ressignificação",
+                    desc: "Olhar para o passado não para viver lá, mas para entender como ele molda o seu presente e suas escolhas.",
+                    color: "bg-[#d3e0e6]"
+                },
+                {
+                    title: "Autonomia",
+                    desc: "O objetivo final não é a dependência da terapia, mas construir ferramentas para que você caminhe sozinho.",
+                    color: "bg-[#e6d3d3]"
+                }
+            ].map(item => (
+                <div class="group text-center">
+                    <div class={`w-24 h-24 mx-auto ${item.color} rounded-[2rem] rotate-45 mb-12 group-hover:rotate-12 transition-transform duration-500 flex items-center justify-center`}>
+                        <div class="-rotate-45 group-hover:-rotate-12 transition-transform duration-500">
+                           <!-- Simple abstract icon representation -->
+                           <div class="w-8 h-8 border-2 border-[#5d5248] rounded-full opacity-50"></div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-serif text-[#5d5248] mb-4">{item.title}</h3>
+                    <p class="text-[#8c7b6d] leading-relaxed">
+                        {item.desc}
+                    </p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

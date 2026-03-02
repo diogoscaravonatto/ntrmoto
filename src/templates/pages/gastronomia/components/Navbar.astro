@@ -1,0 +1,40 @@
+---
+const brand = { name: "Aura" };
+const links = [
+    { label: "Nossa Visão", href: "#filosofia" },
+    { label: "Menu Dégustation", href: "#menu" },
+    { label: "O Ritual", href: "#ritual" },
+    { label: "Reservas", href: "#reserva" },
+];
+---
+
+<header
+    class="fixed top-0 w-full z-50 flex items-center justify-between px-10 h-32"
+>
+    <div>
+        <span class="text-3xl tracking-[0.2em] font-light uppercase text-white"
+            >{brand.name}</span
+        >
+    </div>
+    <div
+        class="hidden md:flex items-center gap-12 text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500"
+    >
+        {
+            links.map((link) => (
+                <a
+                    href={link.href}
+                    class="hover:text-[#d4af37] transition-colors"
+                >
+                    {link.label}
+                </a>
+            ))
+        }
+    </div>
+    <div>
+        <button
+            class="bg-white text-black px-8 py-4 text-[9px] font-black uppercase tracking-[0.3em] hover:bg-[#d4af37] transition-colors outline-hidden group"
+        >
+            Reservar
+        </button>
+    </div>
+</header>

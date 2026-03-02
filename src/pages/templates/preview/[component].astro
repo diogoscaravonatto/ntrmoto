@@ -1,0 +1,87 @@
+---
+// Página dinâmica para preview isolado de componentes
+// Rota: /templates/preview/[component]
+
+import "../../../styles/global.css";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+    const modules = import.meta.glob(
+        "../../../components/templates/components/*.astro",
+    );
+    return Object.keys(modules).map((path) => {
+        const name = path.split("/").pop()?.replace(".astro", "") || "";
+        return { params: { component: name } };
+    });
+}
+
+const { component } = Astro.params;
+
+// Tentar encontrar o componente no glob
+const modules = import.meta.glob(
+    "../../../components/templates/components/*.astro",
+    { eager: true },
+);
+let ComponentToRender = null;
+let foundPath = "";
+
+// Procurar chave que termine com o nome do componente
+for (const [path, mod] of Object.entries(modules)) {
+    // Normalizar path para comparação
+    if (path.endsWith(`/${component}.astro`)) {
+        ComponentToRender = (mod as any).default;
+        foundPath = path;
+        break;
+    }
+}
+
+let errorMsg = "";
+if (!ComponentToRender) {
+    console.error(`Componente não encontrado: ${component}`);
+    const available = Object.keys(modules).join(", ");
+    errorMsg = `Component not found: ${component}. Available: ${available}`;
+    Astro.response.status = 404;
+}
+---
+
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Preview: {component}</title>
+        <style>
+            /* Reset básico e centralização */
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                min-height: 100vh;
+                background: transparent; /* Importante para o iframe */
+            }
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+                min-width: min-content; /* Permite que o conteúdo defina a largura mínima */
+                overflow-x: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="w-full max-w-7xl mx-auto flex justify-center items-center">
+            {
+                errorMsg ? (
+                    <div class="text-red-500 font-mono bg-red-100 p-4 rounded border border-red-200">
+                        {errorMsg}
+                    </div>
+                ) : (
+                    <ComponentToRender />
+                )
+            }
+        </div>
+    </body>
+</html>

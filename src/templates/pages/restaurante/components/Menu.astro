@@ -1,0 +1,171 @@
+---
+import { Image } from "astro:assets";
+---
+
+<!-- MENU SECTION -->
+<section class="py-32 md:py-48 px-8 md:px-16 bg-zinc-950 text-white">
+    <div class="max-w-[1800px] mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-24">
+            <div class="inline-block px-6 py-2 bg-orange-600/20 border border-orange-500/30 rounded-full mb-8">
+                <span class="text-xs font-black uppercase tracking-[0.3em] text-orange-400">MENU DEGUSTAÇÃO</span>
+            </div>
+            <h2 class="font-black text-[12vw] md:text-[10rem] leading-[0.8] tracking-tighter uppercase mb-8" style="font-stretch: ultra-condensed;">
+                EXPERIÊNCIA<br/>
+                <span class="text-transparent" style="-webkit-text-stroke: 2px white;">GASTRONÔMICA</span>
+            </h2>
+            <p class="text-2xl text-zinc-400 max-w-4xl mx-auto leading-relaxed">
+                12 tempos que contam uma história. Cada prato é uma jornada sensorial 
+                criada pelo Chef Rodrigo Oliveira, 3 estrelas Michelin.
+            </p>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+                {
+                    number: "01",
+                    category: "Amuse-Bouche",
+                    name: "Ostra Nativa",
+                    description: "Ostra fresca da costa brasileira, espuma de yuzu, caviar oscietra e flores comestíveis. Um despertar dos sentidos.",
+                    price: "—",
+                    image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80",
+                    highlight: false
+                },
+                {
+                    number: "02",
+                    category: "Entrada",
+                    name: "Tártaro de Atum",
+                    description: "Atum vermelho selvagem, abacate cremoso, molho ponzu artesanal e crocante de arroz negro. Frescor absoluto.",
+                    price: "—",
+                    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
+                    highlight: false
+                },
+                {
+                    number: "03",
+                    category: "Signature",
+                    name: "Wagyu A5 Miyazaki",
+                    description: "180g de puro mármore japonês, selado na manteiga de ervas, acompanha purê de batata-doce roxa e redução de vinho do Porto.",
+                    price: "—",
+                    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
+                    highlight: true
+                },
+                {
+                    number: "04",
+                    category: "Pescado",
+                    name: "Robalo Selvagem",
+                    description: "Robalo capturado artesanalmente, crosta de ervas mediterrâneas, risoto de limão siciliano e espuma de champagne.",
+                    price: "—",
+                    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80",
+                    highlight: false
+                },
+                {
+                    number: "05",
+                    category: "Vegetal",
+                    name: "Cogumelos Selvagens",
+                    description: "Seleção de cogumelos raros, risoto de trufa negra, parmesão 36 meses e óleo de avelã tostada. Umami puro.",
+                    price: "—",
+                    image: "https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2?auto=format&fit=crop&w=800&q=80",
+                    highlight: false
+                },
+                {
+                    number: "06",
+                    category: "Sobremesa",
+                    name: "Desconstrução de Maracujá",
+                    description: "Mousse arejada, sorvete de baunilha de Madagascar, crocante de merengue e redução de maracujá do cerrado.",
+                    price: "—",
+                    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80",
+                    highlight: false
+                }
+            ].map((dish, index) => (
+                <div 
+                    class:list={['group relative', { 'md:col-span-2 lg:col-span-3': dish.highlight }]}
+                    style={`animation-delay: ${index * 0.1}s`}
+                >
+                    <div class:list={['relative bg-zinc-900 border-2 border-white/10 rounded-3xl overflow-hidden transition-all duration-500 group-hover:border-orange-500/50', { 'md:flex md:flex-row': dish.highlight }]}>
+                        <!-- Image -->
+                        <div class:list={['relative overflow-hidden', dish.highlight ? 'md:w-1/2' : 'aspect-square']}>
+                            <Image 
+                                src={dish.image} 
+                                alt={dish.name}
+                                width={800}
+                                height={800}
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                layout="constrained"
+                            />
+                            <div class="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/50 to-transparent"></div>
+                            
+                            <!-- Number Badge -->
+                            <div class="absolute top-6 left-6 w-16 h-16 rounded-full bg-orange-600 flex items-center justify-center">
+                                <span class="text-2xl font-black">{dish.number}</span>
+                            </div>
+
+                            {dish.highlight && (
+                                <div class="absolute top-6 right-6 px-4 py-2 bg-yellow-500 text-black rounded-full">
+                                    <span class="text-xs font-black uppercase tracking-wider">★ SIGNATURE</span>
+                                </div>
+                            )}
+                        </div>
+
+                        <!-- Content -->
+                        <div class:list={['p-8', { 'md:w-1/2 md:flex md:flex-col md:justify-center': dish.highlight }]}>
+                            <div class="text-xs tracking-[0.3em] uppercase text-orange-400 mb-3">{dish.category}</div>
+                            <h3 class="text-3xl md:text-4xl font-black uppercase tracking-tight mb-4 group-hover:text-orange-500 transition-colors">
+                                {dish.name}
+                            </h3>
+                            <p class="text-zinc-400 leading-relaxed mb-6 text-lg">
+                                {dish.description}
+                            </p>
+                            
+                            {dish.highlight && (
+                                <div class="pt-6 border-t border-white/10">
+                                    <div class="flex items-center gap-4 text-sm text-zinc-500">
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                            <span>Tempo de preparo: 45 min</span>
+                                        </div>
+                                        <div class="h-4 w-px bg-white/10"></div>
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                            </svg>
+                                            <span>Serve 1 pessoa</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <!-- Glow Effect -->
+                    <div class="absolute inset-0 bg-linear-to-r from-orange-600 to-red-600 rounded-3xl opacity-0 group-hover:opacity-10 shadow-2xl blur-2xl transition-opacity -z-10"></div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Menu Info -->
+        <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl text-center">
+                <div class="text-5xl font-black text-orange-600 mb-4">R$ 890</div>
+                <div class="text-xs tracking-[0.3em] uppercase text-zinc-500 mb-4">Menu Degustação Completo</div>
+                <p class="text-sm text-zinc-400">12 tempos + harmonização de vinhos incluída</p>
+            </div>
+            
+            <div class="p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl text-center">
+                <div class="text-5xl font-black text-orange-600 mb-4">3-4h</div>
+                <div class="text-xs tracking-[0.3em] uppercase text-zinc-500 mb-4">Duração da Experiência</div>
+                <p class="text-sm text-zinc-400">Tempo médio para aproveitar cada momento</p>
+            </div>
+            
+            <div class="p-8 bg-linear-to-br from-orange-600 to-red-700 rounded-2xl text-center">
+                <div class="text-5xl font-black mb-4">★★★</div>
+                <div class="text-xs tracking-[0.3em] uppercase mb-4">MICHELIN GUIDE 2026</div>
+                <button class="w-full py-3 bg-white text-orange-600 font-black text-xs uppercase tracking-wider hover:bg-zinc-950 hover:text-white transition-all rounded-lg">
+                    RESERVAR AGORA
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,172 @@
+---
+/**
+ * PricingTable - Tabela de preços com 3 planos
+ * Destaque automático no plano recomendado
+ *
+ * @usage
+ * <PricingTable
+ *   plans={[
+ *     { name: "Básico", price: "R$ 99", period: "/mês", features: ["1 página", "SEO básico"], cta: "Começar" },
+ *     { name: "Pro", price: "R$ 199", period: "/mês", features: ["5 páginas", "SEO avançado"], cta: "Escolher Pro", featured: true },
+ *     { name: "Enterprise", price: "R$ 499", period: "/mês", features: ["Ilimitado", "Suporte 24h"], cta: "Contato" },
+ *   ]}
+ * />
+ */
+
+interface PricingPlan {
+    name: string;
+    price: string;
+    period?: string;
+    description?: string;
+    features: string[];
+    cta: string;
+    ctaLink?: string;
+    /** Se true, destaca visualmente este plano */
+    featured?: boolean;
+}
+
+interface Props {
+    plans: PricingPlan[];
+    title?: string;
+    subtitle?: string;
+    theme?: "dark" | "light";
+}
+
+const {
+    plans,
+    title = "Escolha seu plano",
+    subtitle,
+    theme = "dark",
+} = Astro.props;
+
+const isDark = theme === "dark";
+---
+
+<section class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2
+                class:list={[
+                    "text-4xl md:text-5xl font-black mb-4",
+                    isDark ? "text-white" : "text-zinc-900",
+                ]}
+            >
+                {title}
+            </h2>
+            {
+                subtitle && (
+                    <p
+                        class:list={[
+                            "text-lg max-w-2xl mx-auto",
+                            isDark ? "text-zinc-400" : "text-zinc-600",
+                        ]}
+                    >
+                        {subtitle}
+                    </p>
+                )
+            }
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            {
+                plans.map((plan) => (
+                    <div
+                        class:list={[
+                            "relative rounded-3xl p-8 flex flex-col transition-all",
+                            plan.featured
+                                ? isDark
+                                    ? "bg-linear-to-b from-purple-900/30 to-blue-900/30 border-2 border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.15)] scale-105"
+                                    : "bg-linear-to-b from-purple-50 to-blue-50 border-2 border-purple-400 shadow-xl scale-105"
+                                : isDark
+                                  ? "bg-zinc-900 border border-white/10"
+                                  : "bg-white border border-zinc-200",
+                        ]}
+                    >
+                        {plan.featured && (
+                            <span class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-purple-500 text-white text-xs font-black uppercase tracking-widest rounded-full">
+                                Recomendado
+                            </span>
+                        )}
+
+                        <h3
+                            class:list={[
+                                "text-xl font-bold mb-2",
+                                isDark ? "text-white" : "text-zinc-900",
+                            ]}
+                        >
+                            {plan.name}
+                        </h3>
+
+                        {plan.description && (
+                            <p
+                                class:list={[
+                                    "text-sm mb-4",
+                                    isDark ? "text-zinc-500" : "text-zinc-500",
+                                ]}
+                            >
+                                {plan.description}
+                            </p>
+                        )}
+
+                        <div class="mb-6">
+                            <span
+                                class:list={[
+                                    "text-4xl font-black",
+                                    isDark ? "text-white" : "text-zinc-900",
+                                ]}
+                            >
+                                {plan.price}
+                            </span>
+                            {plan.period && (
+                                <span
+                                    class:list={[
+                                        "text-sm",
+                                        isDark
+                                            ? "text-zinc-500"
+                                            : "text-zinc-500",
+                                    ]}
+                                >
+                                    {plan.period}
+                                </span>
+                            )}
+                        </div>
+
+                        <ul class="space-y-3 mb-8 flex-1">
+                            {plan.features.map((f) => (
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-400 shrink-0">
+                                        ✓
+                                    </span>
+                                    <span
+                                        class:list={[
+                                            "text-sm",
+                                            isDark
+                                                ? "text-zinc-400"
+                                                : "text-zinc-600",
+                                        ]}
+                                    >
+                                        {f}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <a
+                            href={plan.ctaLink || "#"}
+                            class:list={[
+                                "block text-center py-4 px-6 rounded-2xl font-bold transition-all hover:scale-105 active:scale-95",
+                                plan.featured
+                                    ? "bg-purple-500 text-white hover:bg-purple-600 shadow-lg"
+                                    : isDark
+                                      ? "bg-white/10 text-white hover:bg-white/20 border border-white/10"
+                                      : "bg-zinc-900 text-white hover:bg-zinc-800",
+                            ]}
+                        >
+                            {plan.cta}
+                        </a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

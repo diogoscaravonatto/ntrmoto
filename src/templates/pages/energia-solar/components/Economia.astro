@@ -1,0 +1,58 @@
+---
+const stats = {
+    title: ["O lucro que você", "está perdendo."],
+    items: [
+        {
+            label: "Economia em 25 anos",
+            value: "R$ 180k",
+            desc: "Baseado em faturamento de R$ 500/mês.",
+        },
+        {
+            label: "Valorização Imobiliária",
+            value: "+15%",
+            desc: "Imóveis solares vendem mais rápido e por maior valor.",
+        },
+        {
+            label: "Retorno (Payback)",
+            value: "3-4 anos",
+            desc: "Payback médio em sistemas residenciais.",
+        },
+        {
+            label: "Independência",
+            value: "95%",
+            desc: "Redução máxima permitida por lei.",
+        },
+    ],
+};
+---
+
+<section class="py-32 bg-slate-950 text-white relative">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-20">
+            <h2
+                class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter"
+            >
+                {stats.title[0]}
+                <span class="text-emerald-500">{stats.title[1]}</span>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {
+                stats.items.map((item) => (
+                    <div class="p-8 bg-white/5 border border-white/10 rounded-3xl hover:border-emerald-500/30 transition-all group">
+                        <p class="text-[9px] font-black text-emerald-400 uppercase tracking-widest mb-8 italic">
+                            {item.label}
+                        </p>
+                        <h3 class="text-4xl md:text-5xl font-black mb-4 tracking-tighter italic">
+                            {item.value}
+                        </h3>
+                        <p class="text-xs font-bold text-slate-400 leading-relaxed italic lowercase">
+                            {item.desc}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

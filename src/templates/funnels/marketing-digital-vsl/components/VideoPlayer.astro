@@ -1,0 +1,113 @@
+---
+const {
+    thumbnail = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop",
+    videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder
+} = Astro.props;
+
+interface Props {
+    thumbnail?: string;
+    videoUrl?: string;
+}
+---
+
+<div class="relative w-full max-w-4xl mx-auto group">
+    <!-- Glow Effect Background -->
+    <div
+        class="absolute -inset-1 bg-linear-to-r from-violet-600 to-fuchsia-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"
+    >
+    </div>
+
+    <!-- Video Container -->
+    <div
+        class="relative w-full aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10"
+        id="video-wrapper"
+    >
+        <!-- Thumbnail Layer -->
+        <div
+            class="absolute inset-0 cursor-pointer z-10 group/play"
+            id="video-thumbnail"
+        >
+            <img
+                src={thumbnail}
+                alt="Vídeo VSL"
+                class="w-full h-full object-cover opacity-80 group-hover/play:scale-105 transition-transform duration-700 ease-out"
+            />
+            <div
+                class="absolute inset-0 bg-black/40 group-hover/play:bg-black/20 transition-colors duration-300"
+            >
+            </div>
+
+            <!-- Play Button -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div
+                    class="relative flex items-center justify-center w-20 h-20 md:w-24 md:h-24"
+                >
+                    <div
+                        class="absolute inset-0 bg-violet-600 rounded-full animate-ping opacity-25"
+                    >
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-violet-600 rounded-full animate-ping opacity-25 delay-300"
+                    >
+                    </div>
+                    <div
+                        class="relative w-full h-full bg-linear-to-br from-violet-500 to-fuchsia-600 rounded-full flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-sm group-hover/play:scale-110 transition-transform duration-300"
+                    >
+                        <svg
+                            class="w-8 h-8 md:w-10 md:h-10 text-white fill-current ml-1"
+                            viewBox="0 0 24 24"
+                        >
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sound Alert -->
+            <div
+                class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 animate-pulse"
+            >
+                <svg
+                    class="w-5 h-5 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                    ></path></svg
+                >
+                <span
+                    class="text-xs font-bold text-white uppercase tracking-wider"
+                    >Ligue o Som</span
+                >
+            </div>
+        </div>
+
+        <!-- Iframe Layer (Hidden initially) -->
+        <iframe
+            src={videoUrl}
+            title="Video Sales Letter"
+            class="absolute inset-0 w-full h-full opacity-0 pointer-events-none transition-opacity duration-500 z-20"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            id="video-iframe"></iframe>
+    </div>
+</div>
+
+<script>
+    // Simple script to "play" video by showing iframe
+    const thumbnail = document.getElementById("video-thumbnail");
+    const iframe = document.getElementById("video-iframe");
+
+    if (thumbnail && iframe) {
+        thumbnail.addEventListener("click", () => {
+            thumbnail.classList.add("opacity-0", "pointer-events-none");
+            iframe.classList.remove("opacity-0", "pointer-events-none");
+            // In a real app, you might need to append '?autoplay=1' here if not static
+        });
+    }
+</script>

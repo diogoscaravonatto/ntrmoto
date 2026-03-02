@@ -1,0 +1,31 @@
+---
+const cta = {
+    title: ["Sua jornada para o", "essencial", "começa agora."],
+    button: "Solicitar Convite de Membro",
+    tagline: "Disponibilidade Limitada • Atendimento Exclusivo",
+};
+---
+
+<section id="reserva" class="py-40 px-6 text-center">
+    <div class="max-w-3xl mx-auto italic">
+        <h2
+            class="text-5xl md:text-8xl font-serif text-[#4a3f35] leading-tight mb-16 animate-pulse tracking-tighter"
+        >
+            {cta.title[0]}
+            <span class="italic underline decoration-[#d4bc9a]/30"
+                >{cta.title[1]}</span
+            >
+            {cta.title[2]}
+        </h2>
+        <button
+            class="px-16 py-8 bg-[#4a3f35] text-white rounded-full text-sm font-black uppercase tracking-[0.2em] hover:scale-105 transition-all shadow-2xl outline-hidden group italic"
+        >
+            {cta.button}
+        </button>
+        <p
+            class="mt-8 text-[10px] text-[#d4bc9a] font-black uppercase tracking-widest italic leading-none"
+        >
+            {cta.tagline}
+        </p>
+    </div>
+</section>

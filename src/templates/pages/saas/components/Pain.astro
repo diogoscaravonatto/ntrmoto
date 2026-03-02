@@ -1,0 +1,90 @@
+---
+// Pain — Seção que expõe o problema do cliente (dados fragmentados)
+const pain = {
+    eyebrow: "O Grande Problema",
+    title: "Dados em",
+    titleHighlight: "Silos",
+    titleSuffix: "matam sua eficiência.",
+    description:
+        "Você está perdendo tempo alternando entre 15 abas diferentes. A fragmentação de ferramentas cria pontos cegos que impedem o crescimento real.",
+};
+
+const painPoints = [
+    {
+        title: "Fadiga de Contexto",
+        desc: "Seu time perde 20% do dia apenas tentando encontrar a informação certa.",
+    },
+    {
+        title: "Decisões Cegas",
+        desc: "Sem uma visão unificada, você está operando com base em dados obsoletos de ontem.",
+    },
+    {
+        title: "Escalabilidade Travada",
+        desc: "Ferramentas legadas não aguentam a carga de uma infraestrutura moderna.",
+    },
+];
+---
+
+<section class="py-40 bg-zinc-950 border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="space-y-8">
+                <span
+                    class="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-500"
+                    >{pain.eyebrow}</span
+                >
+                <h2
+                    class="text-5xl md:text-7xl font-black uppercase italic tracking-tighter"
+                >
+                    {pain.title}
+                    <br /><span class="text-indigo-500"
+                        >{pain.titleHighlight}</span
+                    >
+                    {pain.titleSuffix}
+                </h2>
+                <p class="text-zinc-500 text-lg leading-relaxed">
+                    {pain.description}
+                </p>
+
+                <div class="space-y-6 pt-10">
+                    {
+                        painPoints.map((item) => (
+                            <div class="flex gap-6 items-start">
+                                <div class="size-6 rounded-full border border-zinc-800 flex items-center justify-center text-red-500 font-bold">
+                                    !
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold mb-1 uppercase tracking-tight text-sm">
+                                        {item.title}
+                                    </h4>
+                                    <p class="text-zinc-600 text-xs leading-relaxed">
+                                        {item.desc}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <div class="relative">
+                <div
+                    class="aspect-square rounded-[3rem] bg-indigo-500/5 border border-indigo-500/10 p-12 flex items-center justify-center group overflow-hidden"
+                >
+                    <div
+                        class="absolute inset-x-0 h-px bg-linear-to-r from-transparent via-indigo-500/50 to-transparent animate-scan"
+                    >
+                    </div>
+                    <div
+                        class="grid grid-cols-4 gap-4 w-full h-full opacity-20"
+                    >
+                        {
+                            [...Array(16)].map(() => (
+                                <div class="bg-zinc-800 rounded-lg animate-pulse" />
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

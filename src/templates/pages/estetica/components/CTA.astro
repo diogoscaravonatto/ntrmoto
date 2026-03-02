@@ -1,0 +1,49 @@
+---
+const cta = {
+    title: ["Desperte o seu melhor", "Olhar."],
+    description:
+        '"Beleza é a iluminação da alma manifestada no reflexo do espelho."',
+    button: "Quero meu Plano Personalizado",
+    urgency: "Vagas Limitadas para este Mês",
+};
+---
+
+<section class="py-40 px-6">
+    <div
+        class="max-w-6xl mx-auto bg-white rounded-[4rem] p-12 md:p-32 text-center shadow-3xl relative overflow-hidden"
+    >
+        <div
+            class="absolute inset-0 bg-linear-to-br from-[#f8e8e3]/30 via-transparent to-[#fcf2ef]/50"
+        >
+        </div>
+        <div class="relative z-10">
+            <h2
+                class="text-5xl md:text-8xl font-bold text-[#4a3a37] tracking-tighter mb-12"
+            >
+                {cta.title[0]}
+                <span class="italic font-light text-[#f8b4b4]"
+                    >{cta.title[1]}</span
+                >
+            </h2>
+            <p
+                class="text-xl text-[#9d8a87] max-w-xl mx-auto mb-16 italic font-light lowercase leading-tight"
+            >
+                {cta.description}
+            </p>
+            <div
+                class="flex flex-col md:flex-row items-center justify-center gap-6"
+            >
+                <button
+                    class="px-12 py-6 bg-[#4a3a37] text-white font-black rounded-full hover:bg-[#f8b4b4] transition-all text-xs uppercase tracking-[0.2em] shadow-2xl outline-hidden group"
+                >
+                    {cta.button}
+                </button>
+                <span
+                    class="text-[#f8b4b4] font-black text-[10px] uppercase tracking-widest"
+                >
+                    {cta.urgency}
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
