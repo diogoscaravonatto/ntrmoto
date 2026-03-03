@@ -54,9 +54,4 @@ export default [
         // Ignorar arquivos de build e configuração
         ignores: ["dist/", ".astro/", "node_modules/"]
     },
-    {
-        files: ["src/components/Icon.astro"],
-        rules: {
-            "astro/no-set-html-directive": "off"
-        }
-    }
+];

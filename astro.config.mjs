@@ -1,13 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config'; // Importa a função helper para definir a configuração com suporte a Typescript
-import vue from '@astrojs/vue'; // Integração para suportar componentes Vue.js no projeto
 import cloudflare from '@astrojs/cloudflare'; // Adaptador para deploy e execução na infraestrutura da Cloudflare
 import tailwindcss from '@tailwindcss/vite'; // Plugin Vite para suporte ao Tailwind CSS v4
 import sitemap from '@astrojs/sitemap'; // Integração para gerar automaticamente o arquivo sitemap.xml
 
 import partytown from '@astrojs/partytown'; // Integração para mover scripts de terceiros pesados para Web Workers
 
-import icon from 'astro-icon'; // Integração para gerenciamento e carregamento otimizado de ícones
 import compress from 'astro-compress'; // Integração para comprimir assets (HTML, JS, CSS) no build final
 
 import robotsTxt from 'astro-robots-txt'; // Integração para gerar automaticamente o arquivo robots.txt
@@ -17,24 +15,13 @@ export default defineConfig({
   output: 'server', // Define o modo de saída como SSR (Server-Side Rendering) para processamento dinâmico
   site: 'https://preview.vetpragas.com.br', // URL base do site, usada para gerar sitemaps e links absolutos
 
-  // Adaptador Cloudflare apenas em build/preview (miniflare instável em dev no beta atual)
-  adapter: process.argv.includes('build') || process.argv.includes('preview') // Verifica se o comando atual é build ou preview
-    ? cloudflare({ // Ativa o adaptador Cloudflare se estiver em build/preview
-      imageService: 'compile', // Configura o serviço de imagem para compilação estática compatível com Cloudflare
-    })
-    : undefined, // Em desenvolvimento, não usa adaptador para evitar instabilidades do Miniflare
+  // Adaptador Cloudflare para deploy na infraestrutura Cloudflare Workers
+  adapter: cloudflare({
+    imageService: 'compile', // Habilita a compilação local de imagens para rotas prerenderizadas (Sharp no tempo de build)
+  }),
 
   integrations: [ // Lista de todas as integrações/plugins ativos no projeto
-    // Importante para SEO
-    vue({ // Configuração da integração Vue
-      devtools: false, // Desativa as ferramentas de desenvolvimento do Vue no cliente para performance
-    }),
-    sitemap({ // Configuração do gerador de sitemap
-      filter: (page) => // Função para filtrar quais páginas devem entrar no sitemap
-        !page.includes('/templates/preview/') && // Exclui páginas de preview do sitemap
-        !page.includes('/404') && // Exclui a página 404
-        !page.includes('/500'), // Exclui a página 500
-    }),
+    sitemap(), // Gera automaticamente o sitemap.xml
     partytown({ // Configuração do Partytown para scripts de terceiros
       config: {
         forward: ['dataLayer.push'], // Encaminha eventos do Google Tag Manager para o Web Worker
@@ -52,7 +39,6 @@ export default defineConfig({
       },
     }),
 
-    icon(), // Inicializa a integração de ícones sem configurações adicionais
     compress({ // Configurações de compressão de assets
       CSS: true, // Habilita compressão de CSS
       HTML: true, // Habilita compressão de HTML
@@ -66,7 +52,7 @@ export default defineConfig({
         {
           userAgent: "*", // Aplica a regra para todos os robôs (Google, Bing, etc)
           allow: "/", // Permite o rastreamento da raiz do site
-          disallow: ["/templates/preview/", "/404", "/500"], // Proíbe o rastreamento de páginas internas ou de erro
+          disallow: ["/404", "/500"], // Proíbe o rastreamento de páginas de erro
         },
       ],
     }),
@@ -78,22 +64,7 @@ export default defineConfig({
         protocol: 'https', // Protocolo seguro obrigatório
         hostname: 'images.unsplash.com', // Permite imagens do Unsplash
       },
-      {
-        protocol: 'https',
-        hostname: 'placehold.co', // Permite imagens do Placehold.co (usado em protótipos)
-      },
-      {
-        protocol: 'https',
-        hostname: 'i.pravatar.cc', // Permite imagens do Pravatar (usado para avatares fake)
-      },
     ],
-    // Otimizações de performance com Sharp
-    service: { // Define o motor de processamento de imagens
-      entrypoint: 'astro/assets/services/sharp', // Usa o Sharp, que é extremamente performático
-      config: {
-        limitInputPixels: false, // Remove o limite de pixels de entrada (cuidado com memória em imagens gigantes)
-      },
-    },
   },
 
   devToolbar: { // Configuração da barra de ferramentas lateral do Astro em desenvolvimento
@@ -102,8 +73,5 @@ export default defineConfig({
 
   vite: { // Configurações específicas para o motor de build Vite
     plugins: [tailwindcss()], // Injeta o plugin do Tailwind CSS no fluxo do Vite
-    optimizeDeps: { // Otimização de pré-bundle de dependências
-      exclude: ['astro', 'sharp'], // Exclui astro e sharp do pré-bundle para evitar erros de binários nativos
-    },
   },
 });

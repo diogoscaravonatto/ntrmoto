@@ -17,7 +17,7 @@
 		"enabled": true // Ativa métricas e monitoramento de erros no painel da Cloudflare
 	},
 	"route": {
-		"pattern": "vetpragas.com.br", // Endereço público onde o projeto será servido
+		"pattern": "preview.vetpragas.com.br", // Endereço público onde o projeto será servido
 		"zone_name": "vetpragas.com.br", // Zona DNS que gerencia o domínio no Cloudflare
 		"custom_domain": true // Indica o uso de um domínio personalizado em vez do subdomínio .workers.dev
 	}

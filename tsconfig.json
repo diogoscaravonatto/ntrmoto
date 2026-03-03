@@ -14,15 +14,6 @@
       "@components/*": [
         "src/components/*"
       ],
-      "@templates/*": [
-        "src/templates/*"
-      ],
-      "@templates-pages/*": [
-        "src/templates/pages/*"
-      ],
-      "@shared/*": [
-        "src/components/shared/*"
-      ],
       "@layouts/*": [
         "src/layouts/*"
       ],
