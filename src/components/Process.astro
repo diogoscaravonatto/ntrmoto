@@ -1,5 +1,12 @@
 ---
-import { vetPragasData } from './content';
+import { vetPragasData } from "./content";
+import { Image } from "astro:assets";
+import inspecaoImg from "@assets/images/inspecao.png";
+import planoImg from "@assets/images/plano.png";
+import aplicacaoImg from "@assets/images/aplicacao.png";
+import monitoramentoImg from "@assets/images/monitoramento.png";
+
+const stepIcons = [inspecaoImg, planoImg, aplicacaoImg, monitoramentoImg];
 ---
 
 <section id="metodologia" class="py-24 bg-slate-50 relative overflow-hidden">
@@ -63,8 +70,8 @@ import { vetPragasData } from './content';
           )}
 
           <!-- Card (Icon) -->
-          <div class="flex-shrink-0 w-24 h-24 lg:w-32 lg:h-32 mb-0 lg:mb-8 relative">
-             <div class="absolute inset-0 bg-white border-2 border-slate-200 rounded-3xl lg:rounded-[2rem] shadow-xl shadow-slate-200/50"></div>
+          <div class="shrink-0 w-24 h-24 lg:w-32 lg:h-32 mb-0 lg:mb-8 relative">
+             <div class="absolute inset-0 bg-white border-2 border-slate-200 rounded-3xl lg:rounded-4xl shadow-xl shadow-slate-200/50"></div>
              
              <!-- Activation Pulse -->
              <div 
@@ -79,10 +86,8 @@ import { vetPragasData } from './content';
 
              <!-- Content Image -->
              <div class="relative w-full h-full flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-500">
-               {index === 0 && <img src="/images/inspecao.png" alt={step.title} class="w-14 h-14 lg:w-20 lg:h-20 object-contain" />}
-               {index === 1 && <img src="/images/plano.png" alt={step.title} class="w-14 h-14 lg:w-20 lg:h-20 object-contain" />}
-               {index === 2 && <img src="/images/aplicacao.png" alt={step.title} class="w-14 h-14 lg:w-20 lg:h-20 object-contain" />}
-               {index === 3 && <img src="/images/monitoramento.png" alt={step.title} class="w-14 h-14 lg:w-20 lg:h-20 object-contain" />}
+              <!-- Icons Using Next Gen Optimisation -->
+              <Image src={stepIcons[index]} alt={step.title} width="128" height="128" loading="lazy" decoding="async" class="w-10 h-10 lg:w-16 lg:h-16 relative z-10 drop-shadow-md group-hover:scale-110 transition-transform duration-500" />
              </div>
           </div>
 

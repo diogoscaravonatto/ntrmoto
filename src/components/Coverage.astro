@@ -1,5 +1,7 @@
 ---
 import { vetPragasData } from "./content";
+import { Image } from "astro:assets";
+import mapaPrImg from "@assets/images/mapa-pr.png";
 ---
 
 <section class="py-24 bg-white relative">
@@ -68,9 +70,13 @@ import { vetPragasData } from "./content";
                             class="relative transform rotateX-[25deg] rotateY-[-10deg] rotateZ-[2deg] transition-all duration-700 hover:translate-y-[-10px]"
                         >
                             <!-- The User's Map Image -->
-                            <img
-                                src="/images/mapa-pr.png"
+                            <Image
+                                src={mapaPrImg}
                                 alt="Mapa do Paraná"
+                                width="500"
+                                height="300"
+                                loading="lazy"
+                                decoding="async"
                                 class="w-full h-auto drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] filter brightness-90"
                             />
 

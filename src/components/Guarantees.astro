@@ -1,27 +1,35 @@
 ---
 import { vetPragasData } from "./content";
+import { Image } from "astro:assets";
+import bayerImg from "@assets/images/lg-bayer.jpeg";
+import syngentaImg from "@assets/images/lg-syngenta.jpeg";
+import basfImg from "@assets/images/lg-basf.jpeg";
+import textureTdImg from "@assets/images/vetpragas-textura-td.png";
 
 const brands = [
-    { src: "/images/lg-bayer.jpeg", alt: "Bayer", h: "h-10 lg:h-12" },
-    { src: "/images/lg-syngenta.jpeg", alt: "Syngenta", h: "h-10 lg:h-12" },
-    { src: "/images/lg-basf.jpeg", alt: "BASF", h: "h-10 lg:h-12" },
-    { src: "/images/lg-adama.jpeg", alt: "Adama", h: "h-10 lg:h-12" },
-    { src: "/images/lg-bequisa.jpeg", alt: "Bequisa", h: "h-11 lg:h-14" },
-    { src: "/images/lg-rogama.jpeg", alt: "Rogama", h: "h-11 lg:h-14" },
-    { src: "/images/lg-dominus.png", alt: "Dominus", h: "h-10 lg:h-12" },
+    { src: bayerImg, alt: "Bayer", h: "h-10 lg:h-12" },
+    { src: syngentaImg, alt: "Syngenta", h: "h-10 lg:h-12" },
+    { src: basfImg, alt: "Basf", h: "h-8 lg:h-10" },
+    { src: bayerImg, alt: "Bayer", h: "h-10 lg:h-12" },
+    { src: syngentaImg, alt: "Syngenta", h: "h-10 lg:h-12" },
+    { src: basfImg, alt: "Basf", h: "h-8 lg:h-10" },
 ];
 ---
 
-<section class="py-24 bg-white relative">
+<section id="empresa" class="py-24 bg-white relative overflow-hidden">
     <div class="container mx-auto px-6">
         <div
             class="max-w-6xl mx-auto rounded-[3rem] bg-slate-900 p-12 lg:p-20 relative overflow-hidden"
         >
             <!-- Background Texture -->
-            <img
-                src="/vetpragas-textura-td.png"
+            <Image
+                src={textureTdImg}
                 alt=""
-                class="absolute top-0 right-0 w-[500px] lg:w-[850px] h-auto opacity-70 pointer-events-none select-none z-0"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                class="absolute top-0 right-0 w-[400px] lg:w-[600px] h-auto opacity-40 pointer-events-none select-none z-0 rotate-180"
             />
 
             <div class="relative z-10">
@@ -146,13 +154,20 @@ const brands = [
                         <div class="brand-ticker-track">
                             {
                                 [...brands, ...brands, ...brands].map(
-                                    (logo) => (
+                                    (brand) => (
                                         <div class="brand-node group">
                                             <div class="brand-card">
-                                                <img
-                                                    src={logo.src}
-                                                    alt={logo.alt}
-                                                    class={`${logo.h} w-auto object-contain transition-transform duration-500 group-hover:scale-110`}
+                                                <Image
+                                                    src={brand.src}
+                                                    alt={brand.alt}
+                                                    width="150"
+                                                    height="48"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    class:list={[
+                                                        "object-contain max-w-full opacity-60 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0",
+                                                        brand.h,
+                                                    ]}
                                                 />
                                             </div>
                                         </div>

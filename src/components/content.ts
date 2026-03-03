@@ -1,3 +1,12 @@
+import baratasImg from "@assets/images/baratas.png";
+import ratosImg from "@assets/images/ratos.png";
+import cupinsImg from "@assets/images/cupins.png";
+import formigasImg from "@assets/images/formigas.png";
+import aranhasImg from "@assets/images/aranhas.png";
+import moscasImg from "@assets/images/moscas.png";
+import pombosImg from "@assets/images/pombos.png";
+import pulgasImg from "@assets/images/pulgas.png";
+
 export const vetPragasData = {
   hero: {
     status: "STATUS OPERACIONAL: ATIVO",
@@ -75,49 +84,49 @@ export const vetPragasData = {
       name: "Baratas",
       info: "Transmissoras de doenças e causadoras de alergias, as baratas se escondem em frestas e redes de esgoto.",
       danger: "Contaminação de alimentos e transmissão de patógenos.",
-      image: "/baratas.png"
+      image: baratasImg
     },
     {
       name: "Ratos",
       info: "Roedores que causam danos estruturais e transmitem doenças graves como a leptospirose.",
       danger: "Danos em fiação elétrica e riscos graves à saúde humana.",
-      image: "/ratos.png"
+      image: ratosImg
     },
     {
       name: "Cupins",
       info: "Pragas silenciosas que destroem estruturas de madeira e móveis em pouco tempo.",
       danger: "Prejuízos financeiros elevados e riscos estruturais.",
-      image: "/cupins.png"
+      image: cupinsImg
     },
     {
       name: "Formigas",
       info: "Pequenas invasoras que causam contaminações rápidas em alimentos e danos em aparelhos eletrônicos.",
       danger: "Contaminação bacteriana e perda de equipamentos sensíveis.",
-      image: "/formigas.png"
+      image: formigasImg
     },
     {
       name: "Aranhas e Escorpiões",
       info: "Animais peçonhentos que oferecem risco imediato. Buscam abrigo em frestas, entulhos e áreas escuras.",
       danger: "Picadas venenosas com potencial de gravidade médica imediata.",
-      image: "/aranhas.png"
+      image: aranhasImg
     },
     {
       name: "Moscas e Mosquitos",
       info: "Vetores biológicos de doenças como Dengue, Zika e diversas contaminações alimentares.",
       danger: "Transmissão rápida de vírus e bactérias em ambientes comuns.",
-      image: "/moscas.png"
+      image: moscasImg
     },
     {
       name: "Pombos",
       info: "Aves que buscam abrigo em telhados e forros, causando danos e riscos biológicos através das fezes.",
       danger: "Transmissão de fungos e bactérias respiratórias graves.",
-      image: "/pombos.png"
+      image: pombosImg
     },
     {
       name: "Pulgas e Carrapatos",
       info: "Parasitas que transmitem doenças para humanos e animais, além de causarem infestações rápidas.",
       danger: "Transmissão de zoonoses e sérios riscos à saúde dos pets.",
-      image: "/pulgas.png"
+      image: pulgasImg
     }
   ],
   about: {

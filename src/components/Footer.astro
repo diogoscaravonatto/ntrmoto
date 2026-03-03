@@ -1,5 +1,6 @@
 ---
-
+import { Image } from "astro:assets";
+import texturaIdImg from "@assets/images/vetpragas-textura-id.png";
 ---
 
 <footer
@@ -7,9 +8,13 @@
     class="bg-primary pt-24 pb-0 relative overflow-hidden text-white"
 >
     <!-- Main Background Texture (Aumentada no Desktop) -->
-    <img
-        src="/vetpragas-textura-id.png"
+    <Image
+        src={texturaIdImg}
         alt=""
+        width="750"
+        height="750"
+        loading="lazy"
+        decoding="async"
         class="absolute bottom-0 right-0 w-[350px] lg:w-[750px] h-auto pointer-events-none z-0"
     />
 
@@ -21,6 +26,10 @@
                     <img
                         src="/logovetpragas1.3.svg"
                         alt="VetPragas Logo"
+                        width="200"
+                        height="64"
+                        loading="lazy"
+                        decoding="async"
                         class="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                     />
                 </a>
