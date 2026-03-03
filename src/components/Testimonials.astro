@@ -37,15 +37,16 @@ const testimonials = [dep1, dep2, dep3, dep4, dep5, dep6, dep7];
       class="max-w-[700px] mx-auto bg-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-200 relative z-10"
     >
       <!-- Fixed Header -->
-      <div class="relative z-20 bg-white border-b border-slate-100">
+      <div
+        class="relative z-20 bg-white border-b border-slate-100 flex items-center justify-center p-2 sm:p-4"
+      >
         <Image
           src={headerImg}
           alt="Google Reviews Header"
-          width="700"
-          height="120"
-          loading="lazy"
+          format="webp"
+          loading="eager"
           decoding="async"
-          class="w-full h-auto block"
+          class="w-full max-w-full h-auto block object-contain"
         />
       </div>
 
@@ -61,11 +62,10 @@ const testimonials = [dep1, dep2, dep3, dep4, dep5, dep6, dep7];
                 <Image
                   src={img}
                   alt={`Depoimento ${index + 1}`}
-                  width="700"
-                  height="250"
+                  format="webp"
                   loading="lazy"
                   decoding="async"
-                  class="w-full h-auto block image-sharp"
+                  class="w-full h-auto block image-sharp object-contain"
                 />
               </div>
             ))
@@ -75,11 +75,10 @@ const testimonials = [dep1, dep2, dep3, dep4, dep5, dep6, dep7];
             <Image
               src={testimonials[0]}
               alt="Depoimento 1 Duplicate"
-              width="700"
-              height="250"
+              format="webp"
               loading="lazy"
               decoding="async"
-              class="w-full h-auto block image-sharp"
+              class="w-full h-auto block image-sharp object-contain"
             />
           </div>
         </div>
@@ -114,8 +113,8 @@ const testimonials = [dep1, dep2, dep3, dep4, dep5, dep6, dep7];
   .testimonial-slider {
     display: flex;
     flex-direction: column;
-    /* Continuous linear animation without pauses - slowed down to 300s for 7 images (extreme slow) */
-    animation: continuous-scroll 300s linear infinite;
+    /* Continuous linear animation sem engasgos - velocidade aumentada */
+    animation: continuous-scroll 120s linear infinite;
     /* Performance optimizations for mobile */
     will-change: transform;
     transform: translate3d(0, 0, 0) rotateZ(0.001deg);
@@ -144,7 +143,7 @@ const testimonials = [dep1, dep2, dep3, dep4, dep5, dep6, dep7];
 
   @media (max-width: 640px) {
     .testimonial-slider {
-      animation-duration: 220s;
+      animation-duration: 90s;
     }
     .testimonial-slide img {
       width: 100%;

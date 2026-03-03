@@ -1,5 +1,7 @@
 ---
 import { vetPragasData } from "./content";
+import { Image } from "astro:assets";
+import equipeImg from "@assets/images/vetpragas-equipe.png";
 ---
 
 <section class="py-32 bg-white relative overflow-hidden">
@@ -81,14 +83,13 @@ import { vetPragasData } from "./content";
                     class="absolute -inset-4 bg-accent/5 rounded-[3rem] blur-2xl group-hover:bg-accent/10 transition-colors"
                 >
                 </div>
-                <img
-                    src="/vetpragas-equipe.png"
+                <Image
+                    src={equipeImg}
                     alt="Equipe VetPragas"
-                    width="600"
-                    height="600"
+                    format="webp"
                     loading="lazy"
                     decoding="async"
-                    class="relative w-full h-auto rounded-[3rem] shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]"
+                    class="relative w-full h-auto rounded-[3rem] shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] object-contain"
                 />
             </div>
         </div>

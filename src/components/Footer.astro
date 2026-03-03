@@ -7,18 +7,17 @@ import texturaIdImg from "@assets/images/vetpragas-textura-id.png";
     id="contato"
     class="bg-primary pt-24 pb-0 relative overflow-hidden text-white"
 >
-    <!-- Main Background Texture (Aumentada no Desktop) -->
+    <!-- Main Background Texture (Proporcional Desktop e Mobile) -->
     <Image
         src={texturaIdImg}
         alt=""
-        width="750"
-        height="750"
+        format="webp"
         loading="lazy"
         decoding="async"
-        class="absolute bottom-0 right-0 w-[350px] lg:w-[750px] h-auto pointer-events-none z-0"
+        class="absolute bottom-0 right-0 w-[300px] sm:w-[350px] lg:w-[600px] max-h-[90%] lg:max-h-[95%] object-contain object-bottom pointer-events-none z-0 opacity-20 lg:opacity-100"
     />
 
-    <div class="container mx-auto px-6 relative z-10">
+    <div class="container mx-auto px-6 relative z-10 pb-32 lg:pb-12">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 mb-4">
             <!-- Brand Column -->
             <div class="lg:col-span-5">
@@ -133,10 +132,10 @@ import texturaIdImg from "@assets/images/vetpragas-textura-id.png";
         </div>
 
         <div
-            class="pt-6 pb-8 flex flex-col md:flex-row justify-between items-center gap-6"
+            class="pt-6 pb-8 lg:pb-12 flex flex-col md:flex-row justify-between items-center gap-6"
         >
             <div
-                class="text-[9px] font-bold text-slate-600 uppercase tracking-[0.3em]"
+                class="text-[9px] font-bold text-slate-300 uppercase tracking-[0.3em] text-center"
             >
                 © 2026 VetPragas • Todos os direitos reservados.
             </div>

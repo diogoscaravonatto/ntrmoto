@@ -454,29 +454,64 @@ import { vetPragasData } from "./content";
         try {
             // Busca a localização com timeout para não travar a página
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 3000);
+            const timeoutId = setTimeout(() => controller.abort(), 3500);
 
-            const response = await fetch(
-                "https://get.geojs.io/v1/ip/geo.json",
-                {
-                    signal: controller.signal,
-                },
-            );
+            // Utilizando ipinfo.io por ter maior precisão de IP no Brasil
+            const response = await fetch("https://ipinfo.io/json", {
+                signal: controller.signal,
+            });
             const data = await response.json();
             clearTimeout(timeoutId);
 
-            interface GeoData {
-                city?: string; // GeoJS usa a propriedade 'city'
-            }
-            const geoData = data as GeoData;
+            if (data && data.city && data.region) {
+                // Verifica se o estado é Paraná (proteção contra IPs de 4G roteados por SP/RJ)
+                if (data.region.includes("Paraná") || data.region === "PR") {
+                    // Cidades de cobertura (Oeste do Paraná)
+                    const validCities = [
+                        "Cascavel",
+                        "Toledo",
+                        "Foz do Iguaçu",
+                        "Medianeira",
+                        "Santa Tereza do Oeste",
+                        "Corbélia",
+                        "Céu Azul",
+                        "Matelândia",
+                        "Palotina",
+                        "Marechal Cândido Rondon",
+                        "Assis Chateaubriand",
+                        "Guaíra",
+                        "Santa Helena",
+                        "Capitão Leônidas Marques",
+                        "Lindoeste",
+                        "Tupãssi",
+                        "Ubiratã",
+                        "Quedas do Iguaçu",
+                        "São Miguel do Iguaçu",
+                        "Itaipulândia",
+                        "Missal",
+                        "Nova Aurora",
+                        "Capanema",
+                    ];
 
-            if (geoData && geoData.city) {
-                const city = geoData.city.toUpperCase();
-                geoElement.textContent = `DEDETIZADORA EM ${city} E REGIÃO`;
-                geoElement.classList.add("bg-[#FDF3F4]", "border-accent/40");
-            } else {
-                geoElement.textContent = defaultText;
+                    const city = data.city;
+                    const isCovered = validCities.some(
+                        (c) => c.toLowerCase() === city.toLowerCase(),
+                    );
+
+                    // Só exibe a cidade geolocalizada se ela estiver na lista de cobertura real
+                    if (isCovered) {
+                        geoElement.textContent = `DEDETIZADORA EM ${city.toUpperCase()} E REGIÃO`;
+                        geoElement.classList.add(
+                            "bg-[#FDF3F4]",
+                            "border-accent/40",
+                        );
+                        return; // Sai da função, sucesso!
+                    }
+                }
             }
+
+            // Fallback silencioso para Cascavel se a cidade não for da área de atuação
+            geoElement.textContent = defaultText;
         } catch {
             geoElement.textContent = defaultText;
         }
