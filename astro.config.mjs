@@ -15,7 +15,7 @@ import robotsTxt from 'astro-robots-txt'; // Integração para gerar automaticam
 // https://astro.build/config
 export default defineConfig({
   output: 'server', // Define o modo de saída como SSR (Server-Side Rendering) para processamento dinâmico
-  site: 'https://vetpragas.com.br', // URL base do site, usada para gerar sitemaps e links absolutos
+  site: 'https://preview.vetpragas.com.br', // URL base do site, usada para gerar sitemaps e links absolutos
 
   // Adaptador Cloudflare apenas em build/preview (miniflare instável em dev no beta atual)
   adapter: process.argv.includes('build') || process.argv.includes('preview') // Verifica se o comando atual é build ou preview
