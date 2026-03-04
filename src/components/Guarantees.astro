@@ -4,15 +4,22 @@ import { Image } from "astro:assets";
 import bayerImg from "@assets/images/lg-bayer.jpeg";
 import syngentaImg from "@assets/images/lg-syngenta.jpeg";
 import basfImg from "@assets/images/lg-basf.jpeg";
+import adamaImg from "@assets/images/lg-adama.jpeg";
+import anvisaImg from "@assets/images/lg-anvisa.png";
+import bequisaImg from "@assets/images/lg-bequisa.jpeg";
+import dominusImg from "@assets/images/lg-dominus.png";
+import rogamaImg from "@assets/images/lg-rogama.jpeg";
 import textureTdImg from "@assets/images/vetpragas-textura-td.png";
 
 const brands = [
     { src: bayerImg, alt: "Bayer", h: "h-10 lg:h-12" },
     { src: syngentaImg, alt: "Syngenta", h: "h-10 lg:h-12" },
     { src: basfImg, alt: "Basf", h: "h-8 lg:h-10" },
-    { src: bayerImg, alt: "Bayer", h: "h-10 lg:h-12" },
-    { src: syngentaImg, alt: "Syngenta", h: "h-10 lg:h-12" },
-    { src: basfImg, alt: "Basf", h: "h-8 lg:h-10" },
+    { src: adamaImg, alt: "Adama", h: "h-10 lg:h-12" },
+    { src: anvisaImg, alt: "Anvisa", h: "h-10 lg:h-12" },
+    { src: bequisaImg, alt: "Bequisa", h: "h-10 lg:h-12" },
+    { src: dominusImg, alt: "Dominus", h: "h-8 lg:h-10" },
+    { src: rogamaImg, alt: "Rogama", h: "h-10 lg:h-12" },
 ];
 ---
 
@@ -160,12 +167,10 @@ const brands = [
                                                 <Image
                                                     src={brand.src}
                                                     alt={brand.alt}
-                                                    width="150"
-                                                    height="48"
                                                     loading="lazy"
                                                     decoding="async"
                                                     class:list={[
-                                                        "object-contain max-w-full opacity-60 hover:opacity-100 transition-opacity duration-300 filter grayscale hover:grayscale-0",
+                                                        "object-contain max-h-full max-w-[80%] m-auto opacity-70 hover:opacity-100 transition-opacity duration-300",
                                                         brand.h,
                                                     ]}
                                                 />

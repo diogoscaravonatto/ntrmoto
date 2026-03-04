@@ -29,8 +29,8 @@ import { Image } from "astro:assets";
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {vetPragasData.pests.map((pest) => (
-                <div class="group h-[320px] perspective-[1000px]">
-                    <div class="relative h-full w-full rounded-3xl shadow-xl transition-all duration-700 transform-3d group-hover:transform-[rotateY(180deg)]">
+                <div class="group h-[320px] perspective-[1000px] cursor-pointer" tabindex="0" onclick="">
+                    <div class="relative h-full w-full rounded-3xl shadow-xl transition-all duration-700 transform-3d group-hover:transform-[rotateY(180deg)] group-focus:transform-[rotateY(180deg)] group-active:transform-[rotateY(180deg)]">
                         <!-- Front Side -->
                         <div class="absolute inset-0 backface-hidden">
                             <div class="flex flex-col items-center justify-center h-full bg-white rounded-3xl p-6 border border-slate-100">

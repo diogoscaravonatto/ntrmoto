@@ -47,6 +47,8 @@ import { vetPragasData } from "./content";
                             src={heroIndustrial}
                             alt="VetPragas Mobile Control"
                             class="w-full aspect-4/3 object-cover opacity-90"
+                            widths={[400, 800, 1200]}
+                            sizes="(max-width: 1024px) 100vw, 800px"
                             loading="eager"
                             fetchpriority="high"
                             decoding="async"
@@ -138,6 +140,8 @@ import { vetPragasData } from "./content";
                         src={heroIndustrial}
                         alt="VetPragas Industrial High-Tech Control"
                         class="w-full aspect-4/3 object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105"
+                        widths={[400, 800, 1200]}
+                        sizes="(min-width: 1024px) 800px, 100vw"
                         loading="eager"
                         fetchpriority="high"
                         decoding="async"
@@ -460,7 +464,7 @@ import { vetPragasData } from "./content";
             const response = await fetch("https://ipinfo.io/json", {
                 signal: controller.signal,
             });
-            const data = await response.json();
+            const data: any = await response.json();
             clearTimeout(timeoutId);
 
             if (data && data.city && data.region) {

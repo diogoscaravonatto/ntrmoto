@@ -27,7 +27,7 @@ const items = [
     <div class="industrial-track">
         <div class="ticker-wrapper animate-ticker">
             {
-                [...items, ...items, ...items, ...items].map((item) => (
+                [...items, ...items].map((item) => (
                     <div class="ticker-node" data-ticker-node>
                         <div class="node-header">
                             <div class="node-check-container">
@@ -65,42 +65,6 @@ const items = [
     <div class="edge-fade right"></div>
 </div>
 
-<script>
-    function initTickerEffect() {
-        const nodes = document.querySelectorAll("[data-ticker-node]");
-        if (nodes.length === 0) return;
-
-        const centerX = window.innerWidth / 2;
-
-        function updatePositions() {
-            nodes.forEach((node) => {
-                const rect = node.getBoundingClientRect();
-                const nodeCenter = rect.left + rect.width / 2;
-
-                const distance = Math.abs(centerX - nodeCenter);
-                const maxDistance = 300;
-
-                if (distance < maxDistance) {
-                    const intensity = 1 - distance / maxDistance;
-                    const scale = 1 + intensity * 0.15;
-                    (node as HTMLElement).style.transform = `scale(${scale})`;
-                } else {
-                    (node as HTMLElement).style.transform = `scale(1)`;
-                }
-                (node as HTMLElement).style.opacity = `1`;
-            });
-            requestAnimationFrame(updatePositions);
-        }
-
-        updatePositions();
-    }
-
-    // Inicializa com um pequeno delay para garantir que o layout mobile estabilizou
-    window.addEventListener("load", () => {
-        setTimeout(initTickerEffect, 100);
-    });
-</script>
-
 <style>
     .ticker-section {
         position: relative;
@@ -123,7 +87,7 @@ const items = [
     .animate-ticker {
         display: flex;
         width: fit-content;
-        animation: ticker-slide 80s linear infinite;
+        animation: ticker-slide 50s linear infinite;
         will-change: transform;
         padding: 50px 0;
     }
@@ -133,7 +97,7 @@ const items = [
             transform: translateX(0);
         }
         100% {
-            transform: translateX(-25%);
+            transform: translateX(-50%);
         }
     }
 

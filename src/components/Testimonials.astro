@@ -44,7 +44,9 @@ const testimonials = [dep1, dep2, dep3, dep4, dep5, dep6, dep7];
           src={headerImg}
           alt="Google Reviews Header"
           format="webp"
-          loading="eager"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 700px) 100vw, 700px"
+          loading="lazy"
           decoding="async"
           class="w-full max-w-full h-auto block object-contain"
         />
