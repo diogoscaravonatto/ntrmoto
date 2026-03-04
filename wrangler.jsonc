@@ -1,6 +1,7 @@
 {
-	"name": "vetpragas-worker", // Nome identificador do projeto no dashboard da Cloudflare
+	"name": "vetpragas-site", // Nome identificador do projeto no dashboard da Cloudflare
 	"main": "@astrojs/cloudflare/entrypoints/server", // Ponto de entrada do adaptador Astro para Cloudflare
+	"account_id": "a9731f37d0f70d3fb2e6d428a8da95f0",
 	"compatibility_date": "2026-02-13", // Trava a versão da API do Worker para garantir estabilidade
 	"compatibility_flags": [
 		"nodejs_compat", // Habilita suporte a APIs nativas do Node.js (necessário para Sharp e outras libs)
