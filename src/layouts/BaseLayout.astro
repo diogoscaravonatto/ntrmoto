@@ -29,8 +29,9 @@ const {
 const siteUrl = Astro.site ? Astro.site.href : "https://vetpragas.com.br";
 const resolvedImageWithDomain = new URL(image, siteUrl).toString();
 
-// GTM ID (opcional - configure via variável de ambiente)
+// GTM IDs (opcionais - configure via variáveis de ambiente)
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
+const gtmIdSecondary = import.meta.env.PUBLIC_GTM_ID_SECONDARY;
 
 // Estilo dinâmico para injetar as cores do JSON
 const dynamicStyles = colors
@@ -88,6 +89,7 @@ const dynamicStyles = colors
         />
 
         {gtmId && <GoogleTagManager gtmId={gtmId} />}
+        {gtmIdSecondary && <GoogleTagManager gtmId={gtmIdSecondary} />}
 
         {/* Slot para fontes/meta tags customizadas por página */}
         <slot name="head" />

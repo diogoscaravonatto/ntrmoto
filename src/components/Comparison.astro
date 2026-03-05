@@ -1,15 +1,16 @@
 ---
 import { vetPragasData } from "./content";
 import { Image } from "astro:assets";
+import texturaTeImg from "@assets/images/vetpragas-textura-te.png";
 ---
 
 <section id="pragas" class="py-24 bg-white relative overflow-hidden">
     <!-- Background Texture -->
-    <img 
-        src="/vetpragas-textura-te.png" 
+    <Image 
+        src={texturaTeImg} 
         alt=""
-        width="900"
-        height="900"
+        width={900}
+        height={900}
         loading="lazy"
         decoding="async"
         class="absolute top-0 left-0 w-[500px] lg:w-[900px] h-auto opacity-30 pointer-events-none select-none z-0" 

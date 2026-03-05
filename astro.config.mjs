@@ -16,7 +16,7 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'always', // Injeta o CSS diretamente no HTML para zerar o Render Blocking
   },
-  site: 'https://preview.vetpragas.com.br', // URL base do site, usada para gerar sitemaps e links absolutos
+  site: 'https://www.vetpragas.com.br', // URL base do site, usada para gerar sitemaps e links absolutos
 
   // Adaptador Cloudflare para deploy na infraestrutura Cloudflare Workers
   adapter: cloudflare({
