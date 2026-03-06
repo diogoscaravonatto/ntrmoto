@@ -16,7 +16,13 @@
 		"directory": "./dist/client" // Diretório onde o Astro gera os arquivos otimizados para o cliente (CSS, JS, Imagens)
 	},
 	"observability": {
-		"enabled": true // Ativa métricas e monitoramento de erros no painel da Cloudflare
+		"logs": {
+			"enabled": true,
+			"invocation_logs": true
+		},
+		"traces": {
+			"enabled": true
+		}
 	},
 	"routes": [
 		{

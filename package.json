@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "deploy": "cmd /c \"if exist .wrangler rd /s /q .wrangler\" && npm run build && npx wrangler deploy",
+    "deploy": "npm run build && npx wrangler deploy",
     "generate-types": "wrangler types",
     "astro": "astro"
   },
