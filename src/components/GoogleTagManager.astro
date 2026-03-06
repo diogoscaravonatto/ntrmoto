@@ -16,7 +16,9 @@ const { gtmId } = Astro.props;
 ---
 
 <!-- Google Tag Manager (Partytown) -->
-<script type="text/partytown" define:vars={{ gtmId }}>
+<script
+    type="text/partytown"
+    set:html={`
     (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
@@ -26,8 +28,9 @@ const { gtmId } = Astro.props;
         j.async = true;
         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer", gtmId);
-</script>
+    })(window, document, "script", "dataLayer", "${gtmId}");
+`}
+/>
 
 <!-- Google Tag Manager (noscript) -->
 <noscript>

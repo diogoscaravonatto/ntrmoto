@@ -3,7 +3,10 @@ import { Image } from "astro:assets";
 // Import the image provided by the user
 import heroIndustrial from "@assets/images/hero-industrial.png";
 import { vetPragasData } from "./content";
+import CloudflareVisitorData from "./CloudflareVisitorData.astro";
 ---
+
+<CloudflareVisitorData />
 
 <section
     class="relative min-h-[90vh] flex items-center pt-32 pb-24 overflow-hidden bg-primary"
@@ -448,25 +451,13 @@ import { vetPragasData } from "./content";
 </style>
 
 <script>
-    async function initGeo() {
+    function applyGeoData(data: Record<string, string> | null) {
         const geoElement = document.getElementById("geo-city");
         if (!geoElement) return;
 
         const defaultText = "DEDETIZADORA EM CASCAVEL E REGIÃO";
 
         try {
-            // Busca a localização com timeout para não travar a página
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 3500);
-
-            // Utilizando endpoint nativo que extrai dados dos headers da Cloudflare,
-            // evitando bloqueadores de anúncios (AdBlocks) por ser first-party request
-            const response = await fetch("/api/geo.json", {
-                signal: controller.signal,
-            });
-            const data: any = await response.json();
-            clearTimeout(timeoutId);
-
             if (data && data.city && data.region) {
                 // Verifica se o estado é Paraná (proteção contra IPs de 4G roteados por SP/RJ)
                 if (data.region.includes("Paraná") || data.region === "PR") {
@@ -518,6 +509,34 @@ import { vetPragasData } from "./content";
             geoElement.textContent = defaultText;
         } catch {
             geoElement.textContent = defaultText;
+        }
+    }
+
+    function initGeo() {
+        const win = window as unknown as { cfVisitor?: Record<string, string> };
+        if (win.cfVisitor) {
+            applyGeoData(win.cfVisitor);
+        } else {
+            window.addEventListener(
+                "cf-visitor-ready",
+                (e: Event) => {
+                    const customEvent = e as CustomEvent;
+                    applyGeoData(customEvent.detail);
+                },
+                { once: true },
+            );
+
+            // Fallback timeout
+            setTimeout(() => {
+                const geoElement = document.getElementById("geo-city");
+                if (
+                    geoElement &&
+                    geoElement.textContent ===
+                        "DEDETIZADORA EM CASCAVEL E REGIÃO"
+                ) {
+                    applyGeoData(null);
+                }
+            }, 3500);
         }
     }
 
