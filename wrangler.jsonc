@@ -8,8 +8,7 @@
 		"nodejs_compat_populate_process_env" // Garante que as variáveis de ambiente fiquem disponíveis em process.env
 	],
 	"vars": {
-		"PUBLIC_GTM_ID": "GTM-KZWX82DZ", // Variável global para o ID primário do Google Tag Manager
-		"PUBLIC_GTM_ID_SECONDARY": "GTM-MCGSN5KJ" // Variável global para o ID secundário do Google Tag Manager
+		"PUBLIC_GTM_ID": "GTM-MCGSN5KJ" // Variável global para o ID do Google Tag Manager
 	},
 	"assets": {
 		"binding": "CF_ASSETS", // Vinculação interna para acesso aos arquivos estáticos
@@ -27,6 +26,11 @@
 	"routes": [
 		{
 			"pattern": "www.vetpragas.com.br", // Endereço público onde o projeto será servido (com www)
+			"zone_name": "vetpragas.com.br", // Zona DNS que gerencia o domínio no Cloudflare
+			"custom_domain": true // Indica o uso de um domínio personalizado em vez do subdomínio .workers.dev
+		},
+		{
+			"pattern": "vetpragas.com.br", // Endereço público onde o projeto será servido (sem www)
 			"zone_name": "vetpragas.com.br", // Zona DNS que gerencia o domínio no Cloudflare
 			"custom_domain": true // Indica o uso de um domínio personalizado em vez do subdomínio .workers.dev
 		}
