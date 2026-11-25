@@ -3,22 +3,39 @@
 ---
 
 <script>
+  import { resolveOfferBySlug, resolveOfferByUrl } from "../utils/catalog";
   import {
     type AttributionData,
+    type FirstTouchData,
     NTR_ATTR_COOKIE,
+    NTR_FIRST_TOUCH_COOKIE,
     NTR_ID_COOKIE,
+    NTR_JOURNEY_KEY,
     buildCookieDomainSuffix,
+    decorateCheckoutUrl,
     decorateCrossDomainUrl,
+    detectInAppBrowser,
     extractAttributionParams,
+    generateEventId,
+    inferTouchFromContext,
     isTrackedCtaDestination,
     mergeAttributionData,
+    normalizeLeadPii,
   } from "../utils/tracking";
 
   type ZarazTrackPayload = Record<string, string | number>;
+  type NavigatorWithUAData = Navigator & {
+    userAgentData?: {
+      getHighEntropyValues?: (
+        hints: string[],
+      ) => Promise<{ model?: string; platformVersion?: string }>;
+    };
+  };
   type ZarazWindow = Window & {
     __ntrOpenCookiePrefs?: () => void;
     __ntrTrackingInit?: boolean;
     zaraz?: {
+      set?: (key: string, value: unknown, options?: { scope?: string }) => void;
       track?: (eventName: string, properties?: ZarazTrackPayload) => void;
       showConsentModal?: () => void;
     };
@@ -89,6 +106,46 @@
       return id;
     }
 
+    function getOrCreateFirstTouch(): FirstTouchData {
+      let existing: FirstTouchData | null = null;
+      const rawCookie = readFirstPartyCookie(NTR_FIRST_TOUCH_COOKIE);
+      if (rawCookie) {
+        try {
+          existing = JSON.parse(rawCookie) as FirstTouchData;
+        } catch {
+          existing = null;
+        }
+      }
+      if (!existing) {
+        try {
+          const rawLs = localStorage.getItem(NTR_FIRST_TOUCH_COOKIE);
+          if (rawLs) existing = JSON.parse(rawLs) as FirstTouchData;
+        } catch {
+          existing = null;
+        }
+      }
+      if (existing && existing.source) {
+        if (!rawCookie) {
+          writeFirstPartyCookie(NTR_FIRST_TOUCH_COOKIE, JSON.stringify(existing), 15552000);
+        }
+        return existing;
+      }
+
+      const inferred = inferTouchFromContext(
+        window.location.search,
+        document.referrer,
+        window.location.pathname,
+      );
+      const serialized = JSON.stringify(inferred);
+      writeFirstPartyCookie(NTR_FIRST_TOUCH_COOKIE, serialized, 15552000);
+      try {
+        localStorage.setItem(NTR_FIRST_TOUCH_COOKIE, serialized);
+      } catch {
+        // Ignora erro de armazenamento
+      }
+      return inferred;
+    }
+
     function persistAttribution(): AttributionData {
       let stored: AttributionData = {};
       const rawCookie = readFirstPartyCookie(NTR_ATTR_COOKIE);
@@ -120,12 +177,75 @@
       return merged;
     }
 
+    function recordJourneyTouch(): number {
+      try {
+        const raw = localStorage.getItem(NTR_JOURNEY_KEY);
+        const list = raw ? (JSON.parse(raw) as Array<{ h: string; p: string }>) : [];
+        const entry = { h: window.location.hostname.toLowerCase(), p: window.location.pathname };
+        const last = list[list.length - 1];
+        if (!last || last.h !== entry.h || last.p !== entry.p) {
+          list.push(entry);
+          if (list.length > 12) list.splice(0, list.length - 12);
+          localStorage.setItem(NTR_JOURNEY_KEY, JSON.stringify(list));
+        }
+        return list.length;
+      } catch {
+        return 1;
+      }
+    }
+
     const pendingZarazEvents: Array<{ name: string; props: ZarazTrackPayload }> = [];
     let zarazFlushScheduled = false;
+
+    const activeNtrId = getOrCreateNtrId();
+    const activeFirstTouch = getOrCreateFirstTouch();
+    const activeAttribution = persistAttribution();
+    const touchCount = recordJourneyTouch();
+    const inAppBrowser = detectInAppBrowser(navigator.userAgent ?? "");
+    let detectedDeviceModel = "";
+
+    function applyZarazContext() {
+      const z = win.zaraz;
+      if (!z?.set) return;
+      z.set("first_touch_source", activeFirstTouch.source, { scope: "page" });
+      z.set("first_touch_medium", activeFirstTouch.medium, { scope: "page" });
+      z.set("first_touch_campaign", activeFirstTouch.campaign ?? "", { scope: "page" });
+      z.set("touch_count", touchCount, { scope: "page" });
+      z.set("in_app_browser", inAppBrowser, { scope: "page" });
+      if (detectedDeviceModel) {
+        z.set("device_model", detectedDeviceModel, { scope: "page" });
+      }
+    }
+
+    function scheduleHighEntropyDeviceModel() {
+      const uaData = (navigator as NavigatorWithUAData).userAgentData;
+      if (!uaData?.getHighEntropyValues) return;
+      const collect = () => {
+        uaData
+          .getHighEntropyValues?.(["model", "platformVersion"])
+          .then((hints) => {
+            const model = hints?.model?.trim();
+            if (model) {
+              detectedDeviceModel = model;
+              win.zaraz?.set?.("device_model", model, { scope: "page" });
+            }
+          })
+          .catch(() => {
+            // Ignora em navegadores sem suporte
+          });
+      };
+      if (typeof win.requestIdleCallback === "function") {
+        win.requestIdleCallback(collect, { timeout: 1500 });
+      } else {
+        window.setTimeout(collect, 0);
+      }
+    }
+    scheduleHighEntropyDeviceModel();
 
     function flushPendingZarazEvents() {
       const z = win.zaraz;
       if (!z?.track) return false;
+      applyZarazContext();
       while (pendingZarazEvents.length > 0) {
         const item = pendingZarazEvents.shift();
         if (item) z.track(item.name, item.props);
@@ -136,6 +256,7 @@
     function trackZaraz(eventName: string, props: ZarazTrackPayload) {
       const z = win.zaraz;
       if (z?.track) {
+        applyZarazContext();
         z.track(eventName, props);
         return;
       }
@@ -153,31 +274,56 @@
       }
     }
 
-    const activeNtrId = getOrCreateNtrId();
-    const activeAttribution = persistAttribution();
+    applyZarazContext();
 
-    // Decora links para escolademotores.com.br mantendo UTMs existentes intactas
-    const anchors = document.querySelectorAll<HTMLAnchorElement>("a[href]");
-    for (const anchor of anchors) {
-      const decorated = decorateCrossDomainUrl(
+    function decorateAnchor(anchor: HTMLAnchorElement) {
+      const decoratedCross = decorateCrossDomainUrl(
         anchor.href,
         window.location.href,
         activeNtrId,
         activeAttribution,
       );
-      if (decorated) {
-        anchor.href = decorated;
+      if (decoratedCross) {
+        anchor.href = decoratedCross;
+        return;
+      }
+      const decoratedCheckout = decorateCheckoutUrl(
+        anchor.href,
+        window.location.href,
+        activeNtrId,
+        activeAttribution,
+        activeFirstTouch,
+      );
+      if (decoratedCheckout) {
+        anchor.href = decoratedCheckout;
       }
     }
 
-    // Evento view_content via Zaraz quando a página informa tipo e slug
+    const anchors = document.querySelectorAll<HTMLAnchorElement>("a[href]");
+    for (const anchor of anchors) {
+      decorateAnchor(anchor);
+    }
+
     const { ntrContentType, ntrContentSlug } = document.body.dataset;
+    const pageOffer = ntrContentSlug ? resolveOfferBySlug(ntrContentSlug) : null;
+
     if (ntrContentType && ntrContentSlug) {
-      trackZaraz("view_content", {
+      const viewPayload: ZarazTrackPayload = {
         content_type: ntrContentType,
         content_slug: ntrContentSlug,
         page_path: window.location.pathname,
-      });
+        event_id: generateEventId("vc"),
+        first_touch_source: activeFirstTouch.source,
+        first_touch_medium: activeFirstTouch.medium,
+        first_touch_campaign: activeFirstTouch.campaign ?? "",
+        touch_count: touchCount,
+      };
+      if (pageOffer) {
+        viewPayload.content_ids = pageOffer.id;
+        viewPayload.value = pageOffer.value;
+        viewPayload.currency = pageOffer.currency;
+      }
+      trackZaraz("view_content", viewPayload);
     }
 
     // Rastreamento unificado de CTAs comerciais (Eduzz/Greenn/WhatsApp/escolademotores.com.br)
@@ -187,30 +333,67 @@
       const anchor = target.closest("a");
       if (!(anchor instanceof HTMLAnchorElement) || !anchor.href) return;
       try {
-        const decorated = decorateCrossDomainUrl(
-          anchor.href,
-          window.location.href,
-          activeNtrId,
-          activeAttribution,
-        );
-        if (decorated) {
-          anchor.href = decorated;
-        }
+        decorateAnchor(anchor);
         const dest = new URL(anchor.href, window.location.href);
         const host = dest.hostname.toLowerCase();
         if (isTrackedCtaDestination(host)) {
           const ctaText = (anchor.textContent ?? "").replace(/\s+/g, " ").trim().slice(0, 120);
-          trackZaraz("cta_click", {
+          const resolvedOffer = resolveOfferByUrl(dest.href) ?? pageOffer;
+          const ctaPayload: ZarazTrackPayload = {
             link_url: dest.href,
             link_host: host,
             page_path: window.location.pathname,
             cta_text: ctaText,
-          });
+            event_id: generateEventId("cta"),
+            first_touch_source: activeFirstTouch.source,
+            first_touch_medium: activeFirstTouch.medium,
+            first_touch_campaign: activeFirstTouch.campaign ?? "",
+            touch_count: touchCount,
+          };
+          if (resolvedOffer) {
+            ctaPayload.content_ids = resolvedOffer.id;
+            ctaPayload.value = resolvedOffer.value;
+            ctaPayload.currency = resolvedOffer.currency;
+          }
+          trackZaraz("cta_click", ctaPayload);
         }
       } catch {
         // Ignora URLs inválidas
       }
     });
+
+    // Captura não-destrutiva de formulários com PII (e-mail/telefone/nome) para EMQ elevado em Lead
+    document.addEventListener(
+      "submit",
+      (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement)) return;
+        const emailInput = form.querySelector<HTMLInputElement>('input[type="email"]');
+        const phoneInput = form.querySelector<HTMLInputElement>('input[type="tel"]');
+        const nameInput = form.querySelector<HTMLInputElement>('input[type="text"]');
+        const pii = normalizeLeadPii({
+          email: emailInput?.value,
+          phone: phoneInput?.value,
+          name: nameInput?.value,
+        });
+        if (!pii.em && !pii.ph) return;
+        const leadPayload: ZarazTrackPayload = {
+          content_name: pageOffer?.name ?? ntrContentSlug ?? document.title,
+          page_path: window.location.pathname,
+          event_id: generateEventId("lead"),
+          first_touch_source: activeFirstTouch.source,
+          first_touch_campaign: activeFirstTouch.campaign ?? "",
+          ...pii,
+        };
+        if (pageOffer) {
+          leadPayload.content_ids = pageOffer.id;
+          leadPayload.value = pageOffer.value;
+          leadPayload.currency = pageOffer.currency;
+        }
+        trackZaraz("generate_lead", leadPayload);
+      },
+      true,
+    );
 
     // Rastreamento de profundidade de rolagem (50% e 90%, uma única vez por marco)
     let firedScroll50 = false;
@@ -228,6 +411,7 @@
         trackZaraz("scroll_depth", {
           percent_scrolled: 50,
           page_path: window.location.pathname,
+          event_id: generateEventId("scr50"),
         });
       }
       if (!firedScroll90 && pct >= 90) {
@@ -235,6 +419,7 @@
         trackZaraz("scroll_depth", {
           percent_scrolled: 90,
           page_path: window.location.pathname,
+          event_id: generateEventId("scr90"),
         });
       }
       if (firedScroll50 && firedScroll90) {

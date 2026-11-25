@@ -1,4 +1,12 @@
-import { CF_CONSENT_COOKIE, NTR_ATTR_COOKIE, NTR_BAR_COOKIE, NTR_ID_COOKIE } from "./tracking";
+import { EDUZZ_OFFERS_BY_ID, OFFERS_BY_SLUG } from "./catalog";
+import {
+  CF_CONSENT_COOKIE,
+  NTR_ATTR_COOKIE,
+  NTR_BAR_COOKIE,
+  NTR_FIRST_TOUCH_COOKIE,
+  NTR_ID_COOKIE,
+  NTR_JOURNEY_KEY,
+} from "./tracking";
 
 function safeJsonForInlineScript(value: unknown): string {
   return JSON.stringify(value).replace(/</g, "\\u003c");
@@ -93,8 +101,12 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
   const contentSlugJson = safeJsonForInlineScript(opts.contentSlug ?? "");
   const ntrIdJson = safeJsonForInlineScript(NTR_ID_COOKIE);
   const ntrAttrJson = safeJsonForInlineScript(NTR_ATTR_COOKIE);
+  const firstTouchJson = safeJsonForInlineScript(NTR_FIRST_TOUCH_COOKIE);
+  const journeyKeyJson = safeJsonForInlineScript(NTR_JOURNEY_KEY);
   const barCookieJson = safeJsonForInlineScript(NTR_BAR_COOKIE);
   const consentCookieJson = safeJsonForInlineScript(CF_CONSENT_COOKIE);
+  const eduzzOffersJson = safeJsonForInlineScript(EDUZZ_OFFERS_BY_ID);
+  const slugOffersJson = safeJsonForInlineScript(OFFERS_BY_SLUG);
 
   return `
 <style>
@@ -278,11 +290,11 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
       <span>Preferências de cookies</span>
       <button type="button" id="ntr-cb-close" class="ntr-cb__link-btn">Fechar</button>
     </div>
-    <label class="ntr-cb__opt">
+    <label for="ntr-cb-chk-analytics" class="ntr-cb__opt">
       <input type="checkbox" id="ntr-cb-chk-analytics" checked />
       <span><strong>Análise e Desempenho</strong> <span class="ntr-cb__sub">— Google Analytics 4</span></span>
     </label>
-    <label class="ntr-cb__opt">
+    <label for="ntr-cb-chk-marketing" class="ntr-cb__opt">
       <input type="checkbox" id="ntr-cb-chk-marketing" checked />
       <span><strong>Marketing e Conversões</strong> <span class="ntr-cb__sub">— Meta</span></span>
     </label>
@@ -300,10 +312,14 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
 
   const NTR_ID_COOKIE = ${ntrIdJson};
   const NTR_ATTR_COOKIE = ${ntrAttrJson};
+  const NTR_FT_COOKIE = ${firstTouchJson};
+  const NTR_JOURNEY_KEY = ${journeyKeyJson};
   const BAR_COOKIE = ${barCookieJson};
   const CONSENT_COOKIE = ${consentCookieJson};
   const CONTENT_TYPE = ${contentTypeJson};
   const CONTENT_SLUG = ${contentSlugJson};
+  const EDUZZ_OFFERS = ${eduzzOffersJson};
+  const SLUG_OFFERS = ${slugOffersJson};
   const ATTR_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid", "gclid"];
 
   function buildCookieDomainSuffix() {
@@ -343,6 +359,14 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
     }
   }
 
+  function generateEventId(prefix) {
+    const p = (prefix || "ntr").replace(/[^a-z0-9_-]/gi, "").slice(0, 12) || "ntr";
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+      return p + "_" + crypto.randomUUID();
+    }
+    return p + "_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10);
+  }
+
   function getOrCreateNtrId() {
     let id = readCookie(NTR_ID_COOKIE);
     if (!id) {
@@ -366,22 +390,87 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
     return id;
   }
 
+  function inferFirstTouch() {
+    const params = new URLSearchParams(win.location.search);
+    const utmSource = (params.get("utm_source") || "").trim().slice(0, 256);
+    const utmMedium = (params.get("utm_medium") || "").trim().slice(0, 256);
+    const utmCampaign = (params.get("utm_campaign") || "").trim().slice(0, 256);
+    const utmContent = (params.get("utm_content") || "").trim().slice(0, 256);
+    const utmTerm = (params.get("utm_term") || "").trim().slice(0, 256);
+    const fbclid = (params.get("fbclid") || "").trim();
+    const gclid = (params.get("gclid") || "").trim();
+
+    let refHost = "";
+    if (document.referrer) {
+      try {
+        const h = new URL(document.referrer).hostname.toLowerCase();
+        if (h !== "ntrmoto.com.br" && !h.endsWith(".ntrmoto.com.br") && h !== "localhost" && h !== "127.0.0.1") {
+          refHost = h.replace(/^www\\./, "");
+        }
+      } catch {
+        refHost = "";
+      }
+    }
+
+    const base = { source: "direct", medium: "none", landing_path: win.location.pathname || "/", ts: Date.now() };
+    if (refHost) base.referrer_host = refHost;
+    if (utmSource) {
+      base.source = utmSource;
+      base.medium = utmMedium || "unknown";
+      if (utmCampaign) base.campaign = utmCampaign;
+      if (utmContent) base.content = utmContent;
+      if (utmTerm) base.term = utmTerm;
+      return base;
+    }
+    if (fbclid) { base.source = "facebook"; base.medium = "cpc"; return base; }
+    if (gclid) { base.source = "google"; base.medium = "cpc"; return base; }
+    if (refHost) {
+      if (refHost === "gemini.google.com") { base.source = refHost; base.medium = "ai_referral"; return base; }
+      if (refHost === "google.com" || refHost.startsWith("google.") || refHost.includes(".google.")) { base.source = "google"; base.medium = "organic"; return base; }
+      if (refHost === "bing.com" || refHost.endsWith(".bing.com") || refHost === "duckduckgo.com" || refHost === "yahoo.com" || refHost.endsWith(".yahoo.com")) { base.source = refHost; base.medium = "organic"; return base; }
+      if (refHost === "youtube.com" || refHost.endsWith(".youtube.com") || refHost === "youtu.be") { base.source = "youtube"; base.medium = "video"; return base; }
+      if (refHost === "instagram.com" || refHost.endsWith(".instagram.com")) { base.source = "instagram"; base.medium = "social"; return base; }
+      if (refHost === "facebook.com" || refHost.endsWith(".facebook.com") || refHost === "fb.com") { base.source = "facebook"; base.medium = "social"; return base; }
+      if (refHost === "chatgpt.com" || refHost === "chat.openai.com" || refHost === "perplexity.ai" || refHost === "claude.ai") { base.source = refHost; base.medium = "ai_referral"; return base; }
+      base.source = refHost;
+      base.medium = "referral";
+    }
+    return base;
+  }
+
+  function getOrCreateFirstTouch() {
+    let existing = null;
+    const rawCookie = readCookie(NTR_FT_COOKIE);
+    if (rawCookie) {
+      try { existing = JSON.parse(rawCookie); } catch { existing = null; }
+    }
+    if (!existing) {
+      try {
+        const rawLs = localStorage.getItem(NTR_FT_COOKIE);
+        if (rawLs) existing = JSON.parse(rawLs);
+      } catch { existing = null; }
+    }
+    if (existing && existing.source) {
+      if (!rawCookie) writeCookie(NTR_FT_COOKIE, JSON.stringify(existing), 15552000);
+      return existing;
+    }
+    const inferred = inferFirstTouch();
+    const serialized = JSON.stringify(inferred);
+    writeCookie(NTR_FT_COOKIE, serialized, 15552000);
+    try { localStorage.setItem(NTR_FT_COOKIE, serialized); } catch { /* ignore */ }
+    return inferred;
+  }
+
   function persistAttribution() {
     let stored = {};
     const rawCookie = readCookie(NTR_ATTR_COOKIE);
     if (rawCookie) {
-      try {
-        stored = JSON.parse(rawCookie) || {};
-      } catch {
-        stored = {};
-      }
+      try { stored = JSON.parse(rawCookie) || {}; } catch { stored = {}; }
     } else {
       try {
         const rawLs = localStorage.getItem(NTR_ATTR_COOKIE);
         if (rawLs) stored = JSON.parse(rawLs) || {};
-      } catch {
-        stored = {};
-      }
+      } catch { stored = {}; }
     }
     const params = new URLSearchParams(win.location.search);
     const incoming = {};
@@ -393,13 +482,26 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
     if (Object.keys(merged).length > 0) {
       const serialized = JSON.stringify(merged);
       writeCookie(NTR_ATTR_COOKIE, serialized, 2592000);
-      try {
-        localStorage.setItem(NTR_ATTR_COOKIE, serialized);
-      } catch {
-        // Ignora erro
-      }
+      try { localStorage.setItem(NTR_ATTR_COOKIE, serialized); } catch { /* ignore */ }
     }
     return merged;
+  }
+
+  function recordJourneyTouch() {
+    try {
+      const raw = localStorage.getItem(NTR_JOURNEY_KEY);
+      const list = raw ? JSON.parse(raw) : [];
+      const entry = { h: win.location.hostname.toLowerCase(), p: win.location.pathname };
+      const last = list[list.length - 1];
+      if (!last || last.h !== entry.h || last.p !== entry.p) {
+        list.push(entry);
+        if (list.length > 12) list.splice(0, list.length - 12);
+        localStorage.setItem(NTR_JOURNEY_KEY, JSON.stringify(list));
+      }
+      return list.length;
+    } catch {
+      return 1;
+    }
   }
 
   function isCrossDomainTarget(host) {
@@ -417,6 +519,30 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
     return isCrossDomainTarget(h) || h === "wa.me" || h === "api.whatsapp.com";
   }
 
+  function detectInAppBrowser(userAgent) {
+    const ua = userAgent || "";
+    if (/instagram/i.test(ua)) return "instagram";
+    if (/fban|fbav|fb_iab|facebook/i.test(ua)) return "facebook";
+    if (/musical_ly|tiktok|bytedance/i.test(ua)) return "tiktok";
+    if (/whatsapp/i.test(ua)) return "whatsapp";
+    if (/linkedinapp/i.test(ua)) return "linkedin";
+    if (/;\\s*wv\\)/i.test(ua)) return "webview";
+    return "browser";
+  }
+
+  function resolveOfferByUrl(rawHref) {
+    try {
+      const parsed = new URL(rawHref, win.location.href);
+      const host = parsed.hostname.toLowerCase();
+      if (host !== "eduzz.com" && !host.endsWith(".eduzz.com")) return null;
+      const seg = parsed.pathname.split("/").filter(Boolean)[0];
+      if (!seg) return null;
+      return EDUZZ_OFFERS[seg] || EDUZZ_OFFERS[seg.toUpperCase()] || null;
+    } catch {
+      return null;
+    }
+  }
+
   function decorateCrossDomainUrl(rawHref, ntrId, attribution) {
     try {
       const dest = new URL(rawHref, win.location.href);
@@ -429,6 +555,42 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
     } catch {
       return null;
     }
+  }
+
+  function decorateCheckoutUrl(rawHref, ntrId, attribution, firstTouch) {
+    try {
+      const dest = new URL(rawHref, win.location.href);
+      if (dest.protocol !== "http:" && dest.protocol !== "https:") return null;
+      if (!isCheckoutDestination(dest.hostname)) return null;
+      const src = attribution.utm_source || (firstTouch && firstTouch.source !== "direct" ? firstTouch.source : "");
+      const med = attribution.utm_medium || (firstTouch && firstTouch.medium !== "none" ? firstTouch.medium : "");
+      const cmp = attribution.utm_campaign || (firstTouch && firstTouch.campaign) || "";
+      const cnt = attribution.utm_content || (firstTouch && firstTouch.content) || "";
+      const trm = attribution.utm_term || (firstTouch && firstTouch.term) || "";
+      if (src && !dest.searchParams.has("utm_source")) dest.searchParams.set("utm_source", src);
+      if (med && !dest.searchParams.has("utm_medium")) dest.searchParams.set("utm_medium", med);
+      if (cmp && !dest.searchParams.has("utm_campaign")) dest.searchParams.set("utm_campaign", cmp);
+      if (cnt && !dest.searchParams.has("utm_content")) dest.searchParams.set("utm_content", cnt);
+      if (trm && !dest.searchParams.has("utm_term")) dest.searchParams.set("utm_term", trm);
+      if (attribution.fbclid && !dest.searchParams.has("fbclid")) dest.searchParams.set("fbclid", attribution.fbclid);
+      if (attribution.gclid && !dest.searchParams.has("gclid")) dest.searchParams.set("gclid", attribution.gclid);
+      if (ntrId && !dest.searchParams.has(NTR_ID_COOKIE)) dest.searchParams.set(NTR_ID_COOKIE, ntrId);
+      return dest.toString();
+    } catch {
+      return null;
+    }
+  }
+
+  function normalizeLeadPii(emailVal, phoneVal, nameVal) {
+    const out = {};
+    const em = (emailVal || "").trim().toLowerCase();
+    if (em && em.includes("@")) out.em = em;
+    const digits = (phoneVal || "").replace(/\\D/g, "");
+    if (digits.length >= 10) out.ph = (digits.length === 10 || digits.length === 11) ? "55" + digits : digits;
+    const parts = (nameVal || "").trim().toLowerCase().split(/\\s+/).filter(Boolean);
+    if (parts.length >= 1) out.fn = parts[0];
+    if (parts.length >= 2) out.ln = parts[parts.length - 1];
+    return out;
   }
 
   // Banner LGPD (#ntr-cb) + Consent Mode v2
@@ -566,13 +728,53 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
     });
   });
 
-  // Fila segura de eventos Zaraz
+  // Fila segura de eventos Zaraz + contexto first_touch
+  const activeNtrId = getOrCreateNtrId();
+  const activeFirstTouch = getOrCreateFirstTouch();
+  const activeAttribution = persistAttribution();
+  const touchCount = recordJourneyTouch();
+  const pageOffer = CONTENT_SLUG ? (SLUG_OFFERS[CONTENT_SLUG] || null) : null;
+  const inAppBrowser = detectInAppBrowser(navigator.userAgent || "");
+  let detectedDeviceModel = "";
+
   const pendingZarazEvents = [];
   let zarazFlushScheduled = false;
+
+  function applyZarazContext() {
+    const z = win.zaraz;
+    if (!z?.set) return;
+    z.set("first_touch_source", activeFirstTouch.source, { scope: "page" });
+    z.set("first_touch_medium", activeFirstTouch.medium, { scope: "page" });
+    z.set("first_touch_campaign", activeFirstTouch.campaign || "", { scope: "page" });
+    z.set("touch_count", touchCount, { scope: "page" });
+    z.set("in_app_browser", inAppBrowser, { scope: "page" });
+    if (detectedDeviceModel) z.set("device_model", detectedDeviceModel, { scope: "page" });
+  }
+
+  function scheduleHighEntropyDeviceModel() {
+    const uaData = navigator.userAgentData;
+    if (!uaData || typeof uaData.getHighEntropyValues !== "function") return;
+    const collect = () => {
+      uaData.getHighEntropyValues(["model", "platformVersion"]).then((hints) => {
+        const model = hints && typeof hints.model === "string" ? hints.model.trim() : "";
+        if (model) {
+          detectedDeviceModel = model;
+          win.zaraz?.set?.("device_model", model, { scope: "page" });
+        }
+      }).catch(() => {});
+    };
+    if (typeof win.requestIdleCallback === "function") {
+      win.requestIdleCallback(collect, { timeout: 1500 });
+    } else {
+      win.setTimeout(collect, 0);
+    }
+  }
+  scheduleHighEntropyDeviceModel();
 
   function flushPendingZarazEvents() {
     const z = win.zaraz;
     if (!z?.track) return false;
+    applyZarazContext();
     while (pendingZarazEvents.length > 0) {
       const item = pendingZarazEvents.shift();
       if (item) z.track(item.name, item.props);
@@ -583,6 +785,7 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
   function trackZaraz(eventName, props) {
     const z = win.zaraz;
     if (z?.track) {
+      applyZarazContext();
       z.track(eventName, props);
       return;
     }
@@ -600,20 +803,34 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
     }
   }
 
-  const activeNtrId = getOrCreateNtrId();
-  const activeAttribution = persistAttribution();
+  applyZarazContext();
 
-  document.querySelectorAll("a[href]").forEach((anchor) => {
-    const decorated = decorateCrossDomainUrl(anchor.href, activeNtrId, activeAttribution);
-    if (decorated) anchor.href = decorated;
-  });
+  function decorateAnchor(anchor) {
+    const d1 = decorateCrossDomainUrl(anchor.href, activeNtrId, activeAttribution);
+    if (d1) { anchor.href = d1; return; }
+    const d2 = decorateCheckoutUrl(anchor.href, activeNtrId, activeAttribution, activeFirstTouch);
+    if (d2) { anchor.href = d2; }
+  }
+
+  document.querySelectorAll("a[href]").forEach(decorateAnchor);
 
   if (CONTENT_TYPE && CONTENT_SLUG) {
-    trackZaraz("view_content", {
+    const vcProps = {
       content_type: CONTENT_TYPE,
       content_slug: CONTENT_SLUG,
       page_path: win.location.pathname,
-    });
+      event_id: generateEventId("vc"),
+      first_touch_source: activeFirstTouch.source,
+      first_touch_medium: activeFirstTouch.medium,
+      first_touch_campaign: activeFirstTouch.campaign || "",
+      touch_count: touchCount,
+    };
+    if (pageOffer) {
+      vcProps.content_ids = pageOffer.id;
+      vcProps.value = pageOffer.value;
+      vcProps.currency = pageOffer.currency;
+    }
+    trackZaraz("view_content", vcProps);
   }
 
   document.addEventListener("click", (event) => {
@@ -622,23 +839,58 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
     const anchor = target.closest("a");
     if (!anchor || !anchor.href) return;
     try {
-      const decorated = decorateCrossDomainUrl(anchor.href, activeNtrId, activeAttribution);
-      if (decorated) anchor.href = decorated;
+      decorateAnchor(anchor);
       const dest = new URL(anchor.href, win.location.href);
       const host = dest.hostname.toLowerCase();
       if (isCheckoutDestination(host) || isLeadDestination(host)) {
         const ctaText = (anchor.textContent || "").replace(/\\s+/g, " ").trim().slice(0, 120);
-        trackZaraz("cta_click", {
+        const resolvedOffer = resolveOfferByUrl(dest.href) || pageOffer;
+        const ctaProps = {
           link_url: dest.href,
           link_host: host,
           page_path: win.location.pathname,
           cta_text: ctaText,
-        });
+          event_id: generateEventId("cta"),
+          first_touch_source: activeFirstTouch.source,
+          first_touch_medium: activeFirstTouch.medium,
+          first_touch_campaign: activeFirstTouch.campaign || "",
+          touch_count: touchCount,
+        };
+        if (resolvedOffer) {
+          ctaProps.content_ids = resolvedOffer.id;
+          ctaProps.value = resolvedOffer.value;
+          ctaProps.currency = resolvedOffer.currency;
+        }
+        trackZaraz("cta_click", ctaProps);
       }
     } catch {
       // Ignora URLs inválidas
     }
   });
+
+  // Captura não-destrutiva de formulários legados SwipePages para EMQ elevado (em/ph/fn/ln)
+  document.addEventListener("submit", (event) => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    const emailEl = form.querySelector('input[type="email"]');
+    const phoneEl = form.querySelector('input[type="tel"]');
+    const nameEl = form.querySelector('input[type="text"]');
+    const pii = normalizeLeadPii(emailEl?.value, phoneEl?.value, nameEl?.value);
+    if (!pii.em && !pii.ph) return;
+    const leadProps = Object.assign({
+      content_name: (pageOffer && pageOffer.name) || CONTENT_SLUG || document.title,
+      page_path: win.location.pathname,
+      event_id: generateEventId("lead"),
+      first_touch_source: activeFirstTouch.source,
+      first_touch_campaign: activeFirstTouch.campaign || "",
+    }, pii);
+    if (pageOffer) {
+      leadProps.content_ids = pageOffer.id;
+      leadProps.value = pageOffer.value;
+      leadProps.currency = pageOffer.currency;
+    }
+    trackZaraz("generate_lead", leadProps);
+  }, true);
 
   let firedScroll50 = false;
   let firedScroll90 = false;
@@ -652,11 +904,11 @@ export function buildLegacyZarazFooterAndBannerHtml(opts: LegacyZarazOptions = {
     const pct = (currentY / scrollable) * 100;
     if (!firedScroll50 && pct >= 50) {
       firedScroll50 = true;
-      trackZaraz("scroll_depth", { percent_scrolled: 50, page_path: win.location.pathname });
+      trackZaraz("scroll_depth", { percent_scrolled: 50, page_path: win.location.pathname, event_id: generateEventId("scr50") });
     }
     if (!firedScroll90 && pct >= 90) {
       firedScroll90 = true;
-      trackZaraz("scroll_depth", { percent_scrolled: 90, page_path: win.location.pathname });
+      trackZaraz("scroll_depth", { percent_scrolled: 90, page_path: win.location.pathname, event_id: generateEventId("scr90") });
     }
     if (firedScroll50 && firedScroll90) {
       win.removeEventListener("scroll", onScrollPassive);
