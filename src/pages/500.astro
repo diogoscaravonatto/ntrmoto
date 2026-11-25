@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+---
+
+<BaseLayout title="Erro de Servidor | NTR Escola de Motores" noindex={true}>
+  <section class="relative flex min-h-[75vh] flex-col items-center justify-center p-6 text-center">
+    <div class="group relative">
+      <h1 class="bg-gradient-to-b from-red-500 to-red-900 bg-clip-text text-[9rem] leading-none font-black tracking-tighter text-transparent opacity-20 md:text-[12rem]">
+        500
+      </h1>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="text-3xl font-black tracking-tight text-white uppercase md:text-4xl">
+          Algo deu errado
+        </span>
+      </div>
+    </div>
+
+    <p class="mt-4 max-w-md text-lg text-zinc-400">
+      Ocorreu um erro inesperado no nosso servidor. Estamos trabalhando para resolver.
+    </p>
+
+    {import.meta.env.DEV && (
+      <div class="mt-8 max-w-2xl overflow-auto rounded-lg border border-red-900/50 bg-red-950/30 p-4 text-left">
+        <p class="font-mono text-sm text-red-400">
+          {error instanceof Error ? error.message : "Desconhecido"}
+        </p>
+        {error instanceof Error &&
+          error.stack && <pre class="mt-2 font-mono text-xs text-red-500/70">{error.stack}</pre>}
+      </div>
+    )}
+
+    <a
+      href="/"
+      class="mt-10 rounded-full bg-brand-red px-8 py-4 font-bold text-white transition-transform hover:scale-105 hover:bg-brand-red-dark active:scale-95"
+    >
+      Tentar novamente
+    </a>
+
+    {/* Background Glow */}
+    <div class="pointer-events-none fixed top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/10 blur-[120px]"></div>
+  </section>
+</BaseLayout>

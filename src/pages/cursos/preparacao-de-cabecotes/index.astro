@@ -1,0 +1,49 @@
+---
+import { enhanceLegacyHtml } from "../../../utils/legacy-seo";
+import {
+  buildBreadcrumbSchema,
+  buildCourseSchema,
+  buildOrganizationSchema,
+} from "../../../utils/seo";
+import rawHtml from "../../../legacy-swipepages/curso-cabecote-v02.html?raw";
+
+const title = "Curso Expert em Cabeçotes — Preparação de Motores | NTR Escola de Motores";
+const description =
+  "Aprenda a preparar cabeçotes de alta vazão em 3 passos: dimensionamento de dutos, modelagem/squish e multi ângulos em válvulas e sedes. Garantia de 7 dias.";
+const canonicalPath = "/cursos/preparacao-de-cabecotes/";
+
+const html = enhanceLegacyHtml(rawHtml, {
+  canonicalPath,
+  title,
+  description,
+  ogImage: "/legacy-sp/media/821ff8be22ca-cabecotes-1.png",
+  headingFix: {
+    demoteHeading: {
+      fromTag: "h1",
+      toTag: "h2",
+      contains: "Presentes Exclusivos",
+    },
+  },
+  schema: [
+    buildOrganizationSchema(),
+    buildBreadcrumbSchema([
+      { name: "Início", path: "/" },
+      { name: "Cursos", path: "/cursos/" },
+      { name: "Expert em Cabeçotes", path: canonicalPath },
+    ]),
+    buildCourseSchema({
+      name: "Curso Expert em Cabeçotes",
+      description,
+      path: canonicalPath,
+      price: "197.00",
+      image: "/legacy-sp/media/821ff8be22ca-cabecotes-1.png",
+    }),
+  ],
+  tracking: {
+    contentType: "course",
+    contentSlug: "preparacao-de-cabecotes",
+  },
+});
+---
+
+<Fragment set:html={html} />

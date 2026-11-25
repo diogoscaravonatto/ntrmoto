@@ -1,20 +1,31 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/home/Hero.astro';
-import StatsBar from '../components/home/StatsBar.astro';
-import ProblemStatement from '../components/home/ProblemStatement.astro';
-import Framework from '../components/home/Framework.astro';
-import Courses from '../components/home/Courses.astro';
-import SocialProofGrid from '../components/home/SocialProofGrid.astro';
-import FinalCTA from '../components/home/FinalCTA.astro';
-import Footer from '../components/home/Footer.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/home/Hero.astro";
+import StatsBar from "../components/home/StatsBar.astro";
+import ProblemStatement from "../components/home/ProblemStatement.astro";
+import Framework from "../components/home/Framework.astro";
+import Courses from "../components/home/Courses.astro";
+import SocialProofGrid from "../components/home/SocialProofGrid.astro";
+import FinalCTA from "../components/home/FinalCTA.astro";
+import Footer from "../components/home/Footer.astro";
+import { buildOrganizationSchema, buildWebSiteSchema } from "../utils/seo";
 
 const title = "NTR Escola de Motores | Preparação de Motores";
-const description = "A maior escola de preparação de motores da América Latina. O sistema simples que a NTR usa para formar campeões.";
+const description =
+  "A maior escola de preparação de motores da América Latina. O sistema simples que a NTR usa para formar campeões.";
+const schema = [buildOrganizationSchema(), buildWebSiteSchema()];
 ---
 
-<BaseLayout title={title} description={description}>
-  <main class="bg-[#0a0a0a] text-white min-h-screen font-sans selection:bg-brand-red selection:text-white">
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/"
+  schema={schema}
+  contentType="home"
+  contentSlug="home"
+  hideFooter={true}
+>
+  <div class="min-h-screen bg-[#0a0a0a] font-sans text-white selection:bg-brand-red selection:text-white">
     <Hero />
     <StatsBar />
     <ProblemStatement />
@@ -22,38 +33,6 @@ const description = "A maior escola de preparação de motores da América Latin
     <Courses />
     <SocialProofGrid />
     <FinalCTA />
-  </main>
-  <Footer />
+  </div>
+  <Footer slot="footer" />
 </BaseLayout>
-
-<style is:global>
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  .reveal-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-  }
-  
-  .reveal-up.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
-<script>
-  // Simple intersection observer for reveal animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal-up').forEach((el) => {
-    observer.observe(el);
-  });
-</script>

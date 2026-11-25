@@ -30,6 +30,11 @@
 /*.css
   Cache-Control: public, max-age=31536000, immutable
 
+# Assets legados importados do SwipePages - 1 ano (desanexa para evitar duplicidade com extensões)
+/legacy-sp/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
 # HTML - 1 hora (para permitir atualizações rápidas)
 /*.html
   Cache-Control: public, max-age=3600, must-revalidate
@@ -37,12 +42,6 @@
 # Página inicial - 1 hora
 /
   Cache-Control: public, max-age=3600, must-revalidate
-
-# Black Vitalícia BF26 - Sem cache de HTML para garantir atualização imediata
-/bf26
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-/bf26/
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
 
 # Security Headers
 /*
@@ -53,3 +52,65 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Cross-Origin-Opener-Policy: same-origin-allow-popups
   Content-Security-Policy: upgrade-insecure-requests;
+
+# Embeds da Calculadora e futuras páginas incorporadas (/embed*) na Área de Membros (Cademi)
+/embed*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  ! X-Robots-Tag
+  Content-Security-Policy: upgrade-insecure-requests; frame-ancestors 'self' https://alunos.escolademotores.com.br https://core.cademi.com.br https://*.cademi.com.br;
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/embededcalc1
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  ! X-Robots-Tag
+  Content-Security-Policy: upgrade-insecure-requests; frame-ancestors 'self' https://alunos.escolademotores.com.br https://core.cademi.com.br https://*.cademi.com.br;
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/embededcalc1/
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  ! X-Robots-Tag
+  Content-Security-Policy: upgrade-insecure-requests; frame-ancestors 'self' https://alunos.escolademotores.com.br https://core.cademi.com.br https://*.cademi.com.br;
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/embededcalc2
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  ! X-Robots-Tag
+  Content-Security-Policy: upgrade-insecure-requests; frame-ancestors 'self' https://alunos.escolademotores.com.br https://core.cademi.com.br https://*.cademi.com.br;
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/embededcalc2/
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  ! X-Robots-Tag
+  Content-Security-Policy: upgrade-insecure-requests; frame-ancestors 'self' https://alunos.escolademotores.com.br https://core.cademi.com.br https://*.cademi.com.br;
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+# Páginas de funil/upsell não indexáveis
+/convite
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/convite/
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/calculadora-up
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/calculadora-up/
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+# Página LATAM sem checkout ativo (mantida fora do índice até ativação)
+/es/cursos/tasa-de-compresion
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet
+
+/es/cursos/tasa-de-compresion/
+  ! X-Robots-Tag
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet

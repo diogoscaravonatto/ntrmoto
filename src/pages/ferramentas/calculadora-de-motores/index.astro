@@ -1,0 +1,42 @@
+---
+import { enhanceLegacyHtml } from "../../../utils/legacy-seo";
+import {
+  buildBreadcrumbSchema,
+  buildOrganizationSchema,
+  buildSoftwareApplicationSchema,
+} from "../../../utils/seo";
+import rawHtml from "../../../legacy-swipepages/calculadora-pv1.html?raw";
+
+const title = "Calculadora de Motores NTR — App de Engenharia para Motos";
+const description =
+  "Calcule cilindrada, taxa de compressão, relação R/L, VMP, carburador/TBI, válvulas e dutos 2V/4V no celular. Exclusiva para motos, com 3 bônus e garantia de 7 dias.";
+const canonicalPath = "/ferramentas/calculadora-de-motores/";
+
+const html = enhanceLegacyHtml(rawHtml, {
+  canonicalPath,
+  title,
+  description,
+  ogImage: "/legacy-sp/media/d99cc615a2f2-imagem-link-paginas-ntr-calculadora.png",
+  schema: [
+    buildOrganizationSchema(),
+    buildBreadcrumbSchema([
+      { name: "Início", path: "/" },
+      { name: "Ferramentas", path: "/ferramentas/" },
+      { name: "Calculadora de Motores NTR", path: canonicalPath },
+    ]),
+    buildSoftwareApplicationSchema({
+      name: "Calculadora de Motores NTR",
+      description,
+      path: canonicalPath,
+      price: "67.00",
+      image: "/legacy-sp/media/d99cc615a2f2-imagem-link-paginas-ntr-calculadora.png",
+    }),
+  ],
+  tracking: {
+    contentType: "tool",
+    contentSlug: "calculadora-de-motores",
+  },
+});
+---
+
+<Fragment set:html={html} />

@@ -1,0 +1,67 @@
+# Redirects 301 — Arquitetura Semântica NTR Escola de Motores (Workers Static Assets)
+# Ambas as variantes (sem e com barra final) evitam salto 307 intermediário.
+# Query strings (?utm_*, fbclid, gclid) são preservadas automaticamente pelo runtime.
+
+# Cursos
+/clube /cursos/clube-de-preparadores/ 301
+/clube/ /cursos/clube-de-preparadores/ 301
+/bf26 /cursos/clube-de-preparadores/ 301
+/bf26/ /cursos/clube-de-preparadores/ 301
+/bf26-inscricoes /cursos/clube-de-preparadores/ 301
+/bf26-inscricoes/ /cursos/clube-de-preparadores/ 301
+/combo-black /cursos/clube-de-preparadores/ 301
+/combo-black/ /cursos/clube-de-preparadores/ 301
+
+/pro /cursos/formacao-pro/ 301
+/pro/ /cursos/formacao-pro/ 301
+
+/curso-cabecote-v02 /cursos/preparacao-de-cabecotes/ 301
+/curso-cabecote-v02/ /cursos/preparacao-de-cabecotes/ 301
+/expert-cabecotes-v2 /cursos/preparacao-de-cabecotes/ 301
+/expert-cabecotes-v2/ /cursos/preparacao-de-cabecotes/ 301
+
+/combo-comandos-4em1pro /cursos/comandos-de-valvulas/ 301
+/combo-comandos-4em1pro/ /cursos/comandos-de-valvulas/ 301
+
+/crp-pv11 /cursos/curso-rapido-preparacao/ 301
+/crp-pv11/ /cursos/curso-rapido-preparacao/ 301
+/curso-preparacao /cursos/curso-rapido-preparacao/ 301
+/curso-preparacao/ /cursos/curso-rapido-preparacao/ 301
+
+/ctx /cursos/taxa-de-compressao/ 301
+/ctx/ /cursos/taxa-de-compressao/ 301
+/ctx/pt /cursos/taxa-de-compressao/ 301
+/ctx/pt/ /cursos/taxa-de-compressao/ 301
+/ctx-pv5 /cursos/taxa-de-compressao/ 301
+/ctx-pv5/ /cursos/taxa-de-compressao/ 301
+/ctx-pv6 /cursos/taxa-de-compressao/ 301
+/ctx-pv6/ /cursos/taxa-de-compressao/ 301
+/ctx/es /es/cursos/tasa-de-compresion/ 301
+/ctx/es/ /es/cursos/tasa-de-compresion/ 301
+
+# Ferramentas
+/calculadora-pv1 /ferramentas/calculadora-de-motores/ 301
+/calculadora-pv1/ /ferramentas/calculadora-de-motores/ 301
+/calculadora-pv2 /ferramentas/calculadora-de-motores/ 301
+/calculadora-pv2/ /ferramentas/calculadora-de-motores/ 301
+/calculadora-de-motores /ferramentas/calculadora-de-motores/ 301
+/calculadora-de-motores/ /ferramentas/calculadora-de-motores/ 301
+
+# Projetos e Guias
+/r4t-v01 /projetos/rei-do-4trinho/ 301
+/r4t-v01/ /projetos/rei-do-4trinho/ 301
+/r4t-v02 /projetos/rei-do-4trinho/ 301
+/r4t-v02/ /projetos/rei-do-4trinho/ 301
+
+/gmp /projetos/guia-motores-preparados/ 301
+/gmp/ /projetos/guia-motores-preparados/ 301
+/gmp-lp11 /projetos/guia-motores-preparados/ 301
+/gmp-lp11/ /projetos/guia-motores-preparados/ 301
+/pdf_conteudos /projetos/guia-motores-preparados/ 301
+/pdf_conteudos/ /projetos/guia-motores-preparados/ 301
+
+# Aulas gratuitas
+/aulas /aulas/cambio-e-velocidade-final/ 301
+/aulas/ /aulas/cambio-e-velocidade-final/ 301
+/aula-cambio /aulas/cambio-e-velocidade-final/ 301
+/aula-cambio/ /aulas/cambio-e-velocidade-final/ 301

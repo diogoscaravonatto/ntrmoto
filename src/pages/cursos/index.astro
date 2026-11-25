@@ -1,0 +1,163 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import {
+  buildBreadcrumbSchema,
+  buildCollectionPageSchema,
+  buildOrganizationSchema,
+} from "../../utils/seo";
+
+const title = "Cursos de Preparação de Motores | NTR Escola de Motores";
+const description =
+  "Todos os treinamentos online da NTR Escola de Motores: Clube de Preparadores (18 cursos), Formação PRO (15 cursos), Cabeçotes, Comandos 4 em 1, CRP e Taxa de Compressão.";
+
+const breadcrumbs = [
+  { name: "Início", path: "/" },
+  { name: "Cursos", path: "/cursos/" },
+];
+
+const courses = [
+  {
+    name: "Clube de Preparadores NTR (18 Cursos)",
+    path: "/cursos/clube-de-preparadores/",
+    tag: "Ecossistema Completo",
+    price: "Anual R$ 299 • Vitalício R$ 899",
+    summary:
+      "Todos os 18 cursos NTR em uma assinatura (inclui Molas Especiais e Remap na Prática), suporte 1 ano, comunidade e garantia de 30 dias.",
+  },
+  {
+    name: "Formação PRO NTR (15 Cursos)",
+    path: "/cursos/formacao-pro/",
+    tag: "Formação Profissional",
+    price: "R$ 599 à vista ou 12x R$ 59",
+    summary:
+      "15 módulos (+300 aulas, +130h) do nível 1 ao avançado em cabeçotes, comandos, injeção, combustíveis de competição, suporte 1 ano e garantia de 30 dias.",
+  },
+  {
+    name: "Combo Comandos 4 em 1 PRO",
+    path: "/cursos/comandos-de-valvulas/",
+    tag: "Especialização",
+    price: "R$ 297 à vista",
+    summary:
+      "4 cursos completos de comandos (leitura, enquadramento com disco graduado, LSA, usinagem e perfis agressivos) + tabelas e fichas. Garantia de 7 dias.",
+  },
+  {
+    name: "Curso Expert em Cabeçotes",
+    path: "/cursos/preparacao-de-cabecotes/",
+    tag: "Especialização",
+    price: "R$ 197 à vista ou 12x R$ 19,70",
+    summary:
+      "Método em 3 passos (dimensionamento de dutos, modelagem/squish e multi ângulos em válvulas e sedes) com certificado e garantia de 7 dias.",
+  },
+  {
+    name: "Curso Rápido de Preparação (CRP)",
+    path: "/cursos/curso-rapido-preparacao/",
+    tag: "Para Iniciantes e Oficinas",
+    price: "R$ 147 à vista ou 12x R$ 14,70",
+    summary:
+      "12h de conteúdo prático em 4 etapas para montar o primeiro motor preparado com segurança usando ferramentas convencionais. Garantia de 7 dias.",
+  },
+  {
+    name: "Curso O Segredo da Taxa de Compressão (CTX)",
+    path: "/cursos/taxa-de-compressao/",
+    tag: "Entrada",
+    price: "Normal R$ 37 • Combo 3 Cursos R$ 75",
+    summary:
+      "Aprenda a calcular, medir e acertar a taxa ideal para gasolina, etanol ou metanol sem gastar com peças erradas. Garantia de 7 dias.",
+  },
+];
+
+const schema = [
+  buildOrganizationSchema(),
+  buildBreadcrumbSchema(breadcrumbs),
+  buildCollectionPageSchema({
+    name: "Cursos de Preparação de Motores NTR",
+    description,
+    path: "/cursos/",
+    items: courses.map((c) => ({ name: c.name, path: c.path, description: c.summary })),
+  }),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/cursos/"
+  schema={schema}
+  contentType="hub"
+  contentSlug="cursos"
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="bg-[#050505] px-4 py-16 text-white md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <header class="mb-14 max-w-3xl space-y-4">
+        <span class="inline-block rounded-full border border-brand-red/30 bg-brand-red/10 px-4 py-1 text-xs font-black tracking-widest text-brand-red uppercase">
+          Catálogo Oficial NTR • Valores verificados em 22/11/2026
+        </span>
+        <h1 class="text-4xl font-black tracking-tight text-white uppercase md:text-5xl">
+          Cursos de <span class="text-brand-red">Preparação de Motores</span>
+        </h1>
+        <p class="text-base leading-relaxed text-gray-300 md:text-lg">
+          Treinamentos 100% online validados em banca de fluxo, dinamômetro e pista por Fábio
+          Scaravonatto. Escolha o programa ideal para o seu momento na oficina.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {courses.map((course) => (
+          <article class="flex flex-col justify-between rounded-2xl border border-white/10 bg-[#0d0d10] p-6 transition-colors hover:border-brand-red/50">
+            <div class="space-y-3">
+              <span class="inline-block rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-bold tracking-wider text-brand-red uppercase">
+                {course.tag}
+              </span>
+              <h2 class="text-xl font-black text-white">{course.name}</h2>
+              <p class="text-sm leading-relaxed text-gray-400">{course.summary}</p>
+            </div>
+
+            <div class="mt-6 border-t border-white/10 pt-4">
+              <p class="mb-3 text-sm font-extrabold text-emerald-400">{course.price}</p>
+              <a
+                href={course.path}
+                class="inline-flex w-full items-center justify-center rounded-xl bg-brand-red px-4 py-3 text-sm font-black tracking-wide text-white uppercase transition-colors hover:bg-brand-red-dark"
+              >
+                Ver detalhes do curso
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-12 flex flex-col items-start justify-between gap-6 rounded-2xl border border-white/10 bg-[#0b0b0e] p-6 md:flex-row md:items-center md:p-8">
+        <div class="space-y-1">
+          <h2 class="text-xl font-black text-white">Quer começar pela aula gratuita?</h2>
+          <p class="text-sm text-gray-400">
+            Assista à aula aberta sobre escalonamento de câmbio, relação secundária e velocidade
+            final.
+          </p>
+        </div>
+        <a
+          href="/aulas/cambio-e-velocidade-final/"
+          class="shrink-0 rounded-xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-bold text-white uppercase transition-colors hover:bg-white/20"
+        >
+          Assistir Aula Gratuita
+        </a>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-4 text-sm text-gray-400">
+        <a href="/ferramentas/" class="underline-offset-4 hover:text-white hover:underline">
+          Ver Ferramentas e Calculadora →
+        </a>
+        <a href="/projetos/" class="underline-offset-4 hover:text-white hover:underline">
+          Ver Projetos e Receitas Prontas →
+        </a>
+        <a
+          href="https://blog.ntrmoto.com.br"
+          class="underline-offset-4 hover:text-white hover:underline"
+        >
+          Ler Guias Técnicos no Blog NTR →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

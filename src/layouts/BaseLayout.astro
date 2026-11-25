@@ -1,69 +1,151 @@
 ---
-import '../styles/global.css';
+import { Font } from "astro:assets";
+import "../styles/global.css";
+import CookieBanner from "../components/CookieBanner.astro";
+import ZarazTracking from "../components/ZarazTracking.astro";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_ORIGIN,
+  normalizeCanonicalUrl,
+  resolveAbsoluteAssetUrl,
+  serializeJsonLd,
+  type SchemaNode,
+} from "../utils/seo";
+import {
+  buildNtrIdHeadBootstrapScript,
+  buildZarazConsentDefaultScript,
+} from "../utils/zaraz-runtime";
 
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  lang?: string;
+  noindex?: boolean;
+  canonicalPath?: string;
+  schema?: SchemaNode | SchemaNode[];
+  alternates?: Array<{ hreflang: string; href: string }>;
+  contentType?: string;
+  contentSlug?: string;
+  hideFooter?: boolean;
 }
 
-const { title, description = "Projeto de baixo custo que gera +32cv e faz a moto passar dos 200km/h." } = Astro.props;
+const {
+  title,
+  description = "A maior escola de preparação de motores da América Latina. Treinamentos práticos em cabeçotes, comandos, taxa de compressão, acerto e projetos reais.",
+  ogImage = DEFAULT_OG_IMAGE,
+  lang = "pt-BR",
+  noindex = false,
+  canonicalPath,
+  schema,
+  alternates = [],
+  contentType = "",
+  contentSlug = "",
+  hideFooter = false,
+} = Astro.props;
+
+const siteOrigin = Astro.site ?? new URL(SITE_ORIGIN);
+const canonicalUrl = normalizeCanonicalUrl(canonicalPath ?? Astro.url.pathname, siteOrigin);
+const ogImageUrl = resolveAbsoluteAssetUrl(ogImage, siteOrigin);
+const ogLocale = lang.toLowerCase().startsWith("es") ? "es_ES" : "pt_BR";
+const jsonLdText = schema ? serializeJsonLd(schema) : null;
+const ntrIdBootstrapScript = buildNtrIdHeadBootstrapScript();
+const zarazConsentDefaultScript = buildZarazConsentDefaultScript();
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
+    <script is:inline set:html={ntrIdBootstrapScript} />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href={canonicalUrl} />
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#050505" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
-    {/* Meta tags para redes sociais (OG Image) */}
+    {/* Meta tags para redes sociais (Open Graph e Twitter) */}
+    <meta property="og:site_name" content="NTR Escola de Motores" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/mockup_r4t_impacto3.png" />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/images/mockup_r4t_impacto3.png" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    {/* Google Tag Manager - Oficial NTR via Stape (Carregamento Imediato para Rastreamento) */}
-    <script is:inline>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://stape.escolademotores.com.br/4txurzhmh.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','435cn=aWQ9R1RNLVdQSzg3UlBI&apiKey=98b4c691');
-    </script>
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    {jsonLdText && <script is:inline type="application/ld+json" set:html={jsonLdText} />}
+
+    {/* Astro 7 Native Fonts API: zero requests externos ao Google Fonts */}
+    <Font cssVariable="--font-inter" preload />
   </head>
-  <body class="bg-[#050505] text-gray-200 min-h-screen flex flex-col selection:bg-brand-red selection:text-white">
-    {/* Google Tag Manager (noscript) - Fallback para usuários sem JS ou com bloqueadores */}
-    <noscript><iframe src="https://stape.escolademotores.com.br/ns.html?id=GTM-WPK87RPH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <body
+    data-ntr-content-type={contentType}
+    data-ntr-content-slug={contentSlug}
+    class="flex min-h-screen flex-col bg-[#050505] text-gray-200 selection:bg-brand-red selection:text-white"
+  >
+    <script is:inline set:html={zarazConsentDefaultScript} />
     <main class="flex-grow overflow-hidden">
       <slot />
     </main>
 
-    <footer class="py-12 border-t border-gray-900 text-center text-sm text-gray-600 mt-auto bg-[#020202]">
-      <div class="container mx-auto px-4">
-        <p class="mb-2">NTR Escola de Motores &copy; {new Date().getFullYear()}. Todos os direitos reservados.</p>
-      </div>
-    </footer>
+    {hideFooter ? (
+      <slot name="footer" />
+    ) : (
+      <footer class="mt-auto border-t border-gray-900 bg-[#020202] py-12 text-center text-sm text-gray-600">
+        <div class="container mx-auto px-4">
+          <p class="mb-2">
+            NTR Escola de Motores &copy; {new Date().getFullYear()}. Todos os direitos reservados.
+          </p>
+          <div class="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500">
+            <a
+              href="https://blog.ntrmoto.com.br/pages/privacidade"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline underline-offset-2 transition-colors hover:text-gray-300"
+            >
+              Privacidade
+            </a>
+            <button
+              type="button"
+              data-cookie-preferences
+              class="cursor-pointer underline underline-offset-2 transition-colors hover:text-gray-300"
+            >
+              Preferências de cookies
+            </button>
+          </div>
+        </div>
+      </footer>
+    )}
+
+    <CookieBanner />
+    <ZarazTracking />
 
     <script>
       // Scroll Reveal Animation
       const observerOptions = {
-        threshold: 0.1
+        threshold: 0.1,
       };
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('active');
+            entry.target.classList.add("active");
           }
         });
       }, observerOptions);
 
-      document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+      document.querySelectorAll(".reveal-up").forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>

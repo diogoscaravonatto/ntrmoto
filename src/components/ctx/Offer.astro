@@ -1,43 +1,50 @@
 ---
-import { Image } from 'astro:assets';
-import imgPgto from '../../assets/images/pag_seguro.png';
-import imgMockupCombo from '../../assets/images/mockup_r4t_impacto3.png';
-import imgMockupNormal from '../../assets/images/mockup_guia_motores.webp';
+import { Image } from "astro:assets";
+import imgPgto from "../../assets/images/pag_seguro.png";
+import imgMockupCombo from "../../assets/images/mockup_r4t_impacto3.png";
+import imgMockupNormal from "../../assets/images/mockup_guia_motores.webp";
 ---
 
-<section id="oferta" class="py-24 px-4 bg-slate-50 relative overflow-hidden border-b border-slate-100">
+<section
+  id="oferta"
+  class="relative overflow-hidden border-b border-slate-100 bg-slate-50 px-4 py-24"
+>
   {/* Soft light grid */}
-  <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30 pointer-events-none"></div>
+  <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30"></div>
 
-  <div class="max-w-5xl mx-auto relative z-10">
-    
-    <div class="text-center mb-16">
-      <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">Escolha Seu Pacote</span>
-      <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mt-2 mb-4 uppercase tracking-tighter italic">
+  <div class="relative z-10 mx-auto max-w-5xl">
+    <div class="mb-16 text-center">
+      <span class="text-sm font-black tracking-wider text-brand-orange uppercase italic">
+        Escolha Seu Pacote
+      </span>
+      <h2 class="mt-2 mb-4 text-3xl font-black tracking-tighter text-slate-900 uppercase italic md:text-5xl lg:text-6xl">
         AGORA É CONTIGO:
       </h2>
-      <p class="text-slate-600 text-lg md:text-xl font-bold">
+      <p class="text-lg font-bold text-slate-600 md:text-xl">
         Veja as 2 OPÇÕES de Acesso e escolha a melhor pra você
       </p>
     </div>
 
     {/* Tabela de Ofertas */}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-      
+    <div class="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2">
       {/* Opção 1: Acesso Normal */}
-      <div class="bg-white border border-slate-200 rounded-[32px] p-8 md:p-10 flex flex-col justify-between hover:border-slate-300 transition-all duration-300 relative shadow-sm">
+      <div class="relative flex flex-col justify-between rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-slate-300 md:p-10">
         <div class="space-y-6">
           <div>
-            <span class="text-slate-400 font-bold text-xs uppercase tracking-wider">Acesso Básico</span>
-            <h3 class="text-slate-950 font-black text-2xl uppercase italic tracking-tight mt-1">Acesso Normal</h3>
-            <p class="text-slate-500 text-sm mt-1">Apenas o Curso de Taxa + Brindes.</p>
+            <span class="text-xs font-bold tracking-wider text-slate-400 uppercase">
+              Acesso Básico
+            </span>
+            <h3 class="mt-1 text-2xl font-black tracking-tight text-slate-950 uppercase italic">
+              Acesso Normal
+            </h3>
+            <p class="mt-1 text-sm text-slate-500">Apenas o Curso de Taxa + Brindes.</p>
           </div>
 
-          <div class="py-6 flex justify-center border-b border-slate-100">
-            <Image 
-              src={imgMockupNormal} 
-              alt="Mockup Acesso Normal" 
-              class="h-40 w-auto object-contain opacity-90" 
+          <div class="flex justify-center border-b border-slate-100 py-6">
+            <Image
+              src={imgMockupNormal}
+              alt="Mockup Acesso Normal"
+              class="h-40 w-auto object-contain opacity-90"
               loading="lazy"
               decoding="async"
             />
@@ -46,71 +53,84 @@ import imgMockupNormal from '../../assets/images/mockup_guia_motores.webp';
           {/* Lista de Atributos */}
           <ul class="space-y-4 text-sm font-bold text-slate-700">
             <li class="flex items-center gap-3">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Curso Taxa Compressão</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Tabela de Bielas</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Tabela de Pistões</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Plano 200km/h</span>
             </li>
             <li class="flex items-center gap-3 text-slate-300 line-through">
-              <span class="text-slate-300 text-base">✘</span>
+              <span class="text-base text-slate-300">✘</span>
               <span>Curso Acerto Carburador</span>
             </li>
             <li class="flex items-center gap-3 text-slate-300 line-through">
-              <span class="text-slate-300 text-base">✘</span>
+              <span class="text-base text-slate-300">✘</span>
               <span>Curso Enquadro Comando</span>
             </li>
           </ul>
         </div>
 
         {/* Preço e Botão */}
-        <div class="mt-10 pt-6 border-t border-slate-100 space-y-6">
+        <div class="mt-10 space-y-6 border-t border-slate-100 pt-6">
           <div class="text-center">
-            <p class="text-slate-400 text-xs font-bold line-through">De R$ 197,00</p>
-            <p class="text-slate-500 text-xs font-bold mt-1">Por apenas</p>
-            <div class="flex items-start justify-center gap-1 mt-1">
-              <span class="text-xl text-slate-900 font-black mt-1">R$</span>
-              <span class="text-6xl font-black text-slate-900 leading-none tracking-tight">67</span>
-              <span class="text-xl text-slate-900 font-black mt-1">,00</span>
+            <p class="text-xs font-bold text-slate-400 line-through">De R$ 197,00</p>
+            <p class="mt-1 text-xs font-bold text-slate-500">Por apenas</p>
+            <div class="mt-1 flex items-start justify-center gap-1">
+              <span class="mt-1 text-xl font-black text-slate-900">R$</span>
+              <span class="text-6xl leading-none font-black tracking-tight text-slate-900">37</span>
+              <span class="mt-1 text-xl font-black text-slate-900">,00</span>
             </div>
-            <p class="text-slate-500 text-[11px] font-bold mt-2">Pagamento único de R$ 67 à vista</p>
+            <p class="mt-2 text-[11px] font-bold text-slate-500">
+              Pagamento único de R$ 37 à vista
+            </p>
           </div>
 
-          <a href="https://sun.eduzz.com/SEU_CHECKOUT_MANUAL_67" target="_blank" class="block w-full py-4 text-center bg-slate-100 hover:bg-slate-200 text-slate-800 font-black rounded-2xl border border-slate-300 transition-colors uppercase tracking-tight italic text-sm">
-            QUERO ACESSO NORMAL <br/>
-            <span class="text-[10px] normal-case font-bold text-slate-500">apenas o Curso de Taxa</span>
+          <a
+            href="https://sun.eduzz.com/2191231"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full rounded-2xl border border-slate-300 bg-slate-100 py-4 text-center text-sm font-black tracking-tight text-slate-800 uppercase italic transition-colors hover:bg-slate-200"
+          >
+            QUERO ACESSO NORMAL <br />
+            <span class="text-[10px] font-bold text-slate-500 normal-case">
+              apenas o Curso de Taxa
+            </span>
           </a>
         </div>
       </div>
 
       {/* Opção 2: Acesso Premium */}
-      <div class="bg-white border-2 border-brand-orange rounded-[32px] p-8 md:p-10 flex flex-col justify-between hover:border-brand-orange-dark transition-all duration-300 relative shadow-[0_15px_40px_rgba(255,90,0,0.08)]">
+      <div class="relative flex flex-col justify-between rounded-[32px] border-2 border-brand-orange bg-white p-8 shadow-[0_15px_40px_rgba(255,90,0,0.08)] transition-all duration-300 hover:border-brand-orange-dark md:p-10">
         {/* Badge Recomendado */}
-        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-orange text-white px-5 py-1.5 rounded-full font-black text-[10px] md:text-xs uppercase tracking-widest italic animate-glow">
+        <div class="animate-glow absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-brand-orange px-5 py-1.5 text-[10px] font-black tracking-widest text-white uppercase italic md:text-xs">
           O MAIS VANTAJOSO (87% escolhem esse)
         </div>
 
         <div class="space-y-6">
           <div class="mt-2">
-            <span class="text-brand-orange font-black text-xs uppercase tracking-widest italic">Melhor Oferta do Dia</span>
-            <h3 class="text-slate-950 font-black text-2xl uppercase italic tracking-tight mt-1">ACESSO PREMIUM</h3>
-            <p class="text-slate-500 text-sm mt-1">Combo com 3 Cursos de Preparação.</p>
+            <span class="text-xs font-black tracking-widest text-brand-orange uppercase italic">
+              Melhor Oferta do Dia
+            </span>
+            <h3 class="mt-1 text-2xl font-black tracking-tight text-slate-950 uppercase italic">
+              ACESSO PREMIUM
+            </h3>
+            <p class="mt-1 text-sm text-slate-500">Combo com 3 Cursos de Preparação.</p>
           </div>
 
-          <div class="py-6 flex justify-center border-b border-slate-100">
-            <Image 
-              src={imgMockupCombo} 
-              alt="Mockup Acesso Premium" 
-              class="h-40 w-auto object-contain" 
+          <div class="flex justify-center border-b border-slate-100 py-6">
+            <Image
+              src={imgMockupCombo}
+              alt="Mockup Acesso Premium"
+              class="h-40 w-auto object-contain"
               loading="lazy"
               decoding="async"
             />
@@ -119,70 +139,84 @@ import imgMockupNormal from '../../assets/images/mockup_guia_motores.webp';
           {/* Lista de Atributos */}
           <ul class="space-y-4 text-sm font-bold text-slate-700">
             <li class="flex items-center gap-3 text-brand-orange">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Combo com 3 Cursos de Preparação</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Curso Taxa Compressão</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Tabela de Bielas</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Tabela Pistões</span>
             </li>
             <li class="flex items-center gap-3">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Plano 200km/h</span>
             </li>
             <li class="flex items-center gap-3 text-brand-orange">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Curso Acerto Carburador</span>
             </li>
             <li class="flex items-center gap-3 text-brand-orange">
-              <span class="text-brand-orange text-base">✔</span>
+              <span class="text-base text-brand-orange">✔</span>
               <span>Curso Enquadramento Comando</span>
             </li>
           </ul>
         </div>
 
         {/* Preço e Botão */}
-        <div class="mt-10 pt-6 border-t border-slate-100 space-y-6">
+        <div class="mt-10 space-y-6 border-t border-slate-100 pt-6">
           <div class="text-center">
-            <p class="text-slate-400 text-xs font-bold line-through">De R$ 397,00</p>
-            <div class="flex items-start justify-center gap-1 mt-1">
-              <span class="text-xl text-slate-900 font-black mt-1">R$</span>
-              <span class="text-6xl font-black text-brand-orange leading-none tracking-tight">97</span>
-              <span class="text-xl text-slate-900 font-black mt-1">,00</span>
+            <p class="text-xs font-bold text-slate-400 line-through">De R$ 397,00</p>
+            <div class="mt-1 flex items-start justify-center gap-1">
+              <span class="mt-1 text-xl font-black text-slate-900">R$</span>
+              <span class="text-6xl leading-none font-black tracking-tight text-brand-orange">
+                75
+              </span>
+              <span class="mt-1 text-xl font-black text-slate-900">,00</span>
             </div>
-            <p class="text-slate-500 text-xs font-bold mt-1">ou em até <span class="text-brand-orange text-lg font-black block">12x R$ 9,70</span> no cartão</p>
+            <p class="mt-1 text-xs font-bold text-slate-500">
+              ou em até <span class="block text-lg font-black text-brand-orange">12x R$ 7,50</span>{" "}
+              no cartão
+            </p>
           </div>
 
-          <a href="https://sun.eduzz.com/1865589?cupom=especial50off&utm_content=1754141964121_17541415298533" target="_blank" class="block w-full py-5 text-center bg-brand-orange hover:bg-brand-orange-dark text-white font-black rounded-2xl shadow-[0_10px_25px_rgba(255,90,0,0.2)] hover:shadow-[0_15px_30px_rgba(255,90,0,0.3)] transition-all duration-300 transform hover:-translate-y-1 uppercase tracking-tight italic text-sm">
-            QUERO ACESSO PREMIUM <br/>
-            <span class="text-[10px] normal-case font-bold text-orange-200">Combo 3 Cursos de Preparação</span>
+          <a
+            href="https://sun.eduzz.com/2377783"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full transform rounded-2xl bg-brand-orange py-5 text-center text-sm font-black tracking-tight text-white uppercase italic shadow-[0_10px_25px_rgba(255,90,0,0.2)] transition-all duration-300 hover:-translate-y-1 hover:bg-brand-orange-dark hover:shadow-[0_15px_30px_rgba(255,90,0,0.3)]"
+          >
+            QUERO ACESSO PREMIUM <br />
+            <span class="text-[10px] font-bold text-orange-200 normal-case">
+              Combo 3 Cursos de Preparação
+            </span>
           </a>
-          
-          <p class="text-[10px] text-slate-400 text-center font-bold italic mt-2">* Neste combo cada curso sai por menos de R$ 33,00</p>
+
+          <p class="mt-2 text-center text-[10px] font-bold text-slate-400 italic">
+            * Neste combo cada curso sai por R$ 25,00
+          </p>
         </div>
       </div>
-
     </div>
 
     {/* Selo Pagamento Seguro */}
-    <div class="mt-16 pt-8 border-t border-slate-200 flex flex-col items-center gap-4">
-      <Image 
-        src={imgPgto} 
-        alt="Compra Segura PagSeguro" 
+    <div class="mt-16 flex flex-col items-center gap-4 border-t border-slate-200 pt-8">
+      <Image
+        src={imgPgto}
+        alt="Compra Segura PagSeguro"
         class="h-12 w-auto object-contain opacity-95"
         loading="lazy"
         decoding="async"
       />
-      <p class="text-slate-400 text-[11px] font-bold uppercase tracking-wider">🔒 Pagamento processado pela Eduzz. Ambiente 100% criptografado e seguro.</p>
+      <p class="text-[11px] font-bold tracking-wider text-slate-400 uppercase">
+        🔒 Pagamento processado pela Eduzz. Ambiente 100% criptografado e seguro.
+      </p>
     </div>
-
   </div>
 </section>

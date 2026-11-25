@@ -1,95 +1,99 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="ESPERE! Recado Importante (Etapa 2 de 3)">
+<BaseLayout
+  title="ESPERE! Recado Importante (Etapa 2 de 3)"
+  description="Recado importante da NTR Escola de Motores."
+  noindex={true}
+  contentType="upsell"
+  contentSlug="convite"
+>
   {/* Header de Atenção */}
-  <div class="bg-black text-white py-6 px-4 text-center border-b-4 border-[#CC0000]">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-2xl md:text-4xl font-black leading-tight mb-4 animate-pulse">
+  <div class="border-b-4 border-[#CC0000] bg-black px-4 py-6 text-center text-white">
+    <div class="mx-auto max-w-4xl">
+      <h1 class="mb-4 animate-pulse text-2xl leading-tight font-black md:text-4xl">
         ATENÇÃO!!! Não feche a página antes de concluir ou isso pode causar erros
       </h1>
-      
+
       {/* Barra de Progresso Animada */}
-      <div class="max-w-md mx-auto bg-black/40 rounded-full h-8 p-1 relative overflow-hidden border border-white/20">
-        <div class="progress-bar bg-[#F0B102] h-full rounded-full flex items-center justify-center text-[10px] md:text-xs font-black text-black uppercase relative z-10">
+      <div class="relative mx-auto h-8 max-w-md overflow-hidden rounded-full border border-white/20 bg-black/40 p-1">
+        <div class="progress-bar relative z-10 flex h-full items-center justify-center rounded-full bg-[#F0B102] text-[10px] font-black text-black uppercase md:text-xs">
           Etapa 2 de 3
         </div>
       </div>
     </div>
   </div>
 
-  <section class="py-12 md:py-16 px-4 bg-[#050505] min-h-screen text-white">
-    <div class="max-w-4xl mx-auto text-center">
-      
-      <p class="text-gray-400 font-bold italic mb-8 uppercase tracking-widest text-sm">
+  <section class="min-h-screen bg-[#050505] px-4 py-12 text-white md:py-16">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-8 text-sm font-bold tracking-widest text-gray-400 uppercase italic">
         Assista o vídeo que tenho um recado importante:
       </p>
 
       {/* VSL Container - Proporção Vertical 9:16 */}
-      <div class="w-full max-w-[400px] mx-auto mb-12 shadow-[0_0_50px_rgba(255,51,51,0.1)] rounded-2xl overflow-hidden bg-black border-4 border-white/10 relative">
-         <div style="position:relative;padding-top:177.77777777777777%;">
-           <iframe 
-             id="panda-f43bc79b-2817-4d25-b630-490d80605b70" 
-             src="https://player-vz-8c69785c-727.tv.pandavideo.com.br/embed/?v=f43bc79b-2817-4d25-b630-490d80605b70" 
-             style="border:none;position:absolute;top:0;left:0;" 
-             allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" 
-             allowfullscreen="true" 
-             width="100%" 
-             height="100%" 
-             fetchpriority="high">
+      <div class="relative mx-auto mb-12 w-full max-w-[400px] overflow-hidden rounded-2xl border-4 border-white/10 bg-black shadow-[0_0_50px_rgba(255,51,51,0.1)]">
+        <div style="position:relative;padding-top:177.77777777777777%;">
+          <iframe
+            id="panda-f43bc79b-2817-4d25-b630-490d80605b70"
+            title="Recado importante Clube NTR"
+            src="https://player-vz-8c69785c-727.tv.pandavideo.com.br/embed/?v=f43bc79b-2817-4d25-b630-490d80605b70"
+            style="border:none;position:absolute;top:0;left:0;"
+            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+            allowfullscreen={true}
+            width="100%"
+            height="100%"
+            fetchpriority="high"
+          >
            </iframe>
-         </div>
+        </div>
       </div>
 
       {/* Botões de Decisão - Com delay de 60s */}
-      <div id="upsell-actions" class="hidden transition-all duration-1000 transform translate-y-4">
-        
+      <div id="upsell-actions" class="hidden translate-y-4 transform transition-all duration-1000">
         {/* Botão SIM - Upsell */}
         <div class="mb-10">
-          <a 
-            href="https://sun.eduzz.com/1143144?cupom=CLUBEUP&u=1" 
-            class="inline-block w-full max-w-xl py-6 px-8 bg-[#22C55E] hover:bg-[#16a34a] text-white text-xl md:text-2xl font-black rounded-2xl shadow-[0_15px_40px_rgba(34,197,94,0.3)] hover:shadow-[0_15px_50px_rgba(34,197,94,0.5)] transition-all transform hover:-translate-y-2 uppercase tracking-[0.05em] italic animate-bounce text-center leading-tight"
+          <a
+            href="https://sun.eduzz.com/1143144?cupom=CLUBEUP&u=1"
+            class="inline-block w-full max-w-xl transform animate-bounce rounded-2xl bg-[#22C55E] px-8 py-6 text-center text-xl leading-tight font-black tracking-[0.05em] text-white uppercase italic shadow-[0_15px_40px_rgba(34,197,94,0.3)] transition-all hover:-translate-y-2 hover:bg-[#16a34a] hover:shadow-[0_15px_50px_rgba(34,197,94,0.5)] md:text-2xl"
           >
             SIM, QUERO ENTRAR NO CLUBE NTR
           </a>
-          <p class="mt-4 text-gray-300 font-bold text-sm md:text-base flex items-center justify-center gap-2 max-w-lg mx-auto leading-tight">
-            <svg class="w-6 h-6 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-            Ao clicar no botão acima todos os conteúdos do Clube NTR serão adicionados ao seu pedido por apenas R$ 39,90/mês
+          <p class="mx-auto mt-4 flex max-w-lg items-center justify-center gap-2 text-sm leading-tight font-bold text-gray-300 md:text-base">
+            <svg class="h-6 w-6 shrink-0 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            Ao clicar no botão acima todos os conteúdos do Clube NTR serão adicionados ao seu pedido
+            por apenas R$ 39,90/mês
           </p>
         </div>
 
         {/* Botão NÃO - Downsell (Versão Botão Vermelho Claro) */}
         <div class="mt-16 border-t border-white/5 pt-10 pb-12">
-          <a 
-            href="https://www.escolademotores.com.br/calculadora-up" 
-            class="inline-block w-full max-w-md py-4 px-6 bg-[#EF4444]/10 hover:bg-[#EF4444]/20 text-[#EF4444]/80 border border-[#EF4444]/20 font-bold rounded-xl transition-all uppercase tracking-wider text-sm mb-3"
+          <a
+            href="/calculadora-up/"
+            class="mb-3 inline-block w-full max-w-md rounded-xl border border-[#EF4444]/20 bg-[#EF4444]/10 px-6 py-4 text-sm font-bold tracking-wider text-[#EF4444]/80 uppercase transition-all hover:bg-[#EF4444]/20"
           >
             Não quero participar do Clube NTR
           </a>
-          <p class="text-gray-500 text-[10px] uppercase tracking-widest leading-relaxed">
+          <p class="text-[10px] leading-relaxed tracking-widest text-gray-500 uppercase">
             Ao clicar aqui, você perderá essa oportunidade única para sempre.
           </p>
         </div>
-
       </div>
-
     </div>
   </section>
-
-  <footer class="py-12 bg-[#050505] border-t border-white/5 text-center">
-    <p class="text-gray-600 text-[10px] uppercase tracking-[0.2em]">
-      &copy; {new Date().getFullYear()} NTR Treinamentos Ltda<br/>
-      Todos os Direitos Reservados
-    </p>
-  </footer>
 
   <script>
     // Delay de 60 segundos (60000ms) para mostrar os botões
     setTimeout(() => {
-      const actions = document.getElementById('upsell-actions');
+      const actions = document.getElementById("upsell-actions");
       if (actions) {
-        actions.classList.remove('hidden');
+        actions.classList.remove("hidden");
       }
     }, 60000);
   </script>
@@ -101,7 +105,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       color: white !important;
       overflow-x: hidden;
     }
-    
+
     .progress-bar {
       width: 33%;
       animation: fill-progress 2s ease-out forwards;
@@ -109,8 +113,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     }
 
     @keyframes fill-progress {
-      from { width: 33%; }
-      to { width: 66%; }
+      from {
+        width: 33%;
+      }
+      to {
+        width: 66%;
+      }
     }
 
     .animate-pulse {
@@ -118,8 +126,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: .8; }
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
     }
   </style>
 </BaseLayout>

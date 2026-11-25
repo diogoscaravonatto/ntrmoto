@@ -1,0 +1,60 @@
+---
+import type { BreadcrumbItem } from "../utils/seo";
+
+interface Props {
+  items: BreadcrumbItem[];
+  theme?: "dark" | "light";
+}
+
+const { items, theme = "dark" } = Astro.props;
+const isLight = theme === "light";
+---
+
+<nav
+  aria-label="Breadcrumbs"
+  class:list={[
+    "ntr-breadcrumbs w-full border-b px-4 py-2.5 text-xs",
+    isLight
+      ? "border-slate-200 bg-slate-50 text-slate-600"
+      : "border-white/10 bg-[#050505] text-gray-400",
+  ]}
+>
+  <ol class="mx-auto flex max-w-6xl flex-wrap items-center gap-1.5">
+    {items.map((item, idx) => {
+      const isCurrent = idx === items.length - 1;
+      return (
+        <li class="inline-flex items-center gap-1.5">
+          {isCurrent ? (
+            <a
+              href={item.path}
+              aria-current="page"
+              class:list={[
+                "font-bold underline-offset-4 hover:underline",
+                isLight ? "text-slate-900" : "text-white",
+              ]}
+            >
+              {item.name}
+            </a>
+          ) : (
+            <a
+              href={item.path}
+              class:list={[
+                "underline-offset-4 transition-colors hover:underline",
+                isLight ? "text-slate-600 hover:text-slate-950" : "text-gray-400 hover:text-white",
+              ]}
+            >
+              {item.name}
+            </a>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<style>
+  .ntr-breadcrumbs ol li + li::before {
+    content: "/" / "";
+    opacity: 0.45;
+  }
+</style>

@@ -1,87 +1,54 @@
 ---
-const faqs = [
-  {
-    q: "O que é o Treinamento em Taxa de Compressão?",
-    a: "O treinamento de Taxa é um curso rápido em vídeo aulas para você melhorar o resultado do seu motor através da taxa, com poucas ferramentas e mesmo sem ter experiência."
-  },
-  {
-    q: "Como vou receber as aulas?",
-    a: "O acesso é imediato! Assim que seu pagamento for confirmado pela plataforma Eduzz, você receberá um e-mail com seus dados de acesso (login e senha) e o link da área de membros."
-  },
-  {
-    q: "Em quanto tempo vou ter resultados com o que vou aprender nesse programa?",
-    a: "Você pode assistir às aulas no mesmo dia e já aplicar os ajustes. O resultado de ganho de potência e torque é imediato após finalizar a regulagem correta do motor."
-  },
-  {
-    q: "Funciona pra quem não tem experiência na área?",
-    a: "Sim, o método foi feito justamente para quem está começando do zero. Explicamos o passo a passo de forma simples, direta e sem termos técnicos difíceis."
-  },
-  {
-    q: "Existe alguma garantia que o programa funciona?",
-    a: "Sim, você tem 7 dias de garantia incondicional. Se você não gostar do treinamento por qualquer motivo, basta pedir o reembolso e devolvemos 100% do seu dinheiro."
-  }
-];
+import { CTX_FAQS } from "../../utils/faqs";
 ---
 
-<section class="py-24 px-4 bg-slate-50 relative overflow-hidden border-b border-slate-100">
-  <div class="max-w-3xl mx-auto relative z-10">
-    
-    <div class="text-center mb-16">
-      <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">Esclareça Suas Dúvidas</span>
-      <h2 class="text-3xl md:text-5xl font-black text-slate-900 mt-2 mb-6 uppercase tracking-tighter italic">
+<section
+  aria-labelledby="ctx-faq-heading"
+  class="relative overflow-hidden border-b border-slate-100 bg-slate-50 px-4 py-24"
+>
+  <div class="relative z-10 mx-auto max-w-3xl">
+    <div class="mb-16 text-center">
+      <span class="text-sm font-black tracking-wider text-brand-orange uppercase italic">
+        Esclareça Suas Dúvidas
+      </span>
+      <h2
+        id="ctx-faq-heading"
+        class="mt-2 mb-6 text-3xl font-black tracking-tighter text-slate-900 uppercase italic md:text-5xl"
+      >
         DÚVIDAS <span class="text-brand-orange">FREQUENTES</span>
       </h2>
     </div>
 
-    {/* Accordion List */}
-    <div class="space-y-4" id="faq-accordion">
-      {faqs.map((faq, index) => (
-        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-brand-orange/30 transition-all duration-300 shadow-sm">
-          <button 
-            class="faq-trigger w-full py-5 px-6 text-left flex justify-between items-center text-slate-800 font-bold text-base md:text-lg uppercase tracking-tight italic select-none focus:outline-none"
-            data-index={index}
-          >
+    {/* Accordion Nativo (<details> / <summary>) — pesquisável via Ctrl+F e acessível */}
+    <div class="space-y-4">
+      {CTX_FAQS.map((faq) => (
+        <details
+          name="ctx-faq"
+          class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-colors open:border-brand-orange/40 hover:border-brand-orange/30"
+        >
+          <summary class="flex cursor-pointer list-none items-center justify-between px-6 py-5 text-left text-base font-bold tracking-tight text-slate-800 uppercase italic select-none md:text-lg">
             <span>{faq.q}</span>
-            <svg class="faq-icon w-6 h-6 text-brand-orange transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
-          </button>
-          
-          <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-out">
-            <div class="p-6 pt-0 text-slate-500 text-sm leading-relaxed border-t border-slate-100">
-              {faq.a}
-            </div>
+            <svg
+              aria-hidden="true"
+              class="h-6 w-6 shrink-0 text-brand-orange transition-transform duration-300 group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </summary>
+
+          <div class="border-t border-slate-100 px-6 py-4 text-sm leading-relaxed text-slate-600">
+            <p>{faq.a}</p>
           </div>
-        </div>
+        </details>
       ))}
     </div>
-
   </div>
 </section>
-
-<script>
-  const triggers = document.querySelectorAll('.faq-trigger');
-  
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const content = trigger.nextElementSibling as HTMLElement;
-      const icon = trigger.querySelector('.faq-icon') as HTMLElement;
-      
-      // Fecha todos os outros FAQs
-      document.querySelectorAll('.faq-content').forEach(c => {
-        if (c !== content && c.clientHeight > 0) {
-          (c as HTMLElement).style.maxHeight = '0px';
-          const siblingIcon = c.previousElementSibling?.querySelector('.faq-icon') as HTMLElement;
-          if (siblingIcon) siblingIcon.style.transform = 'rotate(0deg)';
-        }
-      });
-
-      // Alterna o estado do item clicado
-      if (content.clientHeight === 0) {
-        content.style.maxHeight = content.scrollHeight + 'px';
-        icon.style.transform = 'rotate(180deg)';
-      } else {
-        content.style.maxHeight = '0px';
-        icon.style.transform = 'rotate(0deg)';
-      }
-    });
-  });
-</script>

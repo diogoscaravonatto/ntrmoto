@@ -1,0 +1,41 @@
+---
+import { enhanceLegacyHtml } from "../../../utils/legacy-seo";
+import {
+  buildBreadcrumbSchema,
+  buildCourseSchema,
+  buildOrganizationSchema,
+} from "../../../utils/seo";
+import rawHtml from "../../../legacy-swipepages/aula-cambio.html?raw";
+
+const title = "Aula Gratuita: Câmbio, Relação e Velocidade Final em Motos | NTR";
+const description =
+  "Aula liberada ensinando como combinar escalonamento de câmbio e relação secundária para atingir máxima velocidade final no menor tempo em motos preparadas.";
+const canonicalPath = "/aulas/cambio-e-velocidade-final/";
+
+const html = enhanceLegacyHtml(rawHtml, {
+  canonicalPath,
+  title,
+  description,
+  ogImage: "/images/mockup_combo.webp",
+  schema: [
+    buildOrganizationSchema(),
+    buildBreadcrumbSchema([
+      { name: "Início", path: "/" },
+      { name: "Aula Câmbio e Velocidade Final", path: canonicalPath },
+    ]),
+    buildCourseSchema({
+      name: "Aula Liberada — Câmbio e Velocidade Final",
+      description,
+      path: canonicalPath,
+      price: "0.00",
+      image: "/images/mockup_combo.webp",
+    }),
+  ],
+  tracking: {
+    contentType: "lesson",
+    contentSlug: "cambio-e-velocidade-final",
+  },
+});
+---
+
+<Fragment set:html={html} />

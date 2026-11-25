@@ -1,0 +1,42 @@
+---
+import { enhanceLegacyHtml } from "../../../utils/legacy-seo";
+import {
+  buildBreadcrumbSchema,
+  buildOrganizationSchema,
+  buildProductSchema,
+} from "../../../utils/seo";
+import rawHtml from "../../../legacy-swipepages/gmp-lp11.html?raw";
+
+const title = "Guia de Motores Preparados — 12 Receitas Validadas | NTR Escola de Motores";
+const description =
+  "Manual digital vitalício em PDF com 12 receitas validadas em dinamômetro para CG Vareta, Titan 150/160, Twister e CB300: peças, taxa por combustível e medidas.";
+const canonicalPath = "/projetos/guia-motores-preparados/";
+
+const html = enhanceLegacyHtml(rawHtml, {
+  canonicalPath,
+  title,
+  description,
+  ogImage: "/images/mockup_combo.webp",
+  schema: [
+    buildOrganizationSchema(),
+    buildBreadcrumbSchema([
+      { name: "Início", path: "/" },
+      { name: "Projetos", path: "/projetos/" },
+      { name: "Guia de Motores Preparados", path: canonicalPath },
+    ]),
+    buildProductSchema({
+      name: "Guia de Motores Preparados (GMP)",
+      description,
+      path: canonicalPath,
+      price: "47.00",
+      image: "/images/mockup_combo.webp",
+    }),
+  ],
+  tracking: {
+    contentType: "project",
+    contentSlug: "guia-motores-preparados",
+  },
+});
+---
+
+<Fragment set:html={html} />

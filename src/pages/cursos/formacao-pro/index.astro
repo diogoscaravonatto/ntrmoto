@@ -1,0 +1,48 @@
+---
+import { enhanceLegacyHtml } from "../../../utils/legacy-seo";
+import {
+  buildBreadcrumbSchema,
+  buildCourseSchema,
+  buildOrganizationSchema,
+} from "../../../utils/seo";
+import rawHtml from "../../../legacy-swipepages/pro.html?raw";
+
+const title = "Formação PRO NTR (15 Cursos) — Preparação de Motores | NTR Escola de Motores";
+const description =
+  "Formação PRO NTR com 15 cursos (+300 aulas, +130h), certificados, suporte individual de 1 ano e garantia de 30 dias. Domine a preparação de motores com método.";
+const canonicalPath = "/cursos/formacao-pro/";
+
+const html = enhanceLegacyHtml(rawHtml, {
+  canonicalPath,
+  title,
+  description,
+  ogImage: "/images/mockup_combo.webp",
+  headingFix: {
+    promoteFirstHeading: {
+      fromTag: "h2",
+      contains: "Domine todas",
+    },
+  },
+  schema: [
+    buildOrganizationSchema(),
+    buildBreadcrumbSchema([
+      { name: "Início", path: "/" },
+      { name: "Cursos", path: "/cursos/" },
+      { name: "Formação PRO", path: canonicalPath },
+    ]),
+    buildCourseSchema({
+      name: "Formação PRO NTR (15 Cursos)",
+      description,
+      path: canonicalPath,
+      price: "599.00",
+      image: "/images/mockup_combo.webp",
+    }),
+  ],
+  tracking: {
+    contentType: "course",
+    contentSlug: "formacao-pro",
+  },
+});
+---
+
+<Fragment set:html={html} />

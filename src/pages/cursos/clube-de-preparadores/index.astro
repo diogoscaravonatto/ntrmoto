@@ -1,0 +1,2768 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import { Image, getImage } from "astro:assets";
+import {
+  buildBreadcrumbSchema,
+  buildCourseSchema,
+  buildFaqSchema,
+  buildOrganizationSchema,
+} from "../../../utils/seo";
+
+// Identidade & Mockups Principais (Recortados / Integrados)
+import imgHeroCompleta from "../../../assets/images/clube/hero_clube_ntrflix.jpg";
+import imgBadgeBF2026 from "../../../assets/images/clube/badge_bf2026_ntr.png";
+
+// Bônus Exclusivos 2026
+import imgBonusLivros from "../../../assets/images/clube/bonus_livros_apostilas_2026.png";
+import imgBonusManuais from "../../../assets/images/clube/bonus_manuais_servico_2026.jpg";
+import imgBonusCalculadora from "../../../assets/images/clube/bonus_calculadora_motores.jpg";
+import imgCaixaSurpresaTransparente from "../../../assets/images/clube/cabecote_torkmax_34_29_sorteio.webp";
+import imgMockupPlanoAnual from "../../../assets/images/clube/mockup_plano_anual_2026.jpg";
+import imgMockupPlanoVitalicio from "../../../assets/images/clube/mockup_plano_vitalicio_2026.jpg";
+
+// Demonstração Prática & Autoridade
+import imgGraficoFluxo from "../../../assets/images/clube/img_08_comparativo-fluxo-cb300-ntr_opoe7x.webp";
+import imgGraficoPotencia from "../../../assets/images/clube/img_09_comparativo-potencia-cb300-ntr_ypzrlo.webp";
+import imgFabioTrofeus from "../../../assets/images/clube/img_42_anota--o_2023-05-10_112144_wvg3p3.webp";
+
+// Os Cursos Oficiais do Clube NTR
+import imgCurso01 from "../../../assets/images/clube/img_20_33_tspmik.webp";
+import imgCurso09 from "../../../assets/images/clube/img_28_37_ungllp.webp";
+import imgCurso10 from "../../../assets/images/clube/img_29_51_e9s2rl.webp";
+import imgCurso12 from "../../../assets/images/clube/img_31_47_kdwfjk.webp";
+import imgCurso13 from "../../../assets/images/clube/img_32_48_r1zhpf.webp";
+import imgCurso16 from "../../../assets/images/clube/card_rei_do_4trinho_2026.webp";
+
+// Cards Oficiais da BF26 (Cabeçotes, Comandos e Acertos)
+import imgCabecoteN1Azul from "../../../assets/images/card_cabecote_nivel1_azul.jpg";
+import imgCabecoteProN2Azul from "../../../assets/images/card_cabecote_pro_nivel2_azul.jpg";
+import imgMolasEspeciaisAzul from "../../../assets/images/card_molas_especiais_azul.jpg";
+import imgDesenvolvimentoCabecotes from "../../../assets/images/clube/card_desenvolvimento_cabecotes.jpg";
+import imgSuporteAluno from "../../../assets/images/clube/card_suporte_acompanhamento.jpg";
+import imgComunidadeAlunos from "../../../assets/images/clube/card_comunidade_alunos.jpg";
+
+import imgComandosN1Vermelho from "../../../assets/images/card_comandos_nivel1_vermelho.jpg";
+import imgComandosN2Vermelho from "../../../assets/images/card_comandos_nivel2_vermelho.jpg";
+import imgComandosN3Vermelho from "../../../assets/images/card_comandos_nivel3_vermelho.jpg";
+import imgUsinagemComandosVermelho from "../../../assets/images/card_usinagem_comandos_vermelho.jpg";
+
+import imgAcertosFinosAmarelo from "../../../assets/images/card_acertos_finos_amarelo.jpg";
+import imgAcertoPiggybackAmarelo from "../../../assets/images/card_acerto_piggyback_amarelo.jpg";
+import imgCombustiveisCompeticaoAmarelo from "../../../assets/images/card_combustiveis_competicao_amarelo.jpg";
+import imgEventoRemapAmarelo from "../../../assets/images/card_evento_remap_amarelo.jpg";
+
+// Prova Social (Prints e Troféus)
+import imgDepo01 from "../../../assets/images/clube/img_02_depoimento_alunos_800_x_800_px_600_x_800_px_pfmoxf.webp";
+import imgDepo02 from "../../../assets/images/clube/img_03_resumo-curso-rapido_2_bcn004.webp";
+import imgDepo03 from "../../../assets/images/clube/img_04_depoimento_alunos_800_x_800_px_600_x_800_px_1_m0pj0i.webp";
+import imgDepo04 from "../../../assets/images/clube/img_05_depoimento_alunos_800_x_800_px_ldlkzw--1-.webp";
+import imgDepo05 from "../../../assets/images/clube/img_06_depoimento-alunos--37-.webp";
+import imgDepo06 from "../../../assets/images/clube/img_07_depoimento_alunos_800_x_800_px_600_x_800_px_1080_x_1920_px_ndm2sy.webp";
+
+import imgTrofeu01 from "../../../assets/images/clube/img_10_design-sem-nome--57-.webp";
+import imgTrofeu02 from "../../../assets/images/clube/img_11_design-sem-nome--65-.webp";
+import imgTrofeu03 from "../../../assets/images/clube/img_12_design-sem-nome--63-.webp";
+import imgTrofeu04 from "../../../assets/images/clube/img_13_design-sem-nome--58-.webp";
+import imgTrofeu05 from "../../../assets/images/clube/img_14_design-sem-nome--59-.webp";
+import imgTrofeu06 from "../../../assets/images/clube/img_15_design-sem-nome--62-.webp";
+import imgTrofeu07 from "../../../assets/images/clube/img_16_design-sem-nome--64-.webp";
+import imgTrofeu08 from "../../../assets/images/clube/img_17_design-sem-nome--60-.webp";
+import imgTrofeu09 from "../../../assets/images/clube/img_18_design-sem-nome--61-.webp";
+
+// Links de Checkout (apenas os botões dos 2 planos usam estas variáveis)
+const checkoutAnual = "https://sun.eduzz.com/VWGNYO1R07?cupom=SBF26";
+const checkoutVitalicio = "https://chk.eduzz.com/39ZQNOXB9E?cupom=SBF26";
+const whatsappSuporte =
+  "https://wa.me/5545999003816?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20estou%20com%20d%C3%BAvidas%20sobre%20a%20Black%20do%20Clube%20NTR";
+
+// Os 18 Treinamentos Oficiais do Clube NTR Organizados por Categorias Técnicas
+const gruposCursos = [
+  {
+    nome: "Tudo sobre Desenvolvimento de motores 100% prático",
+    tag: "DESENVOLVIMENTO",
+    cor: "#ff2a2a",
+    cursos: [
+      { id: "01", title: "O COMEÇO DO PROJETO", tag: "BASE", img: imgCurso01 },
+      { id: "02", title: "PROJETO DE RUA 28CV", tag: "PROJETO REAL", img: imgCurso13 },
+      { id: "03", title: "REI DO 4TRINHO", tag: "COMPETIÇÃO", img: imgCurso16 },
+      { id: "04", title: "BALANCEAMENTO MOTORES", tag: "ENGENHARIA", img: imgCurso10 },
+    ],
+  },
+  {
+    nome: "Tudo sobre Cabeçotes",
+    tag: "CABEÇOTES",
+    cor: "#3b82f6",
+    cursos: [
+      { id: "05", title: "CABEÇOTES NIVEL 1", tag: "CABEÇOTES", img: imgCabecoteN1Azul },
+      { id: "06", title: "CABEÇOTES PRO", tag: "NÍVEL PRO", img: imgCabecoteProN2Azul },
+      { id: "07", title: "MOLAS ESPECIAIS", tag: "MOLAS", img: imgMolasEspeciaisAzul },
+      {
+        id: "08",
+        title: "DESENVOLVIMENTO CABEÇOTES",
+        tag: "AVANÇADO",
+        img: imgDesenvolvimentoCabecotes,
+      },
+    ],
+  },
+  {
+    nome: "Tudo sobre Comandos",
+    tag: "COMANDOS",
+    cor: "#ef4444",
+    cursos: [
+      { id: "09", title: "COMANDOS N1", tag: "COMANDOS", img: imgComandosN1Vermelho },
+      { id: "10", title: "COMANDOS N2", tag: "AVANÇADO", img: imgComandosN2Vermelho },
+      { id: "11", title: "COMANDOS N3", tag: "COMPETIÇÃO", img: imgComandosN3Vermelho },
+      { id: "12", title: "USINAGEM COMANDO", tag: "USINAGEM", img: imgUsinagemComandosVermelho },
+    ],
+  },
+  {
+    nome: "Tudo sobre acertos",
+    tag: "ACERTOS",
+    cor: "#eab308",
+    cursos: [
+      { id: "13", title: "ACERTOS FINOS", tag: "CARBURADOR", img: imgAcertosFinosAmarelo },
+      { id: "14", title: "ACERTO INJEÇÃO", tag: "ELETRÔNICA", img: imgAcertoPiggybackAmarelo },
+      {
+        id: "15",
+        title: "COMBUSTÍVEIS COMPETIÇÃO",
+        tag: "COMBUSTÍVEIS",
+        img: imgCombustiveisCompeticaoAmarelo,
+      },
+      { id: "16", title: "Remap na prática", tag: "REMAP", img: imgEventoRemapAmarelo },
+    ],
+  },
+  {
+    nome: "Conteúdos Extras",
+    tag: "EXTRAS",
+    cor: "#a855f7",
+    cursos: [
+      { id: "17", title: "RAIO -X", tag: "DIAGNÓSTICO", img: imgCurso09 },
+      { id: "18", title: "MOTORES DE PONTA", tag: "ALTA PERFORMANCE", img: imgCurso12 },
+      { id: "19", title: "SUPORTE E ACOMPANHAMENTO", tag: "SUPORTE 48H", img: imgSuporteAluno },
+      { id: "20", title: "COMUNIDADE DE ALUNOS", tag: "NETWORKING VIP", img: imgComunidadeAlunos },
+    ],
+  },
+];
+
+// Lista dos 18 cursos formatados e otimizados em WebP leve (360px) para o Carrossel 3D
+const carrosselCursosRaw = [
+  {
+    title: "O Começo do Projeto",
+    desc: "Medição de cilindrada, taxa de compressão e ferramentas",
+    badge: "01 / 18",
+    img: imgCurso01,
+  },
+  {
+    title: "Projeto de Rua 28cv",
+    desc: "Passo a passo completo da Titan / Fan 28cv confiável",
+    badge: "02 / 18",
+    img: imgCurso13,
+  },
+  {
+    title: "Rei do 4Trinho",
+    desc: "Construção do motor mais forte da categoria",
+    badge: "03 / 18",
+    img: imgCurso16,
+  },
+  {
+    title: "Balanceamento de Motores",
+    desc: "Alívio de peso e balanceamento dinâmico de biela e virabrequim",
+    badge: "04 / 18",
+    img: imgCurso10,
+  },
+  {
+    title: "Cabeçotes Nível 1",
+    desc: "Dutos, sedes, válvulas e técnicas fundamentais de fluxo",
+    badge: "05 / 18",
+    img: imgCabecoteN1Azul,
+  },
+  {
+    title: "Cabeçotes PRO",
+    desc: "Câmaras de combustão, fluxo avançado e medições extremas",
+    badge: "06 / 18",
+    img: imgCabecoteProN2Azul,
+  },
+  {
+    title: "Molas Especiais",
+    desc: "Carga de molas, retorno, flutuação de válvula e segurança",
+    badge: "07 / 18",
+    img: imgMolasEspeciaisAzul,
+  },
+  {
+    title: "Desenvolvimento de Cabeçotes",
+    desc: "Otimização profunda de dutos e geometria em bancada",
+    badge: "08 / 18",
+    img: imgDesenvolvimentoCabecotes,
+  },
+  {
+    title: "Comandos Nível 1",
+    desc: "Diagrama, graduação, levante, overlap e lobe center",
+    badge: "09 / 18",
+    img: imgComandosN1Vermelho,
+  },
+  {
+    title: "Comandos Nível 2",
+    desc: "Cálculo avançado de cruzamento, molas e enquadramento",
+    badge: "10 / 18",
+    img: imgComandosN2Vermelho,
+  },
+  {
+    title: "Comandos Nível 3",
+    desc: "Desenvolvimento de perfis de competição e arrancada",
+    badge: "11 / 18",
+    img: imgComandosN3Vermelho,
+  },
+  {
+    title: "Usinagem de Comandos",
+    desc: "Retífica, desbaste, cópia e acabamento na prática",
+    badge: "12 / 18",
+    img: imgUsinagemComandosVermelho,
+  },
+  {
+    title: "Acertos Finos",
+    desc: "Giclagem, agulha, ponto de ignição e resposta de acelerador",
+    badge: "13 / 18",
+    img: imgAcertosFinosAmarelo,
+  },
+  {
+    title: "Acerto de Injeção",
+    desc: "Mapas de combustível, mapa de ponto e correção via software",
+    badge: "14 / 18",
+    img: imgAcertoPiggybackAmarelo,
+  },
+  {
+    title: "Combustíveis de Competição",
+    desc: "Metanol, nitrometano, etanol e gasolina de aviação",
+    badge: "15 / 18",
+    img: imgCombustiveisCompeticaoAmarelo,
+  },
+  {
+    title: "Remap na Prática",
+    desc: "Procedimentos reais de reprogramação e aferição no dinamômetro",
+    badge: "16 / 18",
+    img: imgEventoRemapAmarelo,
+  },
+  {
+    title: "Raio-X de Motores",
+    desc: "Desmontagem, análise técnica de desgastes e folgas ocultas",
+    badge: "17 / 18",
+    img: imgCurso09,
+  },
+  {
+    title: "Motores de Ponta",
+    desc: "Segredos dos motores campeões de arrancada e circuito",
+    badge: "18 / 18",
+    img: imgCurso12,
+  },
+];
+
+const carrosselCursosData = await Promise.all(
+  carrosselCursosRaw.map(async (item) => {
+    const opt = await getImage({ src: item.img, width: 360, format: "webp", quality: 74 });
+    return { title: item.title, desc: item.desc, badge: item.badge, src: opt.src };
+  }),
+);
+
+const printsReais = [imgDepo01, imgDepo02, imgDepo03, imgDepo04, imgDepo05, imgDepo06];
+const printsCarouselData = await Promise.all(
+  printsReais.map(async (img, idx) => {
+    const opt = await getImage({ src: img, width: 460, format: "webp", quality: 76 });
+    return {
+      src: opt.src,
+      alt: `Comentário Aluno NTR ${idx + 1}`,
+    };
+  }),
+);
+const fotosTrofeus = [
+  imgTrofeu01,
+  imgTrofeu02,
+  imgTrofeu03,
+  imgTrofeu04,
+  imgTrofeu05,
+  imgTrofeu06,
+  imgTrofeu07,
+  imgTrofeu08,
+  imgTrofeu09,
+];
+
+const faqs = [
+  {
+    q: "Qual a diferença entre o Acesso por 1 Ano (R$ 299) e o Acesso Vitalício (R$ 899)?",
+    a: "No Acesso de 1 Ano você tem 12 meses de acesso aos 18 cursos do Clube NTR sem cobrança recorrente (não renova sozinho). Já no Acesso Vitalício você paga uma única vez na vida e tem acesso PARA SEMPRE aos 18 cursos, todas as futuras atualizações, além dos bônus exclusivos da Black Friday (Biblioteca Completa NTR + Manuais de Serviço + 1 Ano da Calculadora de Motores).",
+  },
+  {
+    q: "Estou começando do zero. O Clube NTR serve para mim?",
+    a: "Sim! A metodologia começa nos cursos de base (ensinado medidas, ferramentas e cálculos passo a passo) e avança até os níveis PRO de cabeçotes, comandos, injeção e projetos de pista.",
+  },
+  {
+    q: "Preciso ter oficina montada ou ferramentas caras?",
+    a: "Não. Você pode começar em casa com as ferramentas que já possui. O método ensina exatamente como projetar com segurança antes de gastar com peças.",
+  },
+  {
+    q: "Como funciona o suporte para tirar dúvidas?",
+    a: "Você tem suporte individual direto na plataforma de aulas para tirar dúvidas técnicas do seu projeto, além da comunidade exclusiva de preparadores no WhatsApp.",
+  },
+  {
+    q: "Como funciona a Garantia de 30 dias?",
+    a: "Você entra, assiste às aulas e testa o Clube por 30 dias. Se por qualquer motivo quiser desistir dentro desse prazo, devolvemos 100% do seu dinheiro sem burocracia.",
+  },
+  {
+    q: "Como funciona o sorteio do cabeçote Torkmax?",
+    a: "Apenas quem adquirir a Super Black NTR durante a Black Friday 2026, até 31/12/2026 às 23h59, participa automaticamente do Cabeçote Torkmax preparado com válvulas 34x29mm.\n\nSe houver solicitação de reembolso da compra, o participante perde automaticamente o direito de concorrer.",
+  },
+];
+const canonicalPath = "/cursos/clube-de-preparadores/";
+const pageTitle = "Clube de Preparadores NTR (18 Cursos) | NTR Escola de Motores";
+const pageDescription =
+  "Domine a preparação de motores com os 18 cursos completos do Clube NTR. Oferta Especial de Black Friday: Plano Anual (R$ 299) ou Acesso Vitalício (R$ 899) com garantia de 30 dias.";
+const breadcrumbs = [
+  { name: "Início", path: "/" },
+  { name: "Cursos", path: "/cursos/" },
+  { name: "Clube de Preparadores NTR", path: canonicalPath },
+];
+const schema = [
+  buildOrganizationSchema(),
+  buildBreadcrumbSchema(breadcrumbs),
+  buildCourseSchema({
+    name: "Clube de Preparadores NTR (18 Cursos)",
+    description: pageDescription,
+    path: canonicalPath,
+    price: "299.00",
+    priceValidUntil: "2026-12-31",
+    image: "/images/mockup_combo.webp",
+  }),
+  buildFaqSchema(faqs),
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogImage="/images/mockup_combo.webp"
+  canonicalPath={canonicalPath}
+  schema={schema}
+  contentType="course"
+  contentSlug="clube-de-preparadores"
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <div class="overflow-x-hidden bg-black text-white selection:bg-[#e50914] selection:text-white">
+    {/* ==========================================================================
+        SEÇÃO 1: HERO
+        - Desktop: Copy + CTA na esquerda | Imagem na direita (alinhada à base, sem margem inferior)
+        - Mobile: Imagem no topo | Copy + CTA abaixo
+        - Fundo escuro absoluto (#000000) perfeitamente integrado à imagem
+        - Badge PNG sobreposto na parte inferior centralizada com efeito glow infinito
+       ========================================================================== */}
+    <section class="relative overflow-visible bg-black px-4 pt-6 pb-12 sm:pt-10 sm:pb-16 md:pt-14 lg:pb-16">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+          {/* COLUNA ESQUERDA (DESKTOP) / ABAIXO DA IMAGEM (MOBILE): COPY + CTA */}
+          <div class="order-2 flex flex-col justify-center text-center lg:order-1 lg:col-span-6 lg:text-left">
+            {/* HEADLINE */}
+            <h1 class="mb-6 text-3xl leading-[1.18] font-black tracking-tight text-white uppercase italic sm:text-4xl md:text-5xl lg:text-[44px] xl:text-[48px]">
+              CHEGOU A MAIOR BLACK FRIDAY DA{" "}
+              <span class="grad-text-red">PREPARAÇÃO DE MOTORES</span>
+            </h1>
+
+            {/* 3 BULLETS SOLICITADOS */}
+            <ul class="mx-auto mb-8 flex max-w-md flex-col gap-3.5 text-left lg:mx-0">
+              <li class="flex items-center gap-3 text-base font-bold text-gray-200 sm:text-lg">
+                <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-[#e50914]/40 bg-[#e50914]/20 text-sm text-[#ff3333]">
+                  ✓
+                </span>
+                <span>18 Cursos de Preparação</span>
+              </li>
+              <li class="flex items-center gap-3 text-base font-bold text-gray-200 sm:text-lg">
+                <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-[#e50914]/40 bg-[#e50914]/20 text-sm text-[#ff3333]">
+                  ✓
+                </span>
+                <span>Técnicas Avançadas</span>
+              </li>
+              <li class="flex items-start gap-3 text-base font-bold text-gray-200 sm:text-lg">
+                <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-[#e50914]/40 bg-[#e50914]/20 text-sm text-[#ff3333]">
+                  ✓
+                </span>
+                <div>
+                  <span class="block text-white">
+                    Sorteio 01 <span class="text-[#fbbf24]">Cabeçote Torkmax PREPARADO</span>
+                  </span>
+                  <span class="mt-0.5 block text-xs font-semibold text-emerald-400 italic sm:text-sm">
+                    (valor estimado do cabeçote R$ 2.500)
+                  </span>
+                </div>
+              </li>
+            </ul>
+
+            {/* BOTÃO CTA EM VERDE VIBRANTE DE ALTO DESTAQUE */}
+            <div class="mx-auto w-full max-w-md lg:mx-0">
+              <a
+                href="#oferta"
+                class="group flex w-full transform items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#00b341] via-[#00d254] to-[#009b36] px-8 py-4.5 text-lg font-black tracking-tight text-white uppercase italic shadow-[0_0_40px_rgba(0,210,84,0.55)] transition-all duration-300 hover:-translate-y-1 hover:from-[#00d254] hover:to-[#00b341] hover:shadow-[0_0_60px_rgba(0,210,84,0.85)] sm:text-xl"
+              >
+                <span>GARANTIR MINHA VAGA NA BLACK</span>
+                <span class="text-2xl leading-none transition-transform duration-300 group-hover:translate-x-1.5">
+                  →
+                </span>
+              </a>
+
+              {/* SOCIAL PROOF (APENAS ALUNOS FORMADOS) */}
+              <div class="mt-4 flex items-center justify-center gap-2 text-sm font-bold text-gray-300 lg:justify-start">
+                <span class="tracking-wide text-[#fbbf24]">★★★★★</span>
+                <span>+12.000 Alunos Formados</span>
+              </div>
+            </div>
+          </div>
+
+          {/* COLUNA DIREITA (DESKTOP) / TOPO (MOBILE): IMAGEM INTEGRADA + BADGE */}
+          <div class="relative order-1 mb-6 flex w-full items-center justify-center lg:order-2 lg:col-span-6 lg:mb-0">
+            <div class="relative mx-auto w-full max-w-[560px] pb-10 sm:pb-12 lg:max-w-none lg:pb-14">
+              <Image
+                src={imgHeroCompleta}
+                alt="Clube de Preparadores NTR - Fábio Scaravonatto e Todos os Cursos"
+                widths={[480, 720, 960]}
+                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 560px, 540px"
+                format="webp"
+                quality={80}
+                class="pointer-events-none mx-auto block h-auto w-full object-contain select-none"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+
+              {/* SOBREPOSIÇÃO DO PNG BLACK FRIDAY 2026 CENTRALIZADO NA BASE COM FOLGA COMPLETA */}
+              <div class="pointer-events-none absolute bottom-0 left-1/2 z-20 w-48 max-w-[85%] -translate-x-1/2 sm:w-64 md:w-72">
+                <div class="relative flex items-center justify-center">
+                  {/* Glow volumétrico pulsante de horizonte infinito */}
+                  <div class="absolute inset-0 scale-125 animate-pulse rounded-full bg-[#e50914]/65 blur-2xl"></div>
+                  <Image
+                    src={imgBadgeBF2026}
+                    alt="Black Friday 2026 NTR"
+                    width={360}
+                    format="webp"
+                    quality={80}
+                    class="relative z-10 h-auto w-full object-contain drop-shadow-[0_10px_35px_rgba(229,9,20,0.85)]"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        FAIXA FITAS CRUZADAS 3D (ESTILO EXATO DA REFERÊNCIA)
+        - Faixa vermelha: no fundo, com desfoque de profundidade (blur)
+        - Faixa escura: na frente, nítida, passando por cima
+       ========================================================================== */}
+    <div class="pointer-events-none relative overflow-hidden bg-black py-14 select-none sm:py-20">
+      {/* Gradientes nas bordas para profundidade e fade infinito */}
+      <div class="pointer-events-none absolute inset-y-0 left-0 z-30 w-24 bg-gradient-to-r from-black to-transparent sm:w-48"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 z-30 w-24 bg-gradient-to-l from-black to-transparent sm:w-48"></div>
+
+      {/* FITA VERMELHA (ATRÁS, DESFOCADA 3D) */}
+      <div class="relative z-10 -ml-[10vw] w-[120vw] -rotate-2 bg-gradient-to-r from-[#b30000] via-[#e50914] to-[#ff3b00] py-3.5 opacity-90 blur-[2.5px] sm:-rotate-3 sm:py-4">
+        <div class="tape-track-1 flex items-center gap-8 whitespace-nowrap">
+          {Array.from({ length: 8 }).map(() => (
+            <div class="flex items-center gap-8 text-sm font-black tracking-widest text-white uppercase italic sm:text-base md:text-lg">
+              <span>SUPER BLACK NTR</span>
+              <span class="text-black/60">✦</span>
+              <span>18 CURSOS PELO PREÇO DE 1</span>
+              <span class="text-black/60">✦</span>
+              <span>RESULTADO BRUTAL COMPROVADO</span>
+              <span class="text-black/60">✦</span>
+              <span>DINAMÔMETRO & PISTA</span>
+              <span class="text-black/60">✦</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* FITA ESCURA (NA FRENTE, NÍTIDA, CRUZANDO POR CIMA) */}
+      <div class="relative z-20 -mt-7 -ml-[10vw] w-[120vw] rotate-[2deg] border-y border-red-500/50 bg-[#0a0a0a] py-3.5 shadow-[0_15px_45px_rgba(0,0,0,0.98)] sm:-mt-9 sm:rotate-[2.5deg] sm:py-4">
+        <div class="tape-track-2 flex items-center gap-8 whitespace-nowrap">
+          {Array.from({ length: 8 }).map(() => (
+            <div class="flex items-center gap-8 text-sm font-black tracking-widest text-white uppercase italic sm:text-base md:text-lg">
+              <span class="text-white">SUPER BLACK NTR</span>
+              <span class="text-[#e50914]">✦</span>
+              <span class="text-gray-200">18 CURSOS COMPLETOS</span>
+              <span class="text-[#e50914]">✦</span>
+              <span class="text-white">PREPARAÇÃO DE MOTORES</span>
+              <span class="text-[#e50914]">✦</span>
+              <span class="text-gray-200">CERTIFICADOS PROFISSIONAIS</span>
+              <span class="text-[#e50914]">✦</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* ==========================================================================
+        NOVA SEÇÃO: 18 CURSOS PELO PREÇO DE 1 + CARROSSEL 3D COVERFLOW (REFERÊNCIA TWINS)
+       ========================================================================== */}
+    <section class="relative overflow-hidden border-b border-white/10 bg-black py-14 sm:py-20 md:py-24">
+      {/* Headline Solicitada em 3 Linhas Perfeitamente Equilibradas (Zero Texto Cortado) */}
+      <div class="mx-auto mb-8 max-w-4xl px-4 text-center sm:mb-12">
+        <span class="mb-2 block text-base font-extrabold tracking-wider text-gray-300 uppercase sm:mb-3 sm:text-xl md:text-2xl">
+          Essa é a sua oportunidade de garantir
+        </span>
+        <span class="mb-2 block text-2xl leading-tight font-black tracking-tight text-white uppercase sm:mb-3 sm:text-4xl md:text-5xl lg:text-[54px]">
+          18 cursos de Preparação
+        </span>
+        <span class="block text-3xl leading-none font-black tracking-tight text-[#ff2a2a] uppercase italic drop-shadow-[0_0_35px_rgba(255,42,42,0.65)] sm:text-5xl md:text-6xl lg:text-[64px]">
+          pelo preço de 1!
+        </span>
+      </div>
+
+      {/* CARROSSEL 3D COVERFLOW (MECÂNICA E VISUAL EXATOS DA REFERÊNCIA TWINS) */}
+      <div class="bfuv" id="bfuv">
+        <div class="stage">
+          <div class="glow"></div>
+        </div>
+
+        {/* Legenda Informativa Dinâmica */}
+        <div class="cap">
+          <span class="n"></span>
+          <span class="t"></span>
+          <p></p>
+        </div>
+
+        {/* Botões de Navegação estilo Referência (← e → circulares) */}
+        <div class="nav">
+          <button data-d="-1" type="button" aria-label="Anterior">
+            ←
+          </button>
+          <button data-d="1" type="button" aria-label="Próximo">
+            →
+          </button>
+        </div>
+
+        {/* Copy de Urgência da Referência Adaptada para NTR */}
+        <p class="urg">
+          Se você ainda não domina <em>técnicas avançadas de preparação</em> e monta no{" "}
+          <em>"achismo"</em>, <strong>você está ficando para trás!</strong>
+        </p>
+      </div>
+
+      {/* CTA de Destaque Abaixo do Carrossel */}
+      <div class="mt-8 px-4 text-center sm:mt-12">
+        <a
+          href="#oferta"
+          class="inline-flex transform items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#00b341] via-[#00d254] to-[#009b36] px-8 py-4.5 text-base font-black tracking-tight text-white uppercase italic shadow-[0_0_40px_rgba(0,210,84,0.55)] transition-all duration-300 hover:-translate-y-1 hover:from-[#00d254] hover:to-[#00b341] hover:shadow-[0_0_60px_rgba(0,210,84,0.85)] sm:px-12 sm:text-xl"
+        >
+          <span>QUERO APROVEITAR OS 18 CURSOS PELO PREÇO DE 1</span>
+          <span class="text-2xl leading-none">→</span>
+        </a>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        NOVA SEÇÃO 3: VITRINE DE CONTEÚDOS ORGANIZADA EM CATEGORIAS
+        - 18 Treinamentos no total
+        - Cabeçotes, Comandos e Acertos com as artes oficiais da BF26
+        - Linha Extra (Transmissões) com 2 cards nas posições 2 e 3 (pontas vazias no desktop)
+       ========================================================================== */}
+    <section class="relative overflow-hidden border-b border-white/10 bg-[#080808] px-4 py-16 sm:py-24">
+      {/* Brilho Difuso no Fundo */}
+      <div class="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#e50914]/10 blur-[160px]"></div>
+
+      <div class="relative z-10 mx-auto max-w-6xl">
+        {/* Cabeçalho da Seção */}
+        <div class="mx-auto mb-14 max-w-4xl text-center sm:mb-20">
+          <span class="mb-3 inline-block rounded-full border border-[#e50914]/30 bg-[#e50914]/15 px-4 py-1.5 text-xs font-black tracking-widest text-[#ff4d4d] uppercase">
+            VITRINE OFICIAL DE TREINAMENTOS
+          </span>
+          <h2 class="mt-2 mb-4 text-3xl leading-tight font-black tracking-tighter text-white uppercase italic sm:text-5xl md:text-6xl">
+            Veja tudo que você vai receber{" "}
+            <span class="text-[#ff2a2a] drop-shadow-[0_0_30px_rgba(255,42,42,0.6)]">
+              ainda hoje!
+            </span>
+          </h2>
+          <p class="mx-auto max-w-3xl text-base leading-relaxed text-gray-300 sm:text-lg md:text-xl">
+            São 18 treinamentos em todas áreas da preparação com todo conhecimento necessário para
+            você fazer as motos mais fortes e rápidas da sua região se tornar um preparador
+            respeitado!.
+          </p>
+        </div>
+
+        {/* Vitrine Organizada por Categorias Técnicas na Sequência Solicitada */}
+        <div class="space-y-12 sm:space-y-16">
+          {gruposCursos.map((grupo) => (
+            <div>
+              {/* Título de Categoria do Grupo */}
+              <div class="mb-5 flex items-center gap-3 sm:mb-6">
+                <span
+                  class="h-3 w-3 flex-shrink-0 rounded-full"
+                  style={`background-color: ${grupo.cor}`}
+                ></span>
+                <h3 class="text-lg font-black tracking-tight text-white uppercase italic sm:text-2xl">
+                  {grupo.nome}
+                </h3>
+                <div class="ml-2 h-[1px] flex-1 bg-gradient-to-r from-white/20 via-white/5 to-transparent"></div>
+              </div>
+
+              {/* Grid de 4 Colunas */}
+              <div class="grid grid-cols-2 gap-3.5 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:grid-cols-4">
+                {grupo.cursos.map((curso) => (
+                  <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0e0e0e] p-2 transition-all duration-300 hover:-translate-y-1 hover:border-[#ff2a2a]/70 hover:shadow-[0_10px_30px_rgba(255,42,42,0.25)] sm:rounded-3xl sm:p-2.5">
+                    {/* Badge Incluso no Topo Esquerdo */}
+                    <div class="absolute top-3.5 left-3.5 z-20 flex items-center gap-1.5">
+                      <span class="rounded-md border border-[#22c55e]/50 bg-black/85 px-2 py-0.5 text-[9px] font-black tracking-wider text-[#22c55e] uppercase shadow-sm backdrop-blur-md sm:text-[10px]">
+                        ✔ INCLUSO
+                      </span>
+                    </div>
+
+                    {/* Tag Numérica no Topo Direito */}
+                    <div class="absolute top-3.5 right-3.5 z-20">
+                      <span class="rounded-md border border-white/15 bg-black/85 px-2 py-0.5 text-[9px] font-black text-gray-300 backdrop-blur-md sm:text-[10px]">
+                        #{curso.id}
+                      </span>
+                    </div>
+
+                    {/* Thumbnail Vertical do Curso */}
+                    <div class="relative mb-2.5 aspect-[3/4] w-full overflow-hidden rounded-xl bg-black/60 sm:rounded-2xl">
+                      <Image
+                        src={curso.img}
+                        alt={curso.title}
+                        width={360}
+                        format="webp"
+                        quality={72}
+                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity group-hover:opacity-40"></div>
+                    </div>
+
+                    {/* Informações Compactas do Curso */}
+                    <div class="px-1.5 pb-1 text-center">
+                      <span class="mb-1 block text-[9px] font-black tracking-wider text-[#ff4d4d] uppercase sm:text-[10px]">
+                        {curso.tag}
+                      </span>
+                      <h3 class="line-clamp-2 text-xs leading-snug font-bold text-white transition-colors group-hover:text-[#ff2a2a] sm:text-sm">
+                        {curso.title}
+                      </h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Intermediário de Destaque */}
+        <div class="mx-auto mt-12 max-w-lg px-4 text-center sm:mt-16">
+          <a
+            href="#oferta"
+            class="group flex w-full transform items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#00b341] via-[#00d254] to-[#009b36] px-8 py-4.5 text-base font-black tracking-tight text-white uppercase italic shadow-[0_0_35px_rgba(0,210,84,0.5)] transition-all duration-300 hover:-translate-y-1 hover:from-[#00d254] hover:to-[#00b341] hover:shadow-[0_0_55px_rgba(0,210,84,0.8)] sm:text-lg"
+          >
+            <span>GARANTIR OS 18 CURSOS NO CLUBE NTR</span>
+            <span class="text-xl leading-none transition-transform group-hover:translate-x-1.5">
+              →
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        SEÇÃO 4: NOVIDADES DA BLACK FRIDAY 2026 (CURSOS NOVOS EM DESTAQUE)
+        - Faixa Gradiente Chamativa no Topo
+        - 2 Cursos Novos em Destaque:
+          1. Curso de Molas Especiais (Molas & Alto Giro)
+          2. Remap de Central (Injeção Eletrônica & Acerto)
+        - Selo metálico dourado de exclusividade "CURSO NOVO BLACK FRIDAY 2026"
+        - Mockup do card do curso com visual de alta tecnologia e badges flutuantes
+        - 3 Cards com checklist de benefícios práticos
+       ========================================================================== */}
+    <section class="relative overflow-hidden bg-black text-white">
+      {/* FAIXA SUPERIOR GRADIENTE DE NOVIDADES */}
+      <div class="relative z-20 w-full bg-gradient-to-r from-[#e50914] via-[#ff4d00] to-[#ff9900] px-4 py-3.5 text-center shadow-[0_4px_30px_rgba(229,9,20,0.4)] sm:py-4">
+        <p class="text-sm font-black tracking-wider text-white uppercase drop-shadow-md sm:text-base md:text-lg lg:text-xl">
+          👇 VEJA AS GRANDES NOVIDADES DA BLACK FRIDAY 2026 👇
+        </p>
+      </div>
+
+      <div class="mx-auto max-w-6xl space-y-24 px-4 py-16 sm:space-y-32 sm:py-20 lg:py-24">
+        {/* ----------------------------------------------------------------------
+            NOVIDADE 01: CURSO DE MOLAS ESPECIAIS
+           ---------------------------------------------------------------------- */}
+        <div class="relative">
+          {/* Luz de fundo azul ciano sutil */}
+          <div class="pointer-events-none absolute -top-20 left-1/4 h-[500px] w-[500px] rounded-full bg-sky-600/15 blur-[140px]"></div>
+
+          <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+            {/* COLUNA DE TEXTO: NO TOPO NO MOBILE (order-1) / ESQUERDA NO DESKTOP (lg:order-1) */}
+            <div class="order-1 space-y-6 text-center lg:order-1 lg:col-span-7 lg:text-left">
+              {/* TOPO: SELO DOURADO METÁLICO + TAG DE CATEGORIA */}
+              <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-5 lg:justify-start">
+                {/* Selo Dourado Redondo Estilo Black IA */}
+                <div class="relative h-18 w-18 flex-shrink-0 sm:h-20 sm:w-20">
+                  <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-[#ffe082] via-[#d4af37] to-[#785b13] p-[2px] shadow-[0_0_20px_rgba(212,175,55,0.45)]">
+                    <div class="flex h-full w-full flex-col items-center justify-center rounded-full border border-[#ffecb3]/40 bg-[#110e08] p-1 text-center">
+                      <span class="text-[7px] leading-none font-black tracking-wider text-[#d4af37] uppercase sm:text-[8px]">
+                        BLACK FRIDAY
+                      </span>
+                      <span class="my-0.5 text-[10px] leading-none font-black tracking-wider text-amber-300 uppercase sm:text-[12px]">
+                        EXCLUSIVO
+                      </span>
+                      <span class="text-[7px] leading-none font-bold tracking-wider text-[#d4af37] uppercase sm:text-[8px]">
+                        CURSO NOVO
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tag de Categoria com Brilho */}
+                <div class="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-3.5 py-1.5 text-xs font-black tracking-wider text-sky-400 uppercase">
+                  <span class="h-2 w-2 animate-pulse rounded-full bg-sky-400"></span>
+                  <span>CURSO MOLAS ESPECIAIS</span>
+                </div>
+              </div>
+
+              {/* HEADLINE */}
+              <h3 class="text-2xl leading-[1.22] font-black tracking-tight text-white uppercase italic sm:text-3xl md:text-4xl lg:text-[40px]">
+                DESCUBRA QUAL <span class="grad-text-cyan">MOLA USAR</span> EM CABEÇOTES DE ALTA
+                PERFORMANCE
+              </h3>
+
+              {/* SUBTITLE */}
+              <p class="text-sm leading-relaxed font-normal text-gray-300 sm:text-base md:text-lg">
+                Domine o segredo dos motores que giram{" "}
+                <strong class="text-white">11.000+ RPM com segurança</strong>. Aprenda a medir,
+                calcular alturas de montagem e eliminar para sempre a flutuação de válvulas e
+                choques de elo.
+              </p>
+            </div>
+
+            {/* MOCKUP DO CURSO: ABAIXO DO TEXTO NO MOBILE (order-2) / DIREITA NO DESKTOP (lg:order-2) */}
+            <div class="order-2 flex justify-center lg:order-2 lg:col-span-5">
+              <div class="relative w-full max-w-[340px] sm:max-w-[370px]">
+                {/* Aura Neon Azul ao redor */}
+                <div class="absolute -inset-4 rounded-[40px] bg-gradient-to-b from-sky-500/25 via-blue-600/20 to-transparent opacity-75 blur-xl"></div>
+
+                {/* Moldura do Dispositivo / Smartphone Mockup */}
+                <div class="relative rounded-[32px] border-2 border-white/15 bg-gradient-to-b from-neutral-800 via-neutral-900 to-black p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] sm:p-3">
+                  {/* Notch / Speaker Superior */}
+                  <div class="mx-auto mb-2.5 flex h-4 w-24 items-center justify-center gap-2 rounded-full border border-white/10 bg-neutral-900">
+                    <span class="h-1.5 w-1.5 rounded-full bg-neutral-700"></span>
+                    <span class="h-1 w-6 rounded-full bg-neutral-800"></span>
+                  </div>
+
+                  {/* Card do Curso em Alta Resolução */}
+                  <div class="relative aspect-[3/4] overflow-hidden rounded-2xl bg-black shadow-inner">
+                    <Image
+                      src={imgMolasEspeciaisAzul}
+                      alt="Curso Novo de Molas Especiais NTR"
+                      width={460}
+                      format="webp"
+                      quality={76}
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  </div>
+
+                  {/* Bottom Bar do Smartphone */}
+                  <div class="mx-auto mt-2.5 h-1 w-28 rounded-full bg-white/20"></div>
+                </div>
+
+                {/* BADGE FLUTUANTE (Base Direita): Tabela Prática */}
+                <div class="absolute -right-4 -bottom-4 z-20 flex items-center gap-2.5 rounded-xl border border-emerald-400/40 bg-black/85 p-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.7)] backdrop-blur-md sm:-right-6 sm:p-3">
+                  <div class="flex h-7 w-7 items-center justify-center rounded-lg border border-emerald-400/50 bg-emerald-500/20 text-sm text-emerald-400 sm:h-8 sm:w-8">
+                    ✓
+                  </div>
+                  <div>
+                    <span class="block text-[10px] font-black tracking-tight text-white uppercase sm:text-xs">
+                      Tabela de Cargas
+                    </span>
+                    <span class="block text-[9px] font-medium text-emerald-300 sm:text-[10px]">
+                      Alturas & Medidas Prontas
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ----------------------------------------------------------------------
+            DIVISOR DISCRETO COM GRADIENTE
+           ---------------------------------------------------------------------- */}
+        <div class="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+
+        {/* ----------------------------------------------------------------------
+            NOVIDADE 02: REMAP DE CENTRAL & INJEÇÃO NA PRÁTICA
+           ---------------------------------------------------------------------- */}
+        <div class="relative">
+          {/* Luz de fundo âmbar/dourada sutil */}
+          <div class="pointer-events-none absolute -top-20 right-1/4 h-[500px] w-[500px] rounded-full bg-amber-500/15 blur-[140px]"></div>
+
+          <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+            {/* MOCKUP DO CURSO: ABAIXO DO TEXTO NO MOBILE (order-2) / ESQUERDA NO DESKTOP (lg:order-1) */}
+            <div class="order-2 flex justify-center lg:order-1 lg:col-span-5">
+              <div class="relative w-full max-w-[340px] sm:max-w-[370px]">
+                {/* Aura Neon Âmbar ao redor */}
+                <div class="absolute -inset-4 rounded-[40px] bg-gradient-to-b from-amber-500/25 via-yellow-600/20 to-transparent opacity-75 blur-xl"></div>
+
+                {/* Moldura do Dispositivo / Smartphone Mockup */}
+                <div class="relative rounded-[32px] border-2 border-white/15 bg-gradient-to-b from-neutral-800 via-neutral-900 to-black p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] sm:p-3">
+                  {/* Notch / Speaker Superior */}
+                  <div class="mx-auto mb-2.5 flex h-4 w-24 items-center justify-center gap-2 rounded-full border border-white/10 bg-neutral-900">
+                    <span class="h-1.5 w-1.5 rounded-full bg-neutral-700"></span>
+                    <span class="h-1 w-6 rounded-full bg-neutral-800"></span>
+                  </div>
+
+                  {/* Card do Curso em Alta Resolução */}
+                  <div class="relative aspect-[3/4] overflow-hidden rounded-2xl bg-black shadow-inner">
+                    <Image
+                      src={imgEventoRemapAmarelo}
+                      alt="Curso Novo de Remap de Central NTR"
+                      width={460}
+                      format="webp"
+                      quality={76}
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  </div>
+
+                  {/* Bottom Bar do Smartphone */}
+                  <div class="mx-auto mt-2.5 h-1 w-28 rounded-full bg-white/20"></div>
+                </div>
+
+                {/* BADGE FLUTUANTE 1 (Topo Direito): Equipamentos Necessários / para trabalhar com Remap */}
+                <div class="absolute -top-3 -right-4 z-20 flex items-center gap-2.5 rounded-xl border border-amber-400/40 bg-black/85 p-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.7)] backdrop-blur-md sm:-right-6 sm:p-3">
+                  <div class="flex h-7 w-7 items-center justify-center rounded-lg border border-amber-400/50 bg-amber-500/20 text-sm text-amber-400 sm:h-8 sm:w-8">
+                    📈
+                  </div>
+                  <div>
+                    <span class="block text-[10px] font-black tracking-tight text-white uppercase sm:text-xs">
+                      Equipamentos Necessários
+                    </span>
+                    <span class="block text-[9px] font-medium text-amber-300 sm:text-[10px]">
+                      para trabalhar com Remap
+                    </span>
+                  </div>
+                </div>
+
+                {/* BADGE FLUTUANTE 2 (Base Esquerda): FATURE ALTO / Fazendo Remap */}
+                <div class="absolute -bottom-4 -left-4 z-20 flex items-center gap-2.5 rounded-xl border border-green-400/40 bg-black/85 p-2.5 shadow-[0_10px_25px_rgba(0,0,0,0.7)] backdrop-blur-md sm:-left-6 sm:p-3">
+                  <div class="flex h-7 w-7 items-center justify-center rounded-lg border border-green-400/50 bg-green-500/20 text-sm text-green-400 sm:h-8 sm:w-8">
+                    💰
+                  </div>
+                  <div>
+                    <span class="block text-[10px] font-black tracking-tight text-white uppercase sm:text-xs">
+                      FATURE ALTO
+                    </span>
+                    <span class="block text-[9px] font-medium text-green-300 sm:text-[10px]">
+                      Fazendo Remap
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* COLUNA DE TEXTO: NO TOPO NO MOBILE (order-1) / DIREITA NO DESKTOP (lg:order-2) */}
+            <div class="order-1 space-y-6 text-center lg:order-2 lg:col-span-7 lg:text-left">
+              {/* TOPO: SELO DOURADO METÁLICO + TAG DE CATEGORIA */}
+              <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-5 lg:justify-start">
+                {/* Selo Dourado Redondo Estilo Black IA */}
+                <div class="relative h-18 w-18 flex-shrink-0 sm:h-20 sm:w-20">
+                  <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-[#ffe082] via-[#d4af37] to-[#785b13] p-[2px] shadow-[0_0_20px_rgba(212,175,55,0.45)]">
+                    <div class="flex h-full w-full flex-col items-center justify-center rounded-full border border-[#ffecb3]/40 bg-[#110e08] p-1 text-center">
+                      <span class="text-[7px] leading-none font-black tracking-wider text-[#d4af37] uppercase sm:text-[8px]">
+                        BLACK FRIDAY
+                      </span>
+                      <span class="my-0.5 text-[10px] leading-none font-black tracking-wider text-amber-300 uppercase sm:text-[12px]">
+                        EXCLUSIVO
+                      </span>
+                      <span class="text-[7px] leading-none font-bold tracking-wider text-[#d4af37] uppercase sm:text-[8px]">
+                        CURSO NOVO
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tag de Categoria com Brilho */}
+                <div class="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1.5 text-xs font-black tracking-wider text-amber-400 uppercase">
+                  <span class="h-2 w-2 animate-pulse rounded-full bg-amber-400"></span>
+                  <span>REMAP DE CENTRAL & INJEÇÃO</span>
+                </div>
+              </div>
+
+              {/* HEADLINE */}
+              <h3 class="text-2xl leading-[1.22] font-black tracking-tight text-white uppercase italic sm:text-3xl md:text-4xl lg:text-[40px]">
+                Domine o Remap de Injeção Eletrônica <span class="grad-text-amber">na Prática</span>
+              </h3>
+
+              {/* SUBTITLE */}
+              <p class="text-sm leading-relaxed font-normal text-gray-300 sm:text-base md:text-lg">
+                Aprenda a reprogramar centrais originais e programáveis, acertar ponto de ignição,
+                tempo de injeção e extrair a{" "}
+                <strong class="text-white">potência máxima sem risco de quebra</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA FINAL DAS NOVIDADES */}
+        <div class="mx-auto max-w-xl pt-8 text-center">
+          <p class="mb-5 text-sm font-bold text-gray-300 sm:text-base">
+            Esses 2 novos cursos já estão <span class="text-[#00d254]">100% inclusos</span> no
+            pacote de Black Friday 2026!
+          </p>
+          <a
+            href="#oferta"
+            class="group inline-flex w-full transform items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#00b341] via-[#00d254] to-[#009b36] px-8 py-4.5 text-base font-black tracking-tight text-white uppercase italic shadow-[0_0_35px_rgba(0,210,84,0.5)] transition-all duration-300 hover:-translate-y-1 hover:from-[#00d254] hover:to-[#00b341] hover:shadow-[0_0_55px_rgba(0,210,84,0.8)] sm:text-lg"
+          >
+            <span>GARANTIR MINHA VAGA COM OS NOVOS CURSOS</span>
+            <span class="text-xl leading-none transition-transform group-hover:translate-x-1.5">
+              →
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        SEÇÃO 5: BÔNUS EXCLUSIVOS BLACK FRIDAY 2026 (ESTILO BLACK IA)
+        - Brinde 1: Biblioteca Completa NTR + Manuais de Serviço (Exclusivo Vitalício)
+        - Brinde 2: Calculadora de Motores - 01 Ano Grátis (Exclusivo Vitalício)
+        - Selo metálico dourado de exclusividade "BLACK FRIDAY EXCLUSIVO"
+        - Apresentação visual fluida, mockups em destaque e métricas de impacto (.pts)
+       ========================================================================== */}
+    <section class="relative overflow-hidden border-t border-white/10 bg-[#060606] px-4 py-20 text-white md:py-28">
+      {/* Luz ambiente de fundo */}
+      <div class="pointer-events-none absolute top-1/4 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-red-600/10 blur-[160px]"></div>
+
+      <div class="relative z-10 mx-auto max-w-6xl space-y-24 sm:space-y-32">
+        {/* CABEÇALHO GERAL DA SEÇÃO DE BÔNUS */}
+        <div class="mx-auto max-w-3xl text-center">
+          <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-4 py-1.5 text-xs font-black tracking-[0.22em] text-neutral-300 uppercase">
+            <span class="h-2 w-2 animate-ping rounded-full bg-[#e50914]"></span>
+            SUPER BLACK NTR 2026
+          </div>
+          <h2 class="mb-4 text-3xl leading-[1.18] font-black tracking-tight text-white uppercase italic sm:text-5xl md:text-6xl">
+            Bônus Exclusivos de <span class="grad-text-red">Black Friday</span>
+          </h2>
+          <p class="text-sm text-gray-400 sm:text-base md:text-lg">
+            Materiais de alto valor prático que não são vendidos separadamente — liberados como
+            presentes para acelerar o resultado da sua oficina.
+          </p>
+        </div>
+
+        {/* ----------------------------------------------------------------------
+            BRINDE 01: BIBLIOTECA COMPLETA NTR + MANUAIS DE SERVIÇO (EXCLUSIVO VITALÍCIO)
+            - Desktop: Texto à esquerda | Moldura estilo Calculadora com animação deslizando para cima à direita
+           ---------------------------------------------------------------------- */}
+        <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#111113] via-[#0d0d0f] to-[#080809] p-6 shadow-2xl sm:p-10 lg:p-12">
+          {/* Luz sutil dourada/âmbar */}
+          <div class="pointer-events-none absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-amber-500/15 blur-3xl"></div>
+
+          <div class="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+            {/* LADO ESQUERDO: TEXTO */}
+            <div class="space-y-5 text-center lg:col-span-6 lg:text-left">
+              <div class="flex items-center justify-center lg:justify-start">
+                <span class="inline-flex items-center gap-2 rounded-full border border-amber-400/50 bg-gradient-to-r from-amber-500/20 via-yellow-500/15 to-amber-500/20 px-3.5 py-1.5 text-xs font-black tracking-wider text-amber-300 uppercase shadow-[0_0_15px_rgba(245,158,11,0.25)]">
+                  <span>👑</span>
+                  <span>EXCLUSIVO DO PLANO VITALÍCIO</span>
+                </span>
+              </div>
+
+              <h3 class="text-2xl leading-[1.16] font-black tracking-tight text-white uppercase italic sm:text-3xl md:text-4xl lg:text-[38px]">
+                <span class="grad-text-gold">Biblioteca Completa NTR</span> + Manuais de Serviço
+              </h3>
+
+              <p class="text-sm leading-relaxed font-normal text-gray-300 sm:text-base md:text-lg">
+                Todos os livros digitais e apostilas dos projetos campeões da NTR: dezenas de
+                receitas completas com toda lista de peças e manual prático de montagem pra você
+                copiar e ter resultado rápido.
+              </p>
+            </div>
+
+            {/* LADO DIREITO: MOLDURA IGUAL DA CALCULADORA COM ANIMAÇÃO DESLIZANDO PARA CIMA */}
+            <div class="flex items-center justify-center lg:col-span-6">
+              <div class="relative mx-auto w-full max-w-[460px]">
+                {/* Glow sutil âmbar ao redor */}
+                <div class="pointer-events-none absolute -inset-3 rounded-3xl bg-amber-500/15 opacity-75 blur-2xl"></div>
+
+                {/* Moldura de Tela (Igual da Calculadora de Motores) */}
+                <div class="relative rounded-2xl border-2 border-white/15 bg-[#16161a] p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+                  {/* Barra Superior do App */}
+                  <div class="mb-1 flex items-center justify-between border-b border-white/10 px-3 pb-2">
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-2.5 w-2.5 rounded-full bg-[#ff5f56]"></span>
+                      <span class="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]"></span>
+                      <span class="h-2.5 w-2.5 rounded-full bg-[#27c93f]"></span>
+                    </div>
+                    <span class="text-[10px] font-bold tracking-widest text-neutral-400 uppercase">
+                      Biblioteca Digital NTR
+                    </span>
+                    <div class="w-8"></div>
+                  </div>
+
+                  {/* Viewport com Imagens Deslizando para Cima */}
+                  <div class="relative h-[340px] overflow-hidden rounded-xl border border-white/10 bg-black sm:h-[390px]">
+                    <div class="pointer-events-none absolute inset-x-0 top-0 z-20 h-7 bg-gradient-to-b from-black/90 to-transparent"></div>
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-7 bg-gradient-to-t from-black/90 to-transparent"></div>
+
+                    {/* Trilha Vertical Deslizante (Duplicada para Loop Infinito Perfeito) */}
+                    <div class="bonus-notebook-scroll flex flex-col gap-6 p-3.5 sm:p-4">
+                      {[0, 1].map(() => (
+                        <div class="flex flex-col gap-6">
+                          {/* ITEM 1: LIVROS & APOSTILAS (TEXTO ACIMA DA IMAGEM) */}
+                          <div class="rounded-xl border border-amber-400/25 bg-[#111115] p-3.5 shadow-lg">
+                            <div class="mb-3 text-left">
+                              <strong class="block text-sm leading-snug font-black text-amber-400 uppercase sm:text-base">
+                                Livros &amp; Apostilas de Projetos das motos mais rápidas do Brasil
+                              </strong>
+                              <span class="mt-0.5 block text-xs text-gray-300 sm:text-sm">
+                                Projetos campeões detalhados passo a passo
+                              </span>
+                            </div>
+                            <div class="overflow-hidden rounded-lg border border-white/5 bg-black/80 p-2">
+                              <Image
+                                src={imgBonusLivros}
+                                alt="Livros e Apostilas de Projetos das motos mais rápidas do Brasil"
+                                width={560}
+                                format="webp"
+                                quality={75}
+                                class="mx-auto h-auto w-full object-contain"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </div>
+                          </div>
+
+                          {/* ITEM 2: MANUAIS DE SERVIÇO (TEXTO ACIMA DA IMAGEM) */}
+                          <div class="rounded-xl border border-white/15 bg-[#111115] p-3.5 shadow-lg">
+                            <div class="mb-3 text-left">
+                              <strong class="block text-sm leading-snug font-black text-amber-400 uppercase sm:text-base">
+                                +500 Manuais de Serviço das Montadoras
+                              </strong>
+                              <span class="mt-0.5 block text-xs text-gray-300 sm:text-sm">
+                                Esquemas elétricos, torques e medidas oficiais
+                              </span>
+                            </div>
+                            <div class="overflow-hidden rounded-lg border border-white/5 bg-black/80">
+                              <Image
+                                src={imgBonusManuais}
+                                alt="+500 Manuais de Serviço das Montadoras"
+                                width={560}
+                                format="webp"
+                                quality={75}
+                                class="mx-auto h-auto w-full object-contain"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ----------------------------------------------------------------------
+            BRINDE 02: CALCULADORA DE MOTORES (01 ANO GRÁTIS - EXCLUSIVO VITALÍCIO)
+            - Desktop: Texto à esquerda | Imagem animada deslizando para cima à direita
+           ---------------------------------------------------------------------- */}
+        <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#111113] via-[#0d0d0f] to-[#080809] p-6 shadow-2xl sm:p-10 lg:p-12">
+          {/* Luz sutil vermelha */}
+          <div class="pointer-events-none absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-red-600/15 blur-3xl"></div>
+
+          <div class="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+            {/* LADO ESQUERDO: TEXTO */}
+            <div class="space-y-5 text-center lg:col-span-6 lg:text-left">
+              <div class="flex items-center justify-center lg:justify-start">
+                <span class="inline-flex items-center gap-2 rounded-full border border-amber-400/50 bg-gradient-to-r from-amber-500/20 via-yellow-500/15 to-amber-500/20 px-3.5 py-1.5 text-xs font-black tracking-wider text-amber-300 uppercase shadow-[0_0_15px_rgba(245,158,11,0.25)]">
+                  <span>👑</span>
+                  <span>EXCLUSIVO DO PLANO VITALÍCIO</span>
+                </span>
+              </div>
+
+              <h3 class="text-2xl leading-[1.16] font-black tracking-tight text-white uppercase italic sm:text-3xl md:text-4xl lg:text-[38px]">
+                Bônus exclusivo: aplicativo{" "}
+                <span class="grad-text-red">Calculadora de Motores NTR</span> (01 Ano Grátis)
+              </h3>
+
+              <p class="text-sm leading-relaxed font-normal text-gray-300 sm:text-base md:text-lg">
+                Liberamos 01 ano Grátis da Calculadora de Motores: um aplicativo completo que faz
+                todos os cálculos da preparação em 1 clique, sem risco de erros.
+              </p>
+
+              <p class="text-xs font-semibold text-amber-300/90 italic sm:text-sm">
+                *Exclusivo para alunos do Plano Vitalício da Super Black Clube NTR.
+              </p>
+            </div>
+
+            {/* LADO DIREITO: ANIMAÇÃO DA CALCULADORA DESLIZANDO PARA CIMA */}
+            <div class="flex items-center justify-center lg:col-span-6">
+              <div class="relative mx-auto w-full max-w-[460px]">
+                {/* Glow neon vermelho ao redor */}
+                <div class="pointer-events-none absolute -inset-3 rounded-3xl bg-red-600/20 opacity-75 blur-2xl"></div>
+
+                {/* Moldura de Tela com Deslizamento Vertical Contínuo */}
+                <div class="relative rounded-2xl border-2 border-white/15 bg-[#16161a] p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+                  {/* Barra Superior do App */}
+                  <div class="mb-1 flex items-center justify-between border-b border-white/10 px-3 pb-2">
+                    <div class="flex items-center gap-1.5">
+                      <span class="h-2.5 w-2.5 rounded-full bg-[#ff5f56]"></span>
+                      <span class="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]"></span>
+                      <span class="h-2.5 w-2.5 rounded-full bg-[#27c93f]"></span>
+                    </div>
+                    <span class="text-[10px] font-bold tracking-widest text-neutral-400 uppercase">
+                      App Calculadora de Motores NTR
+                    </span>
+                    <div class="w-8"></div>
+                  </div>
+
+                  {/* Viewport com Imagem Deslizando para Cima */}
+                  <div class="relative h-[340px] overflow-hidden rounded-xl border border-white/10 bg-black sm:h-[390px]">
+                    <div class="pointer-events-none absolute inset-x-0 top-0 z-20 h-7 bg-gradient-to-b from-black/90 to-transparent"></div>
+                    <div class="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-7 bg-gradient-to-t from-black/90 to-transparent"></div>
+
+                    <div class="bonus-calc-scroll flex flex-col gap-4">
+                      {[0, 1].map(() => (
+                        <div class="w-full">
+                          <Image
+                            src={imgBonusCalculadora}
+                            alt="Calculadora de Motores NTR - 01 Ano Grátis"
+                            width={480}
+                            format="webp"
+                            quality={75}
+                            class="block h-auto w-full object-contain"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        SEÇÃO 6: "E AINDA NÃO ACABOU!" - SORTEIO EXCLUSIVO DE BRINDES SURPRESA
+        - CONFORME SOLICITADO: CARD INTEIRO COM FUNDO BRANCO
+        - CAIXA 3D TRANSPARENTE SEM BORDA E SEM FUNDO PRETO (ESTILO IPHONE BLACK IA)
+        - Tipografia forte, selo dourado e caixa de entrada automática
+       ========================================================================== */}
+    <section class="relative overflow-hidden bg-black px-4 py-20 text-white md:py-28">
+      {/* Luz ambiente central */}
+      <div class="pointer-events-none absolute top-1/2 left-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-600/15 blur-[170px]"></div>
+
+      <div class="relative z-10 mx-auto max-w-5xl">
+        {/* HEADLINE DA SEÇÃO */}
+        <div class="mb-10 text-center sm:mb-14">
+          <h2 class="text-3xl leading-[1.2] font-black tracking-tight text-white uppercase italic sm:text-5xl md:text-6xl">
+            E ainda <span class="grad-text-red">não acabou!</span>
+          </h2>
+        </div>
+
+        {/* CARD DO SORTEIO 100% COM FUNDO BRANCO PURO INTEGRADO À FOTO DO CABEÇOTE TORKMAX */}
+        <div class="relative overflow-hidden rounded-[32px] border border-neutral-200/90 bg-white p-8 text-neutral-900 shadow-[0_25px_80px_rgba(0,0,0,0.55)] sm:rounded-[40px] sm:p-12 lg:p-14">
+          {/* Efeito Glow Interno Sutil */}
+          <div class="pointer-events-none absolute -top-32 -right-32 h-80 w-80 rounded-full bg-red-500/10 blur-3xl"></div>
+
+          {/* TOPO CENTRALIZADO NO DESKTOP: SELOS ACIMA DA HEADLINE */}
+          <div class="relative z-10 mx-auto mb-8 hidden max-w-4xl flex-col items-center text-center lg:flex">
+            {/* SELO SUPER BLACK 2026 + SORTEIO EXCLUSIVO */}
+            <div class="mb-4 flex items-center justify-center gap-3.5">
+              <div class="relative h-12 w-12 flex-shrink-0">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-[#ffe082] via-[#d4af37] to-[#785b13] p-[2px] shadow-[0_0_15px_rgba(212,175,55,0.45)]">
+                  <div class="flex h-full w-full flex-col items-center justify-center rounded-full border border-[#ffecb3]/40 bg-[#110e08] p-1 text-center">
+                    <span class="text-[6px] leading-none font-black tracking-wider text-[#d4af37] uppercase">
+                      SUPER BLACK
+                    </span>
+                    <span class="my-0.5 text-[9px] leading-none font-black tracking-wider text-amber-300 uppercase">
+                      2026
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-[#e50914] px-4 py-2 text-xs font-black tracking-wider text-white uppercase shadow-md">
+                <span class="h-2 w-2 animate-pulse rounded-full bg-white"></span>
+                SORTEIO EXCLUSIVO
+              </span>
+            </div>
+
+            <h3 class="text-[32px] leading-[1.15] font-black tracking-tight text-neutral-950 uppercase italic xl:text-[36px]">
+              Todos os alunos da Black 2026 concorrem a um{" "}
+              <span class="text-[#e50914] underline decoration-[#e50914]/30 underline-offset-4">
+                Cabeçote Torkmax PREPARADO
+              </span>
+            </h3>
+          </div>
+
+          <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+            {/* LADO ESQUERDO: TEXTO & CONDIÇÕES DO SORTEIO */}
+            <div class="space-y-5 text-center lg:col-span-5 lg:text-left">
+              {/* SELO DOURADO + TAG SORTEIO EXCLUSIVO NO MOBILE (INALTERADO NO MOBILE) */}
+              <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 lg:hidden">
+                <div class="relative h-12 w-12 flex-shrink-0 sm:h-14 sm:w-14">
+                  <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-[#ffe082] via-[#d4af37] to-[#785b13] p-[2px] shadow-[0_0_15px_rgba(212,175,55,0.45)]">
+                    <div class="flex h-full w-full flex-col items-center justify-center rounded-full border border-[#ffecb3]/40 bg-[#110e08] p-1 text-center">
+                      <span class="text-[6px] leading-none font-black tracking-wider text-[#d4af37] uppercase">
+                        SUPER BLACK
+                      </span>
+                      <span class="my-0.5 text-[8px] leading-none font-black tracking-wider text-amber-300 uppercase sm:text-[9px]">
+                        2026
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-[#e50914] px-3.5 py-1.5 text-[11px] font-black tracking-wider text-white uppercase shadow-sm">
+                  <span class="h-2 w-2 animate-pulse rounded-full bg-white"></span>
+                  SORTEIO EXCLUSIVO
+                </span>
+              </div>
+
+              {/* TÍTULO PRINCIPAL DO SORTEIO NO MOBILE (INALTERADO NO MOBILE) */}
+              <h3 class="text-2xl leading-[1.16] font-black tracking-tight text-neutral-950 uppercase italic sm:text-3xl lg:hidden">
+                Todos os alunos da Black 2026 concorrem a um{" "}
+                <span class="text-[#e50914] underline decoration-[#e50914]/30 underline-offset-4">
+                  Cabeçote Torkmax PREPARADO
+                </span>
+              </h3>
+
+              {/* SUBTÍTULO COM DESTAQUE FORTE + VALOR ESTIMADO EM DESTAQUE VERMELHO */}
+              <div class="space-y-3">
+                <p class="text-sm leading-relaxed font-medium text-neutral-700 sm:text-base">
+                  Ao garantir sua vaga em qualquer plano durante a Black Friday 2026, você vai
+                  concorrer a um{" "}
+                  <strong class="font-black text-neutral-950">
+                    Cabeçote Torkmax PREPARADO pela NTR.
+                  </strong>
+                </p>
+                <div>
+                  <span class="inline-block rounded-lg bg-[#e50914] px-4 py-2 text-xs font-black tracking-wide text-white uppercase shadow-[0_6px_18px_rgba(229,9,20,0.35)] sm:text-sm">
+                    *Valor estimado em R$ 2.500
+                  </span>
+                </div>
+              </div>
+
+              {/* BOX DE ENTRADA AUTOMÁTICA (VISÍVEL NO DESKTOP AQUI; NO MOBILE FICA ABAIXO DA IMAGEM) */}
+              <div class="hidden items-center gap-3.5 rounded-2xl border border-neutral-200/90 bg-neutral-100/90 p-4 text-left shadow-sm lg:flex">
+                <div class="flex h-13 w-13 flex-shrink-0 flex-col items-center justify-center rounded-xl bg-gradient-to-br from-[#e50914] to-[#b30000] font-black text-white shadow-md">
+                  <span class="text-[8px] leading-none tracking-wider uppercase">SORTEIO</span>
+                  <span class="text-base leading-tight font-black">2026</span>
+                </div>
+                <div>
+                  <span class="block text-xs font-bold text-neutral-900 sm:text-sm">
+                    Garanta seu acesso agora e você já entra{" "}
+                    <strong class="text-[#e50914]">automaticamente</strong> no sorteio.
+                  </span>
+                  <span class="mt-0.5 block text-[11px] text-neutral-500">
+                    Válido exclusivamente para as matrículas da Black Friday 2026.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* LADO DIREITO: FOTO DO CABEÇOTE TORKMAX PREPARADO EM GRANDE DESTAQUE COM ANIMAÇÃO */}
+            <div class="relative flex flex-col items-center justify-center lg:col-span-7">
+              {/* Glow / Halo de Luz Traseiro */}
+              <div class="pointer-events-none absolute h-[80%] w-[85%] rounded-full bg-gradient-to-r from-red-500/15 via-orange-500/20 to-amber-500/10 blur-3xl"></div>
+
+              <div class="relative flex w-full max-w-[620px] flex-col items-center justify-center">
+                {/* Elemento com Animação de Levitação Suave e Reflexo de Luz */}
+                <div class="cabecote-anim-wrap relative w-full">
+                  <Image
+                    src={imgCaixaSurpresaTransparente}
+                    alt="Cabeçote Torkmax Preparado Oficial Black Friday NTR"
+                    width={760}
+                    format="webp"
+                    quality={84}
+                    class="block h-auto w-full object-contain transition-transform duration-500 hover:scale-103"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  {/* Feixe Dinâmico de Reflexo Metálico */}
+                  <div class="cabecote-shine-layer"></div>
+                </div>
+
+                {/* Sombra de Chão Realista Sincronizada com a Flutuação */}
+                <div class="cabecote-floor-shadow pointer-events-none -mt-2 h-5 w-[78%] rounded-[100%] bg-neutral-900/25 blur-md sm:-mt-4"></div>
+              </div>
+
+              {/* BOX DE ENTRADA AUTOMÁTICA ABAIXO DA IMAGEM NO MOBILE */}
+              <div class="mt-6 flex w-full items-center gap-3.5 rounded-2xl border border-neutral-200/90 bg-neutral-100/90 p-4 text-left shadow-sm lg:hidden">
+                <div class="flex h-13 w-13 flex-shrink-0 flex-col items-center justify-center rounded-xl bg-gradient-to-br from-[#e50914] to-[#b30000] font-black text-white shadow-md">
+                  <span class="text-[8px] leading-none tracking-wider uppercase">SORTEIO</span>
+                  <span class="text-sm leading-tight font-black">2026</span>
+                </div>
+                <div>
+                  <span class="block text-xs font-bold text-neutral-900">
+                    Garanta seu acesso agora e você já entra{" "}
+                    <strong class="text-[#e50914]">automaticamente</strong> no sorteio.
+                  </span>
+                  <span class="mt-0.5 block text-[11px] text-neutral-500">
+                    Válido exclusivamente para as matrículas da Black Friday 2026.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA DO SORTEIO */}
+        <div class="mx-auto mt-12 max-w-lg text-center">
+          <a
+            href="#oferta"
+            class="group flex w-full transform items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#00b341] via-[#00d254] to-[#009b36] px-8 py-4.5 text-base font-black tracking-tight text-white uppercase italic shadow-[0_0_35px_rgba(0,210,84,0.5)] transition-all duration-300 hover:-translate-y-1 hover:from-[#00d254] hover:to-[#00b341] hover:shadow-[0_0_55px_rgba(0,210,84,0.8)] sm:text-lg"
+          >
+            <span>ENTRAR NA BLACK E CONCORRER AO SORTEIO</span>
+            <span class="text-xl leading-none transition-transform group-hover:translate-x-1.5">
+              →
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        SEÇÃO 7: POR QUE APRENDER COM A NTR DÁ MAIS RESULTADO? (GRÁFICOS COMPARATIVOS)
+       ========================================================================== */}
+    <section class="relative overflow-hidden bg-[#050505] px-4 py-20 md:py-28">
+      <div class="mx-auto max-w-5xl">
+        <div class="mx-auto mb-14 max-w-3xl text-center">
+          <h2 class="mb-3 text-3xl leading-[1.15] font-black tracking-tight text-white uppercase italic sm:text-5xl">
+            Por que aprender com a NTR <span class="grad-text-red">dá mais resultado?</span>
+          </h2>
+          <p class="text-base font-medium text-gray-300 sm:text-lg md:text-xl">
+            Veja o comparativo nos gráficos abaixo e tire suas conclusões
+          </p>
+        </div>
+
+        {/* APENAS OS 2 CARDS BRANCOS DOS GRÁFICOS (NO ESTILO DA REFERÊNCIA) */}
+        <div class="grid grid-cols-1 gap-7 md:grid-cols-2 lg:gap-8">
+          {/* Card 1: Ganho Fluxo */}
+          <div class="flex flex-col justify-between rounded-3xl bg-white p-6 text-neutral-900 shadow-[0_20px_60px_rgba(0,0,0,0.75)] sm:p-8">
+            <div>
+              <div class="mb-6 overflow-hidden rounded-2xl bg-white">
+                <Image
+                  src={imgGraficoFluxo}
+                  alt="Gráfico Comparativo de Fluxo Método NTR"
+                  width={600}
+                  format="webp"
+                  quality={80}
+                  class="h-auto w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <h3 class="mb-4 flex items-center justify-center gap-2.5 text-center text-2xl font-black text-[#d90429] sm:text-3xl">
+                <span>📊</span>
+                <span>Ganho Fluxo</span>
+              </h3>
+
+              <div class="mb-5 space-y-1.5 text-sm leading-relaxed text-neutral-800 sm:text-base">
+                <p>Cursos convencionais até melhoram...</p>
+                <p>Mas com as Técnicas NTR, o resultado é outro nível.</p>
+              </div>
+            </div>
+
+            <p class="border-t border-neutral-200 pt-4 text-sm leading-relaxed text-neutral-900 sm:text-base">
+              👉 <strong>Resultado: O fluxo aumenta</strong> consideravelmente com o método certo e
+              é isso que faz a moto andar de verdade.
+            </p>
+          </div>
+
+          {/* Card 2: Ganho Potência */}
+          <div class="flex flex-col justify-between rounded-3xl bg-white p-6 text-neutral-900 shadow-[0_20px_60px_rgba(0,0,0,0.75)] sm:p-8">
+            <div>
+              <div class="mb-6 overflow-hidden rounded-2xl bg-white">
+                <Image
+                  src={imgGraficoPotencia}
+                  alt="Gráfico Comparativo de Potência Método NTR"
+                  width={600}
+                  format="webp"
+                  quality={80}
+                  class="h-auto w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <h3 class="mb-4 flex items-center justify-center gap-2.5 text-center text-2xl font-black text-[#d90429] sm:text-3xl">
+                <span>🏁</span>
+                <span>Ganho Potência</span>
+              </h3>
+
+              <div class="mb-5 space-y-1.5 text-sm leading-relaxed text-neutral-800 sm:text-base">
+                <p>Aqui na NTR não tem achismo, tem resultado...</p>
+                <p>Na rua, na pista e no bolso do preparador.</p>
+              </div>
+            </div>
+
+            <p class="border-t border-neutral-200 pt-4 text-sm leading-relaxed text-neutral-900 sm:text-base">
+              👉 <strong>Resultado: Mais potência</strong> e entrega mais consistente com o Método
+              NTR.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        SEÇÃO 8: RESULTADOS DOS ALUNOS (TROFÉUS EM CARROSSEL ESQUERDA -> DIREITA)
+                + COMENTÁRIOS EM CARROSSEL DIREITA -> ESQUERDA COM PAUSA NO CENTRO
+       ========================================================================== */}
+    <section class="overflow-hidden border-t border-white/10 bg-[#050505] py-20 md:py-28">
+      <div class="mx-auto max-w-6xl px-4">
+        <div class="mx-auto mb-10 max-w-4xl text-center sm:mb-12">
+          <span class="mb-2 block text-sm font-extrabold tracking-wider text-gray-300 uppercase sm:text-lg md:text-xl">
+            VOCÊ NÃO PRECISA ACREDITAR EM MIM,
+          </span>
+          <h2 class="text-2xl leading-[1.14] font-black tracking-tight text-white uppercase italic sm:text-4xl md:text-5xl lg:text-[52px]">
+            MAS É IMPOSSÍVEL IGNORAR <span class="grad-text-red">ESSES RESULTADOS:</span>
+          </h2>
+        </div>
+      </div>
+
+      {/* CARROSSEL INFINITO DE TROFÉUS (DA ESQUERDA PARA A DIREITA) */}
+      <div class="relative mb-20 w-full overflow-hidden py-2 sm:mb-28">
+        <div class="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-gradient-to-r from-[#050505] to-transparent sm:w-36"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-gradient-to-l from-[#050505] to-transparent sm:w-36"></div>
+
+        <div class="trophies-track-ltr flex items-center gap-4 sm:gap-5">
+          {[0, 1].map(() => (
+            <div class="flex shrink-0 items-center gap-4 sm:gap-5">
+              {fotosTrofeus.map((foto, i) => (
+                <div class="aspect-[4/5] w-[210px] shrink-0 overflow-hidden rounded-2xl border border-white/15 bg-[#0c0c0c] shadow-[0_12px_35px_rgba(0,0,0,0.75)] sm:w-[250px] md:w-[270px]">
+                  <Image
+                    src={foto}
+                    alt={`Aluno Campeão NTR ${i + 1}`}
+                    width={320}
+                    format="webp"
+                    quality={72}
+                    class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* BLOCO: VEJA OS COMENTÁRIOS DE QUEM JÁ É ALUNO! */}
+      <div class="mx-auto mb-10 max-w-5xl px-4 text-center sm:mb-12">
+        <h3 class="mb-4 text-3xl leading-[1.12] font-black tracking-tight text-white uppercase italic sm:text-5xl md:text-6xl">
+          Veja os comentários de <br class="hidden sm:inline" />
+          <span class="grad-text-red">quem já é aluno!</span>
+        </h3>
+        <p class="mx-auto mb-5 max-w-2xl text-base text-gray-300 sm:text-lg md:text-xl">
+          Enquanto você pensa, outras pessoas já estão andando na frente, ganhando corridas e
+          vivendo de preparação.
+        </p>
+        <div class="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.05] px-5 py-2 text-sm font-black text-white sm:text-base">
+          <span class="text-base tracking-wider text-[#fbbf24] sm:text-lg">★★★★★</span>
+          <span>+12.000 ALUNOS FORMADOS</span>
+        </div>
+      </div>
+
+      {/* CARROSSEL INFINITO DE PRINTS (DIREITA -> ESQUERDA COM PAUSA NO CENTRO E LATERAIS MAIS ESCURAS) */}
+      <div class="depo-uv" id="depo-uv">
+        <div class="depo-stage">
+          <div class="depo-glow"></div>
+        </div>
+        <div class="depo-nav">
+          <button data-d="-1" type="button" aria-label="Depoimento anterior">
+            ←
+          </button>
+          <button data-d="1" type="button" aria-label="Próximo depoimento">
+            →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        SEÇÃO 8: OFERTA (ESTILO BLACK IA COM ID VISUAL E IMAGENS DA NTR)
+        - Faixa Superior em Carrossel: SUPER BLACK NTR
+        - 3 Cards no Desktop:
+          1. Acesso por 1 Ano
+          2. Acesso Vitalício (Central em destaque + Animação do Infinito com luz sobre o mockup)
+          3. Garantia Incondicional de 30 dias (Estilo vidro / vitrificado)
+       ========================================================================== */}
+    <section
+      id="oferta"
+      class="relative overflow-hidden bg-gradient-to-r from-[#ff1744] via-[#ff3d00] to-[#ff6d00] pb-20 md:pb-28"
+    >
+      {/* FAIXA DE TOPO EM CARROSSEL INFINITO: SUPER BLACK NTR */}
+      <div class="w-full overflow-hidden border-b border-white/15 bg-black/15 py-2.5 select-none">
+        <div class="oferta-top-marquee flex items-center gap-8 whitespace-nowrap">
+          {Array.from({ length: 16 }).map(() => (
+            <span class="text-xs font-light tracking-[0.22em] text-white/85 uppercase sm:text-sm">
+              SUPER <strong class="font-black text-white">BLACK NTR</strong>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Brilho central de fundo */}
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.14)_0%,transparent_65%)]"></div>
+
+      <div class="relative z-10 mx-auto max-w-6xl px-4 pt-12 sm:pt-16">
+        {/* HEADLINE DA SEÇÃO DE PLANOS (COM QUEBRA NO DESKTOP) */}
+        <div class="mx-auto mb-14 max-w-4xl text-center sm:mb-16">
+          <p class="mb-2 text-xs font-black tracking-[0.2em] text-black uppercase sm:text-sm md:text-base">
+            APROVEITE A CHANCE E ESCOLHA SEU PLANO
+          </p>
+          <h2 class="text-3xl leading-[1.08] font-black tracking-tight sm:text-5xl md:text-[54px]">
+            <span class="block text-white drop-shadow-sm">18 Cursos de Preparação</span>
+            <span class="block text-black">pelo preço de 1</span>
+          </h2>
+        </div>
+
+        {/* 3 CARDS NO DESKTOP (ANUAL | VITALÍCIO FUNDO PRETO EM DESTAQUE | GARANTIA VITRIFICADO) */}
+        <div class="grid grid-cols-1 items-center gap-9 lg:grid-cols-12 lg:gap-6">
+          {/* ==================================================================
+              CARD 1 (ESQUERDA): ACESSO POR 1 ANO
+             ================================================================== */}
+          <div class="relative flex flex-col justify-between rounded-[28px] border border-white/15 bg-[#240d07]/90 p-6 text-center shadow-[0_25px_60px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:p-7 lg:col-span-4">
+            {/* Pill Superior: OFERTA EXCLUSIVA BLACK FRIDAY */}
+            <div class="-mt-10 mb-4 flex justify-center sm:-mt-11">
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-gradient-to-r from-[#ff2a2a] via-[#ff5500] to-[#ff7700] px-4 py-1.5 text-[10px] font-black tracking-wider whitespace-nowrap text-white uppercase shadow-[0_6px_20px_rgba(255,42,42,0.55)] sm:text-xs">
+                <span>🔥</span>
+                <span>OFERTA EXCLUSIVA BLACK FRIDAY</span>
+              </span>
+            </div>
+
+            <div>
+              {/* Logo Black NTR */}
+              <div class="mx-auto mb-3 w-36 sm:w-40">
+                <Image
+                  src={imgBadgeBF2026}
+                  alt="Black Friday NTR"
+                  width={260}
+                  format="webp"
+                  quality={78}
+                  class="mx-auto h-auto w-full object-contain drop-shadow-[0_6px_20px_rgba(229,9,20,0.6)]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              {/* Título do Card */}
+              <span class="mb-4 inline-block rounded-full border border-white/15 bg-white/10 px-4 py-1 text-xs font-black tracking-wider text-white uppercase sm:text-sm">
+                ACESSO POR 1 ANO
+              </span>
+
+              {/* Mockup Anual */}
+              <div class="relative mb-4 overflow-hidden rounded-2xl border border-white/10 bg-black/70 shadow-lg">
+                <Image
+                  src={imgMockupPlanoAnual}
+                  alt="Mockup Plano Anual - 18 Cursos NTR"
+                  width={520}
+                  format="webp"
+                  quality={75}
+                  class="block h-auto w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              {/* O QUE ESTÁ INCLUSO NO PLANO ANUAL */}
+              <ul class="mb-5 space-y-2 rounded-2xl border border-white/10 bg-black/35 p-4 text-left text-xs font-medium text-gray-200 sm:text-sm">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#22c55e]">✔</span>
+                  <span>18 Cursos • 1 ano de acesso</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#fbbf24]">✔</span>
+                  <span class="font-bold text-[#fbbf24]">Sorteio Cabeçote Torkmax</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#22c55e]">✔</span>
+                  <span>Suporte tira dúvidas • 1 ano</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#22c55e]">✔</span>
+                  <span>Grupo Clube NTR</span>
+                </li>
+              </ul>
+
+              {/* Preço Anual */}
+              <p class="mb-1 text-xs font-semibold text-gray-300 sm:text-sm">
+                De{" "}
+                <span class="text-white/80 line-through decoration-[#ff2a2a] decoration-2">
+                  R$ 997,00
+                </span>{" "}
+                por apenas
+              </p>
+              <div class="my-1.5 text-3xl leading-none font-black tracking-tight text-white sm:text-4xl xl:text-[42px]">
+                12x R$ 29,90
+              </div>
+              <p class="mb-6 text-xs font-bold text-[#ff9e80] sm:text-sm">ou R$ 299 à vista</p>
+            </div>
+
+            <a
+              href={checkoutAnual}
+              data-plan="anual-299"
+              class="btn-checkout-clube group flex w-full transform items-center justify-center gap-2 rounded-xl bg-white px-5 py-4 text-sm font-black tracking-tight text-neutral-950 uppercase shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 sm:text-base"
+            >
+              <span>QUERO ACESSO DE 1 ANO</span>
+              <span class="text-lg leading-none transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </a>
+          </div>
+
+          {/* ==================================================================
+              CARD CENTRAL (DESTAQUE FUNDO PRETO): ACESSO VITALÍCIO + ANIMAÇÃO DO INFINITO
+             ================================================================== */}
+          <div class="relative z-20 flex flex-col justify-between rounded-[32px] border-2 border-[#fbbf24]/80 bg-[#050507] p-6 text-center shadow-[0_30px_90px_rgba(0,0,0,0.9)] sm:p-8 lg:col-span-4 lg:-my-4">
+            {/* Pill Superior de Destaque */}
+            <div class="-mt-10 mb-4 flex justify-center sm:-mt-12">
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-gradient-to-r from-[#ff2a2a] via-[#ff5500] to-[#ff7700] px-4 py-1.5 text-[10px] font-black tracking-wider whitespace-nowrap text-white uppercase shadow-[0_6px_20px_rgba(255,42,42,0.65)] sm:text-xs">
+                <span>🔥</span>
+                <span>MAIS VANTAJOSO - ACESSO PRA SEMPRE</span>
+              </span>
+            </div>
+
+            <div>
+              {/* Logo Black NTR */}
+              <div class="mx-auto mb-3 w-40 sm:w-44">
+                <Image
+                  src={imgBadgeBF2026}
+                  alt="Black Friday NTR"
+                  width={260}
+                  format="webp"
+                  quality={78}
+                  class="mx-auto h-auto w-full object-contain drop-shadow-[0_8px_25px_rgba(229,9,20,0.75)]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              {/* Título Vitalício */}
+              <span class="mb-2.5 inline-block rounded-full border border-[#fbbf24]/50 bg-[#fbbf24]/20 px-4 py-1 text-xs font-black tracking-wider text-[#fbbf24] uppercase sm:text-sm">
+                ACESSO VITALÍCIO
+              </span>
+
+              <p class="mb-4 text-xs leading-relaxed text-gray-200 sm:text-sm">
+                Pague uma única vez na vida e tenha os 18 cursos e todas as futuras atualizações
+                para sempre.
+              </p>
+
+              {/* Mockup Vitalício + Animação do Símbolo do Infinito com Feixe de Luz */}
+              <div class="relative mb-4 overflow-hidden rounded-2xl border border-white/15 bg-black shadow-2xl">
+                <Image
+                  src={imgMockupPlanoVitalicio}
+                  alt="Mockup Plano Vitalício - 18 Cursos + Bônus NTR"
+                  width={560}
+                  format="webp"
+                  quality={76}
+                  class="block h-auto w-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
+
+                {/* Overlay Símbolo do Infinito Animado com Luz Percorrendo o Traçado */}
+                <div class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/15">
+                  <svg
+                    class="h-auto w-[78%] max-w-[260px] overflow-visible drop-shadow-[0_0_25px_rgba(255,60,0,0.85)]"
+                    viewBox="0 0 240 110"
+                    fill="none"
+                  >
+                    <defs>
+                      <linearGradient id="infBaseGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+                        <stop offset="0%" stop-color="#ff1744" />
+                        <stop offset="50%" stop-color="#ff6d00" />
+                        <stop offset="100%" stop-color="#ffea00" />
+                      </linearGradient>
+                      <linearGradient id="infLightGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+                        <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
+                        <stop offset="100%" stop-color="#ffe082" stop-opacity="0.9" />
+                      </linearGradient>
+                    </defs>
+                    {/* Traçado Base do Infinito */}
+                    <path
+                      d="M120 55 C 92 14, 22 14, 22 55 C 22 96, 92 96, 120 55 C 148 14, 218 14, 218 55 C 218 96, 148 96, 120 55 Z"
+                      stroke="url(#infBaseGrad)"
+                      stroke-width="11"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      opacity="0.88"
+                    />
+                    {/* Feixe de Luz Animado Desenhando o Infinito */}
+                    <path
+                      class="infinity-light-beam"
+                      d="M120 55 C 92 14, 22 14, 22 55 C 22 96, 92 96, 120 55 C 148 14, 218 14, 218 55 C 218 96, 148 96, 120 55 Z"
+                      stroke="url(#infLightGrad)"
+                      stroke-width="11"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              {/* O QUE ESTÁ INCLUSO NO PLANO VITALÍCIO */}
+              <ul class="mb-5 space-y-2 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left text-xs font-medium text-gray-100 sm:text-sm">
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#fbbf24]">★</span>
+                  <span>
+                    <strong>18 Cursos + Acesso Vitalício</strong>
+                  </span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#fbbf24]">✔</span>
+                  <span class="font-bold text-[#fbbf24]">Sorteio Cabeçote Torkmax</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#22c55e]">✔</span>
+                  <span>Biblioteca Completa NTR</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#22c55e]">✔</span>
+                  <span>Manuais Serviço</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#22c55e]">✔</span>
+                  <span>Calculadora de Motores • 1 ano</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#22c55e]">✔</span>
+                  <span>Suporte tira dúvidas • 1 ano</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="mt-0.5 shrink-0 font-black text-[#22c55e]">✔</span>
+                  <span>Grupo Clube NTR</span>
+                </li>
+              </ul>
+
+              {/* Preço Vitalício */}
+              <p class="mb-1 text-xs font-semibold text-gray-200 sm:text-sm">
+                De{" "}
+                <span class="text-white/85 line-through decoration-[#ff2a2a] decoration-2">
+                  R$ 2.997,00
+                </span>{" "}
+                por apenas
+              </p>
+              <div class="my-1.5 text-4xl leading-none font-black tracking-tight text-white sm:text-5xl xl:text-[46px]">
+                12x R$ 89,90
+              </div>
+              <p class="mb-6 text-xs font-bold text-[#ff9e80] sm:text-sm">ou R$ 899 à vista</p>
+            </div>
+
+            <a
+              href={checkoutVitalicio}
+              data-plan="vitalicio-899"
+              class="btn-checkout-clube group flex w-full transform items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#10b981] via-[#22c55e] to-[#16a34a] px-6 py-4.5 text-sm font-black tracking-tight text-white uppercase shadow-[0_12px_35px_rgba(34,197,94,0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:from-[#22c55e] hover:to-[#15803d] sm:text-base"
+            >
+              <span>QUERO ACESSO VITALÍCIO</span>
+              <span class="text-lg leading-none transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </a>
+          </div>
+
+          {/* ==================================================================
+              CARD 3 (DIREITA): GARANTIA INCONDICIONAL (ESTILO VIDRO / VITRIFICADO)
+             ================================================================== */}
+          <div class="flex flex-col justify-between rounded-[28px] border border-white/25 bg-[#2a1108]/65 p-6 text-center shadow-[0_25px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl sm:p-7 lg:col-span-4">
+            <div>
+              {/* Selo 30 Dias (No estilo circular iluminado da referência) */}
+              <div class="relative mx-auto mb-5 flex h-28 w-28 items-center justify-center sm:h-32 sm:w-32">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-b from-[#ff5522]/35 to-transparent blur-md"></div>
+                <div class="relative flex h-full w-full flex-col items-center justify-center rounded-full border-2 border-[#ff6d3a]/60 bg-gradient-to-b from-[#3d160a] to-[#1e0a04] shadow-[inset_0_2px_15px_rgba(255,109,58,0.35)]">
+                  <span class="bg-gradient-to-b from-[#ff8a50] via-[#ff5722] to-[#ff2a2a] bg-clip-text text-4xl leading-none font-black text-transparent sm:text-5xl">
+                    30
+                  </span>
+                  <span class="mt-1 text-[11px] font-extrabold tracking-[0.22em] text-white uppercase sm:text-xs">
+                    DIAS
+                  </span>
+                </div>
+              </div>
+
+              <span class="mb-1.5 block text-[10px] font-extrabold tracking-[0.22em] text-white/80 uppercase sm:text-xs">
+                GARANTIA INCONDICIONAL
+              </span>
+
+              <h3 class="mb-3 text-2xl font-black tracking-tight text-white sm:text-3xl">
+                Garantia de <span class="text-[#ff5722]">30 dias.</span>
+              </h3>
+
+              <p class="mb-6 text-xs leading-relaxed text-gray-200 sm:text-sm">
+                Entre, assista às aulas e experimente tudo. Se não gostar, peça o reembolso e receba{" "}
+                <strong class="text-white">100% de volta</strong>, sem perguntas.
+              </p>
+            </div>
+
+            {/* 3 Pílulas Vitrificadas de Segurança */}
+            <div class="space-y-2.5 text-left">
+              <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-md">
+                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#ff3d00] text-xs font-black text-white">
+                  ✓
+                </span>
+                <span class="text-xs font-semibold text-white sm:text-sm">
+                  Pagamento 100% seguro
+                </span>
+              </div>
+              <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-md">
+                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#ff3d00] text-xs font-black text-white">
+                  ✓
+                </span>
+                <span class="text-xs font-semibold text-white sm:text-sm">
+                  Acesso imediato após a compra
+                </span>
+              </div>
+              <div class="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-3 backdrop-blur-md">
+                <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#ff3d00] text-xs font-black text-white">
+                  ✓
+                </span>
+                <span class="text-xs font-semibold text-white sm:text-sm">
+                  Reembolso sem burocracia
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        SEÇÃO AUTORIDADE: "QUEM VAI TE ENSINAR?" (ESTILO ID VISUAL BLACK IA)
+        - Texto à esquerda com o nome do Fábio Scaravonatto destacado no parágrafo
+        - Foto limpa em moldura 5:4 à direita (sem informações sobrepostas na imagem)
+       ========================================================================== */}
+    <section class="relative overflow-hidden border-t border-white/10 bg-[#06080f] px-4 py-20 md:py-28">
+      {/* Glow avermelhado lateral sutil igual referência */}
+      <div class="pointer-events-none absolute top-1/2 right-10 h-[450px] w-[450px] -translate-y-1/2 rounded-full bg-[#e50914]/15 blur-[150px]"></div>
+
+      <div class="relative z-10 mx-auto max-w-5xl">
+        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          {/* LADO ESQUERDO: TEXTO ESTILO BLACK IA */}
+          <div class="space-y-5 text-left lg:col-span-5">
+            <h2 class="text-3xl leading-[1.08] font-black tracking-tight text-white sm:text-5xl">
+              Quem vai te
+              <br />
+              ensinar?
+            </h2>
+            <p class="text-sm leading-relaxed text-gray-300 sm:text-base">
+              <strong class="font-bold text-[#ff3d2a]">Fábio Scaravonatto</strong> é mecânico e
+              preparador profissional desde 2004 (+20 anos de experiência prática). Nesse período,
+              projetou e preparou centenas de motos de alta performance para rua, rodovia,
+              arrancada, motovelocidade, velocross e motocross — dezenas delas campeãs.
+            </p>
+            <p class="text-sm leading-relaxed text-gray-300 sm:text-base">
+              Fundador da NTR Escola de Motores, já formou mais de{" "}
+              <strong class="text-white">12.000 alunos desde 2018</strong> e reuniu todo o seu
+              método validado em banca de fluxo, dinamômetro e pista dentro do Clube de
+              Preparadores.
+            </p>
+          </div>
+
+          {/* LADO DIREITO: FOTO 5:4 EM MOLDURA LIMPA (SEM TEXTO SOBRE A IMAGEM) */}
+          <div class="flex justify-center lg:col-span-7">
+            <div class="w-full max-w-[580px] rounded-[24px] border border-white/10 bg-[#161924] p-2.5 shadow-[0_25px_70px_rgba(0,0,0,0.85)] sm:p-3.5">
+              <div class="relative aspect-[5/4] w-full overflow-hidden rounded-[16px] bg-black">
+                <Image
+                  src={imgFabioTrofeus}
+                  alt="Fábio Scaravonatto - Fundador da NTR Escola de Motores"
+                  width={640}
+                  format="webp"
+                  quality={78}
+                  class="h-full w-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        NOVA SEÇÃO: "UMA DECISÃO HOJE. UM NOVO RESULTADO AMANHÃ."
+       ========================================================================== */}
+    <section class="relative overflow-hidden border-t border-white/10 bg-[#04060c] px-4 py-20 md:py-28">
+      <div class="relative z-10 mx-auto max-w-4xl">
+        {/* Cabeçalho */}
+        <div class="mx-auto mb-12 max-w-3xl text-center sm:mb-14">
+          <span class="mb-3 block text-[11px] font-extrabold tracking-[0.24em] text-[#ff5722] uppercase sm:text-xs">
+            IMAGINE DAQUI A 30 DIAS
+          </span>
+          <h2 class="text-3xl leading-[1.1] font-black tracking-tight text-white sm:text-5xl md:text-[52px]">
+            Uma decisão hoje. <span class="grad-text-red">Um novo</span>
+            <br class="hidden sm:inline" />
+            <span class="grad-text-red">resultado</span> amanhã.
+          </h2>
+        </div>
+
+        {/* 2 Cards Lado a Lado */}
+        <div class="mb-14 grid grid-cols-1 items-stretch gap-6 sm:mb-16 md:grid-cols-2">
+          {/* Card Esquerdo: Tabela Comparativa "Por que agora e não depois?" */}
+          <div class="flex flex-col justify-between rounded-3xl border border-white/10 bg-[#0b0e17] p-6 shadow-2xl sm:p-8">
+            <h3 class="mb-5 text-lg font-black text-white sm:text-xl">
+              Por que agora e não depois?
+            </h3>
+
+            <div class="divide-y divide-white/10 text-xs sm:text-sm">
+              <div class="flex items-center justify-between gap-4 py-3.5">
+                <span class="text-gray-400">Preço cursos separados fora da Black</span>
+                <span class="text-right text-gray-400 line-through">R$ 2.997,00</span>
+              </div>
+              <div class="flex items-center justify-between gap-4 py-3.5">
+                <span class="text-gray-400">Preço na Super Black NTR</span>
+                <strong class="text-right font-extrabold text-white">A partir de R$ 299</strong>
+              </div>
+              <div class="flex items-center justify-between gap-4 py-3.5">
+                <span class="text-gray-400">Sorteio de Brindes</span>
+                <strong class="text-right font-bold text-[#ff4d2a]">Só nesta Black</strong>
+              </div>
+              <div class="flex items-center justify-between gap-4 py-3.5">
+                <span class="text-gray-400">Atualizações Futuras</span>
+                <strong class="text-right font-bold text-[#ff4d2a]">
+                  Incluídas para sempre no vitalício
+                </strong>
+              </div>
+              <div class="flex items-center justify-between gap-4 pt-3.5">
+                <span class="text-gray-400">Garantia</span>
+                <strong class="text-right font-extrabold text-white">30 dias</strong>
+              </div>
+            </div>
+          </div>
+
+          {/* Card Direito: "1x / Uma vez por ano. Só uma." */}
+          <div class="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#ff4d2a]/30 bg-gradient-to-tr from-[#0b0e17] via-[#10121d] to-[#2c1215] p-6 shadow-2xl sm:p-8">
+            <div>
+              <span class="mb-3 block text-4xl leading-none font-black text-[#ff3d2a] sm:text-5xl">
+                1x
+              </span>
+              <h3 class="mb-4 text-lg font-black text-white sm:text-xl">
+                Uma vez por ano. Só uma.
+              </h3>
+              <p class="mb-4 text-xs leading-relaxed text-gray-300 sm:text-sm">
+                Esta condição só existe na Black Friday. Quando o lote encerrar, o preço volta ao
+                normal e o sorteio acaba.
+              </p>
+              <p class="text-xs leading-relaxed text-gray-300 sm:text-sm">
+                <strong class="text-white">Ninguém espera você estar pronto.</strong> Quem começa
+                agora sai na frente. Quem espera, paga mais caro para correr atrás.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Frase Final de Impacto + CTA */}
+        <div class="mx-auto max-w-2xl text-center">
+          <p class="mb-8 text-xl leading-snug font-black tracking-tight text-white sm:text-2xl md:text-3xl">
+            Você pode fechar esta página e continuar igual. Ou pode{" "}
+            <span class="text-[#ff5722]">decidir hoje</span> mudar o jeito como prepara motores,
+            andar na frente e faturar mais na oficina.
+          </p>
+          <a
+            href="#oferta"
+            class="inline-flex transform items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#00b341] via-[#00d254] to-[#009b36] px-8 py-4.5 text-sm font-black tracking-tight text-white uppercase italic shadow-[0_0_35px_rgba(0,210,84,0.5)] transition-all duration-300 hover:-translate-y-1 hover:from-[#00d254] hover:to-[#00b341] hover:shadow-[0_0_55px_rgba(0,210,84,0.8)] sm:px-12 sm:text-lg"
+          >
+            <span>ESCOLHER MEU PLANO AGORA</span>
+            <span class="text-xl leading-none">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ==========================================================================
+        SEÇÃO 9: FAQ (DÚVIDAS FREQUENTES & ATENDIMENTO WHATSAPP)
+       ========================================================================== */}
+    <section class="bg-[#050505] px-4 py-20 md:py-28">
+      <div class="mx-auto max-w-5xl">
+        {/* FAQ + Atendimento WhatsApp */}
+        <div class="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
+          <div class="rounded-3xl border border-white/10 bg-[#0c0c0c] p-7 lg:col-span-4">
+            <span class="text-xs font-black tracking-widest text-[#e50914] uppercase">
+              DÚVIDAS FREQUENTES
+            </span>
+            <h2 class="mt-1 mb-3 text-3xl font-black text-white uppercase italic">
+              Ficou com alguma dúvida?
+            </h2>
+            <p class="mb-6 text-sm leading-relaxed text-gray-400">
+              Chame nossa equipe no WhatsApp para tirar qualquer dúvida sobre a promoção de Black
+              Friday:
+            </p>
+            <a
+              href={whatsappSuporte}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex w-full items-center justify-center gap-3 rounded-2xl bg-[#22c55e] px-5 py-4 text-sm font-black text-white uppercase shadow-lg transition-all hover:bg-[#16a34a]"
+            >
+              <span>CHAMAR EQUIPE NO WHATSAPP</span>
+            </a>
+          </div>
+
+          <div class="space-y-3.5 lg:col-span-8">
+            {faqs.map((faq) => (
+              <details class="group rounded-2xl border border-white/10 bg-[#0c0c0c] p-5 transition-colors open:border-[#e50914]/50 sm:p-6">
+                <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-bold text-white sm:text-base">
+                  <span>{faq.q}</span>
+                  <span class="ml-4 text-2xl font-black text-[#e50914] transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p class="mt-4 border-t border-white/10 pt-4 text-xs leading-relaxed whitespace-pre-line text-gray-400 sm:text-sm">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    /* Fitas Cruzadas 3D (Estilo Referência) */
+    .tape-track-1 {
+      width: max-content;
+      animation: tape-scroll-1 90s linear infinite;
+    }
+    .tape-track-2 {
+      width: max-content;
+      animation: tape-scroll-2 80s linear infinite;
+    }
+    @keyframes tape-scroll-1 {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    @keyframes tape-scroll-2 {
+      0% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    /* Animação Vertical Deslizando para Cima (Tela de Notebook dos Livros/Manuais e Calculadora) */
+    .bonus-notebook-scroll {
+      animation: bonus-scroll-up 14s linear infinite;
+      will-change: transform;
+    }
+    .bonus-notebook-scroll:hover {
+      animation-play-state: paused;
+    }
+    .bonus-calc-scroll {
+      animation: bonus-scroll-up 16s linear infinite;
+      will-change: transform;
+    }
+    .bonus-calc-scroll:hover {
+      animation-play-state: paused;
+    }
+    @keyframes bonus-scroll-up {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(0, -50%, 0);
+      }
+    }
+
+    /* Carrossel Infinito de Troféus (Esquerda -> Direita) */
+    .trophies-track-ltr {
+      width: max-content;
+      animation: trophies-scroll-ltr 46s linear infinite;
+      will-change: transform;
+    }
+    .trophies-track-ltr:hover {
+      animation-play-state: paused;
+    }
+    @keyframes trophies-scroll-ltr {
+      0% {
+        transform: translate3d(-50%, 0, 0);
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    /* Faixa de Topo da Oferta: SUPER BLACK NTR */
+    .oferta-top-marquee {
+      width: max-content;
+      animation: oferta-marquee-scroll 40s linear infinite;
+    }
+    @keyframes oferta-marquee-scroll {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    /* Animação do Feixe de Luz no Símbolo do Infinito (Mockup Vitalício) */
+    .infinity-light-beam {
+      stroke-dasharray: 140 420;
+      stroke-dashoffset: 560;
+      filter: drop-shadow(0 0 10px #ffffff) drop-shadow(0 0 20px #ffab00);
+      animation: infinity-beam-loop 2.8s linear infinite;
+    }
+    @keyframes infinity-beam-loop {
+      0% {
+        stroke-dashoffset: 560;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+
+  {/* Estilos Globais para o Carrossel 3D Coverflow (Permite estilizar elementos injetados via JS) */}
+  <style is:global>
+    /* ==========================================================================
+       TEXTOS EM GRADIENTE - ANTI-CORTE & ALTA DEFINIÇÃO
+       Garante que letras itálicas, acentos (Ã, Õ, Á), cedilhas (Ç) e pontuação (!)
+       nunca sejam cortados pelo clipping do WebKit/Blink.
+       ========================================================================== */
+    .grad-text-red {
+      display: inline-block;
+      padding-right: 0.18em;
+      padding-left: 0.04em;
+      padding-top: 0.08em;
+      padding-bottom: 0.16em;
+      background: linear-gradient(90deg, #ff2a2a 0%, #e50914 55%, #ff6b00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.24;
+      overflow: visible;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    .grad-text-gold {
+      display: inline-block;
+      padding-right: 0.18em;
+      padding-left: 0.04em;
+      padding-top: 0.08em;
+      padding-bottom: 0.16em;
+      background: linear-gradient(90deg, #ffe082 0%, #ffb300 50%, #ff8000 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.24;
+      overflow: visible;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    .grad-text-cyan {
+      display: inline-block;
+      padding-right: 0.18em;
+      padding-left: 0.04em;
+      padding-top: 0.08em;
+      padding-bottom: 0.16em;
+      background: linear-gradient(90deg, #38bdf8 0%, #60a5fa 50%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.24;
+      overflow: visible;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    .grad-text-amber {
+      display: inline-block;
+      padding-right: 0.18em;
+      padding-left: 0.04em;
+      padding-top: 0.08em;
+      padding-bottom: 0.16em;
+      background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.24;
+      overflow: visible;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    /* ==========================================================================
+       CARROSSEL 3D COVERFLOW (EXTRAÍDO DIRETAMENTE DA REFERÊNCIA TWINS)
+       ========================================================================== */
+    .bfuv {
+      --r: #ff2a2a;
+      color: #f4f5f0;
+      padding: 10px 0 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .bfuv * {
+      box-sizing: border-box;
+    }
+    .bfuv .stage {
+      position: relative;
+      height: 520px;
+      max-width: 1400px;
+      margin: 0 auto;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    }
+    .bfuv .card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 230px;
+      aspect-ratio: 300/440;
+      border-radius: 22px;
+      overflow: hidden;
+      transition:
+        transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 0.6s,
+        filter 0.6s,
+        box-shadow 0.6s;
+      cursor: pointer;
+      background: #0f0f0f;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transform: translate(-50%, -50%);
+    }
+    .bfuv .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+    }
+    .bfuv .card.on {
+      border: 2px solid var(--r);
+      box-shadow:
+        0 0 0 1px rgba(255, 42, 42, 0.35),
+        0 0 45px rgba(255, 42, 42, 0.6),
+        0 30px 80px -20px rgba(255, 42, 42, 0.65);
+      overflow: visible;
+      z-index: 60 !important;
+    }
+    .bfuv .card.on img {
+      border-radius: 20px;
+    }
+    .bfuv .pill {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #ff2a2a, #ff5722);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      padding: 5px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.4s;
+      box-shadow: 0 4px 18px rgba(255, 42, 42, 0.7);
+      z-index: 30;
+    }
+    .bfuv .card.on .pill {
+      opacity: 1;
+    }
+    .bfuv .glow {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 560px;
+      height: 440px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center, rgba(255, 42, 42, 0.32), transparent 65%);
+      pointer-events: none;
+    }
+    .bfuv .cap {
+      text-align: center;
+      margin-top: 18px;
+      padding: 0 20px;
+      min-height: 64px;
+    }
+    .bfuv .cap .n {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ff4d4d;
+      letter-spacing: 0.12em;
+      margin-right: 10px;
+    }
+    .bfuv .cap .t {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+    }
+    .bfuv .cap p {
+      color: #9ca3af;
+      font-size: 14px;
+      margin: 6px 0 0;
+    }
+    .bfuv .nav {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .bfuv .nav button {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+    .bfuv .nav button:hover {
+      border-color: var(--r);
+      color: #ff4d4d;
+      background: rgba(255, 42, 42, 0.12);
+      transform: scale(1.08);
+    }
+    .bfuv .urg {
+      max-width: 900px;
+      margin: 38px auto 8px;
+      padding: 0 16px;
+      text-align: center;
+      font-size: 28px;
+      line-height: 1.35;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-wrap: balance;
+    }
+    .bfuv .urg strong {
+      color: #ff2a2a;
+    }
+    .bfuv .urg em {
+      font-style: normal;
+      color: #fff;
+      background: linear-gradient(#ff2a2a, #ff2a2a) no-repeat left 100%/100% 2px;
+      padding-bottom: 3px;
+    }
+
+    @media (max-width: 767px) {
+      .bfuv .stage {
+        height: 390px;
+      }
+      .bfuv .card {
+        width: 170px;
+      }
+      .bfuv .cap .t {
+        font-size: 17px;
+      }
+      .bfuv .urg {
+        font-size: 20px;
+        line-height: 1.3;
+        margin: 26px auto 8px;
+      }
+    }
+
+    /* ==========================================================================
+       CARROSSEL DE PRINTS DE DEPOIMENTOS (DIREITA -> ESQUERDA COM PAUSA NO CENTRO)
+       ========================================================================== */
+    .depo-uv {
+      position: relative;
+      padding: 10px 0 10px;
+      overflow: hidden;
+    }
+    .depo-uv .depo-stage {
+      position: relative;
+      height: 540px;
+      max-width: 1300px;
+      margin: 0 auto;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+    .depo-uv .depo-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 310px;
+      max-height: 500px;
+      border-radius: 22px;
+      overflow: hidden;
+      transition:
+        transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 0.65s,
+        filter 0.65s,
+        box-shadow 0.65s,
+        border-color 0.65s;
+      cursor: pointer;
+      background: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .depo-uv .depo-card img {
+      width: 100%;
+      height: auto;
+      max-height: 496px;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
+    .depo-uv .depo-card.on {
+      border: 2px solid #ff2a2a;
+      box-shadow:
+        0 0 0 1px rgba(255, 42, 42, 0.35),
+        0 0 40px rgba(255, 42, 42, 0.45),
+        0 25px 70px -15px rgba(0, 0, 0, 0.9);
+      z-index: 60 !important;
+    }
+    .depo-uv .depo-glow {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 520px;
+      height: 460px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center, rgba(255, 42, 42, 0.25), transparent 68%);
+      pointer-events: none;
+    }
+    .depo-uv .depo-nav {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .depo-uv .depo-nav button {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+    .depo-uv .depo-nav button:hover {
+      border-color: #ff2a2a;
+      color: #ff4d4d;
+      background: rgba(255, 42, 42, 0.15);
+      transform: scale(1.08);
+    }
+    @media (max-width: 767px) {
+      .depo-uv .depo-stage {
+        height: 440px;
+      }
+      .depo-uv .depo-card {
+        width: 255px;
+        max-height: 410px;
+      }
+      .depo-uv .depo-card img {
+        max-height: 406px;
+      }
+    }
+
+    /* ==========================================================================
+       ANIMAÇÃO DESTAQUE CABEÇOTE TORKMAX (LEVITAÇÃO SUAVE + REFLEXO METÁLICO)
+       ========================================================================== */
+    @keyframes cabecoteFloat {
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(0.4deg);
+      }
+    }
+    @keyframes cabecoteShadow {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.35;
+      }
+      50% {
+        transform: scale(0.9);
+        opacity: 0.18;
+      }
+    }
+    @keyframes cabecoteShine {
+      0% {
+        transform: translateX(-160%) skewX(-25deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.75;
+      }
+      35% {
+        transform: translateX(260%) skewX(-25deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(260%) skewX(-25deg);
+        opacity: 0;
+      }
+    }
+    .cabecote-anim-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      animation: cabecoteFloat 4s ease-in-out infinite;
+      will-change: transform;
+    }
+    .cabecote-floor-shadow {
+      animation: cabecoteShadow 4s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+    .cabecote-shine-layer {
+      position: absolute;
+      top: -10%;
+      bottom: -10%;
+      left: 0;
+      width: 40%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.45) 45%,
+        rgba(255, 255, 255, 0.85) 50%,
+        rgba(255, 255, 255, 0.45) 55%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      pointer-events: none;
+      animation: cabecoteShine 4.5s ease-in-out infinite;
+    }
+  </style>
+
+  <script is:inline>
+    // Scroll suave garantido com precisão absoluta para a seção dos planos (#oferta)
+    document.querySelectorAll('a[href="#oferta"]').forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.getElementById("oferta");
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Verificação e ajuste de precisão caso haja carregamento de imagem durante o scroll
+          setTimeout(function () {
+            const rect = target.getBoundingClientRect();
+            if (Math.abs(rect.top) > 80) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }, 450);
+        }
+      });
+    });
+  </script>
+
+  {/* Script do Carrossel 3D Coverflow (Mecânica da Referência Twins) */}
+  <script is:inline define:vars={{ carrosselCursosData }}>
+    (function () {
+      const root = document.getElementById("bfuv");
+      if (!root || root.dataset.ok) return;
+      root.dataset.ok = "1";
+
+      const C = carrosselCursosData;
+      const stage = root.querySelector(".stage");
+      const N = C.length;
+      let cur = 0;
+      const els = [];
+
+      C.forEach(function (c, i) {
+        const d = document.createElement("div");
+        d.className = "card";
+        d.innerHTML =
+          '<span class="pill">' +
+          (c.badge || "NOVO EM 2026") +
+          '</span><img decoding="async" loading="lazy" src="' +
+          c.src +
+          '" alt="' +
+          c.title +
+          '">';
+        d.onclick = function () {
+          go(i);
+          reset();
+        };
+        stage.appendChild(d);
+        els.push(d);
+      });
+
+      function lay() {
+        const w = window.innerWidth < 768 ? 125 : 185;
+        els.forEach(function (el, i) {
+          let o = (((i - cur) % N) + N) % N;
+          if (o > N / 2) o -= N;
+          const a = Math.abs(o);
+          const s = a === 0 ? 1.15 : Math.max(0.78, 1 - a * 0.06);
+          el.style.transform = "translate(-50%,-50%) translateX(" + o * w + "px) scale(" + s + ")";
+          el.style.zIndex = String(50 - a);
+          el.style.opacity = a > 4 ? "0" : a === 0 ? "1" : String(Math.max(0.25, 0.7 - a * 0.12));
+          el.style.filter = a === 0 ? "none" : "brightness(.55) saturate(.8)";
+          el.classList.toggle("on", a === 0);
+        });
+
+        const c = C[cur];
+        const nEl = root.querySelector(".cap .n");
+        const tEl = root.querySelector(".cap .t");
+        const pEl = root.querySelector(".cap p");
+        if (nEl) nEl.textContent = String(cur + 1).padStart(2, "0") + " / " + N;
+        if (tEl) tEl.textContent = c.title;
+        if (pEl) pEl.textContent = c.desc || "";
+      }
+
+      function go(i) {
+        cur = (i + N) % N;
+        lay();
+      }
+
+      root.querySelectorAll(".nav button").forEach(function (b) {
+        b.onclick = function () {
+          go(cur + +b.dataset.d);
+          reset();
+        };
+      });
+
+      let t;
+      function reset() {
+        clearInterval(t);
+        t = setInterval(function () {
+          go(cur + 1);
+        }, 3400);
+      }
+
+      lay();
+      window.addEventListener("resize", lay);
+      let seen = 0;
+      function start() {
+        if (seen) return;
+        seen = 1;
+        cur = 0;
+        lay();
+        reset();
+      }
+
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          function (e) {
+            e.forEach(function (x) {
+              if (x.isIntersecting) {
+                start();
+              } else if (seen) {
+                clearInterval(t);
+                seen = 0;
+                cur = 0;
+                lay();
+              }
+            });
+          },
+          { threshold: 0.35 },
+        );
+        io.observe(stage);
+      } else {
+        reset();
+      }
+    })();
+  </script>
+
+  {/* Script do Carrossel de Prints de Depoimentos (Direita -> Esquerda com pausa no centro e laterais mais escuras) */}
+  <script is:inline define:vars={{ printsCarouselData }}>
+    (function () {
+      const root = document.getElementById("depo-uv");
+      if (!root || root.dataset.ok) return;
+      root.dataset.ok = "1";
+
+      const D = printsCarouselData;
+      const stage = root.querySelector(".depo-stage");
+      const N = D.length;
+      let cur = 0;
+      const els = [];
+
+      D.forEach(function (item, i) {
+        const d = document.createElement("div");
+        d.className = "depo-card";
+        d.innerHTML =
+          '<img decoding="async" loading="lazy" src="' + item.src + '" alt="' + item.alt + '">';
+        d.onclick = function () {
+          go(i);
+          reset();
+        };
+        stage.appendChild(d);
+        els.push(d);
+      });
+
+      function lay() {
+        const w = window.innerWidth < 768 ? 210 : 305;
+        els.forEach(function (el, i) {
+          let o = (((i - cur) % N) + N) % N;
+          if (o > N / 2) o -= N;
+          const a = Math.abs(o);
+          const s = a === 0 ? 1.06 : Math.max(0.82, 1 - a * 0.09);
+          el.style.transform = "translate(-50%,-50%) translateX(" + o * w + "px) scale(" + s + ")";
+          el.style.zIndex = String(50 - a);
+          el.style.opacity = a > 2 ? "0" : a === 0 ? "1" : String(Math.max(0.35, 0.75 - a * 0.18));
+          el.style.filter = a === 0 ? "none" : "brightness(.42) saturate(.85)";
+          el.classList.toggle("on", a === 0);
+        });
+      }
+
+      function go(i) {
+        cur = (i + N) % N;
+        lay();
+      }
+
+      root.querySelectorAll(".depo-nav button").forEach(function (b) {
+        b.onclick = function () {
+          go(cur + +b.dataset.d);
+          reset();
+        };
+      });
+
+      let timer;
+      function reset() {
+        clearInterval(timer);
+        timer = setInterval(function () {
+          go(cur + 1);
+        }, 2800);
+      }
+
+      lay();
+      window.addEventListener("resize", lay);
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                reset();
+              } else {
+                clearInterval(timer);
+              }
+            });
+          },
+          { threshold: 0.25 },
+        );
+        io.observe(stage);
+      } else {
+        reset();
+      }
+    })();
+  </script>
+</BaseLayout>

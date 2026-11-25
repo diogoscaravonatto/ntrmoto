@@ -1,0 +1,11 @@
+---
+import { injectLegacyZarazOnly } from "../../utils/legacy-seo";
+import rawHtml from "../../legacy-swipepages/calculadora-up.html?raw";
+
+const html = injectLegacyZarazOnly(rawHtml, {
+  contentType: "upsell",
+  contentSlug: "calculadora-up",
+});
+---
+
+<Fragment set:html={html} />

@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import {
+  buildBreadcrumbSchema,
+  buildCollectionPageSchema,
+  buildOrganizationSchema,
+} from "../../utils/seo";
+
+const title = "Projetos e Receitas de Motores Preparados | NTR Escola de Motores";
+const description =
+  "Projetos completos e guias técnicos com medidas reais validadas em dinamômetro: Projeto Rei do 4Trinho (32cv / +200km/h) e Guia de Motores Preparados (12 receitas).";
+
+const breadcrumbs = [
+  { name: "Início", path: "/" },
+  { name: "Projetos", path: "/projetos/" },
+];
+
+const projects = [
+  {
+    name: "Projeto Rei do 4Trinho (32cv e +200km/h)",
+    path: "/projetos/rei-do-4trinho/",
+    tag: "Motor 4mm de Rodovia",
+    price: "R$ 97 à vista (cupom 50% OFF • acesso 1 ano)",
+    summary:
+      "Desenvolvimento completo, medidas exatas de cabeçote de alta vazão, taxa acima de 14:1, comando sob medida e acerto fino com validação em dinamômetro.",
+  },
+  {
+    name: "Guia de Motores Preparados (GMP)",
+    path: "/projetos/guia-motores-preparados/",
+    tag: "12 Receitas em PDF Vitalício",
+    price: "R$ 47 à vista (acesso vitalício • garantia 7 dias)",
+    summary:
+      "Manual digital com 12 receitas testadas para CG Vareta OHV, Titan 150/160, Twister e CB300: lista de peças, taxa por combustível e medidas de cabeçote e comando.",
+  },
+];
+
+const schema = [
+  buildOrganizationSchema(),
+  buildBreadcrumbSchema(breadcrumbs),
+  buildCollectionPageSchema({
+    name: "Projetos e Receitas NTR Moto",
+    description,
+    path: "/projetos/",
+    items: projects.map((p) => ({ name: p.name, path: p.path, description: p.summary })),
+  }),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/projetos/"
+  schema={schema}
+  contentType="hub"
+  contentSlug="projetos"
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="bg-[#050505] px-4 py-16 text-white md:py-24">
+    <div class="mx-auto max-w-5xl">
+      <header class="mb-12 max-w-3xl space-y-4">
+        <span class="inline-block rounded-full border border-brand-red/30 bg-brand-red/10 px-4 py-1 text-xs font-black tracking-widest text-brand-red uppercase">
+          Receitas e Projetos Validados em Dinamômetro
+        </span>
+        <h1 class="text-4xl font-black tracking-tight text-white uppercase md:text-5xl">
+          Projetos e <span class="text-brand-red">Guias Práticos</span>
+        </h1>
+        <p class="text-base leading-relaxed text-gray-300 md:text-lg">
+          Configurações reais testadas na oficina, na banca de fluxo e na pista pela NTR Escola de
+          Motores.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {projects.map((proj) => (
+          <article class="flex flex-col justify-between rounded-2xl border border-white/10 bg-[#0d0d10] p-6 transition-colors hover:border-brand-red/50 md:p-8">
+            <div class="space-y-3">
+              <span class="inline-block rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-bold tracking-wider text-brand-red uppercase">
+                {proj.tag}
+              </span>
+              <h2 class="text-2xl font-black text-white">{proj.name}</h2>
+              <p class="text-sm leading-relaxed text-gray-400">{proj.summary}</p>
+            </div>
+            <div class="mt-6 border-t border-white/10 pt-4">
+              <p class="mb-3 text-sm font-extrabold text-emerald-400">{proj.price}</p>
+              <a
+                href={proj.path}
+                class="inline-flex w-full items-center justify-center rounded-xl bg-brand-red px-4 py-3 text-sm font-black tracking-wide text-white uppercase transition-colors hover:bg-brand-red-dark"
+              >
+                Ver detalhes do projeto
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-4 text-sm text-gray-400">
+        <a href="/cursos/" class="underline-offset-4 hover:text-white hover:underline">
+          Ver Cursos Completos →
+        </a>
+        <a href="/ferramentas/" class="underline-offset-4 hover:text-white hover:underline">
+          Ver Calculadora de Motores →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

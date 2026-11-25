@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import {
+  buildBreadcrumbSchema,
+  buildCollectionPageSchema,
+  buildOrganizationSchema,
+} from "../../utils/seo";
+
+const title = "Ferramentas de Engenharia para Motos | NTR Escola de Motores";
+const description =
+  "Ferramentas digitais da NTR Escola de Motores para cálculos rápidos e precisos na oficina: Calculadora de Motores NTR exclusiva para motocicletas.";
+
+const breadcrumbs = [
+  { name: "Início", path: "/" },
+  { name: "Ferramentas", path: "/ferramentas/" },
+];
+
+const tools = [
+  {
+    name: "Aplicativo Calculadora de Motores NTR",
+    path: "/ferramentas/calculadora-de-motores/",
+    description:
+      "Dimensione cilindrada, taxa de compressão, relação R/L, VMP, carburador/TBI, válvulas (2V/4V) e dutos direto no celular. Exclusiva para motos (não atende carros).",
+    price: "R$ 67 à vista (acesso 1 ano • garantia 7 dias)",
+  },
+];
+
+const schema = [
+  buildOrganizationSchema(),
+  buildBreadcrumbSchema(breadcrumbs),
+  buildCollectionPageSchema({
+    name: "Ferramentas de Engenharia NTR",
+    description,
+    path: "/ferramentas/",
+    items: tools.map((t) => ({ name: t.name, path: t.path, description: t.description })),
+  }),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/ferramentas/"
+  schema={schema}
+  contentType="hub"
+  contentSlug="ferramentas"
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="bg-[#050505] px-4 py-16 text-white md:py-24">
+    <div class="mx-auto max-w-5xl">
+      <header class="mb-12 max-w-3xl space-y-4">
+        <span class="inline-block rounded-full border border-brand-red/30 bg-brand-red/10 px-4 py-1 text-xs font-black tracking-widest text-brand-red uppercase">
+          Engenharia Aplicada à Oficina
+        </span>
+        <h1 class="text-4xl font-black tracking-tight text-white uppercase md:text-5xl">
+          Ferramentas <span class="text-brand-red">NTR Moto</span>
+        </h1>
+        <p class="text-base leading-relaxed text-gray-300 md:text-lg">
+          Substitua o achismo por dimensionamento exato antes de usinar peças ou fechar o motor.
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 gap-6">
+        {tools.map((tool) => (
+          <article class="flex flex-col justify-between gap-6 rounded-2xl border border-white/10 bg-[#0d0d10] p-6 md:flex-row md:items-center md:p-8">
+            <div class="max-w-2xl space-y-3">
+              <span class="inline-block rounded-md bg-brand-red/15 px-2.5 py-1 text-[11px] font-bold tracking-wider text-brand-red uppercase">
+                Exclusivo para Motos
+              </span>
+              <h2 class="text-2xl font-black text-white">{tool.name}</h2>
+              <p class="text-sm leading-relaxed text-gray-400 md:text-base">{tool.description}</p>
+              <p class="text-sm font-extrabold text-emerald-400">{tool.price}</p>
+            </div>
+            <a
+              href={tool.path}
+              class="shrink-0 rounded-xl bg-brand-red px-6 py-4 text-center text-sm font-black tracking-wide text-white uppercase transition-colors hover:bg-brand-red-dark"
+            >
+              Conhecer Calculadora
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-4 text-sm text-gray-400">
+        <a href="/cursos/" class="underline-offset-4 hover:text-white hover:underline">
+          Ver Cursos de Preparação →
+        </a>
+        <a href="/projetos/" class="underline-offset-4 hover:text-white hover:underline">
+          Ver Projetos e Receitas →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

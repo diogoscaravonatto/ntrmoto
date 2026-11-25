@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import Hero from "../../../components/ctx/Hero.astro";
+import Pain from "../../../components/ctx/Pain.astro";
+import Features from "../../../components/ctx/Features.astro";
+import Certificate from "../../../components/ctx/Certificate.astro";
+import Proof from "../../../components/ctx/Proof.astro";
+import Bonuses from "../../../components/ctx/Bonuses.astro";
+import Guarantee from "../../../components/ctx/Guarantee.astro";
+import Offer from "../../../components/ctx/Offer.astro";
+import Instructor from "../../../components/ctx/Instructor.astro";
+import FAQ from "../../../components/ctx/FAQ.astro";
+import TwoPaths from "../../../components/ctx/TwoPaths.astro";
+import ExitIntentPopup from "../../../components/ctx/ExitIntentPopup.astro";
+import { CTX_FAQS } from "../../../utils/faqs";
+import {
+  buildBreadcrumbSchema,
+  buildCourseSchema,
+  buildFaqSchema,
+  buildOrganizationSchema,
+} from "../../../utils/seo";
+
+const title = "Curso Taxa de Compressão NTR — Mais Potência Sem Gastar com Peças";
+const description =
+  "Aprenda a calcular, medir e acertar a taxa de compressão ideal para gasolina, álcool ou metanol e extraia mais potência sem gastar com peças novas. A partir de R$ 37.";
+const canonicalPath = "/cursos/taxa-de-compressao/";
+
+const breadcrumbs = [
+  { name: "Início", path: "/" },
+  { name: "Cursos", path: "/cursos/" },
+  { name: "Taxa de Compressão", path: canonicalPath },
+];
+
+const schema = [
+  buildOrganizationSchema(),
+  buildBreadcrumbSchema(breadcrumbs),
+  buildCourseSchema({
+    name: "Curso O Segredo da Taxa de Compressão (CTX)",
+    description,
+    path: canonicalPath,
+    price: "37.00",
+    image: "/images/mockup_taxa.webp",
+  }),
+  buildFaqSchema(CTX_FAQS),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogImage="/images/mockup_taxa.webp"
+  canonicalPath={canonicalPath}
+  schema={schema}
+  contentType="course"
+  contentSlug="taxa-de-compressao"
+>
+  {/* Seletor de Idioma no Topo */}
+  <div class="flex items-center justify-center gap-4 bg-slate-900 px-4 py-2 text-center text-xs font-bold text-white">
+    <span>🌐 Selecione sua região / Select region:</span>
+    <a
+      href="/cursos/taxa-de-compressao/"
+      aria-current="page"
+      class="rounded-full bg-brand-orange px-3 py-1 font-black text-white transition-colors hover:bg-brand-orange-dark"
+    >
+      🇧🇷 Brasil (PT)
+    </a>
+    <a
+      href="/es/cursos/tasa-de-compresion/"
+      class="rounded-full border border-slate-700 bg-slate-800 px-3 py-1 font-black text-white transition-colors hover:bg-slate-700"
+    >
+      🌎 LATAM (ES)
+    </a>
+  </div>
+
+  <Breadcrumbs items={breadcrumbs} theme="light" />
+
+  <div class="bg-white text-slate-800">
+    <Hero />
+    <Pain />
+    <Features />
+    <Certificate />
+    <Proof />
+    <Bonuses />
+    <Guarantee />
+    <Offer />
+    <Instructor />
+    <FAQ />
+    <TwoPaths />
+    <ExitIntentPopup />
+  </div>
+</BaseLayout>

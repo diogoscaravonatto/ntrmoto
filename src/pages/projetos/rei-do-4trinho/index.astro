@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import Hero from "../../../components/v02/Hero.astro";
+import Proof from "../../../components/v02/Proof.astro";
+import Method from "../../../components/v02/Method.astro";
+import Gallery from "../../../components/v02/Gallery.astro";
+import Instructor from "../../../components/v02/Instructor.astro";
+import Offer from "../../../components/v02/Offer.astro";
+import Guarantee from "../../../components/v02/Guarantee.astro";
+import TwoPaths from "../../../components/v02/TwoPaths.astro";
+import Faq from "../../../components/v02/Faq.astro";
+import UrgencyBar from "../../../components/v02/UrgencyBar.astro";
+import SalesPopup from "../../../components/v02/SalesPopup.astro";
+import ExitIntentPopupR4T from "../../../components/v02/ExitIntentPopupR4T.astro";
+import { R4T_FAQS } from "../../../utils/faqs";
+import {
+  buildBreadcrumbSchema,
+  buildCourseSchema,
+  buildFaqSchema,
+  buildOrganizationSchema,
+} from "../../../utils/seo";
+
+const title = "Projeto Rei do 4Trinho — Motor 4mm 32cv e +200km/h | NTR Escola de Motores";
+const description =
+  "Projeto Rei do 4Trinho: desenvolvimento completo, medidas exatas e receita validada em dinamômetro com +32cv na roda e +200km/h por R$ 97 (50% OFF).";
+const canonicalPath = "/projetos/rei-do-4trinho/";
+
+const breadcrumbs = [
+  { name: "Início", path: "/" },
+  { name: "Projetos", path: "/projetos/" },
+  { name: "Projeto Rei do 4Trinho", path: canonicalPath },
+];
+
+const schema = [
+  buildOrganizationSchema(),
+  buildBreadcrumbSchema(breadcrumbs),
+  buildCourseSchema({
+    name: "Projeto Rei do 4Trinho (R4T) — Motor 4mm 32cv",
+    description,
+    path: canonicalPath,
+    price: "97.00",
+    image: "/hero_r4t_v2.png",
+  }),
+  buildFaqSchema(R4T_FAQS),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogImage="/hero_r4t_v2.png"
+  canonicalPath={canonicalPath}
+  schema={schema}
+  contentType="project"
+  contentSlug="rei-do-4trinho"
+>
+  <UrgencyBar />
+  <Breadcrumbs items={breadcrumbs} />
+  <SalesPopup />
+  <Hero />
+  <Proof />
+  <Method />
+  <Gallery />
+  <Offer />
+  <Guarantee />
+  <Instructor />
+  <Faq />
+  <TwoPaths />
+  <ExitIntentPopupR4T />
+</BaseLayout>

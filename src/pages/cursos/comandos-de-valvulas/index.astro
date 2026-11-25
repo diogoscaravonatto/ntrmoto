@@ -1,0 +1,48 @@
+---
+import { enhanceLegacyHtml } from "../../../utils/legacy-seo";
+import {
+  buildBreadcrumbSchema,
+  buildCourseSchema,
+  buildOrganizationSchema,
+} from "../../../utils/seo";
+import rawHtml from "../../../legacy-swipepages/combo-comandos-4em1pro.html?raw";
+
+const title = "Combo Comandos 4 em 1 PRO — Comandos de Válvulas | NTR Escola de Motores";
+const description =
+  "4 cursos completos de comandos de válvulas para motos: leitura, enquadramento no disco de grau, LSA, usinagem e perfis agressivos de alta performance.";
+const canonicalPath = "/cursos/comandos-de-valvulas/";
+
+const html = enhanceLegacyHtml(rawHtml, {
+  canonicalPath,
+  title,
+  description,
+  ogImage: "/images/mockup_combo.webp",
+  headingFix: {
+    promoteFirstHeading: {
+      fromTag: "h3",
+      contains: "Aprenda tudo sobre",
+    },
+  },
+  schema: [
+    buildOrganizationSchema(),
+    buildBreadcrumbSchema([
+      { name: "Início", path: "/" },
+      { name: "Cursos", path: "/cursos/" },
+      { name: "Comandos 4 em 1 PRO", path: canonicalPath },
+    ]),
+    buildCourseSchema({
+      name: "Combo Comandos 4 em 1 PRO",
+      description,
+      path: canonicalPath,
+      price: "297.00",
+      image: "/images/mockup_combo.webp",
+    }),
+  ],
+  tracking: {
+    contentType: "course",
+    contentSlug: "comandos-de-valvulas",
+  },
+});
+---
+
+<Fragment set:html={html} />

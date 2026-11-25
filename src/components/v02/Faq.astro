@@ -1,82 +1,48 @@
 ---
+import { R4T_FAQS } from "../../utils/faqs";
 ---
 
-<section class="py-24 px-4 bg-[#080808] border-t border-gray-900">
-  <div class="max-w-3xl mx-auto">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-5xl font-black text-white tracking-tighter">
-        Dúvidas que <span class="text-brand-red">todo mundo</span> tem<br/>
-        <span class="text-xl md:text-2xl font-bold text-gray-500 tracking-normal">(e você também pode ter)</span>
+<section class="border-t border-gray-900 bg-[#080808] px-4 py-24">
+  <div class="mx-auto max-w-3xl">
+    <div class="mb-12 text-center">
+      <h2 class="text-3xl font-black tracking-tighter text-white md:text-5xl">
+        Dúvidas que <span class="text-brand-red">todo mundo</span> tem
+        <br />
+        <span class="text-xl font-bold tracking-normal text-gray-500 md:text-2xl">
+          (e você também pode ter)
+        </span>
       </h2>
     </div>
 
     <div class="space-y-4">
-      
-      {/* FAQ 1 */}
-      <details class="group bg-[#111] border border-gray-800 rounded-xl overflow-hidden open:border-brand-red/50 transition-colors">
-        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-white">
-          <span>Não tenho muito tempo, vou conseguir ter resultados?</span>
-          <span class="transition group-open:rotate-180 text-brand-red">
-            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-          </span>
-        </summary>
-        <div class="text-gray-400 px-6 pb-6 pt-0">
-          <p>Sim! O projeto foi pensado para ser direto ao ponto. Sem enrolação teórica desnecessária. Você pode assistir às aulas no seu ritmo e aplicar as medidas conforme for montando seu motor.</p>
-        </div>
-      </details>
-
-      {/* FAQ 2 */}
-      <details class="group bg-[#111] border border-gray-800 rounded-xl overflow-hidden open:border-brand-red/50 transition-colors">
-        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-white">
-          <span>Precisa de ferramentas especiais?</span>
-          <span class="transition group-open:rotate-180 text-brand-red">
-            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-          </span>
-        </summary>
-        <div class="text-gray-400 px-6 pb-6 pt-0">
-          <p>Não. Ensinamos o passo a passo da montagem utilizando as ferramentas convencionais de oficina. O foco é na receita, nas medidas de usinagem e no acerto fino, não em equipamentos caros.</p>
-        </div>
-      </details>
-
-      {/* FAQ 3 */}
-      <details class="group bg-[#111] border border-gray-800 rounded-xl overflow-hidden open:border-brand-red/50 transition-colors">
-        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-white">
-          <span>Como recebo o acesso ao material?</span>
-          <span class="transition group-open:rotate-180 text-brand-red">
-            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-          </span>
-        </summary>
-        <div class="text-gray-400 px-6 pb-6 pt-0">
-          <p>Assim que o seu pagamento for aprovado, você receberá automaticamente um e-mail com os seus dados de acesso ao nosso portal exclusivo de alunos. Se pagar via Pix ou cartão, o acesso é imediato.</p>
-        </div>
-      </details>
-
-      {/* FAQ 4 */}
-      <details class="group bg-[#111] border border-gray-800 rounded-xl overflow-hidden open:border-brand-red/50 transition-colors">
-        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-white">
-          <span>Por quanto tempo tenho acesso?</span>
-          <span class="transition group-open:rotate-180 text-brand-red">
-            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-          </span>
-        </summary>
-        <div class="text-gray-400 px-6 pb-6 pt-0">
-          <p>Você terá 1 ano de acesso total ao material. São 365 dias para assistir as aulas quantas vezes quiser e revisar o conteúdo quando precisar.</p>
-        </div>
-      </details>
-
-      {/* FAQ 5 */}
-      <details class="group bg-[#111] border border-gray-800 rounded-xl overflow-hidden open:border-brand-red/50 transition-colors">
-        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-white">
-          <span>E se eu não gostar?</span>
-          <span class="transition group-open:rotate-180 text-brand-red">
-            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-          </span>
-        </summary>
-        <div class="text-gray-400 px-6 pb-6 pt-0">
-          <p>Fique tranquilo. Você tem 7 dias de garantia incondicional. Se você acessar o material e sentir que não é pra você, basta nos enviar um e-mail e devolvemos 100% do seu investimento. Sem perguntas.</p>
-        </div>
-      </details>
-
+      {R4T_FAQS.map((faq) => (
+        <details
+          name="r4t-faq"
+          class="group overflow-hidden rounded-xl border border-gray-800 bg-[#111] transition-colors open:border-brand-red/50"
+        >
+          <summary class="flex cursor-pointer list-none items-center justify-between p-6 font-bold text-white">
+            <span>{faq.q}</span>
+            <span aria-hidden="true" class="text-brand-red transition group-open:rotate-180">
+              <svg
+                fill="none"
+                height="24"
+                shape-rendering="geometricPrecision"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="24"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
+          </summary>
+          <div class="px-6 pt-0 pb-6 text-gray-400">
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))}
     </div>
   </div>
 </section>

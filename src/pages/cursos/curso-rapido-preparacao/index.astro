@@ -1,0 +1,48 @@
+---
+import { enhanceLegacyHtml } from "../../../utils/legacy-seo";
+import {
+  buildBreadcrumbSchema,
+  buildCourseSchema,
+  buildOrganizationSchema,
+} from "../../../utils/seo";
+import rawHtml from "../../../legacy-swipepages/crp-pv11.html?raw";
+
+const title = "Curso Rápido de Preparação de Motores (CRP) | NTR Escola de Motores";
+const description =
+  "Curso prático de 12 horas em 4 etapas para iniciantes e oficinas: cálculos, preparação de cabeçote, enquadramento de comando e acerto fino com garantia de 7 dias.";
+const canonicalPath = "/cursos/curso-rapido-preparacao/";
+
+const html = enhanceLegacyHtml(rawHtml, {
+  canonicalPath,
+  title,
+  description,
+  ogImage: "/images/mockup_combo.webp",
+  headingFix: {
+    promoteFirstHeading: {
+      fromTag: "h2",
+      contains: "Aprenda a t",
+    },
+  },
+  schema: [
+    buildOrganizationSchema(),
+    buildBreadcrumbSchema([
+      { name: "Início", path: "/" },
+      { name: "Cursos", path: "/cursos/" },
+      { name: "Curso Rápido de Preparação (CRP)", path: canonicalPath },
+    ]),
+    buildCourseSchema({
+      name: "Curso Rápido de Preparação (CRP)",
+      description,
+      path: canonicalPath,
+      price: "147.00",
+      image: "/images/mockup_combo.webp",
+    }),
+  ],
+  tracking: {
+    contentType: "course",
+    contentSlug: "curso-rapido-preparacao",
+  },
+});
+---
+
+<Fragment set:html={html} />
