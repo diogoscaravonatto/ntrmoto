@@ -1,27 +1,32 @@
 ---
-import { Image } from 'astro:assets';
-import imgMockup from '../../assets/images/imagem_r4t_200h.webp';
+import { Image } from "astro:assets";
+import imgMockup from "../../assets/images/imagem_r4t_200h.webp";
 ---
 
-<section id="metodo" class="py-24 px-4 bg-black border-t border-gray-900 overflow-hidden">
-  <div class="max-w-5xl mx-auto">
-    
-    <div class="text-center mb-16">
-      <span class="text-brand-red font-bold uppercase tracking-[0.2em] text-xs">Como funciona o treinamento</span>
-      <h2 class="text-3xl md:text-5xl font-black text-white mt-4 mb-6">Apresentando o Projeto:<br/> <span class="text-brand-red">Rei do 4Trinho</span></h2>
-      <p class="text-xl text-gray-400 max-w-3xl mx-auto font-medium italic">
-        O REI do 4Trinho é um treinamento online inédito, onde você vai aprender o segredo dos motores de rodovia e vai acompanhar todo o desenvolvimento, preparação e testes de um 4mm que gera +32cv e faz a moto passar dos 200km/h
+<section id="metodo" class="overflow-hidden border-t border-gray-900 bg-black px-4 py-24">
+  <div class="mx-auto max-w-5xl">
+    <div class="mb-16 text-center">
+      <span class="text-xs font-bold tracking-[0.2em] text-brand-red uppercase">
+        Como funciona o treinamento
+      </span>
+      <h2 class="mt-4 mb-6 text-3xl font-black text-white md:text-5xl">
+        Apresentando o Projeto:
+        <br /> <span class="text-brand-red">Rei do 4Trinho</span>
+      </h2>
+      <p class="mx-auto max-w-3xl text-xl font-medium text-gray-400 italic">
+        O REI do 4Trinho é um treinamento online inédito, onde você vai aprender o segredo dos
+        motores de rodovia e vai acompanhar todo o desenvolvimento, preparação e testes de um 4mm
+        que gera +32cv e faz a moto passar dos 200km/h
       </p>
     </div>
 
-    <div class="flex flex-col md:grid md:grid-cols-2 gap-10 items-center">
-      
+    <div class="flex flex-col items-center gap-10 md:grid md:grid-cols-2">
       {/* Imagem - Primeiro no mobile */}
-      <div class="flex items-center justify-center w-full h-full order-1 md:order-2 md:translate-x-20 lg:translate-x-32">
-        <Image 
-          src={imgMockup} 
-          alt="Imagem da moto +200km/h" 
-          class="w-full md:w-[150%] lg:w-[160%] max-w-none h-auto object-contain hover:scale-[1.05] transition-transform duration-700 md:origin-left" 
+      <div class="order-1 flex h-full w-full items-center justify-center md:order-2 md:translate-x-20 lg:translate-x-32">
+        <Image
+          src={imgMockup}
+          alt="Imagem da moto +200km/h"
+          class="h-auto w-full max-w-none object-contain transition-transform duration-700 hover:scale-[1.05] md:w-[150%] md:origin-left lg:w-[160%]"
           width={800}
           height={600}
           loading="lazy"
@@ -30,61 +35,96 @@ import imgMockup from '../../assets/images/imagem_r4t_200h.webp';
       </div>
 
       {/* Card com os Bullets - Segundo no mobile */}
-      <div class="bg-[#0a0a0a] border border-gray-900 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden order-2 md:order-1 z-10">
+      <div class="relative z-10 order-2 overflow-hidden rounded-3xl border border-gray-900 bg-[#0a0a0a] p-8 shadow-2xl md:order-1 md:p-12">
         {/* Background Effect */}
-        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-red/10 blur-[80px] rounded-full pointer-events-none"></div>
+        <div class="pointer-events-none absolute top-0 right-0 h-64 w-64 rounded-full bg-brand-red/10 blur-[80px]"></div>
 
         <div class="relative z-10 space-y-8">
-          <h3 class="text-2xl md:text-3xl tracking-tight font-black mb-8 leading-tight">
-            <span class="text-[#FF3333] uppercase">
-              O QUE VOCÊ VAI APRENDER:
-            </span>
+          <h3 class="mb-8 text-2xl leading-tight font-black tracking-tight md:text-3xl">
+            <span class="text-[#FF3333] uppercase">O QUE VOCÊ VAI APRENDER:</span>
           </h3>
-          
+
           <ul class="space-y-6">
             <li class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#FF3333] flex items-center justify-center flex-shrink-0 text-white mt-1 shadow-[0_0_10px_rgba(255,51,51,0.4)]">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
+              <div class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#FF3333] text-white shadow-[0_0_10px_rgba(255,51,51,0.4)]">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="4"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
               </div>
               <div>
-                <strong class="text-white block text-lg mb-1">Cabeçote de Alta Vazão</strong>
-                <span class="text-gray-400 text-sm">O duto, as sedes e as válvulas exatas para maximizar o fluxo sem perder velocidade.</span>
-              </div>
-            </li>
-            
-            <li class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#FF3333] flex items-center justify-center flex-shrink-0 text-white mt-1 shadow-[0_0_10px_rgba(255,51,51,0.4)]">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
-              </div>
-              <div>
-                <strong class="text-white block text-lg mb-1">Super Taxa de Compressão</strong>
-                <span class="text-gray-400 text-sm">Como usar uma taxa acima de 14:1 sem derreter o pistão e sem amarrar o motor.</span>
-              </div>
-            </li>
-
-            <li class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#FF3333] flex items-center justify-center flex-shrink-0 text-white mt-1 shadow-[0_0_10px_rgba(255,51,51,0.4)]">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
-              </div>
-              <div>
-                <strong class="text-white block text-lg mb-1">Comando sob medida</strong>
-                <span class="text-gray-400 text-sm">A cereja do bolo. Configuração completa do comando para a moto acordar cedo e não parar de render em alta.</span>
+                <strong class="mb-1 block text-lg text-white">Cabeçote de Alta Vazão</strong>
+                <span class="text-sm text-gray-400">
+                  O duto, as sedes e as válvulas exatas para maximizar o fluxo sem perder
+                  velocidade.
+                </span>
               </div>
             </li>
 
             <li class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-full bg-[#FF3333] flex items-center justify-center flex-shrink-0 text-white mt-1 shadow-[0_0_10px_rgba(255,51,51,0.4)]">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path></svg>
+              <div class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#FF3333] text-white shadow-[0_0_10px_rgba(255,51,51,0.4)]">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="4"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
               </div>
               <div>
-                <strong class="text-white block text-lg mb-1">Acerto Fino</strong>
-                <span class="text-gray-400 text-sm">O mapa para cravar os 32cv na roda e fazer a moto passar dos +200km/h reais.</span>
+                <strong class="mb-1 block text-lg text-white">Super Taxa de Compressão</strong>
+                <span class="text-sm text-gray-400">
+                  Como usar uma taxa acima de 14:1 sem derreter o pistão e sem amarrar o motor.
+                </span>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-4">
+              <div class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#FF3333] text-white shadow-[0_0_10px_rgba(255,51,51,0.4)]">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="4"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <strong class="mb-1 block text-lg text-white">Comando sob medida</strong>
+                <span class="text-sm text-gray-400">
+                  A cereja do bolo. Configuração completa do comando para a moto acordar cedo e não
+                  parar de render em alta.
+                </span>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-4">
+              <div class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#FF3333] text-white shadow-[0_0_10px_rgba(255,51,51,0.4)]">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="4"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <strong class="mb-1 block text-lg text-white">Acerto Fino</strong>
+                <span class="text-sm text-gray-400">
+                  O mapa para cravar os 32cv na roda e fazer a moto passar dos +200km/h reais.
+                </span>
               </div>
             </li>
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </section>

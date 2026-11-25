@@ -1,11 +1,11 @@
 ---
-import { Image } from 'astro:assets';
-import imgIntensivo from '../../assets/images/card_curso_intensivo_n1.png';
-import imgCabecote from '../../assets/images/card_cabecote_n1.webp';
-import imgComando from '../../assets/images/card_comando_n1.webp';
-import imgAcerto from '../../assets/images/card_acerto_n1.webp';
-import imgBalanceamento from '../../assets/images/card_balanceamento.webp';
-import imgInjecao from '../../assets/images/card_acerto_piggyback.webp';
+import { Image } from "astro:assets";
+import imgIntensivo from "../../assets/images/card_curso_intensivo_n1.png";
+import imgCabecote from "../../assets/images/card_cabecote_n1.webp";
+import imgComando from "../../assets/images/card_comando_n1.webp";
+import imgAcerto from "../../assets/images/card_acerto_n1.webp";
+import imgBalanceamento from "../../assets/images/card_balanceamento.webp";
+import imgInjecao from "../../assets/images/card_acerto_piggyback.webp";
 
 const courses = [
   { title: "Intensivo de Preparação", tag: "Prática", img: imgIntensivo },
@@ -13,45 +13,57 @@ const courses = [
   { title: "Comandos em Ação", tag: "Nível 1", img: imgComando },
   { title: "Acertos Finos", tag: "Performance", img: imgAcerto },
   { title: "Balanceamento", tag: "Equilíbrio", img: imgBalanceamento },
-  { title: "Acerto de Injeção", tag: "Eletrônica", img: imgInjecao }
+  { title: "Acerto de Injeção", tag: "Eletrônica", img: imgInjecao },
 ];
 ---
 
-<section class="py-24 px-4 bg-gradient-to-b from-black to-[#080808]">
-  <div class="max-w-6xl mx-auto">
-    
-    <div class="text-center mb-16 px-4">
-      <h2 class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter italic">
-        São <span class="text-brand-red">6 cursos</span> completos&nbsp;<br class="hidden md:block"/>&nbsp;de preparação
+<section class="bg-gradient-to-b from-black to-[#080808] px-4 py-24">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-16 px-4 text-center">
+      <h2 class="mb-6 text-4xl font-black tracking-tighter text-white uppercase italic md:text-6xl">
+        São <span class="text-brand-red">6 cursos</span> completos&nbsp;
+        <br class="hidden md:block" />
+        &nbsp;de preparação
       </h2>
-      <p class="text-gray-400 text-lg md:text-xl font-medium max-w-3xl mx-auto mb-6 leading-relaxed">
-        Do básico ao avançado. Você vai aprender tudo o que precisa para dominar a preparação de motores e parar de depender dos outros, e o melhor de tudo com acesso para sempre aos conteúdos.
+      <p class="mx-auto mb-6 max-w-3xl text-lg leading-relaxed font-medium text-gray-400 md:text-xl">
+        Do básico ao avançado. Você vai aprender tudo o que precisa para dominar a preparação de
+        motores e parar de depender dos outros, e o melhor de tudo com acesso para sempre aos
+        conteúdos.
       </p>
-      <p class="text-brand-red font-bold text-sm">
-        Conheça os cursos que fazem parte do combo👇
-      </p>
+      <p class="text-sm font-bold text-brand-red">Conheça os cursos que fazem parte do combo👇</p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8">
       {courses.map((course) => (
-        <div class="group relative bg-[#0a0a0a] border border-white/10 rounded-2xl overflow-hidden aspect-[3/4] flex flex-col items-center justify-end transition-all duration-500 hover:border-brand-red/50 hover:shadow-[0_0_30px_rgba(255,51,51,0.2)] hover:scale-[1.02]">
-          <Image 
-            src={course.img} 
-            alt={course.title} 
-            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        <div class="group relative flex aspect-[3/4] flex-col items-center justify-end overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a] transition-all duration-500 hover:scale-[1.02] hover:border-brand-red/50 hover:shadow-[0_0_30px_rgba(255,51,51,0.2)]">
+          <Image
+            src={course.img}
+            alt={course.title}
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
         </div>
       ))}
     </div>
 
     <div class="mt-16 text-center">
-       <div class="flex flex-col items-center gap-4">
-         <svg class="w-10 h-10 text-brand-red animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7"></path>
-         </svg>
-         <span class="text-gray-500 font-bold uppercase tracking-[0.3em] text-xs">Role para ver mais</span>
-       </div>
+      <div class="flex flex-col items-center gap-4">
+        <svg
+          class="h-10 w-10 animate-bounce text-brand-red"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+          ></path>
+        </svg>
+        <span class="text-xs font-bold tracking-[0.3em] text-gray-500 uppercase">
+          Role para ver mais
+        </span>
+      </div>
     </div>
-
   </div>
 </section>

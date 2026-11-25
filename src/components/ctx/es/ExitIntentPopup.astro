@@ -1,34 +1,44 @@
 ---
 ---
 
-<div id="exit-intent-popup-es" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4">
+<div
+  id="exit-intent-popup-es"
+  class="fixed inset-0 z-[9999] hidden items-center justify-center p-4"
+>
   {/* Backdrop */}
   <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" id="popup-backdrop-es"></div>
-  
+
   {/* Content Card */}
-  <div class="relative bg-white border-2 border-brand-orange w-full max-w-lg p-8 md:p-12 rounded-[40px] text-center shadow-[0_20px_50px_rgba(255,90,0,0.2)] transform scale-90 opacity-0 transition-all duration-300" id="popup-card-es">
-    
+  <div
+    class="relative w-full max-w-lg scale-90 transform rounded-[40px] border-2 border-brand-orange bg-white p-8 text-center opacity-0 shadow-[0_20px_50px_rgba(255,90,0,0.2)] transition-all duration-300 md:p-12"
+    id="popup-card-es"
+  >
     <div class="mb-8">
-      <div class="inline-block bg-brand-orange text-white text-[10px] md:text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 animate-pulse">
+      <div class="mb-6 inline-block animate-pulse rounded-full bg-brand-orange px-4 py-1.5 text-[10px] font-black tracking-widest text-white uppercase md:text-xs">
         Oportunidad Única
       </div>
-      
-      <h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter italic leading-none mb-6 text-slate-950">
+
+      <h2 class="mb-6 text-3xl leading-none font-black tracking-tighter text-slate-950 uppercase italic md:text-4xl">
         ¡ESPERA! NO DEJES TU MOTO <span class="text-brand-orange">AMARRADA!</span>
       </h2>
-      
-      <p class="text-slate-600 text-base md:text-lg font-semibold leading-tight">
+
+      <p class="text-base leading-tight font-semibold text-slate-600 md:text-lg">
         Desbloquea la potencia oculta de tu motor sin gastar en repuestos nuevos. <br />
-        Llévate el Curso de Compresión + Todos los Regalos hoy por solo <span class="text-brand-orange font-black text-2xl block mt-2">$ 7 USD</span>
+        Llévate el Curso de Compresión + Todos los Regalos hoy por solo{" "}
+        <span class="mt-2 block text-2xl font-black text-brand-orange">$ 7 USD</span>
       </p>
     </div>
 
     <div class="space-y-6">
-      <a href="#oferta" id="popup-cta-es" class="inline-block w-full py-5 px-6 bg-brand-orange hover:bg-brand-orange-dark text-white text-lg md:text-xl font-black rounded-2xl shadow-[0_10px_30px_rgba(255,90,0,0.2)] transition-all transform hover:-translate-y-1 uppercase tracking-tighter italic animate-shake">
+      <a
+        href="#oferta"
+        id="popup-cta-es"
+        class="animate-shake inline-block w-full transform rounded-2xl bg-brand-orange px-6 py-5 text-lg font-black tracking-tighter text-white uppercase italic shadow-[0_10px_30px_rgba(255,90,0,0.2)] transition-all hover:-translate-y-1 hover:bg-brand-orange-dark md:text-xl"
+      >
         QUIERO ENTRAR AHORA
       </a>
-      
-      <p class="text-slate-400 text-xs font-bold italic">
+
+      <p class="text-xs font-bold text-slate-400 italic">
         * Haz clic para asegurar tu acceso sin riesgo (Garantía de 7 días)
       </p>
     </div>
@@ -37,60 +47,67 @@
 
 <style>
   @keyframes shake {
-    0%, 100% { transform: translateX(0) rotate(-1deg); }
-    25% { transform: translateX(-1px) rotate(1deg); }
-    75% { transform: translateX(1px) rotate(-1deg); }
+    0%,
+    100% {
+      transform: translateX(0) rotate(-1deg);
+    }
+    25% {
+      transform: translateX(-1px) rotate(1deg);
+    }
+    75% {
+      transform: translateX(1px) rotate(-1deg);
+    }
   }
   .animate-shake {
-    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
   }
 </style>
 
 <script is:inline>
   function initExitIntentEs() {
-    const popup = document.getElementById('exit-intent-popup-es');
-    const card = document.getElementById('popup-card-es');
-    const backdrop = document.getElementById('popup-backdrop-es');
-    const ctaBtn = document.getElementById('popup-cta-es');
+    const popup = document.getElementById("exit-intent-popup-es");
+    const card = document.getElementById("popup-card-es");
+    const backdrop = document.getElementById("popup-backdrop-es");
+    const ctaBtn = document.getElementById("popup-cta-es");
 
     let popupShown = false;
 
-    if (sessionStorage.getItem('ntr_ctx_es_exit_popup_shown')) {
+    if (sessionStorage.getItem("ntr_ctx_es_exit_popup_shown")) {
       return;
     }
 
     function showPopup() {
       if (popupShown) return;
       popupShown = true;
-      sessionStorage.setItem('ntr_ctx_es_exit_popup_shown', 'true');
+      sessionStorage.setItem("ntr_ctx_es_exit_popup_shown", "true");
 
-      popup.classList.remove('hidden');
-      popup.classList.add('flex');
-      
+      popup.classList.remove("hidden");
+      popup.classList.add("flex");
+
       setTimeout(() => {
-        card.classList.remove('scale-90', 'opacity-0');
-        card.classList.add('scale-100', 'opacity-100');
+        card.classList.remove("scale-90", "opacity-0");
+        card.classList.add("scale-100", "opacity-100");
       }, 10);
     }
 
     function hidePopup() {
-      card.classList.add('scale-90', 'opacity-0');
-      card.classList.remove('scale-100', 'opacity-100');
+      card.classList.add("scale-90", "opacity-0");
+      card.classList.remove("scale-100", "opacity-100");
       setTimeout(() => {
-        popup.classList.add('hidden');
-        popup.classList.remove('flex');
+        popup.classList.add("hidden");
+        popup.classList.remove("flex");
       }, 300);
     }
 
     setTimeout(() => {
-      document.addEventListener('mouseleave', (e) => {
+      document.addEventListener("mouseleave", (e) => {
         if (e.clientY <= 0) {
           showPopup();
         }
       });
 
       history.pushState(null, null, window.location.href);
-      window.addEventListener('popstate', (e) => {
+      window.addEventListener("popstate", () => {
         if (window.location.hash) return;
 
         if (!popupShown) {
@@ -104,9 +121,9 @@
       }, 55000);
     }, 5000);
 
-    backdrop.addEventListener('click', hidePopup);
-    ctaBtn.addEventListener('click', hidePopup);
+    backdrop.addEventListener("click", hidePopup);
+    ctaBtn.addEventListener("click", hidePopup);
   }
 
-  document.addEventListener('DOMContentLoaded', initExitIntentEs);
+  document.addEventListener("DOMContentLoaded", initExitIntentEs);
 </script>

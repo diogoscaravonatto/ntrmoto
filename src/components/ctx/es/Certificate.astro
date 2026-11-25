@@ -1,72 +1,86 @@
 ---
 ---
 
-<section class="py-24 px-4 bg-slate-50 relative overflow-hidden border-t border-b border-slate-100">
+<section class="relative overflow-hidden border-t border-b border-slate-100 bg-slate-50 px-4 py-24">
   {/* Orange glow behind */}
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+  <div class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-orange/5 blur-[120px]"></div>
 
-  <div class="max-w-6xl mx-auto relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      
+  <div class="relative z-10 mx-auto max-w-6xl">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
       {/* Esquerda: Informações do Certificado */}
-      <div class="space-y-6 text-left reveal-up active">
-        <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">Garantía de Calidad</span>
-        <h2 class="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">
+      <div class="reveal-up active space-y-6 text-left">
+        <span class="text-sm font-black tracking-wider text-brand-orange uppercase italic">
+          Garantía de Calidad
+        </span>
+        <h2 class="text-4xl leading-none font-black tracking-tighter text-slate-900 uppercase italic md:text-5xl">
           CURSO CON <br /> <span class="text-brand-orange">CERTIFICADO RECONOCIDO</span>
         </h2>
-        <p class="text-slate-600 text-lg md:text-xl font-semibold leading-relaxed">
+        <p class="text-lg leading-relaxed font-semibold text-slate-600 md:text-xl">
           Tan pronto como completes las clases puedes descargar el Certificado Oficial del Curso.
         </p>
-        <p class="text-slate-500 text-sm leading-relaxed">
-          El certificado oficial de **NTR Escuela de Motores** comprueba que has superado la capacitación en Relación de Compresión, dominando los cálculos, ajustes y límites de preparación segura en la práctica.
+        <p class="text-sm leading-relaxed text-slate-500">
+          El certificado oficial de **NTR Escuela de Motores** comprueba que has superado la
+          capacitación en Relación de Compresión, dominando los cálculos, ajustes y límites de
+          preparación segura en la práctica.
         </p>
       </div>
 
       {/* Direita: Certificado Estilizado em CSS Light Premium */}
-      <div class="flex justify-center items-center reveal-up active">
-        <div class="relative w-full max-w-lg bg-white rounded-[24px] p-8 border-4 border-slate-200 shadow-[0_15px_45px_rgba(0,0,0,0.04)] flex flex-col items-center justify-between text-center select-none overflow-hidden aspect-[1.4/1]">
+      <div class="reveal-up active flex items-center justify-center">
+        <div class="relative flex aspect-[1.4/1] w-full max-w-lg flex-col items-center justify-between overflow-hidden rounded-[24px] border-4 border-slate-200 bg-white p-8 text-center shadow-[0_15px_45px_rgba(0,0,0,0.04)] select-none">
           {/* Efeitos de Linhas no Certificado */}
-          <div class="absolute inset-4 border border-brand-orange/10 pointer-events-none rounded-[16px]"></div>
-          <div class="absolute inset-6 border-2 border-brand-orange/5 pointer-events-none rounded-[14px]"></div>
+          <div class="pointer-events-none absolute inset-4 rounded-[16px] border border-brand-orange/10"></div>
+          <div class="pointer-events-none absolute inset-6 rounded-[14px] border-2 border-brand-orange/5"></div>
 
           {/* Cabeçalho do Certificado */}
-          <div class="space-y-1 relative z-10 pt-4">
-            <span class="text-[9px] text-brand-orange font-black uppercase tracking-[0.3em]">Certificado de Formación</span>
-            <h4 class="text-slate-800 font-black text-2xl uppercase tracking-widest italic leading-none">NTR ESCUELA DE MOTORES</h4>
-            <div class="w-12 h-[2px] bg-brand-orange mx-auto mt-2"></div>
+          <div class="relative z-10 space-y-1 pt-4">
+            <span class="text-[9px] font-black tracking-[0.3em] text-brand-orange uppercase">
+              Certificado de Formación
+            </span>
+            <h4 class="text-2xl leading-none font-black tracking-widest text-slate-800 uppercase italic">
+              NTR ESCUELA DE MOTORES
+            </h4>
+            <div class="mx-auto mt-2 h-[2px] w-12 bg-brand-orange"></div>
           </div>
 
           {/* Corpo do Certificado */}
-          <div class="space-y-2 relative z-10 py-6">
-            <p class="text-[11px] text-slate-500 italic">Certificamos que el alumno ha concluido con éxito la capacitación de</p>
-            <p class="text-brand-orange font-black text-xl md:text-2xl uppercase tracking-tight italic leading-none">Tasa de Compresión & Preparación</p>
-            <p class="text-[9px] text-slate-400">Método práctico sin riesgo de rotura para motores de 4 tiempos.</p>
+          <div class="relative z-10 space-y-2 py-6">
+            <p class="text-[11px] text-slate-500 italic">
+              Certificamos que el alumno ha concluido con éxito la capacitación de
+            </p>
+            <p class="text-xl leading-none font-black tracking-tight text-brand-orange uppercase italic md:text-2xl">
+              Tasa de Compresión & Preparación
+            </p>
+            <p class="text-[9px] text-slate-400">
+              Método práctico sin riesgo de rotura para motores de 4 tiempos.
+            </p>
           </div>
 
           {/* Rodapé do Certificado */}
-          <div class="w-full flex justify-between items-end relative z-10 px-4 pb-4">
+          <div class="relative z-10 flex w-full items-end justify-between px-4 pb-4">
             <div class="text-left">
-              <div class="w-24 h-[1px] bg-slate-300 mb-1"></div>
-              <p class="text-[8px] text-slate-600 font-bold">Fábio Scaravonatto</p>
+              <div class="mb-1 h-[1px] w-24 bg-slate-300"></div>
+              <p class="text-[8px] font-bold text-slate-600">Fábio Scaravonatto</p>
               <p class="text-[7px] text-slate-400 uppercase">Instructor / Preparador</p>
             </div>
-            
+
             {/* Selo Laranja */}
-            <div class="w-12 h-12 rounded-full border-2 border-brand-orange bg-orange-50 flex items-center justify-center relative shadow-[0_0_15px_rgba(255,90,0,0.15)]">
-              <span class="text-[8px] text-brand-orange font-black tracking-widest uppercase">NTR</span>
-              <div class="absolute -bottom-1 -right-1 w-2.5 h-6 bg-brand-orange/20 rotate-12 -z-10 origin-top"></div>
-              <div class="absolute -bottom-1 -left-1 w-2.5 h-6 bg-brand-orange/20 -rotate-12 -z-10 origin-top"></div>
+            <div class="relative flex h-12 w-12 items-center justify-center rounded-full border-2 border-brand-orange bg-orange-50 shadow-[0_0_15px_rgba(255,90,0,0.15)]">
+              <span class="text-[8px] font-black tracking-widest text-brand-orange uppercase">
+                NTR
+              </span>
+              <div class="absolute -right-1 -bottom-1 -z-10 h-6 w-2.5 origin-top rotate-12 bg-brand-orange/20"></div>
+              <div class="absolute -bottom-1 -left-1 -z-10 h-6 w-2.5 origin-top -rotate-12 bg-brand-orange/20"></div>
             </div>
-            
+
             <div class="text-right">
-              <div class="w-24 h-[1px] bg-slate-300 mb-1"></div>
-              <p class="text-[8px] text-slate-600 font-bold">Autenticidad</p>
+              <div class="mb-1 h-[1px] w-24 bg-slate-300"></div>
+              <p class="text-[8px] font-bold text-slate-600">Autenticidad</p>
               <p class="text-[7px] text-slate-400 uppercase">Registro Oficial NTR</p>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>

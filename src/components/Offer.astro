@@ -1,36 +1,39 @@
 ---
-import { Image } from 'astro:assets';
-import imgMockupImpacto from '../assets/images/mockup_r4t_impacto3.png';
-import imgSeloPgto from '../assets/images/pag_seguro.png';
+import { Image } from "astro:assets";
+import imgMockupImpacto from "../assets/images/mockup_r4t_impacto3.png";
+import imgSeloPgto from "../assets/images/pag_seguro.png";
 ---
 
-<section id="oferta" class="py-24 px-4 bg-[#000] relative overflow-hidden">
-  
-  <div class="max-w-6xl mx-auto relative z-10">
-    
+<section id="oferta" class="relative overflow-hidden bg-[#000] px-4 py-24">
+  <div class="relative z-10 mx-auto max-w-6xl">
     {/* Título da Seção */}
-    <div class="text-center mb-16 px-4">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-6xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter italic leading-[0.85] md:leading-[0.9] flex flex-col md:block">
+    <div class="mb-16 px-4 text-center">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="mb-6 flex flex-col text-6xl leading-[0.85] font-black tracking-tighter text-white uppercase italic md:block md:text-7xl md:leading-[0.9]">
           <span class="md:hidden">VEJA TUDO</span>
           <span class="md:hidden">QUE VOCÊ</span>
-          <span class="md:hidden text-brand-red">VAI LEVAR</span>
-          <span class="md:hidden text-brand-red">AGORA</span>
-          <span class="hidden md:block">VEJA TUDO QUE VOCÊ <br/> <span class="text-brand-red">VAI LEVAR AGORA</span></span>
+          <span class="text-brand-red md:hidden">VAI LEVAR</span>
+          <span class="text-brand-red md:hidden">AGORA</span>
+          <span class="hidden md:block">
+            VEJA TUDO QUE VOCÊ <br /> <span class="text-brand-red">VAI LEVAR AGORA</span>
+          </span>
         </h2>
       </div>
-      <p class="text-2xl md:text-xl text-gray-400 font-medium max-w-2xl mx-auto leading-relaxed px-2 md:px-0">
-        Com tudo o que você precisa para montar um motor forte de 32cv e parar de passar vergonha nos pegas. <br/>
-        <span class="text-brand-red font-bold">É só copiar e colar, mais fácil que isso impossível!</span>
+      <p class="mx-auto max-w-2xl px-2 text-2xl leading-relaxed font-medium text-gray-400 md:px-0 md:text-xl">
+        Com tudo o que você precisa para montar um motor forte de 32cv e parar de passar vergonha
+        nos pegas. <br />
+        <span class="font-bold text-brand-red">
+          É só copiar e colar, mais fácil que isso impossível!
+        </span>
       </p>
     </div>
 
     {/* Mockup Central de Impacto */}
-    <div class="mb-20 flex justify-center reveal-up">
-      <Image 
-        src={imgMockupImpacto} 
-        alt="O que você vai receber no Rei do 4Trinho" 
-        class="w-full max-w-5xl h-auto object-contain tilt-card"
+    <div class="reveal-up mb-20 flex justify-center">
+      <Image
+        src={imgMockupImpacto}
+        alt="O que você vai receber no Rei do 4Trinho"
+        class="tilt-card h-auto w-full max-w-5xl object-contain"
         width={1200}
         height={675}
         loading="lazy"
@@ -38,14 +41,13 @@ import imgSeloPgto from '../assets/images/pag_seguro.png';
       />
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
       {/* Lado Esquerdo: O Que Está Incluso (Col 7) */}
-      <div class="lg:col-span-7 reveal-up">
-        <h3 class="text-3xl md:text-4xl font-black text-white mb-8 uppercase tracking-tighter italic">
+      <div class="reveal-up lg:col-span-7">
+        <h3 class="mb-8 text-3xl font-black tracking-tighter text-white uppercase italic md:text-4xl">
           O que está <span class="text-brand-red">incluso:</span>
         </h3>
-        
+
         <ul class="space-y-4">
           {[
             "Acesso Imediato Rei do 4Trinho",
@@ -55,11 +57,23 @@ import imgSeloPgto from '../assets/images/pag_seguro.png';
             "Medidas e configuração exata",
             "Material de apoio + Guia de Montagem",
             "1 Ano de Acesso aos conteúdos",
-            "Suporte para tirar dúvidas - 30 dias"
+            "Suporte para tirar dúvidas - 30 dias",
           ].map((item) => (
-            <li class="flex items-center gap-4 text-white font-bold text-lg md:text-xl border-b border-white/5 pb-4 last:border-0">
-              <div class="w-6 h-6 rounded-full bg-brand-red flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(255,51,51,0.5)]">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            <li class="flex items-center gap-4 border-b border-white/5 pb-4 text-lg font-bold text-white last:border-0 md:text-xl">
+              <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-red shadow-[0_0_10px_rgba(255,51,51,0.5)]">
+                <svg
+                  class="h-4 w-4 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="3"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
               </div>
               {item}
             </li>
@@ -68,42 +82,66 @@ import imgSeloPgto from '../assets/images/pag_seguro.png';
       </div>
 
       {/* Lado Direito: Card de Preço (Col 5) */}
-      <div class="lg:col-span-5 reveal-up">
-        <div class="relative bg-[#050505] border-2 border-brand-red rounded-[2.5rem] p-10 md:p-12 shadow-[0_0_60px_rgba(255,51,51,0.2)] text-center overflow-hidden">
+      <div class="reveal-up lg:col-span-5">
+        <div class="relative overflow-hidden rounded-[2.5rem] border-2 border-brand-red bg-[#050505] p-10 text-center shadow-[0_0_60px_rgba(255,51,51,0.2)] md:p-12">
           {/* Brilho Superior Neon */}
-          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[2px] bg-gradient-to-r from-transparent via-brand-red to-transparent shadow-[0_0_15px_rgba(255,51,51,0.8)]"></div>
-          
-          <div class="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/30 px-6 py-2 rounded-full mb-8">
-            <svg class="w-4 h-4 text-brand-red animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/></svg>
-            <span class="text-brand-red font-black text-xs md:text-sm uppercase tracking-widest">Oferta Especial 50% OFF</span>
+          <div class="absolute top-0 left-1/2 h-[2px] w-[80%] -translate-x-1/2 bg-gradient-to-r from-transparent via-brand-red to-transparent shadow-[0_0_15px_rgba(255,51,51,0.8)]"></div>
+
+          <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-brand-red/30 bg-brand-red/10 px-6 py-2">
+            <svg
+              class="h-4 w-4 animate-pulse text-brand-red"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z" />
+            </svg>
+            <span class="text-xs font-black tracking-widest text-brand-red uppercase md:text-sm">
+              Oferta Especial 50% OFF
+            </span>
           </div>
 
-          <p class="text-gray-500 font-bold line-through text-2xl mb-2 opacity-50">De R$ 197,00</p>
-          <p class="text-white font-black text-2xl uppercase tracking-tighter italic mb-4">Por apenas</p>
-          
-          <div class="flex items-start justify-center gap-1 mb-8">
-            <span class="text-4xl text-white font-black mt-2">R$</span>
-            <span class="text-9xl font-black text-brand-red leading-none tracking-tighter">97</span>
-            <div class="text-left mt-2">
-              <span class="block text-4xl text-white font-black leading-none">,00</span>
+          <p class="mb-2 text-2xl font-bold text-gray-500 line-through opacity-50">De R$ 197,00</p>
+          <p class="mb-4 text-2xl font-black tracking-tighter text-white uppercase italic">
+            Por apenas
+          </p>
+
+          <div class="mb-8 flex items-start justify-center gap-1">
+            <span class="mt-2 text-4xl font-black text-white">R$</span>
+            <span class="text-9xl leading-none font-black tracking-tighter text-brand-red">97</span>
+            <div class="mt-2 text-left">
+              <span class="block text-4xl leading-none font-black text-white">,00</span>
             </div>
           </div>
 
-          <a href="https://sun.eduzz.com/1865589?cupom=especial50off&utm_content=1754141964121_17541415298533" class="group relative flex items-center justify-center gap-4 w-full py-7 px-6 bg-[#F0B102] hover:bg-white text-black text-2xl md:text-3xl font-black rounded-2xl shadow-[0_15px_40px_rgba(240,177,2,0.3)] transition-all duration-300 transform hover:-translate-y-2 uppercase tracking-tighter italic animate-glow">
+          <a
+            href="https://sun.eduzz.com/1865589?cupom=especial50off&utm_content=1754141964121_17541415298533"
+            class="group animate-glow relative flex w-full transform items-center justify-center gap-4 rounded-2xl bg-[#F0B102] px-6 py-7 text-2xl font-black tracking-tighter text-black uppercase italic shadow-[0_15px_40px_rgba(240,177,2,0.3)] transition-all duration-300 hover:-translate-y-2 hover:bg-white md:text-3xl"
+          >
             <span>Garantir Meu Acesso Agora</span>
-            <svg class="w-6 h-6 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M9 5l7 7-7 7"></path></svg>
+            <svg
+              class="h-6 w-6 transition-transform duration-300 group-hover:translate-x-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="4"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
           </a>
 
           <div class="mt-10 flex justify-center px-4">
-            <Image 
-              src={imgSeloPgto} 
-              alt="Compra Segura PagSeguro" 
-              class="h-20 md:h-24 w-auto object-contain opacity-100"
+            <Image
+              src={imgSeloPgto}
+              alt="Compra Segura PagSeguro"
+              class="h-20 w-auto object-contain opacity-100 md:h-24"
             />
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </section>

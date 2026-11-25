@@ -1,95 +1,101 @@
 ---
-import { Image } from 'astro:assets';
-import imgMockupImpacto from '../../assets/images/mockup_r4t_impacto3.png';
+import { Image } from "astro:assets";
+import imgMockupImpacto from "../../assets/images/mockup_r4t_impacto3.png";
 ---
 
-<section class="py-24 px-4 bg-white relative overflow-hidden">
-  <div class="max-w-6xl mx-auto relative z-10">
-    
-    <div class="text-center mb-16">
-      <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">Como Funciona o Método</span>
-      <h2 class="text-3xl md:text-5xl font-black text-slate-900 mt-2 mb-4 uppercase tracking-tighter italic">
+<section class="relative overflow-hidden bg-white px-4 py-24">
+  <div class="relative z-10 mx-auto max-w-6xl">
+    <div class="mb-16 text-center">
+      <span class="text-sm font-black tracking-wider text-brand-orange uppercase italic">
+        Como Funciona o Método
+      </span>
+      <h2 class="mt-2 mb-4 text-3xl font-black tracking-tighter text-slate-900 uppercase italic md:text-5xl">
         VEJA O QUE FAZER
       </h2>
-      <p class="text-slate-600 text-lg md:text-xl font-bold italic">
+      <p class="text-lg font-bold text-slate-600 italic md:text-xl">
         pra aumentar potência rápido sem gastar nem 1 real com peça:
       </p>
     </div>
 
     {/* Os Três Pilares da Taxa */}
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+    <div class="mb-16 grid grid-cols-1 gap-8 md:grid-cols-3">
       {[
         {
           num: "01",
           title: "Ajuste Prático",
-          desc: "Como medir e acertar a taxa usando ferramentas simples que você já tem na oficina ou até em casa mesmo."
+          desc: "Como medir e acertar a taxa usando ferramentas simples que você já tem na oficina ou até em casa mesmo.",
         },
         {
           num: "02",
           title: "Taxa Ideal",
-          desc: "Descubra o limite de Taxa que seu motor aguenta na gasolina, álcool e metanol — sem risco de quebra."
+          desc: "Descubra o limite de Taxa que seu motor aguenta na gasolina, álcool e metanol — sem risco de quebra.",
         },
         {
           num: "03",
           title: "Pulo do Gato",
-          desc: "Você vai descobrir o segredo dos grandes preparadores pra aumentar a potência através da taxa, sem amarrar de alta."
-        }
+          desc: "Você vai descobrir o segredo dos grandes preparadores pra aumentar a potência através da taxa, sem amarrar de alta.",
+        },
       ].map((item) => (
-        <div class="bg-slate-50 border border-slate-100 rounded-3xl p-8 hover:border-brand-orange/30 transition-all duration-300 relative group shadow-[0_4px_20px_rgba(0,0,0,0.01)]">
-          <div class="w-12 h-12 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange font-black text-lg mb-6 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+        <div class="group relative rounded-3xl border border-slate-100 bg-slate-50 p-8 shadow-[0_4px_20px_rgba(0,0,0,0.01)] transition-all duration-300 hover:border-brand-orange/30">
+          <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-brand-orange/10 text-lg font-black text-brand-orange transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
             {item.num}
           </div>
-          <h3 class="text-slate-900 font-black text-xl mb-3 uppercase italic tracking-tight">{item.title}</h3>
-          <p class="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+          <h3 class="mb-3 text-xl font-black tracking-tight text-slate-900 uppercase italic">
+            {item.title}
+          </h3>
+          <p class="text-sm leading-relaxed text-slate-500">{item.desc}</p>
         </div>
       ))}
     </div>
 
     {/* Faixa de Impacto Principal */}
-    <div class="bg-gradient-to-r from-orange-500 to-brand-orange text-white rounded-3xl p-8 md:p-12 text-center shadow-xl mb-24 relative overflow-hidden">
+    <div class="relative mb-24 overflow-hidden rounded-3xl bg-gradient-to-r from-orange-500 to-brand-orange p-8 text-center text-white shadow-xl md:p-12">
       {/* Decorative speed lines */}
-      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]"></div>
-      
-      <p class="text-2xl md:text-3xl lg:text-4xl font-black uppercase italic tracking-tighter relative z-10 leading-tight">
-        Imagina sua moto mais forte HOJE, de forma simples, rápida e sem gastar nem 1 real com peça nova!
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] opacity-10"></div>
+
+      <p class="relative z-10 text-2xl leading-tight font-black tracking-tighter uppercase italic md:text-3xl lg:text-4xl">
+        Imagina sua moto mais forte HOJE, de forma simples, rápida e sem gastar nem 1 real com peça
+        nova!
       </p>
     </div>
 
     {/* Três Diferenciais / Cartões de Confiança */}
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+    <div class="mb-20 grid grid-cols-1 gap-8 md:grid-cols-3">
       {[
         {
           title: "ACESSO IMEDIATO",
           desc: "Logo após a inscrição você receberá seu acesso aos materiais direto via email.",
-          icon: "⚡"
+          icon: "⚡",
         },
         {
           title: "RESULTADO RÁPIDO",
           desc: "Você consegue assistir o curso INTEIRO no mesmo dia e já colocar em prática.",
-          icon: "⏱"
+          icon: "⏱",
         },
         {
           title: "FÁCIL DE APLICAR",
           desc: "Técnicas simples que qualquer pessoa consegue aplicar mesmo sem experiência.",
-          icon: "🛠"
-        }
+          icon: "🛠",
+        },
       ].map((item) => (
-        <div class="bg-slate-50 border border-slate-100 rounded-2xl p-6 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:border-brand-orange/20 transition-all duration-300">
-          <div class="text-3xl mb-4">{item.icon}</div>
-          <h4 class="text-slate-950 font-black text-lg uppercase italic tracking-tight mb-2">{item.title}</h4>
-          <p class="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+        <div class="rounded-2xl border border-slate-100 bg-slate-50 p-6 text-center shadow-[0_4px_15px_rgba(0,0,0,0.01)] transition-all duration-300 hover:border-brand-orange/20">
+          <div class="mb-4 text-3xl">{item.icon}</div>
+          <h4 class="mb-2 text-lg font-black tracking-tight text-slate-950 uppercase italic">
+            {item.title}
+          </h4>
+          <p class="text-sm leading-relaxed text-slate-500">{item.desc}</p>
         </div>
       ))}
     </div>
 
     {/* Mockup do Produto */}
-    <div class="flex flex-col items-center justify-center reveal-up active">
+    <div class="reveal-up active flex flex-col items-center justify-center">
       <div class="relative">
-        <div class="absolute inset-0 bg-brand-orange/5 rounded-full filter blur-3xl -z-10 scale-75"></div>
-        <Image 
-          src={imgMockupImpacto} 
-          alt="Mockup do Combo Completo" 
-          class="w-full max-w-4xl h-auto object-contain tilt-card" 
+        <div class="absolute inset-0 -z-10 scale-75 rounded-full bg-brand-orange/5 blur-3xl filter"></div>
+        <Image
+          src={imgMockupImpacto}
+          alt="Mockup do Combo Completo"
+          class="tilt-card h-auto w-full max-w-4xl object-contain"
           width={900}
           height={500}
           loading="lazy"
@@ -97,6 +103,5 @@ import imgMockupImpacto from '../../assets/images/mockup_r4t_impacto3.png';
         />
       </div>
     </div>
-
   </div>
 </section>

@@ -1,22 +1,21 @@
 ---
-import { Image } from 'astro:assets';
-import imgFabio from '../../assets/images/fabio_ntr_bio.webp';
+import { Image } from "astro:assets";
+import imgFabio from "../../assets/images/fabio_ntr_bio.webp";
 ---
 
-<section class="py-24 px-4 bg-white relative overflow-hidden border-b border-slate-100">
-  <div class="max-w-5xl mx-auto relative z-10">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-      
+<section class="relative overflow-hidden border-b border-slate-100 bg-white px-4 py-24">
+  <div class="relative z-10 mx-auto max-w-5xl">
+    <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
       {/* Esquerda: Foto (Col 5) */}
-      <div class="md:col-span-5 flex justify-center reveal-up active">
-        <div class="relative max-w-sm w-full">
-          <div class="absolute inset-0 bg-brand-orange/5 rounded-[32px] filter blur-xl -z-10 scale-95"></div>
-          
-          <div class="border border-slate-200 hover:border-brand-orange/30 transition-all duration-500 rounded-[32px] overflow-hidden shadow-sm p-2 bg-slate-50">
-            <Image 
-              src={imgFabio} 
-              alt="Fábio Scaravonatto" 
-              class="w-full h-auto rounded-[24px] object-cover" 
+      <div class="reveal-up active flex justify-center md:col-span-5">
+        <div class="relative w-full max-w-sm">
+          <div class="absolute inset-0 -z-10 scale-95 rounded-[32px] bg-brand-orange/5 blur-xl filter"></div>
+
+          <div class="overflow-hidden rounded-[32px] border border-slate-200 bg-slate-50 p-2 shadow-sm transition-all duration-500 hover:border-brand-orange/30">
+            <Image
+              src={imgFabio}
+              alt="Fábio Scaravonatto"
+              class="h-auto w-full rounded-[24px] object-cover"
               width={400}
               height={500}
               loading="lazy"
@@ -27,31 +26,30 @@ import imgFabio from '../../assets/images/fabio_ntr_bio.webp';
       </div>
 
       {/* Direita: Texto Bio (Col 7) */}
-      <div class="md:col-span-7 space-y-6 text-left reveal-up active">
-        <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">Preparador e Fundador</span>
-        <h2 class="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">
+      <div class="reveal-up active space-y-6 text-left md:col-span-7">
+        <span class="text-sm font-black tracking-wider text-brand-orange uppercase italic">
+          Preparador e Fundador
+        </span>
+        <h2 class="text-4xl leading-none font-black tracking-tighter text-slate-900 uppercase italic md:text-5xl">
           COM QUEM VOCÊ <br /> <span class="text-brand-orange">VAI APRENDER:</span>
         </h2>
-        
-        <div class="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed font-semibold">
-          <p class="text-slate-800 text-lg">
-            👋 **Prazer, eu sou Fábio Scaravonatto.**
+
+        <div class="space-y-4 text-sm leading-relaxed font-semibold text-slate-600 md:text-base">
+          <p class="text-lg text-slate-800">👋 **Prazer, eu sou Fábio Scaravonatto.**</p>
+          <p>
+            Preparador profissional há + de 20 anos e criador do Método que mudou a vida de jovens
+            que começaram do zero, igual você.
           </p>
           <p>
-            Preparador profissional há + de 20 anos e criador do Método que mudou a vida de jovens que começaram do zero, igual você.
+            Perdi a conta de quantas motos de alta performance eu já fiz pra rua, rodovia,
+            arrancada, motovelocidade, velocross e motocross (muitas delas campeãs).
           </p>
-          <p>
-            Perdi a conta de quantas motos de alta performance eu já fiz pra rua, rodovia, arrancada, motovelocidade, velocross e motocross (muitas delas campeãs).
-          </p>
-          <p>
-            E agora todo meu conhecimento e minha experiência prática estão ao seu alcance.
-          </p>
-          <p class="text-brand-orange font-black uppercase italic tracking-tight">
+          <p>E agora todo meu conhecimento e minha experiência prática estão ao seu alcance.</p>
+          <p class="font-black tracking-tight text-brand-orange uppercase italic">
             Sem teoria furada, sem enrolação, direto no que funciona.
           </p>
         </div>
       </div>
-
     </div>
   </div>
 </section>

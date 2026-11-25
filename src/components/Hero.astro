@@ -1,61 +1,79 @@
 ---
 ---
 
-<section class="relative pt-12 pb-20 px-4 flex flex-col items-center justify-center text-center overflow-hidden">
-  
+<section class="relative flex flex-col items-center justify-center overflow-hidden px-4 pt-12 pb-20 text-center">
   {/* Aviso Topo */}
-  <div class="mb-8 mt-4">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-red-950/40 rounded-full border border-red-900/50">
-      <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
-      <span class="text-brand-red font-bold text-xs uppercase tracking-[0.15em]">Conteúdo Restrito</span>
+  <div class="mt-4 mb-8">
+    <div class="inline-flex items-center gap-2 rounded-full border border-red-900/50 bg-red-950/40 px-4 py-1.5">
+      <span class="h-2 w-2 animate-pulse rounded-full bg-brand-red"></span>
+      <span class="text-xs font-bold tracking-[0.15em] text-brand-red uppercase">
+        Conteúdo Restrito
+      </span>
     </div>
   </div>
 
   {/* Headline Principal - Foco na dor e na curiosidade */}
-  <div class="max-w-4xl mx-auto space-y-6 mb-10">
-    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight md:leading-[1.1] tracking-tight">
-      PROJETO DE BAIXO CUSTO QUE GERA <span class="text-brand-red">32CV</span> E FAZ A MOTO PASSAR DOS <span class="relative inline-flex items-center justify-center px-4 py-1.5 ml-1 text-white italic z-10 leading-none"><span class="absolute inset-0 bg-brand-red -skew-x-12 -z-10 rounded-md"></span>200KM/H</span>
+  <div class="mx-auto mb-10 max-w-4xl space-y-6">
+    <h1 class="text-3xl leading-tight font-black tracking-tight text-white md:text-5xl md:leading-[1.1] lg:text-6xl">
+      PROJETO DE BAIXO CUSTO QUE GERA <span class="text-brand-red">32CV</span> E FAZ A MOTO PASSAR
+      DOS{" "}
+      <span class="relative z-10 ml-1 inline-flex items-center justify-center px-4 py-1.5 leading-none text-white italic">
+        <span class="absolute inset-0 -z-10 -skew-x-12 rounded-md bg-brand-red"></span>200KM/H
+      </span>
     </h1>
-    <p class="text-gray-400 text-lg md:text-xl font-medium max-w-2xl mx-auto">
-      Projetinho diferenciado com pouca cilindrada, simples de fazer e que passa dos 200… assista o vídeo antes que saia do ar
+    <p class="mx-auto max-w-2xl text-lg font-medium text-gray-400 md:text-xl">
+      Projetinho diferenciado com pouca cilindrada, simples de fazer e que passa dos 200… assista o
+      vídeo antes que saia do ar
     </p>
   </div>
 
   {/* VSL (Vídeo) */}
-  <div class="w-full max-w-4xl mx-auto mb-12 relative group z-10">
+  <div class="group relative z-10 mx-auto mb-12 w-full max-w-4xl">
     {/* Efeito visual atrás do vídeo */}
-    <div class="absolute -inset-1 bg-gradient-to-b from-brand-red to-black rounded-xl blur-2xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
-    
-    <div class="w-full rounded-xl relative overflow-hidden border border-gray-800 shadow-2xl bg-[#0a0a0a] aspect-video">
+    <div class="absolute -inset-1 rounded-xl bg-gradient-to-b from-brand-red to-black opacity-20 blur-2xl transition duration-700 group-hover:opacity-40"></div>
+
+    <div class="relative aspect-video w-full overflow-hidden rounded-xl border border-gray-800 bg-[#0a0a0a] shadow-2xl">
       {/* Placeholder para evitar CLS */}
-      <div class="absolute inset-0 bg-[#0a0a0a] flex items-center justify-center">
-        <div class="w-20 h-20 bg-brand-red rounded-full flex items-center justify-center animate-pulse">
-           <svg class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <div class="absolute inset-0 flex items-center justify-center bg-[#0a0a0a]">
+        <div class="flex h-20 w-20 animate-pulse items-center justify-center rounded-full bg-brand-red">
+          <svg class="ml-1 h-10 w-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
         </div>
       </div>
-      <iframe 
-        id="panda-5165e69f-f0bd-4929-9fe5-c9dd7b0e2a21" 
-        src="https://player-vz-8c69785c-727.tv.pandavideo.com.br/embed/?v=5165e69f-f0bd-4929-9fe5-c9dd7b0e2a21" 
-        style="border:none;position:absolute;top:0;left:0;" 
-        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" 
-        allowfullscreen="true" 
-        width="100%" 
-        height="100%" 
+      <iframe
+        id="panda-5165e69f-f0bd-4929-9fe5-c9dd7b0e2a21"
+        src="https://player-vz-8c69785c-727.tv.pandavideo.com.br/embed/?v=5165e69f-f0bd-4929-9fe5-c9dd7b0e2a21"
+        style="border:none;position:absolute;top:0;left:0;"
+        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
+        allowfullscreen="true"
+        width="100%"
+        height="100%"
         loading="lazy"
-        title="Vídeo de Apresentação">
+        title="Vídeo de Apresentação"
+      >
       </iframe>
     </div>
   </div>
 
   {/* Botão de Compra - Sem delay para melhor conversão e performance */}
-  <div id="hero-cta-container" class="w-full max-w-md mx-auto transition-all duration-1000">
-    <a href="#oferta" class="block w-full py-5 px-6 bg-brand-red hover:bg-brand-red-dark text-white text-xl md:text-xl font-black rounded-lg shadow-[0_0_20px_rgba(255,51,51,0.3)] hover:shadow-[0_0_30px_rgba(255,51,51,0.5)] transition-all transform hover:-translate-y-1 uppercase tracking-wider">
+  <div id="hero-cta-container" class="mx-auto w-full max-w-md transition-all duration-1000">
+    <a
+      href="#oferta"
+      class="block w-full transform rounded-lg bg-brand-red px-6 py-5 text-xl font-black tracking-wider text-white uppercase shadow-[0_0_20px_rgba(255,51,51,0.3)] transition-all hover:-translate-y-1 hover:bg-brand-red-dark hover:shadow-[0_0_30px_rgba(255,51,51,0.5)] md:text-xl"
+    >
       GARANTIR VAGA COM DESCONTO
     </a>
-    <p class="mt-4 text-sm text-gray-500 flex items-center justify-center gap-2">
-      <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+    <p class="mt-4 flex items-center justify-center gap-2 text-sm text-gray-500">
+      <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+        ></path>
+      </svg>
       Acesso imediato e seguro
     </p>
   </div>
-
 </section>

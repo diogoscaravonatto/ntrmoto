@@ -1,55 +1,63 @@
 ---
-import { Image } from 'astro:assets';
-import r4tImage from '../../../assets/images/r4t_image2.webp';
+import { Image } from "astro:assets";
+import r4tImage from "../../../assets/images/r4t_image2.webp";
 ---
 
-<section class="relative pt-16 pb-20 px-4 bg-white overflow-hidden flex flex-col items-center border-b border-slate-100">
+<section class="relative flex flex-col items-center overflow-hidden border-b border-slate-100 bg-white px-4 pt-16 pb-20">
   {/* Light Technical Grid Background */}
-  <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-70 pointer-events-none -z-10"></div>
-  
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-70"></div>
+
   {/* Soft Orange Glow */}
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-orange/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-  
-  <div class="max-w-5xl mx-auto text-center relative z-10">
-    
+  <div class="pointer-events-none absolute top-0 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-brand-orange/5 blur-[120px]"></div>
+
+  <div class="relative z-10 mx-auto max-w-5xl text-center">
     {/* Tag de Aviso */}
-    <div class="inline-flex items-center gap-2 bg-brand-orange/10 border border-brand-orange/30 px-5 py-2 rounded-full mb-8">
-      <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
-      <span class="text-brand-orange font-black text-xs uppercase tracking-widest italic">Método Práctico de Preparación de Motores</span>
+    <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-brand-orange/30 bg-brand-orange/10 px-5 py-2">
+      <span class="h-2 w-2 animate-pulse rounded-full bg-brand-orange"></span>
+      <span class="text-xs font-black tracking-widest text-brand-orange uppercase italic">
+        Método Práctico de Preparación de Motores
+      </span>
     </div>
 
     {/* Headline de Alto Impacto em Espanhol LATAM */}
-    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 uppercase tracking-tighter italic leading-[0.95] max-w-4xl mx-auto">
-      Cómo Ganar <span class="text-brand-orange">Potencia en tu Moto</span> en 30 Minutos Sin Gastar 1 Solo Dólar en Repuestos Nuevos
+    <h1 class="mx-auto mb-6 max-w-4xl text-4xl leading-[0.95] font-black tracking-tighter text-slate-900 uppercase italic md:text-5xl lg:text-6xl">
+      Cómo Ganar <span class="text-brand-orange">Potencia en tu Moto</span> en 30 Minutos Sin Gastar
+      1 Solo Dólar en Repuestos Nuevos
     </h1>
 
     {/* Subhead Persuasivo */}
-    <p class="text-slate-600 text-lg md:text-xl font-semibold max-w-3xl mx-auto mb-10 leading-relaxed">
-      Aprende a ajustar la relación de compresión de tu motor de forma simple y sin riesgo de rotura <br class="hidden md:block" />
-      <span class="text-brand-orange font-bold">(incluso si nunca has preparado un motor antes).</span>
+    <p class="mx-auto mb-10 max-w-3xl text-lg leading-relaxed font-semibold text-slate-600 md:text-xl">
+      Aprende a ajustar la relación de compresión de tu motor de forma simple y sin riesgo de rotura{" "}
+      <br class="hidden md:block" />
+      <span class="font-bold text-brand-orange">
+        (incluso si nunca has preparado un motor antes).
+      </span>
     </p>
 
     {/* Imagem de Destaque */}
-    <div class="w-full max-w-3xl mx-auto mb-12 relative z-10 rounded-[2rem] overflow-hidden border border-slate-200 shadow-[0_20px_50px_rgba(255,90,0,0.08)] bg-slate-50 p-2 hover:shadow-[0_25px_60px_rgba(255,90,0,0.15)] transition-shadow duration-500">
-      <Image 
-        src={r4tImage} 
-        alt="Método Tasa de Compresión NTR" 
-        class="w-full h-auto rounded-[1.5rem] object-cover hover:scale-[1.01] transition-transform duration-700"
+    <div class="relative z-10 mx-auto mb-12 w-full max-w-3xl overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 p-2 shadow-[0_20px_50px_rgba(255,90,0,0.08)] transition-shadow duration-500 hover:shadow-[0_25px_60px_rgba(255,90,0,0.15)]">
+      <Image
+        src={r4tImage}
+        alt="Método Tasa de Compresión NTR"
+        class="h-auto w-full rounded-[1.5rem] object-cover transition-transform duration-700 hover:scale-[1.01]"
         loading="eager"
       />
     </div>
 
     {/* CTA Principal de Conversão */}
-    <div class="mt-8 px-4 max-w-md mx-auto">
-      <a href="#oferta" class="relative group block w-full py-5 px-6 bg-brand-orange hover:bg-brand-orange-dark text-white text-xl md:text-2xl font-black rounded-2xl shadow-[0_15px_30px_rgba(255,90,0,0.3)] transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 uppercase tracking-tighter italic text-center">
+    <div class="mx-auto mt-8 max-w-md px-4">
+      <a
+        href="#oferta"
+        class="group relative block w-full transform rounded-2xl bg-brand-orange px-6 py-5 text-center text-xl font-black tracking-tighter text-white uppercase italic shadow-[0_15px_30px_rgba(255,90,0,0.3)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-brand-orange-dark md:text-2xl"
+      >
         {/* Efeito de Brilho Correndo */}
-        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shine"></div>
+        <div class="group-hover:animate-shine absolute inset-0 h-full w-full -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
         ¡QUIERO MÁS POTENCIA!
       </a>
-      
+
       {/* Informações adicionais de Conversão */}
       <div class="mt-4">
-        <p class="text-slate-500 font-bold text-sm tracking-wide italic">
+        <p class="text-sm font-bold tracking-wide text-slate-500 italic">
           🚀 Acceso inmediato 100% online, empieza ahora mismo
         </p>
       </div>
@@ -59,9 +67,15 @@ import r4tImage from '../../../assets/images/r4t_image2.webp';
 
 <style>
   @keyframes shine {
-    0% { transform: translateX(-100%); }
-    20% { transform: translateX(100%); }
-    100% { transform: translateX(100%); }
+    0% {
+      transform: translateX(-100%);
+    }
+    20% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
   .group:hover .group-hover\:animate-shine {
     animation: shine 1.5s infinite;

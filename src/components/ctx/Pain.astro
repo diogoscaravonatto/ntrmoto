@@ -1,65 +1,77 @@
 ---
-import { Image } from 'astro:assets';
-import imgDino from '../../assets/images/teste_dinamometro_r4t_opt.webp';
+import { Image } from "astro:assets";
+import imgDino from "../../assets/images/teste_dinamometro_r4t_opt.webp";
 ---
 
-<section class="py-24 px-4 bg-slate-50 border-b border-slate-100 relative overflow-hidden">
+<section class="relative overflow-hidden border-b border-slate-100 bg-slate-50 px-4 py-24">
   {/* Light Grid Background */}
-  <div class="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1.5px,transparent_1.5px),linear-gradient(to_bottom,#f1f5f9_1.5px,transparent_1.5px)] bg-[size:3rem_3rem] opacity-40 pointer-events-none"></div>
+  <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1.5px,transparent_1.5px),linear-gradient(to_bottom,#f1f5f9_1.5px,transparent_1.5px)] bg-[size:3rem_3rem] opacity-40"></div>
 
-  <div class="max-w-6xl mx-auto relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      
+  <div class="relative z-10 mx-auto max-w-6xl">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
       {/* Texto e Ponto de Dor (Col 7) */}
-      <div class="lg:col-span-7 space-y-8 text-left reveal-up active">
+      <div class="reveal-up active space-y-8 text-left lg:col-span-7">
         <div class="space-y-4">
-          <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">O Grande Gargalo do Motor</span>
-          <h2 class="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">
+          <span class="text-sm font-black tracking-wider text-brand-orange uppercase italic">
+            O Grande Gargalo do Motor
+          </span>
+          <h2 class="text-4xl leading-none font-black tracking-tighter text-slate-900 uppercase italic md:text-5xl">
             A moto tá <span class="text-brand-orange">amarrada</span> e sem final?
           </h2>
-          <p class="text-slate-700 text-lg md:text-xl font-bold leading-relaxed">
-            Parece que o motor tá fraco, sem força... Aquele trampo ou comando de preparação que você colocou não deu o resultado que você queria?
+          <p class="text-lg leading-relaxed font-bold text-slate-700 md:text-xl">
+            Parece que o motor tá fraco, sem força... Aquele trampo ou comando de preparação que
+            você colocou não deu o resultado que você queria?
           </p>
         </div>
 
         {/* Card Destaque - O Pulo do Gato */}
-        <div class="bg-white border-l-4 border-brand-orange rounded-r-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.02)] border border-slate-100">
-          <p class="text-slate-800 text-lg md:text-xl font-semibold leading-relaxed">
-            👉 <strong class="text-slate-900 font-extrabold">Na maioria das vezes, o problema tá na TAXA.</strong>
+        <div class="rounded-r-2xl border border-l-4 border-brand-orange border-slate-100 bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.02)]">
+          <p class="text-lg leading-relaxed font-semibold text-slate-800 md:text-xl">
+            👉{" "}
+            <strong class="font-extrabold text-slate-900">
+              Na maioria das vezes, o problema tá na TAXA.
+            </strong>
           </p>
-          <p class="text-slate-500 text-sm md:text-base mt-2 leading-relaxed">
-            Se a taxa de compressão estiver errada, você pode colocar o melhor comando do mundo, fazer a vazão que for no cabeçote... **a moto simplesmente não vai andar.** A taxa é a alma da pressão do motor.
+          <p class="mt-2 text-sm leading-relaxed text-slate-500 md:text-base">
+            Se a taxa de compressão estiver errada, você pode colocar o melhor comando do mundo,
+            fazer a vazão que for no cabeçote... **a moto simplesmente não vai andar.** A taxa é a
+            alma da pressão do motor.
           </p>
         </div>
-        
-        <p class="text-slate-500 text-sm leading-relaxed">
-          Sem a taxa ideal, a queima é ineficiente. Gasolina vira fumaça sem empurrar o pistão, o motor esgoela em alta rotação mas a velocidade final não sobe, e você queima dinheiro à toa.
+
+        <p class="text-sm leading-relaxed text-slate-500">
+          Sem a taxa ideal, a queima é ineficiente. Gasolina vira fumaça sem empurrar o pistão, o
+          motor esgoela em alta rotação mas a velocidade final não sobe, e você queima dinheiro à
+          toa.
         </p>
       </div>
 
       {/* Ilustração Visual (Col 5) */}
-      <div class="lg:col-span-5 flex justify-center items-center reveal-up active">
-        <div class="relative w-full max-w-md bg-white border border-slate-200 rounded-[2rem] p-3 shadow-[0_15px_40px_rgba(255,90,0,0.05)] hover:shadow-[0_20px_50px_rgba(255,90,0,0.1)] transition-shadow duration-500">
-          <div class="rounded-[1.5rem] overflow-hidden">
-            <Image 
-              src={imgDino} 
-              alt="Teste de Dinamômetro NTR" 
-              class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" 
+      <div class="reveal-up active flex items-center justify-center lg:col-span-5">
+        <div class="relative w-full max-w-md rounded-[2rem] border border-slate-200 bg-white p-3 shadow-[0_15px_40px_rgba(255,90,0,0.05)] transition-shadow duration-500 hover:shadow-[0_20px_50px_rgba(255,90,0,0.1)]">
+          <div class="overflow-hidden rounded-[1.5rem]">
+            <Image
+              src={imgDino}
+              alt="Teste de Dinamômetro NTR"
+              class="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
               width={500}
               height={380}
               loading="lazy"
               decoding="async"
             />
           </div>
-          
+
           {/* Tag flutuante de Performance */}
-          <div class="absolute -bottom-4 -right-4 bg-brand-orange text-white px-5 py-3 rounded-2xl shadow-lg border-2 border-white text-left animate-float">
-            <p class="text-[9px] font-black uppercase tracking-wider text-orange-200">Segredo Revelado</p>
-            <p class="text-sm font-black italic tracking-tighter leading-none">O PODER DA TAXA IDEAL</p>
+          <div class="animate-float absolute -right-4 -bottom-4 rounded-2xl border-2 border-white bg-brand-orange px-5 py-3 text-left text-white shadow-lg">
+            <p class="text-[9px] font-black tracking-wider text-orange-200 uppercase">
+              Segredo Revelado
+            </p>
+            <p class="text-sm leading-none font-black tracking-tighter italic">
+              O PODER DA TAXA IDEAL
+            </p>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>

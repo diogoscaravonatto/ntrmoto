@@ -1,37 +1,42 @@
 ---
-import { Image } from 'astro:assets';
-import imgFabioHeadline from '../assets/images/fabio_ntr_bio.webp';
+import { Image } from "astro:assets";
+import imgFabioHeadline from "../assets/images/fabio_ntr_bio.webp";
 ---
 
-<section class="py-24 px-4 bg-[#0A0A0A] border-t border-gray-900">
-  <div class="max-w-3xl mx-auto">
+<section class="border-t border-gray-900 bg-[#0A0A0A] px-4 py-24">
+  <div class="mx-auto max-w-3xl">
     <div class="flex flex-col">
-      
       {/* Conteúdo Centralizado com alinhamento à esquerda */}
       <div class="w-full">
-        <h2 class="text-xl text-brand-red font-bold uppercase tracking-widest mb-2">Quem está por trás do projeto?</h2>
-        <h3 class="text-xl md:text-5xl font-medium md:font-black text-white mb-6 leading-tight whitespace-nowrap md:whitespace-normal">Fabio — NTR Escola de Motores</h3>
-        
+        <h2 class="mb-2 text-xl font-bold tracking-widest text-brand-red uppercase">
+          Quem está por trás do projeto?
+        </h2>
+        <h3 class="mb-6 text-xl leading-tight font-medium whitespace-nowrap text-white md:text-5xl md:font-black md:whitespace-normal">
+          Fabio — NTR Escola de Motores
+        </h3>
+
         {/* Imagem abaixo da Headline - Maior e mais proporcional */}
         <div class="mb-10 w-full">
-          <Image 
-            src={imgFabioHeadline} 
-            alt="Fabio NTR Escola de Motores" 
-            class="w-full h-auto rounded-xl shadow-2xl border border-gray-800"
+          <Image
+            src={imgFabioHeadline}
+            alt="Fabio NTR Escola de Motores"
+            class="h-auto w-full rounded-xl border border-gray-800 shadow-2xl"
           />
         </div>
 
         <div class="space-y-6">
-          <p class="text-gray-400 text-xl leading-relaxed font-medium">
-            Com anos de experiência na preparação de motores para competição, Fabio já montou e acertou centenas de motores. A NTR Escola de Motores nasceu para desmistificar a preparação e mostrar que, com o método certo, qualquer um que tenha força de vontade pode extrair o máximo de potência de um motor.
+          <p class="text-xl leading-relaxed font-medium text-gray-400">
+            Com anos de experiência na preparação de motores para competição, Fabio já montou e
+            acertou centenas de motores. A NTR Escola de Motores nasceu para desmistificar a
+            preparação e mostrar que, com o método certo, qualquer um que tenha força de vontade
+            pode extrair o máximo de potência de um motor.
           </p>
-          <p class="text-gray-400 text-xl leading-relaxed font-medium">
-            Nesse projeto, mostra os detalhes para você ter resultado real e evitar erros que a maioria comete.
+          <p class="text-xl leading-relaxed font-medium text-gray-400">
+            Nesse projeto, mostra os detalhes para você ter resultado real e evitar erros que a
+            maioria comete.
           </p>
         </div>
-
       </div>
-
     </div>
   </div>
 </section>

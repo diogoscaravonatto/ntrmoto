@@ -1,7 +1,7 @@
 ---
-import { Image } from 'astro:assets';
-import imgMockup from '../../assets/images/mockup_combo_black.webp';
-import imgPgto from '../../assets/images/pag_seguro.png';
+import { Image } from "astro:assets";
+import imgMockup from "../../assets/images/mockup_combo_black.webp";
+import imgPgto from "../../assets/images/pag_seguro.png";
 
 const features = [
   { name: "Acesso Vitalício (pra sempre) aos cursos", price: "" },
@@ -14,93 +14,115 @@ const features = [
   { name: "Curso Acerto de Injeção", price: "R$ 197" },
   { name: "Guia Secreto de Motores", price: "R$67" },
   { name: "Fábrica de Motores Lucrativa", price: "R$97" },
-  { name: "Planilha Financeira + Guia Ferramentas", price: "R$67" }
+  { name: "Planilha Financeira + Guia Ferramentas", price: "R$67" },
 ];
 ---
 
-<section id="oferta" class="py-24 px-4 bg-black relative overflow-hidden">
-  <div class="max-w-6xl mx-auto">
-    
-    <div class="text-center mb-16 px-4">
-      <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter italic leading-tight max-w-4xl mx-auto">
+<section id="oferta" class="relative overflow-hidden bg-black px-4 py-24">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-16 px-4 text-center">
+      <h2 class="mx-auto max-w-4xl text-3xl leading-tight font-black tracking-tighter text-white uppercase italic md:text-5xl lg:text-6xl">
         VEJA TUDO QUE ESTÁ INCLUSO NO COMBO NTR <span class="text-brand-red">VITALÍCIO</span>
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-      
+    <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
       {/* Coluna Esquerda: Lista de Valores */}
-      <div class="text-left space-y-8">
+      <div class="space-y-8 text-left">
         <ul class="space-y-4" id="feature-list">
-          {features.map((item, index) => (
-            <li class="flex items-center gap-3 text-white/90 font-medium text-sm md:text-base">
-              <span class="text-[#22C55E] shrink-0 text-xl font-black">✔</span>
+          {features.map((item) => (
+            <li class="flex items-center gap-3 text-sm font-medium text-white/90 md:text-base">
+              <span class="shrink-0 text-xl font-black text-[#22C55E]">✔</span>
               <span>{item.name}</span>
               {item.price && (
-                <span class="relative ml-2 text-brand-red/80 font-bold">
+                <span class="relative ml-2 font-bold text-brand-red/80">
                   ({item.price})
-                  <span class="absolute inset-x-0 top-1/2 h-[2px] bg-brand-red w-full"></span>
+                  <span class="absolute inset-x-0 top-1/2 h-[2px] w-full bg-brand-red"></span>
                 </span>
               )}
             </li>
           ))}
         </ul>
 
-        <div class="pt-8 border-t border-white/10" id="total-summary">
-          <p class="text-white text-xl md:text-2xl font-bold mb-2 uppercase italic tracking-tighter">Preço total do Combo:</p>
-          <div class="text-brand-red text-5xl md:text-7xl font-black italic tracking-tighter decoration-8 relative inline-block">
+        <div class="border-t border-white/10 pt-8" id="total-summary">
+          <p class="mb-2 text-xl font-bold tracking-tighter text-white uppercase italic md:text-2xl">
+            Preço total do Combo:
+          </p>
+          <div class="relative inline-block text-5xl font-black tracking-tighter text-brand-red italic decoration-8 md:text-7xl">
             R$ 1.299,00
-            <span class="absolute inset-x-0 top-1/2 h-2 bg-brand-red w-full"></span>
+            <span class="absolute inset-x-0 top-1/2 h-2 w-full bg-brand-red"></span>
           </div>
         </div>
       </div>
 
       {/* Coluna Direita: Card de Oferta Estático */}
-      <div 
-        class="bg-white rounded-[40px] p-8 md:p-12 shadow-[0_0_100px_rgba(255,255,255,0.1)] text-center border-2 border-brand-red relative" 
+      <div
+        class="relative rounded-[40px] border-2 border-brand-red bg-white p-8 text-center shadow-[0_0_100px_rgba(255,255,255,0.1)] md:p-12"
         id="offer-card"
       >
         {/* Badge Superior Direito */}
-        <div class="absolute top-0 right-0 bg-brand-red text-white px-6 py-3 rounded-bl-3xl font-black text-[10px] md:text-xs uppercase tracking-widest italic z-10">
+        <div class="absolute top-0 right-0 z-10 rounded-bl-3xl bg-brand-red px-6 py-3 text-[10px] font-black tracking-widest text-white uppercase italic md:text-xs">
           ÚLTIMAS VAGAS COM ACESSO VITALÍCIO
         </div>
 
         <div class="mt-8 mb-4">
-          <Image src={imgMockup} alt="Mockup Combo Black" class="w-full h-auto max-w-sm mx-auto" />
-          <h4 class="text-black font-black text-xl md:text-2xl uppercase tracking-tighter italic mt-6 mb-2">
+          <Image src={imgMockup} alt="Mockup Combo Black" class="mx-auto h-auto w-full max-w-sm" />
+          <h4 class="mt-6 mb-2 text-xl font-black tracking-tighter text-black uppercase italic md:text-2xl">
             LEVE TUDO ISSO AGORA:
           </h4>
         </div>
 
-        <div class="space-y-2 mb-8">
-          <p class="text-gray-600 font-bold text-lg">De <span class="line-through text-gray-400">R$ 1.299,00</span> por apenas 12x</p>
+        <div class="mb-8 space-y-2">
+          <p class="text-lg font-bold text-gray-600">
+            De <span class="text-gray-400 line-through">R$ 1.299,00</span> por apenas 12x
+          </p>
           <div class="flex flex-col">
-            <span class="text-black text-7xl md:text-8xl font-black leading-none tracking-tighter">R$ 29,90</span>
-            <p class="text-gray-500 font-bold text-sm mt-2">parcelado no cartão ou R$299,00 à vista</p>
-            <p class="text-brand-red font-bold text-sm italic mt-1">Mais de 77% de desconto com acesso vitalício</p>
+            <span class="text-7xl leading-none font-black tracking-tighter text-black md:text-8xl">
+              R$ 29,90
+            </span>
+            <p class="mt-2 text-sm font-bold text-gray-500">
+              parcelado no cartão ou R$299,00 à vista
+            </p>
+            <p class="mt-1 text-sm font-bold text-brand-red italic">
+              Mais de 77% de desconto com acesso vitalício
+            </p>
           </div>
         </div>
 
-        <a href="https://sun.eduzz.com/R9JJ47G69X" target="_blank" class="inline-block w-full py-6 px-8 bg-[#65A30D] hover:bg-[#4d7c0f] text-white text-xl md:text-2xl font-black rounded-2xl shadow-xl transition-all transform hover:-translate-y-1 uppercase tracking-tighter italic animate-shake mb-8">
+        <a
+          href="https://sun.eduzz.com/R9JJ47G69X"
+          target="_blank"
+          class="animate-shake mb-8 inline-block w-full transform rounded-2xl bg-[#65A30D] px-8 py-6 text-xl font-black tracking-tighter text-white uppercase italic shadow-xl transition-all hover:-translate-y-1 hover:bg-[#4d7c0f] md:text-2xl"
+        >
           CLIQUE PARA SE INSCREVER
         </a>
 
-        <div class="pt-6 border-t border-gray-100">
-          <Image src={imgPgto} alt="Pagamento Seguro" class="h-16 md:h-20 w-auto mx-auto object-contain" />
+        <div class="border-t border-gray-100 pt-6">
+          <Image
+            src={imgPgto}
+            alt="Pagamento Seguro"
+            class="mx-auto h-16 w-auto object-contain md:h-20"
+          />
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <style>
   @keyframes shake {
-    0%, 100% { transform: translateX(0) rotate(-1deg); }
-    25% { transform: translateX(-1px) rotate(1deg); }
-    75% { transform: translateX(1px) rotate(-1deg); }
+    0%,
+    100% {
+      transform: translateX(0) rotate(-1deg);
+    }
+    25% {
+      transform: translateX(-1px) rotate(1deg);
+    }
+    75% {
+      transform: translateX(1px) rotate(-1deg);
+    }
   }
   .animate-shake {
-    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
   }
 </style>

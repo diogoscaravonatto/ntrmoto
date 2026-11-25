@@ -1,19 +1,18 @@
 ---
-import { Image } from 'astro:assets';
-import imgSelo from '../../assets/images/selo_garantia_gold_7dias.png';
+import { Image } from "astro:assets";
+import imgSelo from "../../assets/images/selo_garantia_gold_7dias.png";
 ---
 
-<section class="py-20 px-4 bg-white relative overflow-hidden border-b border-slate-100">
-  <div class="max-w-4xl mx-auto relative z-10">
-    <div class="bg-slate-50 border border-slate-200 rounded-[32px] p-8 md:p-12 shadow-sm relative">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-        
+<section class="relative overflow-hidden border-b border-slate-100 bg-white px-4 py-20">
+  <div class="relative z-10 mx-auto max-w-4xl">
+    <div class="relative rounded-[32px] border border-slate-200 bg-slate-50 p-8 shadow-sm md:p-12">
+      <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-12">
         {/* Esquerda: Selo (Col 4) */}
-        <div class="md:col-span-4 flex justify-center">
-          <Image 
-            src={imgSelo} 
-            alt="Selo Garantia 7 Dias" 
-            class="w-36 h-auto object-contain hover:scale-105 transition-transform duration-500" 
+        <div class="flex justify-center md:col-span-4">
+          <Image
+            src={imgSelo}
+            alt="Selo Garantia 7 Dias"
+            class="h-auto w-36 object-contain transition-transform duration-500 hover:scale-105"
             width={180}
             height={180}
             loading="lazy"
@@ -22,24 +21,24 @@ import imgSelo from '../../assets/images/selo_garantia_gold_7dias.png';
         </div>
 
         {/* Direita: Texto de Garantia (Col 8) */}
-        <div class="md:col-span-8 text-center md:text-left space-y-4">
-          <span class="text-brand-orange font-black text-xs uppercase tracking-wider italic">Jogo Limpo - 7 Dias de Garantia</span>
-          <h2 class="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">
+        <div class="space-y-4 text-center md:col-span-8 md:text-left">
+          <span class="text-xs font-black tracking-wider text-brand-orange uppercase italic">
+            Jogo Limpo - 7 Dias de Garantia
+          </span>
+          <h2 class="text-3xl leading-none font-black tracking-tighter text-slate-900 uppercase italic md:text-4xl">
             E se não gostar, te devolvo o Dinheiro.
           </h2>
-          <div class="text-slate-600 text-sm md:text-base leading-relaxed space-y-3 font-semibold">
+          <div class="space-y-3 text-sm leading-relaxed font-semibold text-slate-600 md:text-base">
             <p>
-              **Papo reto:** ou você aprende, aplica e vê resultado... ou eu te devolvo seu dinheiro na hora. Sem mimimi. Sem desculpa. Sem papo furado.
+              **Papo reto:** ou você aprende, aplica e vê resultado... ou eu te devolvo seu dinheiro
+              na hora. Sem mimimi. Sem desculpa. Sem papo furado.
             </p>
-            <p>
-              Ou fica feliz com o resultado... ou fica feliz com seu dinheiro de volta.
-            </p>
-            <p class="text-brand-orange font-black uppercase italic tracking-tight">
+            <p>Ou fica feliz com o resultado... ou fica feliz com seu dinheiro de volta.</p>
+            <p class="font-black tracking-tight text-brand-orange uppercase italic">
               Simples assim. Jogo limpo. Sem conversa fiada.
             </p>
           </div>
         </div>
-
       </div>
     </div>
   </div>

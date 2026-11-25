@@ -1,16 +1,17 @@
 ---
 ---
-<div 
-  id="sticky-urgency-bar" 
-  class="fixed top-0 left-0 w-full bg-[#FF3333] text-white py-3 px-4 z-[100] transform -translate-y-full transition-transform duration-500 shadow-lg"
+
+<div
+  id="sticky-urgency-bar"
+  class="fixed top-0 left-0 z-[100] w-full -translate-y-full transform bg-[#FF3333] px-4 py-3 text-white shadow-lg transition-transform duration-500"
 >
-  <div class="max-w-7xl mx-auto flex items-center justify-center gap-4 text-center">
-    <p class="font-black text-sm md:text-lg uppercase tracking-wide">
+  <div class="mx-auto flex max-w-7xl items-center justify-center gap-4 text-center">
+    <p class="text-sm font-black tracking-wide uppercase md:text-lg">
       ⚠️ ÚLTIMOS DIAS COM 50% DE DESCONTO
     </p>
-    <a 
-      href="#oferta" 
-      class="hidden md:inline-block bg-white text-[#FF3333] px-4 py-1 rounded font-black text-xs uppercase hover:bg-gray-100 transition-colors"
+    <a
+      href="#oferta"
+      class="hidden rounded bg-white px-4 py-1 text-xs font-black text-[#FF3333] uppercase transition-colors hover:bg-gray-100 md:inline-block"
     >
       Aproveitar Agora
     </a>
@@ -18,17 +19,21 @@
 </div>
 
 <script>
-  const bar = document.getElementById('sticky-urgency-bar');
-  
+  const bar = document.getElementById("sticky-urgency-bar");
+
   // Atrasar a ativação do listener para não pesar o início
   setTimeout(() => {
-    window.addEventListener('scroll', () => {
-      // Aparece após rolar 800px (aproximadamente depois da Hero/Vídeo)
-      if (window.scrollY > 800) {
-        bar?.classList.remove('-translate-y-full');
-      } else {
-        bar?.classList.add('-translate-y-full');
-      }
-    }, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        // Aparece após rolar 800px (aproximadamente depois da Hero/Vídeo)
+        if (window.scrollY > 800) {
+          bar?.classList.remove("-translate-y-full");
+        } else {
+          bar?.classList.add("-translate-y-full");
+        }
+      },
+      { passive: true },
+    );
   }, 5000);
 </script>

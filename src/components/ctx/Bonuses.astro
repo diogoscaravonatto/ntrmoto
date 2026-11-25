@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-import imgBonus1 from '../../assets/images/mockup_guia_motores.webp';
-import imgBonus2 from '../../assets/images/mockup_fabrica_motores.webp';
-import imgBonus3 from '../../assets/images/mockup_grupo_vip.webp';
+import { Image } from "astro:assets";
+import imgBonus1 from "../../assets/images/mockup_guia_motores.webp";
+import imgBonus2 from "../../assets/images/mockup_fabrica_motores.webp";
+import imgBonus3 from "../../assets/images/mockup_grupo_vip.webp";
 
 const bonuses = [
   {
@@ -10,82 +10,94 @@ const bonuses = [
     title: "Guia Mestre de Bielas (Tabela de Medidas)",
     desc: "Tudo o que você precisa para acertar a biela com o projeto ideal está aqui, eliminando o 'achismo' na hora de escolher e montar o conjunto.",
     price: "R$ 29,00",
-    img: imgBonus1
+    img: imgBonus1,
   },
   {
     tag: "BRINDE 2",
     title: "Tabela medidas de Pistões especiais",
     desc: "Tabela completa com curso, diâmetro e cilindrada dos motores preparados. Ideal para quem precisa de rapidez na hora de configurar o motor.",
     price: "R$ 39,00",
-    img: imgBonus2
+    img: imgBonus2,
   },
   {
     tag: "BRINDE 3",
     title: "O Plano 200km/h",
     desc: "Aula exclusiva com 3 fundamentos técnicos essenciais para projetos que buscam romper a barreira dos 200km/h.",
     price: "R$ 79,00",
-    img: imgBonus3
-  }
+    img: imgBonus3,
+  },
 ];
 ---
 
-<section class="py-24 px-4 bg-slate-50 relative overflow-hidden border-b border-slate-100">
-  <div class="max-w-6xl mx-auto relative z-10">
-    
-    <div class="text-center mb-16">
-      <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">Pacote de Aceleração</span>
-      <h2 class="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mt-2 mb-4 uppercase tracking-tighter italic">
+<section class="relative overflow-hidden border-b border-slate-100 bg-slate-50 px-4 py-24">
+  <div class="relative z-10 mx-auto max-w-6xl">
+    <div class="mb-16 text-center">
+      <span class="text-sm font-black tracking-wider text-brand-orange uppercase italic">
+        Pacote de Aceleração
+      </span>
+      <h2 class="mt-2 mb-4 text-3xl font-black tracking-tighter text-slate-900 uppercase italic md:text-5xl lg:text-6xl">
         BRINDES <span class="text-brand-orange">EXCLUSIVOS</span>
       </h2>
-      <p class="text-slate-600 text-lg md:text-xl font-bold">
+      <p class="text-lg font-bold text-slate-600 md:text-xl">
         Além disso, você terá acesso aos 3 Brindes abaixo com acesso imediato…
       </p>
     </div>
 
     {/* Cards dos Brindes */}
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+    <div class="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
       {bonuses.map((item) => (
-        <div class="bg-white border border-slate-200 rounded-3xl p-8 hover:border-brand-orange/30 transition-all duration-300 flex flex-col justify-between group shadow-sm hover:shadow-md">
+        <div class="group flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-brand-orange/30 hover:shadow-md">
           <div class="space-y-4">
-            <div class="flex justify-between items-center">
-              <span class="bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-xs font-black uppercase tracking-wider px-3 py-1.5 rounded-full">{item.tag}</span>
-              <span class="text-slate-400 font-bold text-xs line-through">Valor: {item.price}</span>
+            <div class="flex items-center justify-between">
+              <span class="rounded-full border border-brand-orange/30 bg-brand-orange/10 px-3 py-1.5 text-xs font-black tracking-wider text-brand-orange uppercase">
+                {item.tag}
+              </span>
+              <span class="text-xs font-bold text-slate-400 line-through">Valor: {item.price}</span>
             </div>
-            
+
             {/* Imagem do Mockup do Brinde */}
-            <div class="py-6 flex justify-center">
-              <Image 
-                src={item.img} 
-                alt={item.title} 
-                class="h-36 w-auto object-contain transition-transform duration-500 group-hover:scale-105" 
+            <div class="flex justify-center py-6">
+              <Image
+                src={item.img}
+                alt={item.title}
+                class="h-36 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
                 decoding="async"
               />
             </div>
 
-            <h3 class="text-slate-950 font-black text-xl uppercase italic tracking-tight leading-tight">{item.title}</h3>
-            <p class="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+            <h3 class="text-xl leading-tight font-black tracking-tight text-slate-950 uppercase italic">
+              {item.title}
+            </h3>
+            <p class="text-sm leading-relaxed text-slate-500">{item.desc}</p>
           </div>
 
-          <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center">
-            <span class="text-brand-orange font-black text-xs uppercase tracking-wide">Preço de Hoje:</span>
-            <span class="text-[#22C55E] font-black text-lg uppercase italic">GRÁTIS</span>
+          <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
+            <span class="text-xs font-black tracking-wide text-brand-orange uppercase">
+              Preço de Hoje:
+            </span>
+            <span class="text-lg font-black text-[#22C55E] uppercase italic">GRÁTIS</span>
           </div>
         </div>
       ))}
     </div>
 
     {/* Quadro de Valorização e CTA */}
-    <div class="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm max-w-4xl mx-auto text-center border-l-8 border-l-brand-orange mb-8">
-      <p class="text-slate-700 text-lg md:text-xl font-bold leading-relaxed mb-6">
+    <div class="mx-auto mb-8 max-w-4xl rounded-3xl border border-l-8 border-slate-200 border-l-brand-orange bg-white p-8 text-center shadow-sm md:p-10">
+      <p class="mb-6 text-lg leading-relaxed font-bold text-slate-700 md:text-xl">
         Só esses bônus já valeriam fácil mais de R$ 150,00... <br class="hidden md:block" />
-        mas hoje você leva o <span class="text-brand-orange">Curso de Taxa + TODOS os brindes</span> por apenas <span class="text-slate-950 font-black text-2xl">R$ 67</span>.
+        mas hoje você leva o <span class="text-brand-orange">
+          Curso de Taxa + TODOS os brindes
+        </span>{" "}
+        por apenas <span class="text-2xl font-black text-slate-950">R$ 67</span>.
       </p>
-      
-      <a href="#oferta" class="inline-block w-full max-w-md py-5 px-6 bg-brand-orange hover:bg-brand-orange-dark text-white text-lg md:text-xl font-black rounded-2xl shadow-[0_15px_30px_rgba(255,90,0,0.3)] transition-all duration-300 transform hover:-translate-y-1 uppercase tracking-tighter italic">
+
+      <a
+        href="#oferta"
+        class="inline-block w-full max-w-md transform rounded-2xl bg-brand-orange px-6 py-5 text-lg font-black tracking-tighter text-white uppercase italic shadow-[0_15px_30px_rgba(255,90,0,0.3)] transition-all duration-300 hover:-translate-y-1 hover:bg-brand-orange-dark md:text-xl"
+      >
         QUERO COMEÇAR AGORA
       </a>
     </div>
-
   </div>
 </section>
