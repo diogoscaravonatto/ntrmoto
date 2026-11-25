@@ -1,0 +1,864 @@
+---
+import { ENGINE_PRESETS } from "../../utils/calculadoras-ntr";
+import CalcCilindrada from "./CalcCilindrada.astro";
+import CalcTaxa from "./CalcTaxa.astro";
+import CalcVolumeCamara from "./CalcVolumeCamara.astro";
+import CalcRL from "./CalcRL.astro";
+import CalcVMP from "./CalcVMP.astro";
+import CalcCarburador from "./CalcCarburador.astro";
+import CalcValvulas2V from "./CalcValvulas2V.astro";
+import CalcValvulas4V from "./CalcValvulas4V.astro";
+import CalcDutos2V from "./CalcDutos2V.astro";
+import CalcDutos4V from "./CalcDutos4V.astro";
+---
+
+<div class="mx-auto w-full max-w-7xl space-y-10 px-4 pt-6 pb-20 sm:px-6 lg:px-8">
+  {/* Hero Compacto de Telemetria */}
+  <header class="ntr-reveal space-y-6 pt-2">
+    <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+      <div class="max-w-3xl space-y-3">
+        <span class="ntr-font-mono inline-flex items-center gap-2 rounded-full border border-[#FF2D20]/30 bg-[#FF2D20]/10 px-3.5 py-1 text-[10px] font-medium tracking-[0.2em] text-[#FF5A36] uppercase">
+          <span class="h-1.5 w-1.5 rounded-full bg-[#FF2D20]"></span>
+          NTR LAB // ENGENHARIA APLICADA
+        </span>
+        <h1 class="ntr-font-display text-3xl leading-[1.05] font-bold tracking-tight text-white sm:text-5xl">
+          Calculadora de Motores <span class="text-[#FF2D20]">NTR</span>
+        </h1>
+        <p class="max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-base">
+          As 10 ferramentas de dimensionamento usadas na banca de fluxo, dinamômetro e oficina — com
+          precisão matemática validada e sincronização instantânea entre módulos.
+        </p>
+      </div>
+
+      {/* Presets Rápidos de Moto */}
+      <div class="shrink-0 space-y-2">
+        <span class="ntr-font-mono block text-[10px] tracking-[0.18em] text-zinc-500 uppercase">
+          Carregar Referência de Motor
+        </span>
+        <div class="flex flex-wrap gap-2">
+          {ENGINE_PRESETS.map((preset) => (
+            <button
+              type="button"
+              data-preset-id={preset.id}
+              class="ntr-preset-btn inline-flex cursor-pointer items-center rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-xs font-medium text-zinc-300 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/[0.1] hover:text-white active:scale-95"
+            >
+              <span>{preset.label}</span>
+              <span class="ntr-font-mono ml-1.5 text-[10px] text-zinc-500">{preset.subtitle}</span>
+              <span
+                class:list={[
+                  "ntr-font-mono ml-1.5 rounded-full px-1.5 py-0.5 text-[9px] font-bold",
+                  preset.valves === 4
+                    ? "border border-[#FF6B00]/40 bg-[#FF6B00]/20 text-[#FF6B00]"
+                    : "bg-white/10 text-zinc-300",
+                ]}
+              >
+                {preset.valves}V
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {/* Fluid Island Navigation Bar (único elemento com backdrop-blur) */}
+  <nav
+    aria-label="Filtrar calculadoras por categoria"
+    class="sticky top-4 z-30 flex justify-center"
+  >
+    <div class="inline-flex flex-wrap items-center justify-center gap-1 rounded-full border border-white/15 bg-[#0d0d13]/85 p-1.5 shadow-[0_10px_40px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
+      <button
+        type="button"
+        data-filter="all"
+        class="ntr-filter-btn is-active cursor-pointer rounded-full px-4 py-2 text-xs font-semibold transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+      >
+        Todas <span class="ntr-font-mono ml-1 text-[10px] opacity-75">10</span>
+      </button>
+      <button
+        type="button"
+        data-filter="bloco"
+        class="ntr-filter-btn cursor-pointer rounded-full px-4 py-2 text-xs font-semibold transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+      >
+        Bloco &amp; Motor <span class="ntr-font-mono ml-1 text-[10px] opacity-75">5</span>
+      </button>
+      <button
+        type="button"
+        data-filter="cabecote"
+        class="ntr-filter-btn cursor-pointer rounded-full px-4 py-2 text-xs font-semibold transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+      >
+        Cabeçote &amp; Fluxo <span class="ntr-font-mono ml-1 text-[10px] opacity-75">4</span>
+      </button>
+      <button
+        type="button"
+        data-filter="alimentacao"
+        class="ntr-filter-btn cursor-pointer rounded-full px-4 py-2 text-xs font-semibold transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+      >
+        Alimentação <span class="ntr-font-mono ml-1 text-[10px] opacity-75">1</span>
+      </button>
+    </div>
+  </nav>
+
+  {/* Asymmetrical Bento Grid */}
+  <section id="ntr-bento-grid" class="grid grid-cols-1 items-stretch gap-6 md:grid-cols-12">
+    <CalcCilindrada />
+    <CalcTaxa />
+    <CalcVolumeCamara />
+    <CalcRL />
+    <CalcVMP />
+    <CalcCarburador />
+    <CalcValvulas2V />
+    <CalcValvulas4V />
+    <CalcDutos2V />
+    <CalcDutos4V />
+  </section>
+
+  {/* Painel Ficha Técnica Consolidada (Double-Bezel) */}
+  <section class="ntr-reveal rounded-[2rem] border border-white/10 bg-white/[0.04] p-1.5">
+    <div class="space-y-6 rounded-[calc(2rem-0.375rem)] bg-[#0b0b0f] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] sm:p-8">
+      <div class="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+        <div class="space-y-1">
+          <span class="ntr-font-mono text-[10px] tracking-[0.2em] text-[#FF5A36] uppercase">
+            TELEMETRIA CONSOLIDADA // SESSÃO ATUAL
+          </span>
+          <h2 class="ntr-font-display text-2xl font-bold text-white">Ficha Técnica do Projeto</h2>
+          <p class="text-xs text-zinc-400 sm:text-sm">
+            Resumo em tempo real dos cálculos acima pronto para colar no WhatsApp ou ordem de
+            serviço da oficina.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          id="ntr-copy-spec"
+          class="group/copy inline-flex shrink-0 cursor-pointer items-center justify-between gap-3 rounded-full bg-white py-2 pr-2 pl-5 text-xs font-bold tracking-[0.14em] text-[#050507] uppercase transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-zinc-200 active:scale-[0.98]"
+        >
+          <span id="ntr-copy-label">Copiar Ficha Técnica</span>
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-black/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/copy:translate-x-0.5 group-hover/copy:-translate-y-[1px] group-hover/copy:scale-105">
+            <svg
+              class="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <dl class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+        <div class="rounded-2xl border border-white/[0.07] bg-[#121218] p-3.5">
+          <dt class="ntr-font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
+            Cilindrada
+          </dt>
+          <dd class="ntr-font-mono mt-1 text-lg font-bold text-white">
+            <span data-summary="cilindrada">149,05</span> cc
+          </dd>
+        </div>
+        <div class="rounded-2xl border border-white/[0.07] bg-[#121218] p-3.5">
+          <dt class="ntr-font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
+            Taxa Estática
+          </dt>
+          <dd class="ntr-font-mono mt-1 text-lg font-bold text-white">
+            <span data-summary="taxa">9,52</span> :1
+          </dd>
+        </div>
+        <div class="rounded-2xl border border-white/[0.07] bg-[#121218] p-3.5">
+          <dt class="ntr-font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
+            Câmara Alvo
+          </dt>
+          <dd class="ntr-font-mono mt-1 text-lg font-bold text-white">
+            <span data-summary="volume">14,91</span> ml
+          </dd>
+        </div>
+        <div class="rounded-2xl border border-white/[0.07] bg-[#121218] p-3.5">
+          <dt class="ntr-font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
+            Relação R/L
+          </dt>
+          <dd class="ntr-font-mono mt-1 text-lg font-bold text-white">
+            <span data-summary="rl">0,28</span>
+          </dd>
+        </div>
+        <div class="rounded-2xl border border-white/[0.07] bg-[#121218] p-3.5">
+          <dt class="ntr-font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
+            VMP Máxima
+          </dt>
+          <dd class="ntr-font-mono mt-1 text-lg font-bold text-white">
+            <span data-summary="vmp">18,30</span> m/s
+          </dd>
+        </div>
+        <div class="rounded-2xl border border-white/[0.07] bg-[#121218] p-3.5">
+          <dt class="ntr-font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
+            Carb / TBI
+          </dt>
+          <dd class="ntr-font-mono mt-1 text-lg font-bold text-white">
+            <span data-summary="carb">24,5 / 26,9</span> mm
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</div>
+
+<style>
+  .ntr-filter-btn {
+    color: #a1a1aa;
+    background: transparent;
+  }
+
+  .ntr-filter-btn:hover {
+    color: #ffffff;
+  }
+
+  .ntr-filter-btn.is-active {
+    color: #ffffff;
+    background: #ff2d20;
+    box-shadow: 0 4px 20px rgba(255, 45, 32, 0.35);
+  }
+
+  :global(.ntr-preset-btn.is-active) {
+    color: #ffffff;
+    background: rgba(255, 45, 32, 0.2);
+    border-color: rgba(255, 45, 32, 0.55);
+  }
+
+  :global(.ntr-bezel-outer.is-preset-muted) {
+    opacity: 0.48;
+  }
+
+  :global(.ntr-bezel-outer.is-preset-match .ntr-bezel-inner) {
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.14),
+      0 0 0 1px rgba(255, 45, 32, 0.45);
+  }
+</style>
+
+<script>
+  import {
+    ENGINE_PRESETS,
+    calcCarburadorTBI,
+    calcCilindrada,
+    calcDutos2V,
+    calcDutos4V,
+    calcRL,
+    calcTaxaCompressao,
+    calcVMP,
+    calcValvulas2V,
+    calcValvulas4V,
+    calcVolumeCamara,
+    formatPtBR,
+  } from "../../utils/calculadoras-ntr";
+
+  const animatedValues = new Map<string, number>();
+  const activeRafs = new Map<string, number>();
+  let v2Range: "ate270" | "acima271" = "ate270";
+
+  const latestSummary = {
+    cilindrada: "149,05",
+    taxa: "9,52",
+    volume: "14,91",
+    rl: "0,28",
+    vmp: "18,30",
+    carb: "24,5",
+    tbi: "26,9",
+    v2Adm: "30,0",
+    v2Esc: "26,0",
+    v4Adm: "28,0",
+    v4Esc: "23,5",
+    d2Adm: "23,70",
+    d2Esc: "23,00",
+    d4Adm: "29,52",
+    d4Esc: "29,43",
+  };
+
+  function getNum(id: string): number {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return Number.NaN;
+    const raw = el.value.trim().replace(",", ".");
+    return raw === "" ? 0 : Number(raw);
+  }
+
+  function setInputVal(id: string, val: number, decimals: number): void {
+    const el = document.getElementById(id) as HTMLInputElement | null;
+    if (!el) return;
+    const factor = Math.pow(10, decimals);
+    el.value = String(Math.round((val + Number.EPSILON) * factor) / factor);
+  }
+
+  function animateOutput(key: string, target: number | null, decimals: number, suffix = ""): void {
+    const el = document.querySelector<HTMLElement>(`[data-output="${key}"]`);
+    if (!el) return;
+
+    const prevRaf = activeRafs.get(key);
+    if (prevRaf) cancelAnimationFrame(prevRaf);
+
+    if (target === null || !Number.isFinite(target)) {
+      animatedValues.delete(key);
+      el.textContent = "—";
+      return;
+    }
+
+    const startVal = animatedValues.get(key) ?? target;
+    if (Math.abs(startVal - target) < 1e-6) {
+      animatedValues.set(key, target);
+      el.textContent = `${formatPtBR(target, decimals)}${suffix}`;
+      return;
+    }
+
+    const duration = 260;
+    const startTime = performance.now();
+
+    const step = (now: number) => {
+      const t = Math.min(1, (now - startTime) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const current = startVal + (target - startVal) * eased;
+      el.textContent = `${formatPtBR(current, decimals)}${suffix}`;
+      if (t < 1) {
+        activeRafs.set(key, requestAnimationFrame(step));
+      } else {
+        animatedValues.set(key, target);
+        el.textContent = `${formatPtBR(target, decimals)}${suffix}`;
+        activeRafs.delete(key);
+      }
+    };
+
+    activeRafs.set(key, requestAnimationFrame(step));
+  }
+
+  function setSummary(key: string, text: string): void {
+    const el = document.querySelector<HTMLElement>(`[data-summary="${key}"]`);
+    if (el) el.textContent = text;
+  }
+
+  function setBadge(selector: string, text: string, tone: "emerald" | "amber" | "red"): void {
+    const el = document.querySelector<HTMLElement>(`[data-svg="${selector}"]`);
+    if (!el) return;
+    el.textContent = text;
+    el.classList.remove(
+      "bg-emerald-500/15",
+      "text-emerald-400",
+      "border-emerald-500/30",
+      "bg-amber-500/15",
+      "text-amber-400",
+      "border-amber-500/30",
+      "bg-[#FF2D20]/15",
+      "text-[#FF5A36]",
+      "border-[#FF2D20]/30",
+    );
+    if (tone === "emerald") {
+      el.classList.add("bg-emerald-500/15", "text-emerald-400", "border-emerald-500/30");
+    } else if (tone === "amber") {
+      el.classList.add("bg-amber-500/15", "text-amber-400", "border-amber-500/30");
+    } else {
+      el.classList.add("bg-[#FF2D20]/15", "text-[#FF5A36]", "border-[#FF2D20]/30");
+    }
+  }
+
+  function updateCilindrada(): number | null {
+    const bore = getNum("input-cil-bore");
+    const stroke = getNum("input-cil-stroke");
+    const cc = calcCilindrada(bore, stroke);
+    animateOutput("cilindrada-result", cc, 2);
+    latestSummary.cilindrada = formatPtBR(cc, 2);
+    setSummary("cilindrada", latestSummary.cilindrada);
+
+    const boreTxt = document.querySelector('[data-svg="cil-bore-txt"]');
+    const strokeTxt = document.querySelector('[data-svg="cil-stroke-txt"]');
+    const ratioTag = document.querySelector('[data-svg="cil-ratio-tag"]');
+    const chamber = document.querySelector<SVGGElement>('[data-svg="cil-chamber"]');
+
+    if (boreTxt) boreTxt.textContent = `Ø ${formatPtBR(bore, 1)} mm`;
+    if (strokeTxt) strokeTxt.textContent = formatPtBR(stroke, 1);
+
+    if (stroke > 0 && bore > 0) {
+      const bsRatio = bore / stroke;
+      const label = bsRatio > 1.03 ? "CURTO" : bsRatio < 0.97 ? "LONGO" : "QUADRADO";
+      if (ratioTag) ratioTag.textContent = `${label} // ${formatPtBR(bsRatio, 2)}`;
+      if (chamber) {
+        const sx = Math.max(0.76, Math.min(1.24, bore / 60));
+        const sy = Math.max(0.8, Math.min(1.18, stroke / 60));
+        chamber.style.transform = `scale(${sx.toFixed(3)}, ${sy.toFixed(3)})`;
+      }
+    }
+    return cc;
+  }
+
+  function updateTaxa(): void {
+    const cc = getNum("input-taxa-cc");
+    const vol = getNum("input-taxa-vol");
+    const taxa = calcTaxaCompressao(cc, vol);
+    animateOutput("taxa-result", taxa, 2);
+    latestSummary.taxa = formatPtBR(taxa, 2);
+    setSummary("taxa", latestSummary.taxa);
+
+    const pointer = document.querySelector<HTMLElement>('[data-svg="taxa-pointer"]');
+    const badge = document.querySelector<HTMLElement>('[data-svg="taxa-fuel-badge"]');
+    if (taxa !== null && pointer && badge) {
+      const pct = Math.max(0, Math.min(1, (taxa - 7.5) / 8.5));
+      const parentWidth = pointer.parentElement?.clientWidth ?? 220;
+      pointer.style.transform = `translateX(${Math.round(pct * Math.max(0, parentWidth - 8))}px)`;
+
+      badge.classList.remove("text-emerald-400", "text-amber-400", "text-[#FF5A36]");
+      if (taxa < 10.8) {
+        badge.textContent = "Gasolina";
+        badge.classList.add("text-emerald-400");
+      } else if (taxa < 13.2) {
+        badge.textContent = "Etanol / Álcool";
+        badge.classList.add("text-amber-400");
+      } else {
+        badge.textContent = "Metanol / Alta Taxa";
+        badge.classList.add("text-[#FF5A36]");
+      }
+    }
+  }
+
+  function updateVolumeCamara(): void {
+    const cc = getNum("input-vol-cc");
+    const taxa = getNum("input-vol-taxa");
+    const vol = calcVolumeCamara(cc, taxa);
+    animateOutput("volume-result", vol, 2);
+    latestSummary.volume = formatPtBR(vol, 2);
+    setSummary("volume", latestSummary.volume);
+
+    const fluid = document.querySelector<SVGRectElement>('[data-svg="vol-fluid"]');
+    if (fluid) {
+      const scale = vol === null ? 0.05 : Math.max(0.08, Math.min(0.95, vol / 45));
+      fluid.style.transform = `scaleY(${scale.toFixed(3)})`;
+    }
+  }
+
+  function updateRL(): void {
+    const stroke = getNum("input-rl-stroke");
+    const rod = getNum("input-rl-rod");
+    const rl = calcRL(stroke, rod);
+    animateOutput("rl-result", rl, 2);
+    latestSummary.rl = formatPtBR(rl, 2);
+    setSummary("rl", latestSummary.rl);
+
+    const rodGroup = document.querySelector<SVGGElement>('[data-svg="rl-rod-group"]');
+    if (rl !== null && rodGroup) {
+      const angle = Math.max(-18, Math.min(18, (rl - 0.25) * 80));
+      rodGroup.style.transform = `rotate(${angle.toFixed(2)}deg)`;
+      if (rl <= 0.3) {
+        setBadge("rl-zone-badge", "Ideal < 0,30", "emerald");
+      } else if (rl <= 0.33) {
+        setBadge("rl-zone-badge", "Atenção 0,30–0,33", "amber");
+      } else {
+        setBadge("rl-zone-badge", "Empuxo Alto > 0,33", "red");
+      }
+    }
+  }
+
+  function updateVMP(): void {
+    const stroke = getNum("input-vmp-stroke");
+    const rpm = getNum("input-vmp-rpm");
+    const vmp = calcVMP(stroke, rpm);
+    animateOutput("vmp-result", vmp, 2);
+    latestSummary.vmp = formatPtBR(vmp, 2);
+    setSummary("vmp", latestSummary.vmp);
+
+    const needle = document.querySelector<SVGGElement>('[data-svg="vmp-needle"]');
+    const arc = document.querySelector<SVGPathElement>('[data-svg="vmp-arc-fill"]');
+    if (vmp !== null) {
+      const norm = Math.max(0, Math.min(1, vmp / 30));
+      if (needle) {
+        const deg = -90 + norm * 180;
+        needle.style.transform = `rotate(${deg.toFixed(1)}deg)`;
+      }
+      if (arc) {
+        const offset = 270 - norm * 270;
+        arc.style.strokeDashoffset = offset.toFixed(1);
+      }
+      if (vmp < 20) {
+        setBadge("vmp-zone-badge", "Zona Segura < 20", "emerald");
+      } else if (vmp <= 24) {
+        setBadge("vmp-zone-badge", "Competição 20–24", "amber");
+      } else {
+        setBadge("vmp-zone-badge", "Redline > 24 m/s", "red");
+      }
+    }
+  }
+
+  function updateCarburador(): void {
+    const cc = getNum("input-carb-cc");
+    const rpm = getNum("input-carb-rpm");
+    const res = calcCarburadorTBI(cc, rpm);
+    animateOutput("carb-result", res?.carburador ?? null, 1);
+    animateOutput("tbi-result", res?.tbi ?? null, 1);
+
+    latestSummary.carb = formatPtBR(res?.carburador ?? null, 1);
+    latestSummary.tbi = formatPtBR(res?.tbi ?? null, 1);
+    setSummary("carb", `${latestSummary.carb} / ${latestSummary.tbi}`);
+
+    const carbRing = document.querySelector<SVGCircleElement>('[data-svg="carb-ring"]');
+    const tbiRing = document.querySelector<SVGCircleElement>('[data-svg="tbi-ring"]');
+    if (res && carbRing && tbiRing) {
+      const sCarb = Math.max(0.45, Math.min(1.45, res.carburador / 28));
+      const sTbi = Math.max(0.45, Math.min(1.5, res.tbi / 28));
+      carbRing.style.transform = `scale(${sCarb.toFixed(3)})`;
+      tbiRing.style.transform = `scale(${sTbi.toFixed(3)})`;
+    }
+  }
+
+  function updateValvulas2V(): void {
+    const cc = getNum("input-v2-cc");
+    const res = calcValvulas2V(cc, v2Range);
+    animateOutput("v2-adm-result", res?.adm ?? null, 1);
+    animateOutput("v2-esc-result", res?.esc ?? null, 1);
+    animateOutput("v2-pct-cc", res?.pctCC ?? null, 2, "%");
+    animateOutput("v2-pct-valv", res?.pctValvula ?? null, 2, "%");
+
+    latestSummary.v2Adm = formatPtBR(res?.adm ?? null, 1);
+    latestSummary.v2Esc = formatPtBR(res?.esc ?? null, 1);
+
+    const admSvg = document.querySelector<SVGCircleElement>('[data-svg="v2-adm"]');
+    const escSvg = document.querySelector<SVGCircleElement>('[data-svg="v2-esc"]');
+    if (res && admSvg && escSvg) {
+      admSvg.style.transform = `scale(${Math.max(0.7, Math.min(1.35, res.adm / 30)).toFixed(3)})`;
+      escSvg.style.transform = `scale(${Math.max(0.7, Math.min(1.35, res.esc / 26)).toFixed(3)})`;
+    }
+  }
+
+  function updateValvulas4V(): void {
+    const cc = getNum("input-v4-cc");
+    const res = calcValvulas4V(cc);
+    animateOutput("v4-adm-result", res?.adm ?? null, 1);
+    animateOutput("v4-esc-result", res?.esc ?? null, 1);
+    animateOutput("v4-pct-cc", res?.pctCC ?? null, 2, "%");
+    animateOutput("v4-pct-valv", res?.pctValvula ?? null, 2, "%");
+
+    latestSummary.v4Adm = formatPtBR(res?.adm ?? null, 1);
+    latestSummary.v4Esc = formatPtBR(res?.esc ?? null, 1);
+
+    const admGroup = document.querySelector<SVGGElement>('[data-svg="v4-adm-group"]');
+    const escGroup = document.querySelector<SVGGElement>('[data-svg="v4-esc-group"]');
+    if (res && admGroup && escGroup) {
+      admGroup.style.transform = `scale(${Math.max(0.75, Math.min(1.3, res.adm / 28)).toFixed(3)})`;
+      escGroup.style.transform = `scale(${Math.max(0.75, Math.min(1.3, res.esc / 23.5)).toFixed(3)})`;
+    }
+  }
+
+  function updateDutos2V(): void {
+    const sedeAdm = getNum("input-d2-adm-seat");
+    const sedeEsc = getNum("input-d2-esc-seat");
+    const res = calcDutos2V(sedeAdm, sedeEsc);
+    animateOutput("d2-adm-result", res?.dutoAdm ?? null, 2);
+    animateOutput("d2-esc-result", res?.dutoEsc ?? null, 2);
+    latestSummary.d2Adm = formatPtBR(res?.dutoAdm ?? null, 2);
+    latestSummary.d2Esc = formatPtBR(res?.dutoEsc ?? null, 2);
+  }
+
+  function updateDutos4V(): void {
+    const sedeAdm = getNum("input-d4-adm-seat");
+    const sedeEsc = getNum("input-d4-esc-seat");
+    const res = calcDutos4V(sedeAdm, sedeEsc);
+    animateOutput("d4-adm-result", res?.dutoAdm ?? null, 2);
+    animateOutput("d4-esc-result", res?.dutoEsc ?? null, 2);
+    latestSummary.d4Adm = formatPtBR(res?.dutoAdm ?? null, 2);
+    latestSummary.d4Esc = formatPtBR(res?.dutoEsc ?? null, 2);
+  }
+
+  function recalculateAll(): void {
+    updateCilindrada();
+    updateTaxa();
+    updateVolumeCamara();
+    updateRL();
+    updateVMP();
+    updateCarburador();
+    updateValvulas2V();
+    updateValvulas4V();
+    updateDutos2V();
+    updateDutos4V();
+  }
+
+  function syncBlockFromCilindrada(): number | null {
+    const cc = updateCilindrada();
+    const stroke = getNum("input-cil-stroke");
+    if (cc !== null) {
+      setInputVal("input-taxa-cc", cc, 2);
+      setInputVal("input-vol-cc", cc, 1);
+      setInputVal("input-carb-cc", cc, 1);
+    }
+    if (Number.isFinite(stroke) && stroke > 0) {
+      setInputVal("input-rl-stroke", stroke, 1);
+      setInputVal("input-vmp-stroke", stroke, 1);
+    }
+    return cc;
+  }
+
+  function clearHeadPresetHighlight(): void {
+    ["valvulas-2v", "dutos-2v", "valvulas-4v", "dutos-4v"].forEach((id) => {
+      const card = document.getElementById(`calc-card-${id}`);
+      card?.classList.remove("is-preset-match", "is-preset-muted");
+    });
+  }
+
+  function applyHeadPresetHighlight(valves: 2 | 4): void {
+    const matchIds = valves === 4 ? ["valvulas-4v", "dutos-4v"] : ["valvulas-2v", "dutos-2v"];
+    const mutedIds = valves === 4 ? ["valvulas-2v", "dutos-2v"] : ["valvulas-4v", "dutos-4v"];
+    matchIds.forEach((id) => {
+      const card = document.getElementById(`calc-card-${id}`);
+      card?.classList.add("is-preset-match");
+      card?.classList.remove("is-preset-muted");
+    });
+    mutedIds.forEach((id) => {
+      const card = document.getElementById(`calc-card-${id}`);
+      card?.classList.add("is-preset-muted");
+      card?.classList.remove("is-preset-match");
+    });
+  }
+
+  function syncEngineFromCilindrada(): void {
+    const cc = syncBlockFromCilindrada();
+    if (cc !== null) {
+      if (cc >= 271) {
+        switchV2Range("acima271", false);
+        setInputVal("input-v2-cc", cc, 1);
+      } else {
+        switchV2Range("ate270", false);
+        setInputVal("input-v2-cc", Math.max(100, cc), 1);
+      }
+      if (cc >= 250) {
+        setInputVal("input-v4-cc", cc, 1);
+      }
+    }
+    recalculateAll();
+
+    const syncLabel = document.querySelector<HTMLElement>("[data-sync-label]");
+    if (syncLabel) {
+      syncLabel.textContent = "Motor Sincronizado";
+      window.setTimeout(() => {
+        syncLabel.textContent = "Sincronizar Motor";
+      }, 1500);
+    }
+  }
+
+  function switchV2Range(nextRange: "ate270" | "acima271", applyDefaultValue = true): void {
+    v2Range = nextRange;
+    const input = document.getElementById("input-v2-cc") as HTMLInputElement | null;
+    const hint = input?.closest(".rounded-2xl")?.querySelector(".ntr-font-mono");
+    document.querySelectorAll<HTMLButtonElement>("[data-v2-range]").forEach((btn) => {
+      const isMatch = btn.dataset.v2Range === nextRange;
+      btn.classList.toggle("is-active", isMatch);
+      btn.setAttribute("aria-pressed", String(isMatch));
+    });
+
+    if (input) {
+      if (nextRange === "ate270") {
+        input.min = "100";
+        input.max = "270";
+        if (applyDefaultValue) input.value = "150";
+        if (hint) hint.textContent = "100–270cc";
+      } else {
+        input.min = "271";
+        input.max = "2000";
+        if (applyDefaultValue) input.value = "271";
+        if (hint) hint.textContent = "271–2000cc";
+      }
+    }
+    updateValvulas2V();
+  }
+
+  function initSuite(): void {
+    // 1. Listeners nos inputs
+    const cardUpdaters: Record<string, () => void> = {
+      cilindrada: updateCilindrada,
+      taxa: updateTaxa,
+      "volume-camara": updateVolumeCamara,
+      rl: updateRL,
+      vmp: updateVMP,
+      carburador: updateCarburador,
+      "valvulas-2v": updateValvulas2V,
+      "valvulas-4v": updateValvulas4V,
+      "dutos-2v": updateDutos2V,
+      "dutos-4v": updateDutos4V,
+    };
+
+    document
+      .querySelectorAll<HTMLInputElement>('[data-calc-card] input[type="number"]')
+      .forEach((input) => {
+        const card = input.closest<HTMLElement>("[data-calc-card]");
+        const cardId = card?.dataset.calcCard ?? "";
+        const runUpdate = () => cardUpdaters[cardId]?.();
+        input.addEventListener("input", runUpdate);
+        input.addEventListener("change", runUpdate);
+      });
+
+    // 2. Botões +/- táteis
+    document.querySelectorAll<HTMLButtonElement>("[data-step-btn]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.dataset.targetInput;
+        if (!targetId) return;
+        const input = document.getElementById(targetId) as HTMLInputElement | null;
+        if (!input) return;
+
+        const step = Number(input.step || "1");
+        const decimals = Number(input.dataset.decimals || "1");
+        const current = Number(input.value || "0");
+        const min = input.min !== "" ? Number(input.min) : -Infinity;
+        const max = input.max !== "" ? Number(input.max) : Infinity;
+        const delta = btn.dataset.stepBtn === "up" ? step : -step;
+        const next = Math.max(min, Math.min(max, current + delta));
+        setInputVal(targetId, next, decimals);
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      });
+    });
+
+    // 3. Switch 2V (Até 270cc / +271cc)
+    document.querySelectorAll<HTMLButtonElement>("[data-v2-range]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const next = btn.dataset.v2Range as "ate270" | "acima271";
+        switchV2Range(next, true);
+      });
+    });
+
+    // 4. Sincronizar Motor
+    document
+      .querySelector("[data-sync-engine]")
+      ?.addEventListener("click", syncEngineFromCilindrada);
+
+    // 5. Reset individual por card
+    document.querySelectorAll<HTMLButtonElement>("[data-reset-calc]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const cardId = btn.dataset.resetCalc;
+        if (!cardId) return;
+        const card = document.getElementById(`calc-card-${cardId}`);
+        if (!card) return;
+        if (cardId === "valvulas-2v") switchV2Range("ate270", true);
+        if (["valvulas-2v", "dutos-2v", "valvulas-4v", "dutos-4v"].includes(cardId)) {
+          clearHeadPresetHighlight();
+        }
+        card.querySelectorAll<HTMLInputElement>('input[type="number"]').forEach((input) => {
+          input.value = input.dataset.default ?? input.value;
+        });
+        cardUpdaters[cardId]?.();
+      });
+    });
+
+    // 6. Presets de Motos Reais (distingue 2V vs 4V: apenas CB 300R é 4V)
+    document.querySelectorAll<HTMLButtonElement>("[data-preset-id]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const preset = ENGINE_PRESETS.find((p) => p.id === btn.dataset.presetId);
+        if (!preset) return;
+        document
+          .querySelectorAll(".ntr-preset-btn")
+          .forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+
+        setInputVal("input-cil-bore", preset.boreMm, 2);
+        setInputVal("input-cil-stroke", preset.strokeMm, 2);
+        setInputVal("input-taxa-vol", preset.volumeMl, 2);
+        setInputVal("input-rl-rod", preset.rodLengthMm, 1);
+        setInputVal("input-vmp-rpm", preset.maxRpm, 0);
+        setInputVal("input-carb-rpm", preset.maxRpm, 0);
+
+        const cc = syncBlockFromCilindrada();
+        if (preset.valves === 4) {
+          if (cc !== null && cc >= 250) {
+            setInputVal("input-v4-cc", cc, 1);
+          }
+          setInputVal("input-d4-adm-seat", preset.sedeAdmMm, 1);
+          setInputVal("input-d4-esc-seat", preset.sedeEscMm, 1);
+        } else {
+          if (cc !== null) {
+            if (cc >= 271) {
+              switchV2Range("acima271", false);
+              setInputVal("input-v2-cc", cc, 1);
+            } else {
+              switchV2Range("ate270", false);
+              setInputVal("input-v2-cc", Math.max(100, cc), 1);
+            }
+          }
+          setInputVal("input-d2-adm-seat", preset.sedeAdmMm, 1);
+          setInputVal("input-d2-esc-seat", preset.sedeEscMm, 1);
+        }
+        applyHeadPresetHighlight(preset.valves);
+        recalculateAll();
+      });
+    });
+
+    // 7. Filtro da Fluid Island Nav
+    document.querySelectorAll<HTMLButtonElement>("[data-filter]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const filter = btn.dataset.filter ?? "all";
+        document
+          .querySelectorAll(".ntr-filter-btn")
+          .forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+
+        document.querySelectorAll<HTMLElement>("[data-calc-card]").forEach((card) => {
+          const match = filter === "all" || card.dataset.category === filter;
+          card.classList.toggle("hidden", !match);
+        });
+      });
+    });
+
+    // 8. Copiar Ficha Técnica
+    const copyBtn = document.getElementById("ntr-copy-spec");
+    const copyLabel = document.getElementById("ntr-copy-label");
+    copyBtn?.addEventListener("click", async () => {
+      const text = [
+        "FICHA TÉCNICA — CALCULADORA NTR MOTO",
+        `• Cilindrada: ${latestSummary.cilindrada} cc`,
+        `• Taxa Estática: ${latestSummary.taxa}:1`,
+        `• Volume Câmara Alvo: ${latestSummary.volume} ml`,
+        `• Relação R/L: ${latestSummary.rl}`,
+        `• VMP Máxima: ${latestSummary.vmp} m/s`,
+        `• Carburador / TBI: ${latestSummary.carb} mm / ${latestSummary.tbi} mm`,
+        `• Válvulas 2V: ADM ${latestSummary.v2Adm} mm | ESC ${latestSummary.v2Esc} mm`,
+        `• Válvulas 4V: ADM ${latestSummary.v4Adm} mm | ESC ${latestSummary.v4Esc} mm`,
+        `• Dutos 2V: ADM ${latestSummary.d2Adm} mm | ESC ${latestSummary.d2Esc} mm`,
+        `• Dutos 4V: ADM ${latestSummary.d4Adm} mm | ESC ${latestSummary.d4Esc} mm`,
+      ].join("\n");
+
+      try {
+        await navigator.clipboard.writeText(text);
+        if (copyLabel) {
+          copyLabel.textContent = "Ficha Copiada!";
+          window.setTimeout(() => {
+            copyLabel.textContent = "Copiar Ficha Técnica";
+          }, 1800);
+        }
+      } catch {
+        // Fallback silencioso
+      }
+    });
+
+    // 9. Spotlight suave nos Double-Bezels
+    document.querySelectorAll<HTMLElement>(".ntr-bezel-outer").forEach((card) => {
+      card.addEventListener("pointermove", (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+        card.style.setProperty("--my", `${e.clientY - rect.top}px`);
+      });
+    });
+
+    // 10. Scroll Reveal via IntersectionObserver (sem scroll listener)
+    const revealEls = document.querySelectorAll<HTMLElement>(".ntr-reveal");
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add("is-visible"));
+    }
+
+    recalculateAll();
+  }
+
+  initSuite();
+</script>

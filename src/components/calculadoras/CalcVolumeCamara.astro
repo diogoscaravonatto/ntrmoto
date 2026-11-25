@@ -1,0 +1,95 @@
+---
+import CalculatorShell from "./CalculatorShell.astro";
+import TelemetryInput from "./TelemetryInput.astro";
+import TelemetryReadout from "./TelemetryReadout.astro";
+---
+
+<CalculatorShell
+  id="volume-camara"
+  code="NTR // 03"
+  title="Volume da Câmara"
+  subtitle="Volume exato em ml necessário na câmara para atingir a taxa estática desejada."
+  category="bloco"
+  spanClass="md:col-span-5"
+>
+  <div class="grid grid-cols-12 items-center gap-3">
+    {/* Bureta Graduada SVG Animada */}
+    <div class="col-span-4 flex min-h-[168px] flex-col items-center justify-center rounded-2xl border border-white/[0.06] bg-[#09090d] p-3">
+      <svg viewBox="0 0 64 140" class="h-36 w-14" aria-hidden="true">
+        <defs>
+          <linearGradient id="ntr-fluid" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FF6B00" />
+            <stop offset="100%" stop-color="#FF2D20" />
+          </linearGradient>
+        </defs>
+        <rect
+          x="16"
+          y="10"
+          width="32"
+          height="108"
+          rx="6"
+          fill="rgba(255,255,255,0.03)"
+          stroke="rgba(255,255,255,0.22)"
+          stroke-width="1.4"
+        />
+        <rect
+          data-svg="vol-fluid"
+          x="18.5"
+          y="14"
+          width="27"
+          height="102"
+          rx="4"
+          fill="url(#ntr-fluid)"
+          opacity="0.82"
+          style="transform-origin: 32px 116px; transform: scaleY(0.37); transition: transform 650ms cubic-bezier(0.32,0.72,0,1);"
+        />
+        <g stroke="rgba(255,255,255,0.35)" stroke-width="1">
+          <line x1="20" y1="28" x2="30" y2="28" />
+          <line x1="20" y1="48" x2="27" y2="48" />
+          <line x1="20" y1="68" x2="32" y2="68" />
+          <line x1="20" y1="88" x2="27" y2="88" />
+          <line x1="20" y1="108" x2="30" y2="108" />
+        </g>
+        <path
+          d="M27 118 L37 118 L32 132 Z"
+          fill="rgba(255,255,255,0.16)"
+          stroke="rgba(255,255,255,0.28)"
+          stroke-width="1.1"
+        />
+      </svg>
+    </div>
+
+    <div class="col-span-8 flex flex-col gap-3">
+      <TelemetryInput
+        id="input-vol-cc"
+        label="Cilindrada"
+        unit="cc"
+        field="cc"
+        value={149.05}
+        min={0}
+        max={2000}
+        step={0.1}
+        decimals={1}
+      />
+      <TelemetryInput
+        id="input-vol-taxa"
+        label="Taxa de Compressão Estática"
+        unit=":1"
+        field="taxa"
+        value={11.0}
+        min={1.1}
+        max={20000}
+        step={0.1}
+        decimals={1}
+      />
+    </div>
+  </div>
+
+  <TelemetryReadout
+    label="Volume Ideal da Câmara"
+    outputKey="volume-result"
+    unit="ml"
+    initialText="14,91"
+    accent="neutral"
+  />
+</CalculatorShell>

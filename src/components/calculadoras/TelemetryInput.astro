@@ -1,0 +1,106 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  unit: string;
+  field: string;
+  value: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  decimals?: number;
+  hint?: string;
+  highlight?: boolean;
+}
+
+const {
+  id,
+  label,
+  unit,
+  field,
+  value,
+  min = 0,
+  max = 20000,
+  step = 0.1,
+  decimals = 1,
+  hint,
+  highlight = false,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "rounded-2xl border bg-[#121218] p-3.5 transition-colors duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] focus-within:border-[#FF2D20]/60",
+    highlight ? "border-white/15" : "border-white/[0.07]",
+  ]}
+>
+  <div class="mb-2 flex items-center justify-between gap-2">
+    <label for={id} class="text-xs leading-snug font-medium text-zinc-300">
+      {label}
+    </label>
+    {hint && (
+      <span class="ntr-font-mono shrink-0 text-[10px] tracking-wider text-zinc-500 uppercase">
+        {hint}
+      </span>
+    )}
+  </div>
+
+  <div class="flex items-center gap-2">
+    <button
+      type="button"
+      data-step-btn="down"
+      data-target-input={id}
+      aria-label={`Diminuir ${label}`}
+      class="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-zinc-300 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/[0.1] hover:text-white active:scale-95"
+    >
+      <svg
+        class="h-3.5 w-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      >
+        <path d="M5 12h14" />
+      </svg>
+    </button>
+
+    <div class="relative flex flex-1 items-center">
+      <input
+        id={id}
+        type="number"
+        inputmode="decimal"
+        data-field={field}
+        data-default={value}
+        data-decimals={decimals}
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+        class="ntr-font-mono w-full [appearance:textfield] rounded-xl border border-white/10 bg-[#09090d] px-3 py-1.5 pr-14 text-base font-semibold text-white transition-colors focus:border-[#FF2D20] focus:outline-none sm:text-lg [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+      />
+      <span class="ntr-font-mono pointer-events-none absolute right-3 text-[11px] tracking-wider text-zinc-400 uppercase">
+        {unit}
+      </span>
+    </div>
+
+    <button
+      type="button"
+      data-step-btn="up"
+      data-target-input={id}
+      aria-label={`Aumentar ${label}`}
+      class="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-zinc-300 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/[0.1] hover:text-white active:scale-95"
+    >
+      <svg
+        class="h-3.5 w-3.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      >
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+    </button>
+  </div>
+</div>

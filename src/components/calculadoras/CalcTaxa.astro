@@ -1,0 +1,74 @@
+---
+import CalculatorShell from "./CalculatorShell.astro";
+import TelemetryInput from "./TelemetryInput.astro";
+import TelemetryReadout from "./TelemetryReadout.astro";
+---
+
+<CalculatorShell
+  id="taxa"
+  code="NTR // 02"
+  title="Taxa de Compressão"
+  subtitle="Relação estática entre o volume total do cilindro e a câmara de combustão."
+  category="bloco"
+  spanClass="md:col-span-5"
+>
+  <div class="flex flex-col gap-3">
+    <TelemetryInput
+      id="input-taxa-cc"
+      label="Cilindrada"
+      unit="cc"
+      field="cc"
+      value={149.05}
+      min={0}
+      max={2000}
+      step={0.1}
+      decimals={2}
+    />
+    <TelemetryInput
+      id="input-taxa-vol"
+      label="Volume Total (ml)"
+      unit="ml"
+      field="volume"
+      value={17.5}
+      min={0.1}
+      max={2000}
+      step={0.1}
+      decimals={2}
+      hint="Buretagem"
+    />
+  </div>
+
+  {/* Barra de Combustível de Referência */}
+  <div class="space-y-2.5 rounded-2xl border border-white/[0.06] bg-[#09090d] p-3.5">
+    <div class="ntr-font-mono flex items-center justify-between text-[10px] tracking-[0.14em] uppercase">
+      <span class="text-zinc-400">Faixa de Combustível</span>
+      <span data-svg="taxa-fuel-badge" class="font-semibold text-emerald-400">
+        Gasolina
+      </span>
+    </div>
+    <div class="relative h-2 overflow-hidden rounded-full bg-white/[0.06]">
+      <div
+        class="absolute inset-0 opacity-85"
+        style="background: linear-gradient(90deg, #10b981 0%, #10b981 36%, #f59e0b 52%, #FF6B00 72%, #FF2D20 100%);"
+      ></div>
+      <div
+        data-svg="taxa-pointer"
+        class="absolute top-0 bottom-0 left-0 w-1.5 rounded-full bg-white shadow-[0_0_10px_#fff]"
+        style="transform: translateX(48px); transition: transform 600ms cubic-bezier(0.32,0.72,0,1);"
+      ></div>
+    </div>
+    <div class="ntr-font-mono flex justify-between text-[9px] text-zinc-500">
+      <span>8:1 GAS</span>
+      <span>11,5:1 ÁLC</span>
+      <span>14+:1 MET</span>
+    </div>
+  </div>
+
+  <TelemetryReadout
+    label="Taxa Estática"
+    outputKey="taxa-result"
+    unit=":1"
+    initialText="9,52"
+    accent="amber"
+  />
+</CalculatorShell>

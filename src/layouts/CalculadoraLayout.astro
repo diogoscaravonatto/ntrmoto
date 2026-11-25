@@ -1,0 +1,144 @@
+---
+import { Font } from "astro:assets";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  cademiRemote?: boolean;
+}
+
+const {
+  title,
+  description = "Suíte de Engenharia Aplicada da NTR Escola de Motores: Cilindrada, Taxa de Compressão, Volume da Câmara, R/L, VMP, Carburador/TBI, Válvulas e Dutos 2V/4V.",
+  cademiRemote = true,
+} = Astro.props;
+
+const siteOrigin = Astro.site ?? new URL("https://www.ntrmoto.com.br");
+const canonicalUrl = new URL(Astro.url.pathname, siteOrigin).toString();
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#050507" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    {/* Astro 7 Native Fonts API: zero requests externos ao Google Fonts */}
+    <Font cssVariable="--font-space-grotesk" preload />
+    <Font cssVariable="--font-jetbrains-mono" preload />
+
+    {cademiRemote && <script is:inline src="https://core.cademi.com.br/assets/js/remote.js" />}
+  </head>
+  <body class="ntr-telemetry-root min-h-[100dvh] bg-[#050507] text-[#F4F4F6] antialiased selection:bg-[#FF2D20] selection:text-white">
+    {/* Malha radial atmosférica fixa sem impacto de repaint em scroll */}
+    <div class="ntr-ambient-bg" aria-hidden="true">
+      <div class="ntr-ambient-orb ntr-ambient-orb--red"></div>
+      <div class="ntr-ambient-orb ntr-ambient-orb--amber"></div>
+      <div class="ntr-ambient-grid"></div>
+    </div>
+
+    {/* Textura micro-grain fixa (pointer-events-none) */}
+    <div class="ntr-noise-overlay" aria-hidden="true"></div>
+
+    <main class="relative z-10 flex min-h-[100dvh] flex-col">
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  .ntr-telemetry-root {
+    --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+    --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+    font-family: var(--font-display);
+  }
+
+  .ntr-ambient-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: #050507;
+  }
+
+  .ntr-ambient-orb {
+    position: absolute;
+    border-radius: 9999px;
+    opacity: 0.22;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .ntr-ambient-orb--red {
+    width: 680px;
+    height: 680px;
+    top: -240px;
+    left: -180px;
+    background: radial-gradient(circle, rgba(255, 45, 32, 0.38) 0%, rgba(255, 45, 32, 0) 70%);
+  }
+
+  .ntr-ambient-orb--amber {
+    width: 640px;
+    height: 640px;
+    bottom: -240px;
+    right: -180px;
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.24) 0%, rgba(255, 107, 0, 0) 70%);
+  }
+
+  .ntr-ambient-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 85% 70% at 50% 25%, black 35%, transparent 100%);
+  }
+
+  .ntr-noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  }
+
+  :global(.ntr-font-mono) {
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  :global(.ntr-font-display) {
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  }
+
+  :global(.ntr-reveal) {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 780ms cubic-bezier(0.32, 0.72, 0, 1),
+      transform 780ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  :global(.ntr-reveal.is-visible) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.ntr-reveal) {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,193 @@
+---
+import CalculatorShell from "./CalculatorShell.astro";
+import TelemetryInput from "./TelemetryInput.astro";
+import TelemetryReadout from "./TelemetryReadout.astro";
+---
+
+<CalculatorShell
+  id="dutos-4v"
+  code="NTR // 10"
+  title="Dutos — Cabeçote 4 Válvulas"
+  subtitle="Dimensionamento de dutos duplos de admissão e escape para cabeçotes 4V."
+  category="cabecote"
+  spanClass="md:col-span-6"
+>
+  <span slot="badge" class="ntr-font-mono text-[10px] tracking-wider text-zinc-500 uppercase">
+    1,342 ADM // 1,549 ESC
+  </span>
+
+  {/* SVG Fluxo Duplo 4V */}
+  <div class="flex items-center justify-between gap-4 rounded-2xl border border-white/[0.06] bg-[#09090d] px-4 py-3">
+    <svg viewBox="0 0 220 68" class="h-16 w-full" aria-hidden="true">
+      <path
+        d="M12 24 C 58 24, 72 34, 98 44"
+        fill="none"
+        stroke="rgba(255,45,32,0.28)"
+        stroke-width="11"
+        stroke-linecap="round"
+      />
+      <path
+        d="M12 24 C 58 24, 72 48, 98 58"
+        fill="none"
+        stroke="rgba(255,45,32,0.22)"
+        stroke-width="11"
+        stroke-linecap="round"
+      />
+      <path
+        class="ntr-flow-4v"
+        d="M12 24 C 58 24, 72 34, 98 44"
+        fill="none"
+        stroke="#FF2D20"
+        stroke-width="1.8"
+        stroke-dasharray="6 8"
+        stroke-linecap="round"
+      />
+      <path
+        class="ntr-flow-4v"
+        d="M12 24 C 58 24, 72 48, 98 58"
+        fill="none"
+        stroke="#FF2D20"
+        stroke-width="1.8"
+        stroke-dasharray="6 8"
+        stroke-linecap="round"
+      />
+
+      <path
+        d="M122 44 C 148 34, 162 24, 208 24"
+        fill="none"
+        stroke="rgba(255,107,0,0.28)"
+        stroke-width="10"
+        stroke-linecap="round"
+      />
+      <path
+        d="M122 58 C 148 48, 162 24, 208 24"
+        fill="none"
+        stroke="rgba(255,107,0,0.22)"
+        stroke-width="10"
+        stroke-linecap="round"
+      />
+      <path
+        class="ntr-flow-4v"
+        d="M122 44 C 148 34, 162 24, 208 24"
+        fill="none"
+        stroke="#FF6B00"
+        stroke-width="1.8"
+        stroke-dasharray="6 8"
+        stroke-linecap="round"
+      />
+      <path
+        class="ntr-flow-4v"
+        d="M122 58 C 148 48, 162 24, 208 24"
+        fill="none"
+        stroke="#FF6B00"
+        stroke-width="1.8"
+        stroke-dasharray="6 8"
+        stroke-linecap="round"
+      />
+
+      <text x="16" y="11" fill="#a1a1aa" font-size="8.5" font-family="JetBrains Mono, monospace">
+        DUTO ADM 4V (×1,342)
+      </text>
+      <text
+        x="204"
+        y="11"
+        text-anchor="end"
+        fill="#a1a1aa"
+        font-size="8.5"
+        font-family="JetBrains Mono, monospace"
+      >
+        DUTO ESC 4V (×1,549)
+      </text>
+    </svg>
+  </div>
+
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <TelemetryInput
+      id="input-d4-adm-valve"
+      label="Diâmetro Válvula ADM"
+      unit="mm"
+      field="admValve"
+      value={28}
+      min={0}
+      max={50}
+      step={0.1}
+      decimals={1}
+      hint="Ref."
+    />
+    <TelemetryInput
+      id="input-d4-adm-seat"
+      label="Diâmetro Interno Sede ADM"
+      unit="mm"
+      field="sedeAdm"
+      value={22}
+      min={0}
+      max={50}
+      step={0.1}
+      decimals={1}
+      hint="Calcula ADM"
+      highlight={true}
+    />
+    <TelemetryInput
+      id="input-d4-esc-valve"
+      label="Diâmetro Válvula ESC"
+      unit="mm"
+      field="escValve"
+      value={23.5}
+      min={0}
+      max={50}
+      step={0.1}
+      decimals={1}
+      hint="Ref."
+    />
+    <TelemetryInput
+      id="input-d4-esc-seat"
+      label="Diâmetro Interno Sede ESC"
+      unit="mm"
+      field="sedeEsc"
+      value={19}
+      min={0}
+      max={50}
+      step={0.1}
+      decimals={1}
+      hint="Calcula ESC"
+      highlight={true}
+    />
+  </div>
+
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <TelemetryReadout
+      label="Duto Admissão"
+      outputKey="d4-adm-result"
+      unit="mm"
+      initialText="29,52"
+      accent="red"
+      size="md"
+    />
+    <TelemetryReadout
+      label="Duto Escape"
+      outputKey="d4-esc-result"
+      unit="mm"
+      initialText="29,43"
+      accent="amber"
+      size="md"
+    />
+  </div>
+</CalculatorShell>
+
+<style>
+  .ntr-flow-4v {
+    animation: ntr-dash-4v 1.4s linear infinite;
+  }
+
+  @keyframes ntr-dash-4v {
+    to {
+      stroke-dashoffset: -28;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ntr-flow-4v {
+      animation: none;
+    }
+  }
+</style>
