@@ -1,0 +1,364 @@
+{
+  "generatedAt": "2026-11-25T02:34:27.597Z",
+  "sourceOrigin": "https://www.escolademotores.com.br",
+  "targetOrigin": "https://www.ntrmoto.com.br",
+  "summary": {
+    "pagesImported": 14,
+    "uniqueAssetsDiscovered": 798,
+    "assetsDownloaded": 796,
+    "assetsFailed": 2,
+    "totalAssetsBytes": 27845766,
+    "totalAssetsMB": 26.56,
+    "largestAsset": {
+      "file": "/legacy-sp/media/9f78be8c7219-gif-super-desconto_wph99i.webp",
+      "bytes": 1764676
+    }
+  },
+  "pages": [
+    {
+      "slug": "pro",
+      "targetUrl": "https://www.ntrmoto.com.br/pro/",
+      "sourceUrl": "https://www.escolademotores.com.br/pro",
+      "title": "Curso de Preparação de Motores Método NTR",
+      "noindex": false,
+      "htmlBytes": 188633,
+      "localizedAssetsCount": 289,
+      "failedAssets": [
+        {
+          "url": "https://media.swipepages.com/62cec1912fa58b0010f6e4ef%2Fog%2FSUPER%20MOTORES.png",
+          "error": "HTTP 403"
+        }
+      ],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/1121929?dv=1",
+        "https://sun.eduzz.com/E9OO1GQV9B"
+      ],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": true,
+      "hasLegacySwipeForms": true,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "combo-comandos-4em1pro",
+      "targetUrl": "https://www.ntrmoto.com.br/combo-comandos-4em1pro/",
+      "sourceUrl": "https://www.escolademotores.com.br/combo-comandos-4em1pro",
+      "title": "Super Combo Comandos 4em1",
+      "noindex": false,
+      "htmlBytes": 86098,
+      "localizedAssetsCount": 102,
+      "failedAssets": [],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/1686735",
+        "https://sun.eduzz.com/G92V22EO9E"
+      ],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [
+        "GTM-W4DNLLD"
+      ],
+      "hasStape": false,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": true,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "curso-cabecote-v02",
+      "targetUrl": "https://www.ntrmoto.com.br/curso-cabecote-v02/",
+      "sourceUrl": "https://www.escolademotores.com.br/curso-cabecote-v02",
+      "title": "Curso de Preparação de Cabeçote",
+      "noindex": false,
+      "htmlBytes": 91051,
+      "localizedAssetsCount": 125,
+      "failedAssets": [],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/816463"
+      ],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": false,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "crp-pv11",
+      "targetUrl": "https://www.ntrmoto.com.br/crp-pv11/",
+      "sourceUrl": "https://www.escolademotores.com.br/crp-pv11",
+      "title": "Conteúdo Proibido para Preparadores Bonzinhos",
+      "noindex": false,
+      "htmlBytes": 106733,
+      "localizedAssetsCount": 129,
+      "failedAssets": [],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/797936"
+      ],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": false,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "calculadora-pv1",
+      "targetUrl": "https://www.ntrmoto.com.br/calculadora-pv1/",
+      "sourceUrl": "https://www.escolademotores.com.br/calculadora-pv1",
+      "title": "Calculadora de Motores NTR",
+      "noindex": false,
+      "htmlBytes": 115468,
+      "localizedAssetsCount": 106,
+      "failedAssets": [],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/1121929?dv=1",
+        "https://sun.eduzz.com/E0D6EJX691"
+      ],
+      "pandaVideoEmbeds": [
+        "https://player-vz-8c69785c-727.tv.pandavideo.com.br/embed/?v=9c4efdfa-5ed9-451f-ad04-d1764fea1135"
+      ],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": true,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "calculadora-pv2",
+      "targetUrl": "https://www.ntrmoto.com.br/calculadora-pv2/",
+      "sourceUrl": "https://www.escolademotores.com.br/calculadora-pv2",
+      "title": "Calculadora de Motores NTR",
+      "noindex": false,
+      "htmlBytes": 75568,
+      "localizedAssetsCount": 107,
+      "failedAssets": [],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/1121929?dv=1",
+        "https://sun.eduzz.com/E0D6EJX691"
+      ],
+      "pandaVideoEmbeds": [
+        "https://player-vz-8c69785c-727.tv.pandavideo.com.br/embed/?v=9c4efdfa-5ed9-451f-ad04-d1764fea1135",
+        "https://player.pandavideo.com.br/api.v2.js"
+      ],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": false,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "calculadora-up",
+      "targetUrl": "https://www.ntrmoto.com.br/calculadora-up/",
+      "sourceUrl": "https://www.escolademotores.com.br/calculadora-up",
+      "title": "Curso de Preparação Super Motores",
+      "noindex": true,
+      "htmlBytes": 64039,
+      "localizedAssetsCount": 77,
+      "failedAssets": [
+        {
+          "url": "https://media.swipepages.com/62cec1912fa58b0010f6e4ef%2Fog%2FSUPER%20MOTORES.png",
+          "error": "HTTP 403"
+        }
+      ],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/1121929?dv=1",
+        "https://sun.eduzz.com/E0D6EJX691?u=1"
+      ],
+      "pandaVideoEmbeds": [
+        "https://player-vz-8c69785c-727.tv.pandavideo.com.br/embed/?v=9c4efdfa-5ed9-451f-ad04-d1764fea1135",
+        "https://player.pandavideo.com.br/api.v2.js"
+      ],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": true,
+      "hasLegacySwipeForms": false,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "gmp-lp11",
+      "targetUrl": "https://www.ntrmoto.com.br/gmp-lp11/",
+      "sourceUrl": "https://www.escolademotores.com.br/gmp-lp11",
+      "title": "Guia de Motores Preparados - lp11",
+      "noindex": false,
+      "htmlBytes": 108500,
+      "localizedAssetsCount": 127,
+      "failedAssets": [],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/1686735",
+        "https://sun.eduzz.com/1901654"
+      ],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": true,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "gmp",
+      "targetUrl": "https://www.ntrmoto.com.br/gmp/",
+      "sourceUrl": "https://www.escolademotores.com.br/gmp",
+      "title": "Guia de Motores Preparados",
+      "noindex": false,
+      "htmlBytes": 110032,
+      "localizedAssetsCount": 85,
+      "failedAssets": [],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/1686735"
+      ],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": true,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "ctx-pv5",
+      "targetUrl": "https://www.ntrmoto.com.br/ctx-pv5/",
+      "sourceUrl": "https://www.escolademotores.com.br/ctx-pv5",
+      "title": "Curso Rápido Taxa de Compressão",
+      "noindex": false,
+      "htmlBytes": 135876,
+      "localizedAssetsCount": 124,
+      "failedAssets": [],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/2191231",
+        "https://sun.eduzz.com/2377783"
+      ],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": true,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "ctx-pv6",
+      "targetUrl": "https://www.ntrmoto.com.br/ctx-pv6/",
+      "sourceUrl": "https://www.escolademotores.com.br/ctx-pv6",
+      "title": "Curso Rápido Taxa de Compressão",
+      "noindex": false,
+      "htmlBytes": 132522,
+      "localizedAssetsCount": 126,
+      "failedAssets": [],
+      "eduzzLinks": [
+        "https://sun.eduzz.com/2191231",
+        "https://sun.eduzz.com/2377783"
+      ],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": true,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": true,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "aula-cambio",
+      "targetUrl": "https://www.ntrmoto.com.br/aula-cambio/",
+      "sourceUrl": "https://www.escolademotores.com.br/aula-cambio",
+      "title": "Aula Planilha de Câmbio e Relação",
+      "noindex": false,
+      "htmlBytes": 18325,
+      "localizedAssetsCount": 22,
+      "failedAssets": [
+        {
+          "url": "https://media.swipepages.com/65a16c863da9b30010bf8a9a%2Fog%2Faula-plnilha-cambio%20(1200%20x%20636%20px).png",
+          "error": "HTTP 403"
+        }
+      ],
+      "eduzzLinks": [],
+      "pandaVideoEmbeds": [
+        "https://player-vz-8c69785c-727.tv.pandavideo.com.br/embed/?v=ce2f965a-2e70-4561-8a04-1959b98625df",
+        "https://player.pandavideo.com.br/api.v2.js"
+      ],
+      "calconicEmbeds": [],
+      "hasCademiRemote": false,
+      "gtmIds": [],
+      "hasStape": false,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": false,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "embededcalc1",
+      "targetUrl": "https://www.ntrmoto.com.br/embededcalc1/",
+      "sourceUrl": "https://www.escolademotores.com.br/embededcalc1",
+      "title": "Calculadora de Motores - Embeded Conta 1 - 10k",
+      "noindex": true,
+      "htmlBytes": 28849,
+      "localizedAssetsCount": 38,
+      "failedAssets": [],
+      "eduzzLinks": [],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [
+        "5bc78917cd1547001b53339b",
+        "666cf45d982fb4002a0feca4",
+        "6669ef81982fb4002afc595d",
+        "6669f336982fb4002afc790a",
+        "5bc94423cabfa1001b0ba007",
+        "5ea6d2384d75890029d21e52",
+        "666d9c3a982fb4002a12cb30",
+        "6669f72b982fb4002afc9aef",
+        "666d9f5a982fb4002a12e0ba"
+      ],
+      "hasCademiRemote": true,
+      "gtmIds": [],
+      "hasStape": false,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": false,
+      "residualSwipeUrls": []
+    },
+    {
+      "slug": "embededcalc2",
+      "targetUrl": "https://www.ntrmoto.com.br/embededcalc2/",
+      "sourceUrl": "https://www.escolademotores.com.br/embededcalc2",
+      "title": "Calculadora de Motores - Embeded Conta 2 - 50k",
+      "noindex": true,
+      "htmlBytes": 28167,
+      "localizedAssetsCount": 38,
+      "failedAssets": [],
+      "eduzzLinks": [],
+      "pandaVideoEmbeds": [],
+      "calconicEmbeds": [
+        "650de62d08bc0e001e7e9b0f",
+        "650de73b08bc0e001e7e9b11",
+        "650df04808bc0e001e7e9b1b",
+        "650dff6608bc0e001e7e9b30",
+        "650def7c08bc0e001e7e9b19",
+        "650e006d08bc0e001e7e9b31",
+        "650e052f08bc0e001e7e9b3d",
+        "650e01d608bc0e001e7e9b34",
+        "650e0c6608bc0e001e7e9b40",
+        "650e03db08bc0e001e7e9b3a"
+      ],
+      "hasCademiRemote": true,
+      "gtmIds": [],
+      "hasStape": false,
+      "hasUtmify": false,
+      "hasLegacySwipeForms": false,
+      "residualSwipeUrls": []
+    }
+  ]
+}
