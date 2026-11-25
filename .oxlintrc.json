@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "import", "oxc", "promise"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "rules": {
+    "typescript/no-explicit-any": "warn",
+    "typescript/no-floating-promises": "error",
+    "typescript/no-misused-promises": "error",
+    "typescript/await-thenable": "error",
+    "import/no-named-as-default-member": "off",
+    "oxc/approx-constant": "off"
+  },
+  "overrides": [
+    {
+      "files": ["tests/**/*.test.ts"],
+      "plugins": ["vitest"],
+      "rules": {
+        "vitest/valid-expect": ["error", { "maxArgs": 2 }]
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "dist/",
+    ".astro/",
+    ".opencode/",
+    ".agents/",
+    ".agent/",
+    ".claude/",
+    ".codex/",
+    ".entire/",
+    ".gemini/",
+    ".vscode/",
+    ".wrangler/",
+    ".cloudflare/",
+    "node_modules/",
+    "public/",
+    "scratch/",
+    "src/legacy-swipepages/",
+    "scripts/",
+    "**/*.astro",
+    "*.d.ts"
+  ]
+}

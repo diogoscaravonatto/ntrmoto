@@ -15,7 +15,9 @@ pnpm-debug.log*
 
 # environment variables
 .env
+.env.local
 .env.production
+.agents/mcp_config.json
 
 # macOS-specific files
 .DS_Store
@@ -27,3 +29,4 @@ pnpm-debug.log*
 examples
 
 .wrangler
+.cloudflare/

@@ -1,0 +1,33 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "astro": true,
+  "sortTailwindcss": {
+    "stylesheet": "./src/styles/global.css",
+    "attributes": ["class", "className", "class:list"]
+  },
+  "ignorePatterns": [
+    "dist/",
+    ".astro/",
+    ".wrangler/",
+    ".cloudflare/",
+    ".opencode/",
+    ".agents/",
+    ".agent/",
+    ".claude/",
+    ".codex/",
+    ".entire/",
+    ".gemini/",
+    "node_modules/",
+    "public/",
+    "scratch/",
+    "src/legacy-swipepages/",
+    "docs/swipepages-manifest.json",
+    "pnpm-lock.yaml",
+    "skills-lock.json"
+  ]
+}

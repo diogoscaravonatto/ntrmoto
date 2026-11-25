@@ -1,68 +1,108 @@
 // @ts-check
-import { defineConfig } from 'astro/config'; // Importa a função helper para definir a configuração com suporte a Typescript
-import cloudflare from '@astrojs/cloudflare'; // Adaptador para deploy e execução na infraestrutura da Cloudflare
-import tailwindcss from '@tailwindcss/vite'; // Plugin Vite para suporte ao Tailwind CSS v4
-import sitemap from '@astrojs/sitemap'; // Integração para gerar automaticamente o arquivo sitemap.xml
-
-import compress from 'astro-compress'; // Integração para comprimir assets (HTML, JS, CSS) no build final
-
-import robotsTxt from 'astro-robots-txt'; // Integração para gerar automaticamente o arquivo robots.txt
+import { defineConfig, fontProviders } from "astro/config"; // Helper de configuração e provedores de fontes nativos
+import tailwindcss from "@tailwindcss/vite"; // Plugin Vite para suporte ao Tailwind CSS v4
+import sitemap from "@astrojs/sitemap"; // Integração para gerar automaticamente o arquivo sitemap.xml
+import robotsTxt from "astro-robots-txt"; // Integração para gerar automaticamente o arquivo robots.txt
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static', // Define o modo de saída como Estático para máxima performance e facilidade de deploy em LPs
-  build: {
-    inlineStylesheets: 'always', // Injeta o CSS diretamente no HTML para zerar o Render Blocking
+  // Padrão Astro 7 (`output: "static"`): gera Static Assets puros em `./dist` para `cf deploy ./dist`.
+  site: process.env.SITE_URL || "https://www.ntrmoto.com.br",
+
+  // Astro Fonts API: baixa e otimiza fontes em build-time (zero requests externos e métricas de fallback automáticas)
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Inter",
+      cssVariable: "--font-inter",
+      weights: [400, 500, 600, 700, 800, 900],
+      styles: ["normal"],
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Space Grotesk",
+      cssVariable: "--font-space-grotesk",
+      weights: [400, 500, 600, 700],
+      styles: ["normal"],
+    },
+    {
+      provider: fontProviders.google(),
+      name: "JetBrains Mono",
+      cssVariable: "--font-jetbrains-mono",
+      weights: [400, 500, 600, 700, 800],
+      styles: ["normal"],
+      fallbacks: ["ui-monospace", "monospace"],
+    },
+  ],
+
+  // Porta do dev/preview: respeita a env `PORT` quando presente.
+  server: {
+    port: Number(process.env.PORT) || 4321,
   },
-  site: 'https://lp.escolademotores.com.br', // URL base do subdomínio de LPs da NTR
 
-  // Adaptador Cloudflare para deploy na infraestrutura Cloudflare Workers
-  /*
-  adapter: cloudflare({
-    imageService: process.env.NODE_ENV === 'production' ? 'compile' : 'passthrough',
-    generateWranglerConfig: false,
-  }),
-  */
+  // Sessão desligada: projeto de landing pages / funis / calculadoras sem estado de servidor.
+  session: false,
 
-  integrations: [ // Lista de todas as integrações/plugins ativos no projeto
-    sitemap(), // Gera automaticamente o sitemap.xml
+  // Configurações de segurança
+  security: {
+    actionBodySizeLimit: 1048576, // 1MB
+  },
 
-    compress({ // Configurações de compressão de assets
-      CSS: true, // Habilita compressão de CSS
-      HTML: false, // Desabilitado para não alterar/minificar o código oficial do Meta Pixel no HTML
-      Image: false, // Sharp já otimiza, evitar compressão dupla que pode degradar qualidade
-      JavaScript: false, // Desabilitado para manter o script do Meta Pixel intacto
-      SVG: true, // Habilita compressão de arquivos SVG
+  // Prefetch conservador em hover para navegação rápida entre LPs
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "hover",
+  },
+
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.includes("/embed") &&
+        !page.includes("/404") &&
+        !page.includes("/500") &&
+        !page.includes("/es/") &&
+        !["/convite/", "/calculadora-up/"].some((excluded) => page.endsWith(excluded)),
     }),
 
-    robotsTxt({ // Configuração do gerador de robots.txt para SEO
-      policy: [ // Define as regras de acesso para robôs de busca
+    robotsTxt({
+      policy: [
         {
-          userAgent: "*", // Aplica a regra para todos os robôs (Google, Bing, etc)
-          allow: "/", // Permite o rastreamento da raiz do site
-          disallow: ["/404", "/500"], // Proíbe o rastreamento de páginas de erro
+          userAgent: "*",
+          allow: "/",
+          disallow: ["/404", "/500"],
         },
       ],
     }),
   ],
 
-  image: { // Configuração global do serviço de imagens do Astro
-    service: {
-      entrypoint: 'astro/assets/services/sharp' // Força o uso do Sharp para processamento local
-    },
-    remotePatterns: [ // Lista branca de domínios externos permitidos para otimização de imagem
+  image: {
+    remotePatterns: [
       {
-        protocol: 'https', // Protocolo seguro obrigatório
-        hostname: 'images.unsplash.com', // Permite imagens do Unsplash
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
       },
     ],
+    // Build-time: Sharp
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+      config: {
+        jpeg: { mozjpeg: true, quality: 80 },
+        webp: { effort: 5, quality: 80 },
+        avif: { effort: 4, quality: 70 },
+        png: { compressionLevel: 9 },
+      },
+    },
   },
 
-  devToolbar: { // Configuração da barra de ferramentas lateral do Astro em desenvolvimento
-    enabled: true // Mantém a barra ativada para facilitar o debug de ilhas e performance
+  devToolbar: {
+    enabled: true,
   },
 
-  vite: { // Configurações específicas para o motor de build Vite
-    plugins: [tailwindcss()], // Injeta o plugin do Tailwind CSS no fluxo do Vite
+  vite: {
+    plugins: [tailwindcss()],
   },
 });
