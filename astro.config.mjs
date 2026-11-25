@@ -48,6 +48,10 @@ export default defineConfig({
     actionBodySizeLimit: 1048576, // 1MB
   },
 
+  build: {
+    inlineStylesheets: "auto",
+  },
+
   // Prefetch conservador em hover para navegação rápida entre LPs
   prefetch: {
     prefetchAll: true,

@@ -121,9 +121,6 @@ importers:
       astro-robots-txt:
         specifier: ^1.0.0
         version: 1.0.0
-      astro-seo:
-        specifier: ^1.2.0
-        version: 1.2.0
       sharp:
         specifier: ^0.35.5
         version: 0.35.5(@types/node@24.19.2)
@@ -1603,9 +1600,6 @@ packages:
 
   astro-robots-txt@1.0.0:
     resolution: {integrity: sha512-6JQSLid4gMhoWjOm85UHLkgrw0+hHIjnJVIUqxjU2D6feKlVyYukMNYjH44ZDZBK1P8hNxd33PgWlHzCASvedA==}
-
-  astro-seo@1.2.0:
-    resolution: {integrity: sha512-ZqS2ZLKJ9GZwcONho9W95xkGBWuPpikTsMBzjuq/6CKtKUEgMDbSZkoLwoZsmLVq/p52T4z7JwgjC3AtMg7Trg==}
 
   astro@7.4.13:
     resolution: {integrity: sha512-tcpMXEB9jypYzbnzT/g6yxL0jRkFlj3WsvxcWgsxRjPBUE6r81qLo/7kN5GMWz6hC7spzrg6fvCeL2HG0Bl68g==}
@@ -4186,8 +4180,6 @@ snapshots:
     dependencies:
       valid-filename: 4.0.0
       zod: 3.25.76
-
-  astro-seo@1.2.0: {}
 
   astro@7.4.13(@types/node@24.19.2)(jiti@2.7.0)(yaml@2.9.1):
     dependencies:
