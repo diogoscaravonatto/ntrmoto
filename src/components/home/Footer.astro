@@ -1,35 +1,91 @@
 ---
 ---
 
-<footer class="bg-[#050505] border-t border-gray-900 py-12">
-  <div class="container mx-auto px-4 max-w-6xl">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-      
+<footer class="border-t border-gray-900 bg-[#050505] py-12">
+  <div class="container mx-auto max-w-6xl px-4">
+    <div class="flex flex-col items-center justify-between gap-6 md:flex-row">
       <div class="flex flex-col items-center md:items-start">
-        <h3 class="text-2xl font-black text-white italic tracking-tighter uppercase">NTR <span class="text-brand-red">Escola de Motores</span></h3>
-        <p class="text-gray-500 text-sm mt-2 max-w-sm text-center md:text-left">
+        <p class="text-2xl font-black tracking-tighter text-white uppercase italic">
+          NTR <span class="text-brand-red">Escola de Motores</span>
+        </p>
+        <p class="mt-2 max-w-sm text-center text-sm text-gray-500 md:text-left">
           A maior e mais respeitada escola de preparação de motores da América Latina.
         </p>
+        <nav
+          aria-label="Links institucionais"
+          class="mt-4 flex flex-wrap justify-center gap-4 text-xs font-semibold text-gray-400 md:justify-start"
+        >
+          <a href="/cursos/" class="hover:text-white">
+            Cursos
+          </a>
+          <a href="/ferramentas/" class="hover:text-white">
+            Ferramentas
+          </a>
+          <a href="/projetos/" class="hover:text-white">
+            Projetos
+          </a>
+          <a href="/aulas/cambio-e-velocidade-final/" class="hover:text-white">
+            Aula Gratuita
+          </a>
+          <a href="https://blog.ntrmoto.com.br" class="hover:text-white">
+            Blog Técnico
+          </a>
+        </nav>
       </div>
 
-      <div class="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 text-center flex flex-col items-center">
-        <h4 class="text-white font-bold mb-4">Fale conosco</h4>
-        <p class="text-sm text-gray-400 mb-4">Aperte no botão e fale com nossa equipe</p>
-        <a href="https://wa.me/554599999999" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-green-600 text-green-500 hover:bg-green-600 hover:text-white transition-colors rounded-full font-bold">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle">
-            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+      <div class="flex flex-col items-center rounded-2xl border border-gray-800 bg-gray-900/50 p-6 text-center">
+        <p class="mb-4 font-bold text-white">Fale conosco</p>
+        <p class="mb-4 text-sm text-gray-400">Aperte no botão e fale com nossa equipe</p>
+        <a
+          href="https://wa.me/5545999003816"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-green-600 px-6 py-3 font-bold text-green-500 transition-colors hover:bg-green-600 hover:text-white"
+        >
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-message-circle"
+          >
+            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
           </svg>
           Chamar no WhatsApp
         </a>
       </div>
-
     </div>
 
-    <div class="mt-12 pt-8 border-t border-gray-900 text-center">
-      <p class="text-gray-600 text-xs">
-        &copy; {new Date().getFullYear()} NTR Treinamentos Ltda | CNPJ: 31.507.848/0001-35 Cascavel - PR
-        <br /> Todos os Direitos Reservados.
+    <div class="mt-12 border-t border-gray-900 pt-8 text-center">
+      <p class="text-xs text-gray-600">
+        &copy; {new Date().getFullYear()} NTR Treinamentos Ltda | CNPJ: 31.507.848/0001-35 Cascavel
+        - PR
+        <br />
+        Todos os Direitos Reservados.
       </p>
+      <div class="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500">
+        <a
+          href="https://blog.ntrmoto.com.br/pages/privacidade"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-2 transition-colors hover:text-gray-300"
+        >
+          Privacidade
+        </a>
+        <button
+          type="button"
+          data-cookie-preferences
+          class="cursor-pointer underline underline-offset-2 transition-colors hover:text-gray-300"
+        >
+          Preferências de cookies
+        </button>
+      </div>
     </div>
   </div>
 </footer>

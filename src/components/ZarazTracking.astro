@@ -1,0 +1,253 @@
+---
+// Telemetria unificada Zaraz (GA4 + Meta CAPI) para páginas nativas Astro em www.ntrmoto.com.br.
+---
+
+<script>
+  import {
+    type AttributionData,
+    NTR_ATTR_COOKIE,
+    NTR_ID_COOKIE,
+    buildCookieDomainSuffix,
+    decorateCrossDomainUrl,
+    extractAttributionParams,
+    isTrackedCtaDestination,
+    mergeAttributionData,
+  } from "../utils/tracking";
+
+  type ZarazTrackPayload = Record<string, string | number>;
+  type ZarazWindow = Window & {
+    __ntrOpenCookiePrefs?: () => void;
+    __ntrTrackingInit?: boolean;
+    zaraz?: {
+      track?: (eventName: string, properties?: ZarazTrackPayload) => void;
+      showConsentModal?: () => void;
+    };
+  };
+
+  const win = window as ZarazWindow;
+  if (!win.__ntrTrackingInit) {
+    win.__ntrTrackingInit = true;
+
+    const cookiePrefsButtons = document.querySelectorAll<HTMLButtonElement>(
+      "[data-cookie-preferences]",
+    );
+    for (const btn of cookiePrefsButtons) {
+      btn.addEventListener("click", () => {
+        if (typeof win.__ntrOpenCookiePrefs === "function") {
+          win.__ntrOpenCookiePrefs();
+        } else {
+          win.zaraz?.showConsentModal?.();
+        }
+      });
+    }
+
+    function readFirstPartyCookie(name: string): string {
+      const prefix = `${name}=`;
+      for (const part of document.cookie.split(";")) {
+        const trimmed = part.trim();
+        if (trimmed.startsWith(prefix)) {
+          try {
+            return decodeURIComponent(trimmed.slice(prefix.length));
+          } catch {
+            return "";
+          }
+        }
+      }
+      return "";
+    }
+
+    function writeFirstPartyCookie(name: string, value: string, maxAgeSeconds: number) {
+      try {
+        const suffix = buildCookieDomainSuffix(window.location.hostname, window.location.protocol);
+        document.cookie = `${name}=${encodeURIComponent(value)}${suffix}; Max-Age=${maxAgeSeconds}`;
+      } catch {
+        // Ignora erro caso cookies estejam bloqueados
+      }
+    }
+
+    function getOrCreateNtrId(): string {
+      let id = readFirstPartyCookie(NTR_ID_COOKIE);
+      if (!id) {
+        try {
+          id = localStorage.getItem(NTR_ID_COOKIE) ?? "";
+        } catch {
+          id = "";
+        }
+      }
+      if (!id) {
+        id =
+          typeof crypto !== "undefined" && typeof crypto.randomUUID === "function"
+            ? crypto.randomUUID()
+            : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+      }
+      writeFirstPartyCookie(NTR_ID_COOKIE, id, 31536000);
+      try {
+        localStorage.setItem(NTR_ID_COOKIE, id);
+      } catch {
+        // Ignora erro de armazenamento
+      }
+      return id;
+    }
+
+    function persistAttribution(): AttributionData {
+      let stored: AttributionData = {};
+      const rawCookie = readFirstPartyCookie(NTR_ATTR_COOKIE);
+      if (rawCookie) {
+        try {
+          stored = JSON.parse(rawCookie) as AttributionData;
+        } catch {
+          stored = {};
+        }
+      } else {
+        try {
+          const rawLs = localStorage.getItem(NTR_ATTR_COOKIE);
+          if (rawLs) stored = JSON.parse(rawLs) as AttributionData;
+        } catch {
+          stored = {};
+        }
+      }
+      const incoming = extractAttributionParams(window.location.search);
+      const merged = mergeAttributionData(stored, incoming);
+      if (Object.keys(merged).length > 0) {
+        const serialized = JSON.stringify(merged);
+        writeFirstPartyCookie(NTR_ATTR_COOKIE, serialized, 2592000);
+        try {
+          localStorage.setItem(NTR_ATTR_COOKIE, serialized);
+        } catch {
+          // Ignora erro de armazenamento
+        }
+      }
+      return merged;
+    }
+
+    const pendingZarazEvents: Array<{ name: string; props: ZarazTrackPayload }> = [];
+    let zarazFlushScheduled = false;
+
+    function flushPendingZarazEvents() {
+      const z = win.zaraz;
+      if (!z?.track) return false;
+      while (pendingZarazEvents.length > 0) {
+        const item = pendingZarazEvents.shift();
+        if (item) z.track(item.name, item.props);
+      }
+      return true;
+    }
+
+    function trackZaraz(eventName: string, props: ZarazTrackPayload) {
+      const z = win.zaraz;
+      if (z?.track) {
+        z.track(eventName, props);
+        return;
+      }
+      pendingZarazEvents.push({ name: eventName, props });
+      if (!zarazFlushScheduled) {
+        zarazFlushScheduled = true;
+        document.addEventListener("zarazLoaded", () => flushPendingZarazEvents(), { once: true });
+        let attempts = 0;
+        const timer = window.setInterval(() => {
+          attempts += 1;
+          if (flushPendingZarazEvents() || attempts >= 20) {
+            window.clearInterval(timer);
+          }
+        }, 250);
+      }
+    }
+
+    const activeNtrId = getOrCreateNtrId();
+    const activeAttribution = persistAttribution();
+
+    // Decora links para escolademotores.com.br mantendo UTMs existentes intactas
+    const anchors = document.querySelectorAll<HTMLAnchorElement>("a[href]");
+    for (const anchor of anchors) {
+      const decorated = decorateCrossDomainUrl(
+        anchor.href,
+        window.location.href,
+        activeNtrId,
+        activeAttribution,
+      );
+      if (decorated) {
+        anchor.href = decorated;
+      }
+    }
+
+    // Evento view_content via Zaraz quando a página informa tipo e slug
+    const { ntrContentType, ntrContentSlug } = document.body.dataset;
+    if (ntrContentType && ntrContentSlug) {
+      trackZaraz("view_content", {
+        content_type: ntrContentType,
+        content_slug: ntrContentSlug,
+        page_path: window.location.pathname,
+      });
+    }
+
+    // Rastreamento unificado de CTAs comerciais (Eduzz/Greenn/WhatsApp/escolademotores.com.br)
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const anchor = target.closest("a");
+      if (!(anchor instanceof HTMLAnchorElement) || !anchor.href) return;
+      try {
+        const decorated = decorateCrossDomainUrl(
+          anchor.href,
+          window.location.href,
+          activeNtrId,
+          activeAttribution,
+        );
+        if (decorated) {
+          anchor.href = decorated;
+        }
+        const dest = new URL(anchor.href, window.location.href);
+        const host = dest.hostname.toLowerCase();
+        if (isTrackedCtaDestination(host)) {
+          const ctaText = (anchor.textContent ?? "").replace(/\s+/g, " ").trim().slice(0, 120);
+          trackZaraz("cta_click", {
+            link_url: dest.href,
+            link_host: host,
+            page_path: window.location.pathname,
+            cta_text: ctaText,
+          });
+        }
+      } catch {
+        // Ignora URLs inválidas
+      }
+    });
+
+    // Rastreamento de profundidade de rolagem (50% e 90%, uma única vez por marco)
+    let firedScroll50 = false;
+    let firedScroll90 = false;
+    let scrollTicking = false;
+
+    function evaluateScrollDepth() {
+      scrollTicking = false;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const currentY = window.scrollY || window.pageYOffset || 0;
+      const pct = (currentY / scrollable) * 100;
+      if (!firedScroll50 && pct >= 50) {
+        firedScroll50 = true;
+        trackZaraz("scroll_depth", {
+          percent_scrolled: 50,
+          page_path: window.location.pathname,
+        });
+      }
+      if (!firedScroll90 && pct >= 90) {
+        firedScroll90 = true;
+        trackZaraz("scroll_depth", {
+          percent_scrolled: 90,
+          page_path: window.location.pathname,
+        });
+      }
+      if (firedScroll50 && firedScroll90) {
+        window.removeEventListener("scroll", onScrollPassive);
+      }
+    }
+
+    function onScrollPassive() {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      window.requestAnimationFrame(evaluateScrollDepth);
+    }
+
+    window.addEventListener("scroll", onScrollPassive, { passive: true });
+  }
+</script>
