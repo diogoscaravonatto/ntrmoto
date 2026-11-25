@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import imgFabio from '../../../assets/images/fabio_ntr_bio.webp';
+---
+
+<section class="py-24 px-4 bg-white relative overflow-hidden border-b border-slate-100">
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      
+      {/* Esquerda: Foto (Col 5) */}
+      <div class="md:col-span-5 flex justify-center reveal-up active">
+        <div class="relative max-w-sm w-full">
+          <div class="absolute inset-0 bg-brand-orange/5 rounded-[32px] filter blur-xl -z-10 scale-95"></div>
+          
+          <div class="border border-slate-200 hover:border-brand-orange/30 transition-all duration-500 rounded-[32px] overflow-hidden shadow-sm p-2 bg-slate-50">
+            <Image 
+              src={imgFabio} 
+              alt="Fábio Scaravonatto" 
+              class="w-full h-auto rounded-[24px] object-cover" 
+              width={400}
+              height={500}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Direita: Texto Bio (Col 7) */}
+      <div class="md:col-span-7 space-y-6 text-left reveal-up active">
+        <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">Preparador y Fundador</span>
+        <h2 class="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">
+          CON QUIÉN VAS A <br /> <span class="text-brand-orange">APRENDER:</span>
+        </h2>
+        
+        <div class="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed font-semibold">
+          <p class="text-slate-800 text-lg">
+            👋 **Un gusto, soy Fábio Scaravonatto.**
+          </p>
+          <p>
+            Preparador profesional de motores con más de 20 años de experiencia y creador del Método práctico que ha transformado la pasión de miles de entusiastas y mecánicos en toda América Latina.
+          </p>
+          <p>
+            He preparado incontables motores de alto rendimiento para calle, pista, picadas (arrancones), velocidad en tierra y motocross (muchos de ellos campeones).
+          </p>
+          <p>
+            Y ahora todo mi conocimiento y experiencia técnica práctica están a tu alcance.
+          </p>
+          <p class="text-brand-orange font-black uppercase italic tracking-tight">
+            Sin rodeos teóricos, sin rodeos, directo a lo que realmente funciona.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

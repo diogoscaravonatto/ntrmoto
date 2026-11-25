@@ -1,0 +1,66 @@
+---
+// Links fornecidos pelo usuário
+const linkCombo = "https://lp.escolademotores.com.br/combo-black/?utm_source=ig&utm_medium=social&utm_content=link_in_bio";
+const linkCalculadora = "https://www.escolademotores.com.br/calculadora-pv2?utm_source=ig&utm_medium=social&utm_content=link_in_bio";
+const linkTaxa = "https://www.escolademotores.com.br/ctx-pv5?utm_source=ig&utm_medium=social&utm_content=link_in_bio";
+---
+
+<section id="cursos" class="py-24 bg-[#0a0a0a]">
+  <div class="container mx-auto px-4 max-w-6xl">
+    
+    <div class="text-center mb-16 reveal-up">
+      <h2 class="text-4xl md:text-5xl font-black text-white uppercase tracking-tight mb-4">
+        ONDE VOCÊ ESTÁ <span class="text-brand-red">NO JOGO?</span>
+      </h2>
+      <p class="text-gray-400 text-lg">Toque nas imagens abaixo para conhecer nossos cursos e materiais.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-up" style="transition-delay: 200ms;">
+      
+      {/* Curso 1: Super Combo (Agora em primeiro) */}
+      <a href={linkCombo} target="_blank" rel="noopener noreferrer" class="group relative bg-[#111] rounded-2xl border-2 border-brand-red/40 hover:border-brand-red overflow-hidden transition-all hover:-translate-y-2 flex flex-col h-full shadow-[0_0_20px_rgba(255,0,0,0.1)] hover:shadow-[0_0_40px_rgba(255,0,0,0.3)]">
+        <div class="absolute top-0 right-0 bg-gradient-to-r from-red-600 to-brand-red text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10 uppercase animate-pulse">Mais Vendido</div>
+        <div class="aspect-video w-full bg-black/50 overflow-hidden relative pt-6 p-4">
+          <img src="/images/mockup_combo.webp" alt="Super Combo NTR Vitalício" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/111/333?text=Mockup+Combo+Black'" />
+        </div>
+        <div class="p-6 flex flex-col flex-grow bg-gradient-to-b from-transparent to-brand-red/5">
+          <h3 class="text-xl font-black text-white uppercase mb-2">Super Combo Vitalício</h3>
+          <p class="text-gray-400 text-sm mb-6 flex-grow">6 Cursos Avançados. Acesso para sempre. Certificado + Brindes. A formação definitiva da NTR.</p>
+          <div class="w-full py-3 text-center bg-brand-red text-white font-bold rounded uppercase tracking-wider shadow-lg">
+            Liberar Acesso
+          </div>
+        </div>
+      </a>
+
+      {/* Curso 2: Calculadora */}
+      <a href={linkCalculadora} target="_blank" rel="noopener noreferrer" class="group relative bg-[#111] rounded-2xl border border-gray-800 hover:border-brand-red/50 overflow-hidden transition-all hover:-translate-y-2 flex flex-col h-full shadow-lg hover:shadow-[0_0_30px_rgba(255,0,0,0.2)]">
+        <div class="absolute top-0 right-0 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">FERRAMENTA</div>
+        <div class="aspect-video w-full bg-black/50 overflow-hidden relative pt-6 p-4">
+          <img src="/images/mockup_calculadora.webp" alt="Calculadora de Motores" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/111/333?text=Mockup+Calculadora'" />
+        </div>
+        <div class="p-6 flex flex-col flex-grow">
+          <h3 class="text-xl font-black text-white uppercase mb-2">Calculadora de Motores</h3>
+          <p class="text-gray-400 text-sm mb-6 flex-grow">O app para calcular e projetar motores preparados direto no celular em poucos segundos. Apenas R$ 9,90/mês.</p>
+          <div class="w-full py-3 text-center bg-gray-900 group-hover:bg-brand-red text-white font-bold rounded uppercase tracking-wider transition-colors">
+            Quero Acessar
+          </div>
+        </div>
+      </a>
+
+      {/* Curso 3: Taxa */}
+      <a href={linkTaxa} target="_blank" rel="noopener noreferrer" class="group relative bg-[#111] rounded-2xl border border-gray-800 hover:border-brand-red/50 overflow-hidden transition-all hover:-translate-y-2 flex flex-col h-full shadow-lg hover:shadow-[0_0_30px_rgba(255,0,0,0.2)]">
+        <div class="aspect-video w-full bg-black/50 overflow-hidden relative pt-6 p-4">
+          <img src="/images/mockup_taxa.webp" alt="Curso Rápido Taxa de Compressão" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/111/333?text=Mockup+Taxa'" />
+        </div>
+        <div class="p-6 flex flex-col flex-grow">
+          <h3 class="text-xl font-black text-white uppercase mb-2">Taxa de Compressão</h3>
+          <p class="text-gray-400 text-sm mb-6 flex-grow">Como aumentar brutalmente a potência da moto sem amarrar o motor. O curso rápido para dominar a taxa.</p>
+          <div class="w-full py-3 text-center bg-gray-900 group-hover:bg-brand-red text-white font-bold rounded uppercase tracking-wider transition-colors">
+            Começar Agora
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>

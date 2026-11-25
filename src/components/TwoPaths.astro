@@ -1,0 +1,88 @@
+---
+import { Image } from 'astro:assets';
+import imgFabio from '../assets/images/fabio_ntr_bio2.webp';
+---
+
+<section id="decisao" class="py-24 px-4 bg-black relative overflow-hidden border-t border-gray-900">
+  <div class="max-w-6xl mx-auto relative z-10">
+    
+    {/* Headline e Subtítulo Centralizados no Topo */}
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">
+        Dois caminhos.<br/>
+        <span class="text-brand-red">Uma decisão.</span>
+      </h2>
+      <p class="text-gray-400 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+        Talvez você ainda esteja em dúvida, mas a partir de agora só existem dois caminhos para você seguir:
+      </p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center gap-10">
+      
+      {/* Imagem do Fabio à Esquerda - Colorida e maior */}
+      <div class="hidden lg:block w-1/2 flex-shrink-0 self-center">
+        <Image 
+          src={imgFabio} 
+          alt="Fabio NTR Escola de Motores" 
+          class="w-full h-auto object-contain"
+        />
+      </div>
+
+      {/* Cards de Decisão à Direita */}
+      <div class="w-full lg:w-1/2 space-y-6 text-left self-center">
+        {/* Caminho 1 */}
+        <div class="group relative bg-[#0a0a0a] border border-gray-800 p-6 md:p-8 rounded-2xl transition-all duration-500 hover:border-gray-600">
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full border-2 border-gray-700 flex items-center justify-center shrink-0 mt-1">
+              <span class="text-gray-500 font-bold">1</span>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-gray-300 mb-2">Ignorar tudo isso e continuar tentando sozinho</h4>
+              <p class="text-gray-500 italic">
+                Como a maioria faz. Gastando fortunas em peças erradas, quebrando motor e passando vergonha nos pegas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Caminho 2 */}
+        <div class="group relative bg-[#0a0a0a] border-2 border-brand-red p-6 md:p-8 rounded-2xl shadow-[0_0_30px_rgba(255,51,51,0.15)] transition-all duration-500 transform hover:scale-[1.02]">
+          <div class="flex items-start gap-4">
+            <div class="w-8 h-8 rounded-full bg-brand-red flex items-center justify-center shrink-0 mt-1 shadow-[0_0_15px_rgba(255,51,51,0.5)]">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <div>
+              <h4 class="text-xl md:text-2xl font-black text-white mb-2 uppercase tracking-tight">Copiar o projeto Rei do 4Trinho e acelerar seu resultado</h4>
+              <p class="text-gray-400 font-medium leading-relaxed">
+                É só copiar e colar o projeto pra montar um motor forte de 32cv que realmente anda na frente. Mais fácil que isso impossível!
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    {/* Frase e Botão Centralizados no Final */}
+    <div class="mt-20 space-y-8 max-w-3xl mx-auto text-center reveal-up px-4">
+      <h2 class="text-white font-black text-3xl md:text-5xl italic uppercase tracking-tighter leading-[0.85] flex flex-col gap-2">
+        <span class="text-3xl md:text-4xl text-gray-400">A decisão é sua,</span>
+        <span class="text-3xl md:text-4xl text-brand-red">mas só existe</span>
+        <span class="text-5xl md:text-6xl text-brand-red">1 caminho</span>
+        <span class="text-3xl md:text-4xl text-gray-400">pra ter resultado</span>
+        <span class="text-brand-red text-4xl md:text-6xl">rápido e seguro!</span>
+      </h2>
+
+      <div class="max-w-md mx-auto">
+        <a 
+          href="https://sun.eduzz.com/1865589?cupom=especial50off&utm_content=1754141964121_17541415298533" 
+          class="block w-full py-5 px-6 bg-brand-red hover:bg-brand-red-dark text-white text-xl md:text-2xl font-black rounded-lg shadow-[0_0_20px_rgba(255,51,51,0.3)] hover:shadow-[0_0_40px_rgba(255,51,51,0.5)] transition-all transform hover:-translate-y-1 uppercase tracking-wider text-center"
+        >
+          QUERO O CAMINHO MAIS RÁPIDO
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

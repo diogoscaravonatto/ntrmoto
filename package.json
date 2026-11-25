@@ -1,6 +1,6 @@
 {
-  "name": "vetpragas-site",
-  "description": "Site institucional VetPragas com Astro v6 e Tailwind v4.",
+  "name": "ntr-escola-de-motores",
+  "description": "Site institucional NTR Escola de Motores com Astro v6 e Tailwind v4.",
   "type": "module",
   "version": "0.1.0",
   "scripts": {
@@ -9,16 +9,15 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "deploy": "npm run build && npx wrangler deploy",
+    "deploy": "astro build && npx wrangler pages deploy dist --project-name ntr-lp --commit-dirty=true",
     "generate-types": "wrangler types",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.0.0-beta.11",
-    "@astrojs/partytown": "^2.1.4",
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/cloudflare": "^14.0.0",
+    "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.1.18",
-    "astro": "^6.0.0-beta.17",
+    "astro": "^7.0.2",
     "astro-compress": "^2.3.9",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^1.1.0",
@@ -26,7 +25,7 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
+    "@astrojs/check": "^0.9.9",
     "@cloudflare/workers-types": "^4.20260206.0",
     "@typescript-eslint/eslint-plugin": "^8.54.0",
     "@typescript-eslint/parser": "^8.54.0",

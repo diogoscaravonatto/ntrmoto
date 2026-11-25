@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import r4tImage from '../../assets/images/r4t_image2.webp';
+import r4tBanner from '../../assets/images/R4T_IMAGE (800 x 200 px).png';
+---
+
+<section class="relative pt-12 pb-20 px-4 flex flex-col items-center justify-center text-center overflow-hidden bg-black">
+  
+  {/* Aviso Topo */}
+  <div class="mb-8 mt-4">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-red-950/40 rounded-full border border-red-900/50">
+      <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+      <span class="text-brand-red font-bold text-xs uppercase tracking-[0.15em]">TREINAMENTO 100% PRÁTICO</span>
+    </div>
+  </div>
+
+  {/* Headline Principal - Foco na dor e na curiosidade */}
+  <div class="max-w-4xl mx-auto space-y-6 mb-10">
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight md:leading-[1.1] tracking-normal">
+      COPIE E COLE ESSE PROJETO DE BAIXO CUSTO QUE GERA <span class="text-brand-red">32CV</span> E FAZ A MOTO PASSAR DOS <span class="relative inline-flex items-center justify-center px-4 py-1.5 ml-1 text-white italic z-10 leading-none"><span class="absolute inset-0 bg-brand-red -skew-x-12 -z-10 rounded-md"></span>200KM/H</span>
+    </h1>
+    <p class="text-gray-400 text-lg md:text-xl font-medium max-w-3xl mx-auto">
+      O passo a passo para preparar uma moto realmente forte para humilhar seus concorrentes e se tornar referência na sua cidade
+    </p>
+  </div>
+
+  {/* Imagem de Destaque (Substituindo Vídeo) */}
+  <div class="w-full max-w-4xl mx-auto mb-12 relative z-10">
+    <Image 
+      src={r4tImage} 
+      alt="Projeto R4T - 32cv" 
+      class="w-full h-auto"
+      loading="eager"
+    />
+  </div>
+
+  {/* Botão de Compra - Com animação de brilho (Shine) para maior CTR */}
+  <div id="hero-cta-container" class="w-full max-w-md mx-auto transition-all duration-1000 mb-20">
+    <a href="#oferta" class="relative overflow-hidden block w-full py-5 px-6 bg-brand-red hover:bg-brand-red-dark text-white text-xl md:text-2xl font-black rounded-lg shadow-[0_0_30px_rgba(255,51,51,0.4)] hover:shadow-[0_0_50px_rgba(255,51,51,0.6)] transition-all transform hover:-translate-y-1 uppercase tracking-wider group">
+      {/* Efeito de Brilho Correndo */}
+      <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-shine"></div>
+      
+      <span class="relative z-10">QUERO TER ACESSO AGORA</span>
+    </a>
+    <p class="mt-4 text-sm text-gray-500 flex items-center justify-center gap-2">
+      <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+      Acesso imediato e seguro
+    </p>
+  </div>
+
+</section>
+
+<style>
+  @keyframes shine {
+    0% { transform: translateX(-100%); }
+    20% { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+  }
+  .animate-shine {
+    animation: shine 3s infinite;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+  }
+</style>

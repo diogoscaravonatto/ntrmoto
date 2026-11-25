@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import imgSelo from '../../../assets/images/selo_garantia_gold_7dias.png';
+---
+
+<section class="py-20 px-4 bg-white relative overflow-hidden border-b border-slate-100">
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="bg-slate-50 border border-slate-200 rounded-[32px] p-8 md:p-12 shadow-sm relative">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        {/* Esquerda: Selo (Col 4) */}
+        <div class="md:col-span-4 flex justify-center">
+          <Image 
+            src={imgSelo} 
+            alt="Sello de Garantía de 7 Días" 
+            class="w-36 h-auto object-contain hover:scale-105 transition-transform duration-500" 
+            width={180}
+            height={180}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        {/* Direita: Texto de Garantia (Col 8) */}
+        <div class="md:col-span-8 text-center md:text-left space-y-4">
+          <span class="text-brand-orange font-black text-xs uppercase tracking-wider italic">Juego Limpio - 7 Días de Garantía</span>
+          <h2 class="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">
+            Y si no te gusta, te devuelvo tu Dinero.
+          </h2>
+          <div class="text-slate-600 text-sm md:text-base leading-relaxed space-y-3 font-semibold">
+            <p>
+              **Hablando claro:** o aprendes, aplicas y ves resultados... o te devuelvo tu dinero de inmediato. Sin excusas. Sin rodeos. Sin preguntas.
+            </p>
+            <p>
+              O quedas 100% satisfecho con los resultados... o quedas satisfecho con tu dinero de regreso.
+            </p>
+            <p class="text-brand-orange font-black uppercase italic tracking-tight">
+              Así de simple. Transparencia total.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

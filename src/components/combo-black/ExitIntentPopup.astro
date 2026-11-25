@@ -1,0 +1,120 @@
+---
+---
+
+<div id="exit-intent-popup" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4">
+  {/* Backdrop */}
+  <div class="absolute inset-0 bg-black/90 backdrop-blur-sm" id="popup-backdrop"></div>
+  
+  {/* Content Card */}
+  <div class="relative bg-[#0a0a0a] border-2 border-brand-red w-full max-w-lg p-8 md:p-12 rounded-[40px] text-center shadow-[0_0_100px_rgba(255,51,51,0.2)] transform scale-90 opacity-0 transition-all duration-300" id="popup-card">
+    
+    <div class="mb-8">
+      <div class="inline-block bg-brand-red text-white text-[10px] md:text-xs font-black px-4 py-1 rounded-full uppercase tracking-widest mb-6 animate-pulse">
+        Oportunidade Final
+      </div>
+      
+      <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter italic leading-none mb-6">
+        <span class="text-brand-red">ÚLTIMAS VAGAS</span>&nbsp;<span class="text-[#FFD700]">COM ACESSO VITALÍCIO</span>
+      </h2>
+      
+      <p class="text-gray-300 text-lg md:text-xl font-medium leading-tight">
+        Essa pode ser a última vez que você vai ver o Combo NTR com acesso pra sempre por apenas <span class="text-white font-bold text-2xl block mt-2">R$ 29,90/mês</span>
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      <a href="#oferta" id="popup-cta" class="inline-block w-full py-6 px-8 bg-[#65A30D] hover:bg-[#4d7c0f] text-white text-xl md:text-2xl font-black rounded-2xl shadow-[0_10px_30px_rgba(101,163,13,0.3)] transition-all transform hover:-translate-y-1 uppercase tracking-tighter italic animate-shake">
+        QUERO MEU ACESSO VITALÍCIO
+      </a>
+      
+      <p class="text-gray-500 text-sm font-bold italic">
+        Clique para garantir sua vaga antes que a página saia do ar
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(-1deg); }
+    25% { transform: translateX(-1px) rotate(1deg); }
+    75% { transform: translateX(1px) rotate(-1deg); }
+  }
+  .animate-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+  }
+</style>
+
+<script is:inline>
+  function initExitIntent() {
+    const popup = document.getElementById('exit-intent-popup');
+    const card = document.getElementById('popup-card');
+    const backdrop = document.getElementById('popup-backdrop');
+    const ctaBtn = document.getElementById('popup-cta');
+
+    let popupShown = false;
+
+    // Se já mostrou nesta sessão, não mostra de novo
+    if (sessionStorage.getItem('ntr_exit_popup_shown')) {
+      return;
+    }
+
+    function showPopup() {
+      if (popupShown) return;
+      popupShown = true;
+      sessionStorage.setItem('ntr_exit_popup_shown', 'true');
+
+      popup.classList.remove('hidden');
+      popup.classList.add('flex');
+      
+      // Pequeno delay para a animação de entrada
+      setTimeout(() => {
+        card.classList.remove('scale-90', 'opacity-0');
+        card.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    }
+
+    function hidePopup() {
+      card.classList.add('scale-90', 'opacity-0');
+      card.classList.remove('scale-100', 'opacity-100');
+      setTimeout(() => {
+        popup.classList.add('hidden');
+        popup.classList.remove('flex');
+      }, 300);
+    }
+
+    // Gatilhos ativados apenas após 5 segundos para evitar disparos falsos no load
+    setTimeout(() => {
+      // Gatilho Desktop: Mouse saindo pelo topo
+      document.addEventListener('mouseleave', (e) => {
+        if (e.clientY <= 0) {
+          showPopup();
+        }
+      });
+
+      // Gatilho Mobile: Botão Voltar (History API)
+      history.pushState(null, null, window.location.href);
+      window.addEventListener('popstate', (e) => {
+        // Ignora se o usuário está apenas navegando para uma seção na página (ex: clicou em um botão #oferta)
+        if (window.location.hash) return;
+
+        if (!popupShown) {
+          showPopup();
+          history.pushState(null, null, window.location.href);
+        }
+      });
+
+      // Gatilho de Tempo: 60 segundos (ajustado para 55s extras pois já passaram 5s)
+      setTimeout(() => {
+        showPopup();
+      }, 55000);
+    }, 5000);
+
+    // Fechar Popup
+    backdrop.addEventListener('click', hidePopup);
+    ctaBtn.addEventListener('click', hidePopup);
+  }
+
+  // Inicia após carregar
+  document.addEventListener('DOMContentLoaded', initExitIntent);
+</script>

@@ -1,0 +1,456 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import imgHero from '../../assets/images/black_vitalicia_ntr.jpg';
+import imgCabecoteN1Azul from '../../assets/images/card_cabecote_nivel1_azul.jpg';
+import imgCabecoteProN2Azul from '../../assets/images/card_cabecote_pro_nivel2_azul.jpg';
+import imgMolasEspeciaisAzul from '../../assets/images/card_molas_especiais_azul.jpg';
+import imgSuporteCabecotesAzul from '../../assets/images/card_suporte_cabecotes_azul.jpg';
+import imgComandosN1Vermelho from '../../assets/images/card_comandos_nivel1_vermelho.jpg';
+import imgComandosN2Vermelho from '../../assets/images/card_comandos_nivel2_vermelho.jpg';
+import imgComandosN3Vermelho from '../../assets/images/card_comandos_nivel3_vermelho.jpg';
+import imgUsinagemComandosVermelho from '../../assets/images/card_usinagem_comandos_vermelho.jpg';
+import imgAcertosFinosAmarelo from '../../assets/images/card_acertos_finos_amarelo.jpg';
+import imgAcertoPiggybackAmarelo from '../../assets/images/card_acerto_piggyback_amarelo.jpg';
+import imgEventoRemapAmarelo from '../../assets/images/card_evento_remap_amarelo.jpg';
+import imgCombustiveisCompeticaoAmarelo from '../../assets/images/card_combustiveis_competicao_amarelo.jpg';
+
+const whatsappLink = "https://chat.whatsapp.com/K6Ep51D9zleAXWg8V2Csey";
+
+const formacaoCabecotes = [
+  { title: "Preparação de Cabeçotes - Nível 1", img: imgCabecoteN1Azul },
+  { title: "Preparação de Cabeçotes PRO - Nível 2", img: imgCabecoteProN2Azul },
+  { title: "Molas Especiais - Cabeçotes Preparados", img: imgMolasEspeciaisAzul },
+  { title: "Suporte em Preparação de Cabeçotes", img: imgSuporteCabecotesAzul }
+];
+
+const formacaoComandos = [
+  { title: "Comandos em Ação - Nível 1", img: imgComandosN1Vermelho },
+  { title: "Mestre em Comandos - Nível 2", img: imgComandosN2Vermelho },
+  { title: "Comandos Agressivos - Nível 3", img: imgComandosN3Vermelho },
+  { title: "Usinagem de Comandos", img: imgUsinagemComandosVermelho }
+];
+
+const formacaoAcerto = [
+  { title: "Acertos Finos - Nível 1", img: imgAcertosFinosAmarelo },
+  { title: "Acerto Injeção Piggy Back", img: imgAcertoPiggybackAmarelo },
+  { title: "Evento Remap - Central na Prática", img: imgEventoRemapAmarelo },
+  { title: "Combustíveis de Competição", img: imgCombustiveisCompeticaoAmarelo }
+];
+
+const steps = [
+  {
+    num: "01",
+    title: "Entre no Grupo VIP",
+    desc: "Toque no botão verde desta página para entrar gratuitamente no grupo silencioso do WhatsApp."
+  },
+  {
+    num: "02",
+    title: "Revelação da Oferta Surpresa",
+    desc: "No dia 11/11 vamos revelar a condição inédita e secreta para liberar seu Acesso Vitalício aos cursos da NTR."
+  },
+  {
+    num: "03",
+    title: "Acesso Vitalício",
+    desc: "As vagas com a condição de Black Vitalícia serão exclusivas para quem estiver no grupo."
+  }
+];
+---
+
+<BaseLayout 
+  title="Black Vitalícia NTR - Grupo VIP Oficial (11/11)" 
+  description="Entre no Grupo VIP da Black Vitalícia NTR e receba no dia 11/11 a oferta surpresa para ter acesso vitalício ao maior arsenal de preparação de motores do Brasil."
+>
+
+  <div class="bg-[#050505] text-white selection:bg-brand-red selection:text-white">
+
+    {/* HERO SECTION */}
+    <section class="relative pt-8 pb-16 md:pt-14 md:pb-24 px-4 overflow-hidden border-b border-white/10">
+      {/* Glow de Fundo */}
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-brand-red/15 blur-[130px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* Coluna de Imagem (Mobile no topo para impacto imediato, Desktop na direita) */}
+          <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
+            <div class="relative w-full max-w-[360px] md:max-w-[420px] rounded-3xl overflow-hidden border-2 border-brand-red/40 shadow-[0_0_60px_rgba(255,51,51,0.25)] group">
+              <Image 
+                src={imgHero} 
+                alt="Black Vitalícia NTR" 
+                class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="eager"
+                fetchpriority="high"
+              />
+              {/* Badge Data Flutuante */}
+              <div class="absolute top-3 right-3 bg-black/85 backdrop-blur-md border border-brand-red/50 px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
+                <span class="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse"></span>
+                <span class="text-white font-black text-xs uppercase tracking-wider">Dia 11/11</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Coluna de Texto e CTA */}
+          <div class="lg:col-span-7 order-2 lg:order-1 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/30 px-4 py-1.5 rounded-full mb-5">
+              <span class="text-brand-red font-black text-xs md:text-sm uppercase tracking-widest">
+                🔥 A Maior Condição da História da NTR
+              </span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter italic leading-[0.95] mb-5">
+              ACESSO <span class="text-brand-red">VITALÍCIO</span><br />
+              AOS MELHORES CURSOS<br />
+              DE PREPARAÇÃO DO BRASIL
+            </h1>
+
+            <p class="text-gray-300 text-base md:text-lg font-medium leading-relaxed mb-7 max-w-2xl mx-auto lg:mx-0">
+              No dia <strong class="text-white font-black underline decoration-brand-red">11/11</strong>, vamos liberar uma <strong class="text-white">oferta surpresa</strong> para você garantir os melhores cursos da NTR com acesso para sempre.
+            </p>
+
+            {/* Botão Principal Grupo VIP */}
+            <div class="max-w-xl mx-auto lg:mx-0 mb-7">
+              <a 
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-vip-cta="hero"
+                class="btn-grupo-vip group relative flex items-center justify-center gap-3 w-full py-5 px-6 bg-[#22C55E] hover:bg-[#16a34a] text-white text-lg sm:text-xl font-black rounded-2xl shadow-[0_15px_40px_rgba(34,197,94,0.35)] hover:shadow-[0_15px_50px_rgba(34,197,94,0.55)] transition-all transform hover:-translate-y-1 uppercase tracking-tight italic"
+              >
+                <svg class="w-7 h-7 fill-current shrink-0 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.533 5.862l-1.533 5.602 5.745-1.506c1.693.923 3.631 1.448 5.691 1.448 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span>ENTRAR NO GRUPO VIP</span>
+              </a>
+              <p class="mt-3 text-gray-400 text-xs font-semibold text-center lg:text-left">
+                🔒 Acesso 100% gratuito. Toque no botão acima para entrar no WhatsApp.
+              </p>
+            </div>
+
+            {/* Box de Avisos Rápidos */}
+            <div class="bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-5 text-left max-w-xl mx-auto lg:mx-0 space-y-2.5">
+              <div class="flex items-center gap-3 text-sm md:text-base text-gray-200 font-semibold">
+                <span class="text-[#22C55E] font-black text-lg">✔</span>
+                <span>A oferta é secreta e será revelada <strong>somente no Grupo VIP</strong></span>
+              </div>
+              <div class="flex items-center gap-3 text-sm md:text-base text-gray-200 font-semibold">
+                <span class="text-[#22C55E] font-black text-lg">✔</span>
+                <span>11 Cursos Completos de Preparação + Brindes Exclusivos</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm md:text-base text-gray-200 font-semibold">
+                <span class="text-[#22C55E] font-black text-lg">✔</span>
+                <span>Grupo 100% gratuito e silencioso (sem spam)</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* SEÇÃO: O QUE VOCÊ VAI LEVAR */}
+    <section class="py-16 md:py-24 px-4 bg-[#050505]">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="text-brand-red font-black text-xs uppercase tracking-widest">Arsenal Completo NTR</span>
+          <h2 class="text-3xl sm:text-5xl font-black text-white uppercase tracking-tighter italic mt-2 mb-4">
+            O que você vai levar na <span class="text-brand-red">Black Vitalícia</span>
+          </h2>
+          <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+            Do básico ao avançado: todos os treinamentos para você preparar motores fortes que andam na frente, sem risco de quebras e com acesso para sempre.
+          </p>
+        </div>
+
+        {/* Sub-bloco: FORMAÇÃO AVANÇADA EM CABEÇOTES */}
+        <div class="mb-14">
+          <div class="flex items-center justify-center gap-3 mb-5">
+            <div class="h-px bg-blue-500/30 flex-1 max-w-[100px]"></div>
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-tighter italic text-center">
+              FORMAÇÃO AVANÇADA EM <span class="text-[#00A3FF]">CABEÇOTES</span>
+            </h3>
+            <div class="h-px bg-blue-500/30 flex-1 max-w-[100px]"></div>
+          </div>
+
+          {/* Mobile: Carrossel Automático Infinito */}
+          <div class="sm:hidden overflow-hidden -mx-4 relative">
+            <div class="marquee-track">
+              {[...formacaoCabecotes, ...formacaoCabecotes].map((item) => (
+                <div class="w-[230px] shrink-0 mx-2 relative bg-[#0a0a0a] border border-blue-500/30 rounded-2xl overflow-hidden aspect-[3/4]">
+                  <Image 
+                    src={item.img} 
+                    alt={item.title} 
+                    class="absolute inset-0 w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop/Tablet: Grid 4 Colunas */}
+          <div class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {formacaoCabecotes.map((item) => (
+              <div class="group relative bg-[#0a0a0a] border border-blue-500/30 rounded-2xl overflow-hidden aspect-[3/4] flex flex-col items-center justify-end transition-all duration-500 hover:border-[#00A3FF] hover:shadow-[0_0_35px_rgba(0,163,255,0.25)]">
+                <Image 
+                  src={item.img} 
+                  alt={item.title} 
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Sub-bloco: FORMAÇÃO AVANÇADA EM COMANDOS */}
+        <div class="mb-14">
+          <div class="flex items-center justify-center gap-3 mb-5">
+            <div class="h-px bg-brand-red/30 flex-1 max-w-[100px]"></div>
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-tighter italic text-center">
+              FORMAÇÃO AVANÇADA EM <span class="text-brand-red">COMANDOS</span>
+            </h3>
+            <div class="h-px bg-brand-red/30 flex-1 max-w-[100px]"></div>
+          </div>
+
+          {/* Mobile: Carrossel Automático Infinito */}
+          <div class="sm:hidden overflow-hidden -mx-4 relative">
+            <div class="marquee-track marquee-reverse">
+              {[...formacaoComandos, ...formacaoComandos].map((item) => (
+                <div class="w-[230px] shrink-0 mx-2 relative bg-[#0a0a0a] border border-brand-red/30 rounded-2xl overflow-hidden aspect-[3/4]">
+                  <Image 
+                    src={item.img} 
+                    alt={item.title} 
+                    class="absolute inset-0 w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop/Tablet: Grid 4 Colunas */}
+          <div class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {formacaoComandos.map((item) => (
+              <div class="group relative bg-[#0a0a0a] border border-brand-red/30 rounded-2xl overflow-hidden aspect-[3/4] flex flex-col items-center justify-end transition-all duration-500 hover:border-brand-red hover:shadow-[0_0_35px_rgba(255,51,51,0.25)]">
+                <Image 
+                  src={item.img} 
+                  alt={item.title} 
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Sub-bloco: FORMAÇÃO AVANÇADA EM ACERTO */}
+        <div class="mb-14">
+          <div class="flex items-center justify-center gap-3 mb-5">
+            <div class="h-px bg-[#F0B102]/30 flex-1 max-w-[100px]"></div>
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-tighter italic text-center">
+              FORMAÇÃO AVANÇADA EM <span class="text-[#F0B102]">ACERTO</span>
+            </h3>
+            <div class="h-px bg-[#F0B102]/30 flex-1 max-w-[100px]"></div>
+          </div>
+
+          {/* Mobile: Carrossel Automático Infinito */}
+          <div class="sm:hidden overflow-hidden -mx-4 relative">
+            <div class="marquee-track">
+              {[...formacaoAcerto, ...formacaoAcerto].map((item) => (
+                <div class="w-[230px] shrink-0 mx-2 relative bg-[#0a0a0a] border border-[#F0B102]/30 rounded-2xl overflow-hidden aspect-[3/4]">
+                  <Image 
+                    src={item.img} 
+                    alt={item.title} 
+                    class="absolute inset-0 w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop/Tablet: Grid 4 Colunas */}
+          <div class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {formacaoAcerto.map((item) => (
+              <div class="group relative bg-[#0a0a0a] border border-[#F0B102]/30 rounded-2xl overflow-hidden aspect-[3/4] flex flex-col items-center justify-end transition-all duration-500 hover:border-[#F0B102] hover:shadow-[0_0_35px_rgba(240,177,2,0.25)]">
+                <Image 
+                  src={item.img} 
+                  alt={item.title} 
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Intermediário */}
+        <div class="text-center max-w-xl mx-auto">
+          <a 
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-vip-cta="vitrine"
+            class="btn-grupo-vip group flex items-center justify-center gap-3 w-full py-5 px-6 bg-[#22C55E] hover:bg-[#16a34a] text-white text-lg sm:text-xl font-black rounded-2xl shadow-[0_15px_40px_rgba(34,197,94,0.35)] hover:shadow-[0_15px_50px_rgba(34,197,94,0.55)] transition-all transform hover:-translate-y-1 uppercase tracking-tight italic"
+          >
+            <svg class="w-7 h-7 fill-current shrink-0 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.533 5.862l-1.533 5.602 5.745-1.506c1.693.923 3.631 1.448 5.691 1.448 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span>ENTRAR NO GRUPO VIP</span>
+          </a>
+          <p class="mt-3 text-gray-500 text-xs font-semibold">
+            Não deixe para depois: as vagas do grupo são limitadas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* SEÇÃO DE CONTAGEM REGRESSIVA COM FUNDO VERMELHO */}
+    <section class="py-10 md:py-12 px-4 bg-gradient-to-r from-[#990000] via-[#CC0000] to-[#990000] border-y-2 border-white/20 shadow-[0_0_50px_rgba(204,0,0,0.4)] relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-white text-sm md:text-base uppercase tracking-widest font-black mb-5 flex items-center justify-center gap-2">
+          ⏳ CONTAGEM REGRESSIVA PARA ABERTURA OFICIAL
+        </p>
+        <div class="grid grid-cols-4 gap-3 sm:gap-5 max-w-xl mx-auto" id="countdown-box">
+          <div class="bg-black/40 backdrop-blur-sm border border-white/20 rounded-2xl py-4 px-2 text-center shadow-lg">
+            <span id="cd-days" class="block text-3xl sm:text-5xl font-black text-white leading-none">00</span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-white/80 font-bold mt-1.5 block">Dias</span>
+          </div>
+          <div class="bg-black/40 backdrop-blur-sm border border-white/20 rounded-2xl py-4 px-2 text-center shadow-lg">
+            <span id="cd-hours" class="block text-3xl sm:text-5xl font-black text-white leading-none">00</span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-white/80 font-bold mt-1.5 block">Horas</span>
+          </div>
+          <div class="bg-black/40 backdrop-blur-sm border border-white/20 rounded-2xl py-4 px-2 text-center shadow-lg">
+            <span id="cd-mins" class="block text-3xl sm:text-5xl font-black text-white leading-none">00</span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-white/80 font-bold mt-1.5 block">Min</span>
+          </div>
+          <div class="bg-black/40 backdrop-blur-sm border border-white/20 rounded-2xl py-4 px-2 text-center shadow-lg">
+            <span id="cd-secs" class="block text-3xl sm:text-5xl font-black text-white leading-none">00</span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-white/80 font-bold mt-1.5 block">Seg</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* SEÇÃO: COMO VAI FUNCIONAR */}
+    <section class="py-16 px-4 bg-[#0a0a0a]">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="text-brand-red font-black text-xs uppercase tracking-widest">Passo a Passo Simples</span>
+          <h2 class="text-2xl sm:text-4xl font-black text-white uppercase tracking-tighter italic mt-2">
+            Como garantir sua vaga na <span class="text-brand-red">Black Vitalícia</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {steps.map((step) => (
+            <div class="bg-[#050505] border border-white/10 rounded-2xl p-6 relative overflow-hidden hover:border-brand-red/40 transition-colors">
+              <span class="text-5xl font-black text-brand-red/20 italic leading-none block mb-3">{step.num}</span>
+              <h3 class="text-xl font-black text-white uppercase italic mb-2">{step.title}</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA Final no Passo a Passo */}
+        <div class="text-center max-w-xl mx-auto">
+          <a 
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-vip-cta="footer"
+            class="btn-grupo-vip group flex items-center justify-center gap-3 w-full py-5 px-6 bg-[#22C55E] hover:bg-[#16a34a] text-white text-lg sm:text-xl font-black rounded-2xl shadow-[0_15px_40px_rgba(34,197,94,0.35)] hover:shadow-[0_15px_50px_rgba(34,197,94,0.55)] transition-all transform hover:-translate-y-1 uppercase tracking-tight italic"
+          >
+            <svg class="w-7 h-7 fill-current shrink-0 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.533 5.862l-1.533 5.602 5.745-1.506c1.693.923 3.631 1.448 5.691 1.448 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span>ENTRAR NO GRUPO VIP</span>
+          </a>
+          <p class="mt-3 text-gray-500 text-xs font-semibold">
+            🔒 Acesso 100% gratuito e silencioso no WhatsApp.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <style>
+    /* Carrossel Automático e Infinito no Mobile */
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 18s linear infinite;
+    }
+
+    .marquee-reverse {
+      animation: marquee-scroll-reverse 18s linear infinite;
+    }
+
+    .marquee-track:hover,
+    .marquee-track:active {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes marquee-scroll-reverse {
+      0% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+  </style>
+
+  <script>
+    // Contagem regressiva até 10/11 às 20:00 (horário de Brasília)
+    function updateCountdown() {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      let target = new Date(`${currentYear}-11-10T20:00:00-03:00`);
+      
+      // Caso já tenha passado de 10/11 às 20h no ano atual, mantém zerado
+      const diff = target.getTime() - now.getTime();
+
+      const daysEl = document.getElementById('cd-days');
+      const hoursEl = document.getElementById('cd-hours');
+      const minsEl = document.getElementById('cd-mins');
+      const secsEl = document.getElementById('cd-secs');
+
+      if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
+
+      if (diff <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minsEl.textContent = '00';
+        secsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / 1000 / 60) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minsEl.textContent = String(mins).padStart(2, '0');
+      secsEl.textContent = String(secs).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Disparo do evento padrão Lead do Meta Pixel nos botões "ENTRAR NO GRUPO VIP"
+    document.querySelectorAll('.btn-grupo-vip').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead');
+        }
+      });
+    });
+  </script>
+</BaseLayout>

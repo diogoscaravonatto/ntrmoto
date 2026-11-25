@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import imgGarantia from '../../assets/images/selo_garantia_7d.png';
+---
+
+<section class="py-24 px-4 bg-black relative overflow-hidden">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+    
+    {/* Selo com Efeito Blur */}
+    <div class="relative group">
+      <div class="absolute inset-0 bg-brand-red/40 blur-[60px] rounded-full animate-pulse group-hover:bg-brand-red/60 transition-all duration-700"></div>
+      <div class="relative z-10 w-64 h-64 md:w-80 md:h-80 flex items-center justify-center">
+        <Image src={imgGarantia} alt="Garantia Incondicional 7 Dias" class="w-full h-auto drop-shadow-2xl" />
+      </div>
+    </div>
+
+    {/* Texto de Apoio */}
+    <div class="flex-1 text-center md:text-left space-y-6">
+      <h2 class="font-black uppercase tracking-tighter italic leading-none flex flex-col">
+        <span class="text-white text-3xl md:text-5xl lg:text-6xl">E O MELHOR DE TUDO,</span>
+        <span class="text-brand-red text-2xl md:text-4xl lg:text-5xl">VOCÊ PODE TESTAR POR 7 DIAS</span>
+      </h2>
+      
+      <div class="space-y-4 text-gray-400 text-lg md:text-xl font-medium leading-relaxed">
+        <p>Você pode entrar hoje, assistir quantas aulas quiser e decidir se quer continuar.</p>
+        <p>Se, por qualquer motivo, você não gostar do conteúdo, é só mandar uma mensagem dentro de 7 dias que devolvo o valor pago.</p>
+        <p class="text-white font-bold">Seu risco é ZERO. Sua oportunidade é ÚNICA.</p>
+        <p>E mais: se você pedir reembolso, pode <span class="text-white font-bold uppercase">FICAR</span> com todo o conhecimento que já consumiu. É meu presente pra você.</p>
+      </div>
+
+      <div class="pt-4">
+        <a href="#oferta" class="inline-block bg-[#65A30D] hover:bg-[#4d7c0f] text-white py-5 px-10 rounded-2xl font-black text-xl md:text-2xl uppercase tracking-tighter italic shadow-xl transition-all transform hover:-translate-y-1 animate-shake">
+          QUERO TESTAR POR 7 DIAS
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(-1deg); }
+    25% { transform: translateX(-1px) rotate(1deg); }
+    75% { transform: translateX(1px) rotate(-1deg); }
+  }
+  .animate-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) infinite;
+  }
+</style>

@@ -1,38 +1,5 @@
 {
-	"name": "vetpragas-site", // Nome identificador do projeto no dashboard da Cloudflare
-	"main": "@astrojs/cloudflare/entrypoints/server", // Ponto de entrada do adaptador Astro para Cloudflare
-	"account_id": "a9731f37d0f70d3fb2e6d428a8da95f0",
-	"compatibility_date": "2026-02-13", // Trava a versão da API do Worker para garantir estabilidade
-	"compatibility_flags": [
-		"nodejs_compat", // Habilita suporte a APIs nativas do Node.js (necessário para Sharp e outras libs)
-		"nodejs_compat_populate_process_env" // Garante que as variáveis de ambiente fiquem disponíveis em process.env
-	],
-	"vars": {
-		"PUBLIC_GTM_ID": "GTM-MCGSN5KJ" // Variável global para o ID do Google Tag Manager
-	},
-	"assets": {
-		"binding": "CF_ASSETS", // Vinculação interna para acesso aos arquivos estáticos
-		"directory": "./dist/client" // Diretório onde o Astro gera os arquivos otimizados para o cliente (CSS, JS, Imagens)
-	},
-	"observability": {
-		"logs": {
-			"enabled": true,
-			"invocation_logs": true
-		},
-		"traces": {
-			"enabled": true
-		}
-	},
-	"routes": [
-		{
-			"pattern": "www.vetpragas.com.br", // Endereço público onde o projeto será servido (com www)
-			"zone_name": "vetpragas.com.br", // Zona DNS que gerencia o domínio no Cloudflare
-			"custom_domain": true // Indica o uso de um domínio personalizado em vez do subdomínio .workers.dev
-		},
-		{
-			"pattern": "vetpragas.com.br", // Endereço público onde o projeto será servido (sem www)
-			"zone_name": "vetpragas.com.br", // Zona DNS que gerencia o domínio no Cloudflare
-			"custom_domain": true // Indica o uso de um domínio personalizado em vez do subdomínio .workers.dev
-		}
-	]
+	"name": "ntr-lp",
+	"compatibility_date": "2026-03-01",
+	"pages_build_output_dir": "dist/client"
 }

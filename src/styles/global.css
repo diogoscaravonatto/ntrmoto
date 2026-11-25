@@ -1,68 +1,91 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #122743;
-  --color-primary-dark: #0a1727;
-  --color-accent: #d81624;
-  --color-accent-dark: #b1121d;
-  --color-secondary: #2b3a55;
-
-  --font-sans: "Sora", "Inter", sans-serif;
-  --font-heading: "Sora", sans-serif;
+  --color-brand-red: #ff3333;
+  --color-brand-red-dark: #cc0000;
+  --color-brand-orange: #ff5a00;
+  --color-brand-orange-dark: #cc4800;
+  --color-brand-black: #050505;
+  --color-brand-gray: #1a1a1a;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --animate-marquee: marquee 40s linear infinite;
 }
 
-/* Custom dark variant para Tailwind v4 */
-@custom-variant dark (&:where(.dark, .dark *));
-
-:root {
-  color-scheme: light dark;
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
 }
 
+/* Custom Utilities if needed */
 @layer base {
   body {
-    @apply antialiased min-h-screen bg-white text-slate-900 font-sans selection:bg-primary selection:text-white transition-colors duration-300;
+    @apply bg-brand-black text-white font-sans antialiased overflow-x-hidden;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-heading tracking-tight;
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-@layer components {
-  .btn-primary {
-    @apply px-8 py-4 bg-accent text-white font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-accent-dark transition-all shadow-lg hover:shadow-accent/20 hover:-translate-y-1 text-center inline-block;
+@layer utilities {
+  .animate-glow {
+    animation: glow-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  .btn-secondary {
-    @apply px-8 py-4 bg-white text-primary border-2 border-primary/10 font-bold text-sm uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white transition-all text-center inline-block;
-  }
-
-  /* Textura de Apoio */
-  .bg-brand-pattern {
-    background-image: radial-gradient(circle at 1px 1px, var(--color-primary) 1px, transparent 0);
-    background-size: 40px 40px;
-    opacity: 0.05;
-  }
-}
-
-/* Animações Bornx Style */
-@keyframes reveal {
-  from {
+  .reveal-up {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  to {
+  .reveal-up.active {
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* Efeito de inclinação 3D */
+  .tilt-card {
+    transition: transform 0.3s ease-out;
+    transform-style: preserve-3d;
+  }
+  
+  .tilt-card:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
+  }
 }
 
-.animate-reveal {
-  animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Partículas de Velocidade */
+.velocity-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%),
+              url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMSIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC4yIi8+PC9zdmc+');
+  background-size: 100px 100px;
+  animation: speed-background 20s linear infinite;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+@keyframes speed-background {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 1000px; }
 }

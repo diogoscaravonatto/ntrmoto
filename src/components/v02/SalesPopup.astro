@@ -1,0 +1,64 @@
+---
+---
+<div 
+  id="sales-notification" 
+  class="fixed bottom-4 left-4 z-[100] transform translate-y-20 opacity-0 transition-all duration-700 pointer-events-none"
+>
+  <div class="bg-white/95 backdrop-blur-sm border border-gray-200 p-4 rounded-xl shadow-2xl flex items-center gap-4 max-w-sm">
+    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white shrink-0 shadow-lg animate-pulse">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+    <div>
+      <p id="notification-text" class="text-gray-900 font-bold text-sm leading-tight"></p>
+      <p class="text-green-600 text-xs font-semibold mt-1 flex items-center gap-1">
+        <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+        Compra confirmada agora
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const names = [
+    "João", "Renato", "Tiago", "Marcos", "Lucas", "Rafael", "Bruno", "André", "Felipe", "Rodrigo", 
+    "Carlos", "Gustavo", "Ricardo", "Fernando", "Diego", "Leonardo", "Samuel", "Victor", "Gabriel", "Douglas", 
+    "Jefferson", "Matheus", "Roberto", "Eduardo", "Marcelo", "Alex", "Igor", "Paulo", "Danilo", "Sergio"
+  ];
+  const actions = ["acabou de comprar", "acessou agora", "concluiu a inscrição", "entrou para a turma"];
+  
+  const notification = document.getElementById('sales-notification');
+  const textEl = document.getElementById('notification-text');
+
+  function showNotification() {
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    const randomAction = actions[Math.floor(Math.random() * actions.length)];
+    
+    if (textEl && notification) {
+      textEl.textContent = `${randomName} ${randomAction}`;
+      
+      // Mostrar
+      notification.classList.remove('translate-y-20', 'opacity-0');
+      
+      // Esconder após 5 segundos
+      setTimeout(() => {
+        notification.classList.add('translate-y-20', 'opacity-0');
+      }, 5000);
+    }
+  }
+
+  // Inicia após 10 segundos e repete a cada 30 segundos
+  if (window.innerWidth > 768) {
+    setTimeout(() => {
+      showNotification();
+      setInterval(showNotification, 30000);
+    }, 5000);
+  } else {
+    // No mobile, atrasa ainda mais para não pesar o carregamento inicial
+    setTimeout(() => {
+      showNotification();
+      setInterval(showNotification, 40000);
+    }, 15000);
+  }
+</script>

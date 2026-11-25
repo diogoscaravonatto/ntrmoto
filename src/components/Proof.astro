@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import imgDinamometro from '../assets/images/teste_dinamometro_r4t.png';
+import imgVelocidade from '../assets/images/grafico_dinamometro_32cv.png';
+import print1 from '../assets/images/Prints/depoimento_ntr_1.png';
+import print2 from '../assets/images/Prints/depoimento_ntr_2.png';
+import print3 from '../assets/images/Prints/depoimento_ntr_3.png';
+---
+
+<section id="prova" class="py-24 px-4 bg-brand-black">
+  <div class="max-w-4xl mx-auto reveal-up">
+    <div class="text-center mb-12">
+      <span class="text-brand-red font-bold uppercase tracking-widest text-sm">Contra fatos não há argumentos</span>
+      <h2 class="text-3xl md:text-5xl font-black text-white mt-3 mb-6">Projeto Testado e Validado</h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        Não vendemos ilusão. A configuração exata que você vai aprender na prática rendeu 32cv na roda e fez a moto passar dos 200km/h
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      {/* Proof 1: Dinamômetro */}
+      <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-2xl relative overflow-hidden group">
+        <div class="absolute inset-0 bg-brand-red/5 group-hover:bg-brand-red/10 transition-colors"></div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          Teste no Dinamômetro
+        </h3>
+        <div class="aspect-video bg-white rounded-lg overflow-hidden border border-gray-300 relative flex items-center justify-center">
+          <Image src={imgDinamometro} alt="Gráfico de Teste no Dinamômetro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="absolute bottom-4 right-4 bg-brand-red text-white font-black px-3 py-1 rounded text-lg shadow-lg z-10">32.6 cv</div>
+        </div>
+        <p class="text-gray-600 text-sm mt-4 text-center font-medium">Potência suficiente para passar dos 200km/h de reta.</p>
+      </div>
+
+      {/* Proof 2: GPS/Velocímetro */}
+      <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-2xl relative overflow-hidden group">
+        <div class="absolute inset-0 bg-brand-red/5 group-hover:bg-brand-red/10 transition-colors"></div>
+        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Potência real (na roda)
+        </h3>
+        <div class="aspect-video bg-white rounded-lg overflow-hidden border border-gray-300 relative flex items-center justify-center">
+           <Image src={imgVelocidade} alt="Comprovação de Potência" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+           <div class="absolute bottom-4 right-4 bg-brand-red text-white font-black px-3 py-1 rounded shadow-lg z-10">Motor de alta gira muito</div>
+        </div>
+        <p class="text-gray-600 text-sm mt-4 text-center font-medium">Curva de potência linear. Muita força de alta até o corte.</p>
+      </div>
+
+    </div>
+
+    {/* Prints dos Alunos */}
+    <div class="mt-24">
+      <div class="text-center mb-10">
+        <h3 class="text-2xl md:text-4xl font-black text-white">Veja o resultado da galera:</h3>
+        <p class="text-gray-400 mt-3 text-lg">A prova real de quem já copiou o projeto e aplicou na moto.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {/* Print 1 */}
+        <div class="bg-[#0d0d0d] rounded-[2rem] overflow-hidden border-4 border-gray-800 shadow-2xl aspect-[9/16] flex items-center justify-center relative">
+           <Image src={print1} alt="Depoimento de aluno 1" class="w-full h-full object-cover" />
+        </div>
+        
+        {/* Print 2 */}
+        <div class="bg-[#0d0d0d] rounded-[2rem] overflow-hidden border-4 border-gray-800 shadow-2xl aspect-[9/16] flex items-center justify-center relative">
+           <Image src={print2} alt="Depoimento de aluno 2" class="w-full h-full object-cover" />
+        </div>
+
+        {/* Print 3 */}
+        <div class="bg-[#0d0d0d] rounded-[2rem] overflow-hidden border-4 border-gray-800 shadow-2xl aspect-[9/16] flex items-center justify-center relative">
+           <Image src={print3} alt="Depoimento de aluno 3" class="w-full h-full object-cover" />
+        </div>
+      </div>
+
+      {/* CTA Button após depoimentos */}
+      <div class="mt-16 w-full max-w-md mx-auto text-center">
+        <a href="#oferta" class="block w-full py-5 px-6 bg-brand-red hover:bg-brand-red-dark text-white text-xl md:text-xl font-black rounded-lg shadow-[0_0_20px_rgba(255,51,51,0.3)] hover:shadow-[0_0_30px_rgba(255,51,51,0.5)] transition-all transform hover:-translate-y-1 uppercase tracking-wider">
+          SIM, QUERO ANDAR NA FRENTE
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,87 @@
+---
+const faqs = [
+  {
+    q: "¿Qué es la Capacitación en Tasa de Compresión?",
+    a: "La capacitación en Tasa de Compresión es un curso rápido en video clases donde aprenderás a mejorar el rendimiento y potencia de tu motor ajustando la compresión, utilizando herramientas básicas e incluso sin tener experiencia previa."
+  },
+  {
+    q: "¿Cómo voy a recibir el acceso a las clases?",
+    a: "¡El acceso es inmediato! Tan pronto como se confirme tu pago, recibirás un correo electrónico con tus datos de acceso (usuario y contraseña) y el enlace directo a la plataforma de estudiantes."
+  },
+  {
+    q: "¿En cuánto tiempo veré resultados en mi moto?",
+    a: "Puedes ver todas las clases el mismo día y ponerlas en práctica inmediatamente. El aumento de potencia y torque es instantáneo tan pronto como finalizas la regulación correcta en el motor."
+  },
+  {
+    q: "¿Funciona para alguien sin experiencia en mecánica?",
+    a: "Sí, el método está diseñado especialmente para quienes empiezan desde cero. Explicamos el paso a paso de forma simple, directa y sin tecnicismos complicados."
+  },
+  {
+    q: "¿Existe alguna garantía de que el programa funciona?",
+    a: "Sí, cuentas con 7 días de garantía incondicional. Si por cualquier motivo el curso no cumple tus expectativas, solo solicitas la devolución y te reembolsamos el 100% de tu dinero."
+  }
+];
+---
+
+<section class="py-24 px-4 bg-slate-50 relative overflow-hidden border-b border-slate-100">
+  <div class="max-w-3xl mx-auto relative z-10">
+    
+    <div class="text-center mb-16">
+      <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">Aclara tus Dudas</span>
+      <h2 class="text-3xl md:text-5xl font-black text-slate-900 mt-2 mb-6 uppercase tracking-tighter italic">
+        PREGUNTAS <span class="text-brand-orange">FRECUENTES</span>
+      </h2>
+    </div>
+
+    {/* Accordion List */}
+    <div class="space-y-4" id="faq-accordion-es">
+      {faqs.map((faq, index) => (
+        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:border-brand-orange/30 transition-all duration-300 shadow-sm">
+          <button 
+            class="faq-trigger-es w-full py-5 px-6 text-left flex justify-between items-center text-slate-800 font-bold text-base md:text-lg uppercase tracking-tight italic select-none focus:outline-none"
+            data-index={index}
+          >
+            <span>{faq.q}</span>
+            <svg class="faq-icon-es w-6 h-6 text-brand-orange transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          
+          <div class="faq-content-es max-h-0 overflow-hidden transition-all duration-300 ease-out">
+            <div class="p-6 pt-0 text-slate-500 text-sm leading-relaxed border-t border-slate-100">
+              {faq.a}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const triggers = document.querySelectorAll('.faq-trigger-es');
+  
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const content = trigger.nextElementSibling as HTMLElement;
+      const icon = trigger.querySelector('.faq-icon-es') as HTMLElement;
+      
+      // Fecha todos os outros FAQs
+      document.querySelectorAll('.faq-content-es').forEach(c => {
+        if (c !== content && c.clientHeight > 0) {
+          (c as HTMLElement).style.maxHeight = '0px';
+          const siblingIcon = c.previousElementSibling?.querySelector('.faq-icon-es') as HTMLElement;
+          if (siblingIcon) siblingIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+
+      // Alterna o estado do item clicado
+      if (content.clientHeight === 0) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        content.style.maxHeight = '0px';
+        icon.style.transform = 'rotate(0deg)';
+      }
+    });
+  });
+</script>

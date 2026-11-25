@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import dep1 from '../../assets/images/Prints/depoimento_ntr_1.png';
+import dep2 from '../../assets/images/Prints/depoimento_ntr_2.png';
+import dep3 from '../../assets/images/Prints/depoimento_ntr_3.png';
+import dep4 from '../../assets/images/Prints/print_depoimento_4.webp';
+import dep5 from '../../assets/images/Prints/print_depoimento_5.webp';
+import dep6 from '../../assets/images/Prints/print_depoimento_6.webp';
+import dep7 from '../../assets/images/Prints/print_depoimento_7.webp';
+
+const prints = [
+  { img: dep1, alt: "Resultado aluno NTR 1" },
+  { img: dep2, alt: "Resultado aluno NTR 2" },
+  { img: dep3, alt: "Resultado aluno NTR 3" },
+  { img: dep4, alt: "Resultado aluno NTR 4" },
+  { img: dep5, alt: "Resultado aluno NTR 5" },
+  { img: dep6, alt: "Resultado aluno NTR 6" },
+  { img: dep7, alt: "Resultado aluno NTR 7" }
+];
+---
+
+<section class="py-24 px-4 bg-white relative overflow-hidden">
+  <div class="max-w-6xl mx-auto relative z-10">
+    
+    <div class="text-center mb-16">
+      <span class="text-brand-orange font-black text-sm uppercase tracking-wider italic">Alunos na Prática</span>
+      <h2 class="text-3xl md:text-5xl font-black text-slate-900 mt-2 mb-6 uppercase tracking-tighter italic">
+        RESULTADO DE QUEM <span class="text-brand-orange">FEZ O CURSO:</span>
+      </h2>
+    </div>
+
+    {/* Grid dos prints em formato Galeria */}
+    <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+      {prints.map((item) => (
+        <div class="break-inside-avoid relative bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden hover:border-brand-orange/40 transition-all duration-300 shadow-sm hover:shadow-md group p-1.5">
+          <Image 
+            src={item.img} 
+            alt={item.alt} 
+            class="w-full h-auto rounded-xl object-contain transition-transform duration-500 group-hover:scale-[1.01]" 
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

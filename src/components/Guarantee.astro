@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+import seloGold from '../assets/images/selo_garantia_7d.png';
+---
+
+<section id="garantia" class="py-24 px-4 bg-black relative overflow-hidden">
+  {/* Background glow suave */}
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,51,51,0.05)_0%,transparent_70%)] pointer-events-none"></div>
+
+  <div class="max-w-5xl mx-auto relative z-10 text-center">
+    
+    {/* Header da Seção */}
+    <div class="mb-12 reveal-up">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-brand-red"></div>
+        <span class="text-brand-red font-bold text-sm uppercase tracking-[0.2em]">Compra Protegida 100%</span>
+        <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-brand-red"></div>
+      </div>
+      <h2 class="text-4xl md:text-7xl font-black text-white italic uppercase leading-[0.85] md:leading-none mb-4 tracking-tight flex flex-col md:block">
+        <span class="md:hidden">GARANTIA TOTAL</span>
+        <span class="md:hidden text-brand-red">DE 7 DIAS</span>
+        <span class="hidden md:block">GARANTIA TOTAL DE <span class="text-brand-red ml-2">7 DIAS</span></span>
+      </h2>
+    </div>
+
+    {/* Main Card com Borda Neon */}
+    <div class="relative bg-[#050505] border border-brand-red/30 rounded-3xl p-8 md:p-12 shadow-[0_0_50px_rgba(255,51,51,0.15)] overflow-hidden reveal-up">
+      {/* Linha de brilho superior */}
+      <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-red to-transparent opacity-50"></div>
+      
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+        {/* Selo Dourado */}
+        <div class="w-64 h-64 md:w-80 md:h-80 shrink-0 drop-shadow-[0_0_30px_rgba(234,179,8,0.2)] mb-8 md:mb-0">
+          <Image src={seloGold} alt="Selo de Garantia 7 Dias" class="w-full h-full object-contain scale-125 md:scale-110" />
+        </div>
+
+        {/* Texto e Benefícios */}
+        <div class="flex-grow text-left">
+          <h3 class="text-2xl md:text-3xl font-black text-white mb-6 leading-tight">
+            Você tem <span class="text-yellow-500 underline underline-offset-4">7 DIAS INTEIROS</span> para testar tudo e colocar em prática.
+          </h3>
+          <p class="text-gray-300 text-xl leading-relaxed mb-10">
+            Se por qualquer motivo você achar que o conteúdo não é para você, basta enviar um e-mail e <span class="text-yellow-500 font-bold">devolvemos 100% do seu dinheiro.</span> Sem perguntas. Sem burocracia.
+          </p>
+
+          <div class="max-w-md mx-auto md:mx-0">
+            <a 
+              href="https://sun.eduzz.com/1865589?cupom=especial50off&utm_content=1754141964121_17541415298533" 
+              class="block w-full py-5 px-6 bg-brand-red hover:bg-brand-red-dark text-white text-xl md:text-2xl font-black rounded-lg shadow-[0_0_20px_rgba(255,51,51,0.3)] hover:shadow-[0_0_40px_rgba(255,51,51,0.5)] transition-all transform hover:-translate-y-1 uppercase tracking-wider text-center"
+            >
+              TESTAR SEM RISCO AGORA
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Barra de Segurança Final */}
+    <div class="mt-8 bg-gradient-to-r from-brand-red/10 via-[#111] to-brand-red/10 border border-yellow-500/30 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl reveal-up">
+      <div class="flex items-center gap-4">
+        <div class="w-16 h-16 md:w-20 md:h-20 bg-yellow-500/10 rounded-xl flex items-center justify-center border border-yellow-500/40 shrink-0">
+           <svg class="w-10 h-10 md:w-12 md:h-12 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+        </div>
+        <div class="text-left">
+          <h4 class="text-2xl md:text-3xl text-white font-black italic uppercase tracking-tight leading-[0.9] md:leading-none flex flex-col md:block">
+            <span class="md:hidden">SUA COMPRA É</span>
+            <span class="md:hidden text-yellow-500">100% SEGURA</span>
+            <span class="hidden md:block">Sua compra é <span class="text-yellow-500">100% Segura!</span></span>
+          </h4>
+          <p class="text-gray-400 text-sm md:text-base mt-3 md:mt-2">
+            Ambiente seguro e criptografado.<br class="md:hidden"/>
+            Seus dados estão protegidos.
+          </p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-6 shrink-0">
+        <div class="flex items-center gap-2">
+           <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z"/></svg>
+           <div class="text-left">
+             <p class="text-white text-[10px] font-bold uppercase leading-none">Compra Segura</p>
+             <p class="text-gray-600 text-[8px] uppercase">Ambiente Protegido</p>
+           </div>
+        </div>
+        <div class="flex items-center gap-2">
+           <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+           <div class="text-left">
+             <p class="text-white text-[10px] font-bold uppercase leading-none">SSL Certificado</p>
+             <p class="text-gray-600 text-[8px] uppercase">Dados Protegidos</p>
+           </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Prova Social de Alunos */}
+    <p class="mt-8 text-yellow-500 font-bold text-xs uppercase tracking-[0.2em]">
+       <span class="text-brand-red">●</span> Mais de 12.000 alunos já aprovaram e recomendam este conteúdo!
+    </p>
+
+  </div>
+</section>

@@ -1,166 +1,69 @@
 ---
-import { SEO } from "astro-seo";
-import GoogleTagManager from "@components/GoogleTagManager.astro";
-
-import "../styles/global.css";
+import '../styles/global.css';
 
 interface Props {
-    title: string;
-    description?: string;
-    image?: string;
-    theme?: "dark" | "light";
-    disableDefaultFonts?: boolean;
-    colors?: {
-        primary: string;
-        secondary?: string;
-        background: string;
-    };
+  title: string;
+  description?: string;
 }
 
-const {
-    title,
-    description = "Estúdio de design digital premium e performance.",
-    image = "/favicon_vetpragas96x96.png",
-    theme = "dark",
-    disableDefaultFonts = false,
-    colors,
-} = Astro.props;
-
-const siteUrl = Astro.site ? Astro.site.href : "https://vetpragas.com.br";
-const resolvedImageWithDomain = new URL(image, siteUrl).toString();
-
-// GTM ID (opcional - configure via variáveis de ambiente)
-const gtmId = import.meta.env.PUBLIC_GTM_ID;
-
-// Estilo dinâmico para injetar as cores do JSON
-const dynamicStyles = colors
-    ? {
-          "--color-primary": colors.primary,
-          "--color-secondary": colors.secondary || "#a1a1aa",
-          "--color-background": colors.background,
-      }
-    : {};
+const { title, description = "Projeto de baixo custo que gera +32cv e faz a moto passar dos 200km/h." } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR" class:list={[theme]} style={dynamicStyles}>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/png" href="/favicon_vetpragas96x96.png" />
-        <meta name="generator" content={Astro.generator} />
-        <meta
-            name="theme-color"
-            content={theme === "dark" ? "#050505" : "#ffffff"}
-        />
-        <link rel="sitemap" href="/sitemap-index.xml" />
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
 
-        <SEO
-            title={title}
-            titleTemplate="%s | VetPragas"
-            description={description}
-            canonical={Astro.url.href}
-            openGraph={{
-                basic: {
-                    title: title,
-                    type: "website",
-                    image: resolvedImageWithDomain,
-                    url: Astro.url.href,
-                },
-                optional: {
-                    description: description,
-                    siteName: "VetPragas",
-                },
-            }}
-            twitter={{
-                card: "summary_large_image",
-            }}
-        />
+    {/* Meta tags para redes sociais (OG Image) */}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/mockup_r4t_impacto3.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/images/mockup_r4t_impacto3.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    {/* Google Tag Manager - Oficial NTR via Stape (Carregamento Imediato para Rastreamento) */}
+    <script is:inline>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://stape.escolademotores.com.br/4txurzhmh.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','435cn=aWQ9R1RNLVdQSzg3UlBI&apiKey=98b4c691');
+    </script>
+  </head>
+  <body class="bg-[#050505] text-gray-200 min-h-screen flex flex-col selection:bg-brand-red selection:text-white">
+    {/* Google Tag Manager (noscript) - Fallback para usuários sem JS ou com bloqueadores */}
+    <noscript><iframe src="https://stape.escolademotores.com.br/ns.html?id=GTM-WPK87RPH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <main class="flex-grow overflow-hidden">
+      <slot />
+    </main>
 
-        {/* Resource Hints para domínios externos */}
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://cdn.builder.io" />
-        <link
-            rel="preconnect"
-            href="https://www.googletagmanager.com"
-            crossorigin
-        />
+    <footer class="py-12 border-t border-gray-900 text-center text-sm text-gray-600 mt-auto bg-[#020202]">
+      <div class="container mx-auto px-4">
+        <p class="mb-2">NTR Escola de Motores &copy; {new Date().getFullYear()}. Todos os direitos reservados.</p>
+      </div>
+    </footer>
 
-        {gtmId && <GoogleTagManager gtmId={gtmId} />}
+    <script>
+      // Scroll Reveal Animation
+      const observerOptions = {
+        threshold: 0.1
+      };
 
-        {/* Slot para fontes/meta tags customizadas por página */}
-        <slot name="head" />
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
 
-        {
-            !disableDefaultFonts && (
-                <>
-                    {/* Preconnect para Google Fonts */}
-                    <link
-                        rel="preconnect"
-                        href="https://fonts.googleapis.com"
-                    />
-                    <link
-                        rel="preconnect"
-                        href="https://fonts.gstatic.com"
-                        crossorigin
-                    />
-
-                    <link
-                        href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Inter:wght@400;500;600;700&display=swap"
-                        rel="preload"
-                        as="style"
-                    />
-                    <link
-                        href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Inter:wght@400;500;600;700&display=swap"
-                        rel="stylesheet"
-                        media="print"
-                        onload="this.media='all'"
-                    />
-                </>
-            )
-        }
-    </head>
-    <body
-        class="font-sans antialiased text-slate-900 bg-white selection:bg-primary selection:text-white min-h-screen overflow-x-hidden"
-    >
-        <style is:global>
-            /* Foco visível para navegação por teclado usando a cor da marca */
-            :focus-visible {
-                outline: 2px solid #122743;
-                outline-offset: 2px;
-            }
-
-            /* Custom Scrollbar - Premium Feel (adapta ao tema) */
-            ::-webkit-scrollbar {
-                width: 6px;
-            }
-            ::-webkit-scrollbar-track {
-                background: #f1f5f9;
-            }
-            ::-webkit-scrollbar-thumb {
-                background: #cbd5e1;
-                border-radius: 3px;
-            }
-            ::-webkit-scrollbar-thumb:hover {
-                background: #94a3b8;
-            }
-
-            /* Dark mode scrollbar */
-            .dark ::-webkit-scrollbar-track,
-            html.dark::-webkit-scrollbar-track {
-                background: #000;
-            }
-            .dark ::-webkit-scrollbar-thumb,
-            html.dark::-webkit-scrollbar-thumb {
-                background: #333;
-            }
-            .dark ::-webkit-scrollbar-thumb:hover,
-            html.dark::-webkit-scrollbar-thumb:hover {
-                background: #555;
-            }
-        </style>
-
-        <slot />
-    </body>
+      document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
+    </script>
+  </body>
 </html>

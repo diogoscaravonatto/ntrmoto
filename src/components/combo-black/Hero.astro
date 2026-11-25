@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import imgMockup from '../../assets/images/mockup_combo_black.webp';
+import imgPgto from '../../assets/images/selo_pgto.webp';
+---
+
+<section class="relative pt-8 pb-16 md:pt-12 md:pb-24 px-4 overflow-hidden bg-black">
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    
+    <div class="inline-block bg-brand-red/10 border border-brand-red/30 px-6 py-2 rounded-full mb-8">
+       <span class="text-brand-red font-black text-sm uppercase tracking-widest">Acesso Vitalício Liberado</span>
+    </div>
+
+    <h1 class="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-6 uppercase tracking-tighter italic leading-[0.9] max-w-5xl mx-auto px-4">
+      Vagas abertas&nbsp;<br class="md:hidden" />&nbsp;para o <span class="text-brand-red">MAIOR&nbsp;<br class="md:hidden" />&nbsp;ARSENAL</span>&nbsp;<br class="hidden md:block" />&nbsp;de&nbsp;<br class="md:hidden" />&nbsp;Preparação&nbsp;<br class="md:hidden" />&nbsp;do Brasil
+    </h1>
+
+    <p class="text-gray-400 text-lg md:text-xl font-medium max-w-3xl mx-auto mb-12 leading-relaxed px-4">
+      Você terá acesso vitalício aos melhores cursos de Preparação da NTR, com aulas sempre atualizadas, onde vai aprender técnicas para preparar motos fortes que andam na frente, sem risco de quebras.
+    </p>
+
+    {/* VSL Panda Video */}
+    <div class="mb-12 relative max-w-[400px] mx-auto shadow-[0_0_50px_rgba(255,51,51,0.1)] rounded-3xl overflow-hidden border-4 border-white/10">
+       <div style="position:relative;padding-top:177.77777777777777%;">
+         <iframe 
+           id="panda-36b37204-53e7-4bdb-8f3a-c8078b9e4843" 
+           src="https://player-vz-8c69785c-727.tv.pandavideo.com.br/embed/?v=36b37204-53e7-4bdb-8f3a-c8078b9e4843" 
+           style="border:none;position:absolute;top:0;left:0;" 
+           allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" 
+           allowfullscreen={true} 
+           width="100%" 
+           height="100%" 
+           fetchpriority="high">
+         </iframe>
+       </div>
+    </div>
+
+    <div class="mt-8 px-4">
+      <a href="#oferta" class="inline-block w-full max-w-md py-6 px-4 bg-[#22C55E] hover:bg-[#16a34a] text-white text-lg md:text-xl font-black rounded-2xl shadow-[0_15px_40px_rgba(34,197,94,0.3)] transition-all transform hover:-translate-y-1 hover:scale-105 uppercase tracking-tighter italic animate-pulse whitespace-nowrap">
+        QUERO MEU ACESSO VITALÍCIO
+      </a>
+      
+      <div class="mt-6 space-y-2">
+        <p class="text-brand-red font-black text-sm md:text-base italic">
+          ULTIMA CHANCE <span class="normal-case font-bold text-brand-red/90">de ter acesso vitalício aos cursos</span>
+        </p>
+        <p class="text-gray-400 font-bold text-sm">
+          💳 12x R$ 29,90 | Garantia 7 dias para testar sem risco
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  {/* Efeitos de Fundo */}
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,0,0,0.1)_0%,transparent_70%)] pointer-events-none"></div>
+</section>

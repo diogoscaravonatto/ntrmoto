@@ -1,0 +1,34 @@
+---
+---
+<div 
+  id="sticky-urgency-bar" 
+  class="fixed top-0 left-0 w-full bg-[#FF3333] text-white py-3 px-4 z-[100] transform -translate-y-full transition-transform duration-500 shadow-lg"
+>
+  <div class="max-w-7xl mx-auto flex items-center justify-center gap-4 text-center">
+    <p class="font-black text-sm md:text-lg uppercase tracking-wide">
+      ⚠️ ÚLTIMOS DIAS COM 50% DE DESCONTO
+    </p>
+    <a 
+      href="#oferta" 
+      class="hidden md:inline-block bg-white text-[#FF3333] px-4 py-1 rounded font-black text-xs uppercase hover:bg-gray-100 transition-colors"
+    >
+      Aproveitar Agora
+    </a>
+  </div>
+</div>
+
+<script>
+  const bar = document.getElementById('sticky-urgency-bar');
+  
+  // Atrasar a ativação do listener para não pesar o início
+  setTimeout(() => {
+    window.addEventListener('scroll', () => {
+      // Aparece após rolar 800px (aproximadamente depois da Hero/Vídeo)
+      if (window.scrollY > 800) {
+        bar?.classList.remove('-translate-y-full');
+      } else {
+        bar?.classList.add('-translate-y-full');
+      }
+    }, { passive: true });
+  }, 5000);
+</script>

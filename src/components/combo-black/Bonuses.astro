@@ -1,0 +1,125 @@
+---
+import { Image } from 'astro:assets';
+import imgGuia from '../../assets/images/mockup_guia_motores.webp';
+import imgFabrica from '../../assets/images/mockup_fabrica_motores.webp';
+import imgGrupo from '../../assets/images/mockup_grupo_vip.webp';
+
+const bonuses = [
+  {
+    tag: "Brinde #1",
+    title: "Grupo no Whats",
+    desc: "Grupo Vip com outros preparadores para trocar ideias e experiência.",
+    bullet: "Aqui não deixamos você sozinho!",
+    price: "R$ 97,00",
+    img: imgGrupo
+  },
+  {
+    tag: "Brinde #2",
+    title: "GUIA DE MOTORES",
+    desc: "Como montar projetos simples de baixo custo que passam fácil dos 200km/h e se tornar referência.",
+    bullet: "Aplicação, montagem e preparo 100% prático do início ao fim com testes em dinamômetro",
+    price: "R$ 67,00",
+    img: imgGuia
+  },
+  {
+    tag: "Brinde #3",
+    title: "Fábrica de Motores",
+    desc: "Como montar uma oficina lucrativa, atrair clientes e faturar mais de R$ 10mil/mês com preparação.",
+    bullets: [
+      "Planilha Financeira - Descubra se tá lucrando ou pagando pra trabalhar, sem precisar fazer conta.",
+      "Lista completa de Ferramentas pra começar investindo pouco e sem gastar com besteira."
+    ],
+    price: "R$ 97,00",
+    img: imgFabrica
+  }
+];
+---
+
+<section class="py-24 px-4 bg-black">
+  <div class="max-w-6xl mx-auto">
+    
+    <div class="text-center mb-16 px-4">
+      <h2 class="font-black text-white mb-6 uppercase tracking-tighter italic leading-tight max-w-4xl mx-auto text-center">
+        <span class="text-3xl md:text-4xl lg:text-5xl opacity-90">Além dos cursos, leve mais&nbsp;</span>
+        <span class="text-3xl md:text-6xl lg:text-7xl text-brand-red">3 brindes exclusivos</span>
+      </h2>
+      <p class="text-gray-400 text-lg md:text-xl font-medium max-w-3xl mx-auto">
+        Fazendo sua inscrição HOJE <span id="current-date" class="text-white font-bold"></span>, você ganha vantagens exclusivas para acelerar seus resultados.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      {bonuses.map((bonus) => (
+        <div class="bg-white rounded-3xl overflow-hidden flex flex-col shadow-2xl transition-all hover:scale-[1.02]">
+          {/* Header do Card */}
+          <div class="bg-brand-red py-4 px-6 text-center">
+            <span class="block text-white font-black text-xs uppercase tracking-widest mb-1 opacity-90">{bonus.tag}</span>
+            <h3 class="text-white font-black text-xl md:text-2xl uppercase tracking-tighter italic">{bonus.title}</h3>
+          </div>
+          
+          <div class="p-8 flex flex-col flex-1 text-center">
+            <p class="text-gray-800 font-bold text-sm md:text-base leading-tight mb-8">
+              {bonus.desc}
+            </p>
+
+            <div class="mb-8 flex-1 flex items-center justify-center">
+              <Image src={bonus.img} alt={bonus.title} class="w-full h-auto object-contain max-h-[220px]" />
+            </div>
+
+            <div class="space-y-4 mb-8 text-left">
+              {bonus.bullet && (
+                <div class="flex items-start gap-2 text-gray-700 font-medium text-xs md:text-sm">
+                  <span class="shrink-0 text-brand-red">👉</span>
+                  <span>{bonus.bullet}</span>
+                </div>
+              )}
+              {bonus.bullets && bonus.bullets.map(b => (
+                <div class="flex items-start gap-2 text-gray-700 font-medium text-xs md:text-sm">
+                  <span class="shrink-0 text-brand-red">👉</span>
+                  <span>{b}</span>
+                </div>
+              ))}
+            </div>
+            
+            <div class="mt-auto pt-6 border-t border-gray-100">
+              <p class="text-gray-400 font-bold text-sm uppercase">
+                Valor Total: <span class="text-brand-red line-through">{bonus.price}</span>
+              </p>
+              <p class="text-gray-900 font-black text-xl md:text-2xl uppercase tracking-tighter italic mt-1">
+                HOJE É GRÁTIS!
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a href="#oferta" class="inline-block w-full max-w-lg py-6 px-8 bg-[#22C55E] hover:bg-[#16a34a] text-white text-xl md:text-2xl font-black rounded-2xl shadow-[0_20px_50px_rgba(34,197,94,0.3)] transition-all transform hover:-translate-y-2 uppercase tracking-tighter italic animate-pulse">
+        SIM, QUERO GARANTIR OS BRINDES
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  function updateDate() {
+    const dateElement = document.getElementById('current-date');
+    if (!dateElement) return;
+
+    const now = new Date();
+    const day = now.getDate();
+    const months = [
+      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ];
+    const month = months[now.getMonth()];
+
+    dateElement.textContent = `${day} de ${month}`;
+  }
+  updateDate();
+</script>
+
+  </div>
+</section>

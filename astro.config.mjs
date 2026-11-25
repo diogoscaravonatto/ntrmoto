@@ -4,49 +4,34 @@ import cloudflare from '@astrojs/cloudflare'; // Adaptador para deploy e execuç
 import tailwindcss from '@tailwindcss/vite'; // Plugin Vite para suporte ao Tailwind CSS v4
 import sitemap from '@astrojs/sitemap'; // Integração para gerar automaticamente o arquivo sitemap.xml
 
-import partytown from '@astrojs/partytown'; // Integração para mover scripts de terceiros pesados para Web Workers
-
 import compress from 'astro-compress'; // Integração para comprimir assets (HTML, JS, CSS) no build final
 
 import robotsTxt from 'astro-robots-txt'; // Integração para gerar automaticamente o arquivo robots.txt
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server', // Define o modo de saída como SSR (Server-Side Rendering) para processamento dinâmico
+  output: 'static', // Define o modo de saída como Estático para máxima performance e facilidade de deploy em LPs
   build: {
     inlineStylesheets: 'always', // Injeta o CSS diretamente no HTML para zerar o Render Blocking
   },
-  site: 'https://www.vetpragas.com.br', // URL base do site, usada para gerar sitemaps e links absolutos
+  site: 'https://lp.escolademotores.com.br', // URL base do subdomínio de LPs da NTR
 
   // Adaptador Cloudflare para deploy na infraestrutura Cloudflare Workers
+  /*
   adapter: cloudflare({
-    imageService: 'compile', // Habilita a compilação local de imagens para rotas prerenderizadas (Sharp no tempo de build)
+    imageService: process.env.NODE_ENV === 'production' ? 'compile' : 'passthrough',
+    generateWranglerConfig: false,
   }),
+  */
 
   integrations: [ // Lista de todas as integrações/plugins ativos no projeto
     sitemap(), // Gera automaticamente o sitemap.xml
-    partytown({ // Configuração do Partytown para scripts de terceiros
-      config: {
-        forward: ['dataLayer.push'], // Encaminha eventos do Google Tag Manager para o Web Worker
-
-        // Otimizações de performance
-        debug: false, // Desativa logs de debug por performance
-        logCalls: false, // Não loga chamadas de função no worker
-        logGetters: false, // Não loga acessos a propriedades (getters)
-        logSetters: false, // Não loga definições de propriedades (setters)
-        logImageRequests: false, // Não loga requisições de imagem feitas pelo worker
-        logMainAccess: false, // Não loga acessos ao thread principal
-        logScriptExecution: false, // Não loga a execução de scripts no worker
-        logSendBeaconRequests: false, // Não loga requisições beacon
-        logStackTraces: false, // Não gera stack traces detalhadas por performance
-      },
-    }),
 
     compress({ // Configurações de compressão de assets
       CSS: true, // Habilita compressão de CSS
-      HTML: true, // Habilita compressão de HTML
+      HTML: false, // Desabilitado para não alterar/minificar o código oficial do Meta Pixel no HTML
       Image: false, // Sharp já otimiza, evitar compressão dupla que pode degradar qualidade
-      JavaScript: true, // Habilita compressão de JavaScript
+      JavaScript: false, // Desabilitado para manter o script do Meta Pixel intacto
       SVG: true, // Habilita compressão de arquivos SVG
     }),
 
@@ -62,6 +47,9 @@ export default defineConfig({
   ],
 
   image: { // Configuração global do serviço de imagens do Astro
+    service: {
+      entrypoint: 'astro/assets/services/sharp' // Força o uso do Sharp para processamento local
+    },
     remotePatterns: [ // Lista branca de domínios externos permitidos para otimização de imagem
       {
         protocol: 'https', // Protocolo seguro obrigatório
